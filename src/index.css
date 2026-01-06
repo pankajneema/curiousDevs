@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* CuriousDevs Design System - Enterprise Deep-Tech Theme */
+
+@layer base {
+  :root {
+    /* Dark theme as primary - Deep Navy */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Electric Blue - Primary Accent */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+
+    /* Cyan/Teal - CyberSentinel Accent */
+    --secondary: 186 100% 42%;
+    --secondary-foreground: 222 47% 6%;
+
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 186 100% 42%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 14%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom CuriousDevs Tokens */
+    --navy-deep: 222 47% 6%;
+    --navy-light: 222 30% 14%;
+    --cyan-glow: 186 100% 42%;
+    --electric-blue: 217 91% 60%;
+    --purple-muted: 270 30% 50%;
+    --green-live: 160 84% 39%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222 47% 6%) 0%, hsl(222 30% 12%) 50%, hsl(217 40% 10%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 30% 12%) 0%, hsl(222 47% 8%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(186 100% 42%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(186 100% 42% / 0.15) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px -15px hsl(186 100% 42% / 0.4);
+    --shadow-card: 0 4px 24px -4px hsl(222 47% 4% / 0.8);
+    --shadow-button: 0 0 20px -5px hsl(217 91% 60% / 0.5);
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .card-glow {
+    position: relative;
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--cyan-glow) / 0.3), transparent, hsl(var(--electric-blue) / 0.3));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .nav-blur {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--navy-deep) / 0.85);
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .badge-live {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+    background: hsl(var(--green-live) / 0.15);
+    color: hsl(var(--green-live));
+    border: 1px solid hsl(var(--green-live) / 0.3);
+  }
+
+  .badge-coming-soon {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium;
+    background: hsl(var(--purple-muted) / 0.15);
+    color: hsl(var(--purple-muted));
+    border: 1px solid hsl(var(--purple-muted) / 0.3);
+  }
+}

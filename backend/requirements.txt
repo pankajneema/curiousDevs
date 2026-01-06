@@ -1,0 +1,11 @@
+motor
+python-decouple
+pydantic[email]
+typing-extensions
+fastapi
+passlib[bcrypt]
+PyJWT
+uvicorn[standard]
+fastapi-mail
+python-multipart
+
