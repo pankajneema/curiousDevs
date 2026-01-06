@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
-const API_URL = "https://api.curiousdevs.com/leads/create"; // change if needed
+const API_URL = "https://api.curiousdevs.com/lead/create"; // change if needed
 
 export function ContactSection() {
   const { toast } = useToast();
