@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
-const API_URL = "https://api.curiousdevs.com/newsletter/subscribe"; // change if needed
+const API_URL = "https://api.curiousdevs.com/newsletter/subscribe";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -32,7 +32,7 @@ export function NewsletterSection() {
       }
 
       toast({
-        title: "Subscribed!",
+        title: "Subscribed successfully!",
         description: "Thank you for subscribing to CuriousDevs updates.",
       });
 
@@ -40,7 +40,7 @@ export function NewsletterSection() {
     } catch (err: any) {
       toast({
         title: "Subscription failed",
-        description: err.message,
+        description: err.message || "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -64,6 +64,7 @@ export function NewsletterSection() {
           transition={{ duration: 0.6 }}
           className="max-w-2xl mx-auto text-center"
         >
+          {/* Icon */}
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-6">
             <Sparkles className="w-8 h-8 text-primary" />
           </div>
@@ -77,6 +78,7 @@ export function NewsletterSection() {
             with respect for your time.
           </p>
 
+          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
@@ -95,9 +97,16 @@ export function NewsletterSection() {
               variant="heroPrimary"
               size="lg"
               disabled={isLoading}
-              className="gap-2"
+              className="gap-2 whitespace-nowrap"
             >
-              {isLoading ? "Subscribing..." : <>Subscribe <Send className="w-4 h-4" /></>}
+              {isLoading ? (
+                "Subscribing..."
+              ) : (
+                <>
+                  Subscribe
+                  <Send className="w-4 h-4" />
+                </>
+              )}
             </Button>
           </form>
 

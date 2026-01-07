@@ -18,8 +18,8 @@ const companyLinks = [
 ];
 
 const legalLinks = [
-  { name: "Privacy Policy", href: "#" },
-  { name: "Terms of Service", href: "#" },
+  { name: "Privacy Policy", href: "/privacy" },
+  { name: "Terms of Service", href: "/terms" },
 ];
 
 export function Footer() {
@@ -96,13 +96,13 @@ export function Footer() {
             <p className="text-sm text-muted-foreground mb-4">
               Get product updates and insights delivered to your inbox.
             </p>
-            <a
-              href="#newsletter"
+            <Link
+              to="/#newsletter"
               className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors group"
             >
               Subscribe to Newsletter
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -116,13 +116,13 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-6">
               {legalLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
+                  to={link.href}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

@@ -16,10 +16,10 @@ const products = [
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/#about" },
-  { name: "Blog / Updates", href: "/#newsletter" },
-  { name: "FAQ", href: "/#faq" },
-  { name: "Contact", href: "/#contact" },
+  { name: "About", href: "/about" },
+  { name: "Blog / Updates", href: "/blog" },
+  { name: "FAQ", href: "/faq" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Header() {
