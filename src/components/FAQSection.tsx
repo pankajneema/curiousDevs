@@ -31,10 +31,10 @@ const faqs = [
 
 export function FAQSection() {
   return (
-    <section id="faq" className="py-24 lg:py-32 relative">
+    <section id="faq" className="py-20 lg:py-24 relative section-line">
       <div className="section-container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -49,7 +49,7 @@ export function FAQSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}

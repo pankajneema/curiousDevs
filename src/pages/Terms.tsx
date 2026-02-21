@@ -7,7 +7,7 @@ export default function Terms() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-20">
-        <section className="py-20 lg:py-28">
+        <section className="py-20 lg:py-24">
           <div className="section-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -49,16 +49,16 @@ export function NewsletterSection() {
   };
 
   return (
-    <section id="newsletter" className="py-24 lg:py-32 relative overflow-hidden">
+    <section id="newsletter" className="py-20 lg:py-24 relative overflow-hidden section-line">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-navy-light/20 to-background" />
 
       {/* Glow Effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[128px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/7 rounded-full blur-[128px]" />
 
       <div className="section-container relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}

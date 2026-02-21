@@ -5,22 +5,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/92",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border border-border bg-transparent hover:bg-muted hover:text-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         // CuriousDevs custom variants
-        hero: "bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold shadow-[0_0_20px_-5px_hsl(var(--primary)/0.5)] hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.7)] hover:scale-[1.02]",
-        heroPrimary: "bg-gradient-to-r from-[hsl(var(--cyan-glow))] to-[hsl(var(--electric-blue))] text-background font-semibold shadow-[0_0_25px_-5px_hsl(var(--cyan-glow)/0.6)] hover:shadow-[0_0_35px_-5px_hsl(var(--cyan-glow)/0.8)] hover:scale-[1.02]",
-        heroSecondary: "border border-muted-foreground/30 bg-muted/50 text-foreground hover:bg-muted hover:border-muted-foreground/50",
-        nav: "text-muted-foreground hover:text-foreground",
-        cta: "bg-secondary text-secondary-foreground font-semibold hover:bg-secondary/90 shadow-[0_0_20px_-5px_hsl(var(--secondary)/0.5)]",
+        hero: "bg-primary text-primary-foreground border border-primary/60 font-semibold hover:bg-secondary hover:border-secondary",
+        heroPrimary: "bg-primary text-primary-foreground border border-primary/60 font-semibold hover:bg-secondary hover:border-secondary",
+        heroSecondary: "border border-border bg-card text-foreground hover:bg-muted hover:border-secondary/55",
+        nav: "text-muted-foreground hover:text-foreground hover:bg-muted/55",
+        cta: "bg-primary text-primary-foreground border border-primary/60 font-semibold hover:bg-secondary hover:border-secondary",
       },
       size: {
         default: "h-10 px-4 py-2",

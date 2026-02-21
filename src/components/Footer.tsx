@@ -26,9 +26,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-border bg-gradient-to-b from-card/50 to-background">
+    <footer className="relative border-t border-border bg-background">
       {/* Main Footer */}
-      <div className="section-container py-16 lg:py-20">
+      <div className="section-container py-20 lg:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-1">

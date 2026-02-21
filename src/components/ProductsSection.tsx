@@ -56,14 +56,14 @@ const products = [
 
 export function ProductsSection() {
   return (
-    <section id="products" className="py-24 lg:py-32 relative">
+    <section id="products" className="py-20 lg:py-24 relative section-line">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-navy-light/30 to-background" />
 
       <div className="section-container relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -79,18 +79,17 @@ export function ProductsSection() {
 
         {/* Featured Product - CyberSentinel */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mb-12"
         >
           <div className="relative rounded-2xl overflow-hidden card-glow">
-            <div className="absolute inset-0 bg-gradient-to-br from-live/10 via-secondary/5 to-transparent" />
-            <div className="relative p-8 lg:p-12 bg-card/80 backdrop-blur-sm">
+            <div className="relative p-8 lg:p-10 bg-card">
               <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
                 <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-live/20 to-secondary/20 flex items-center justify-center glow-effect p-3">
+                  <div className="w-20 h-20 rounded-2xl bg-muted border border-border flex items-center justify-center p-3">
                     <CyberSentinelLogo className="w-full h-full" />
                   </div>
                 </div>
@@ -131,7 +130,7 @@ export function ProductsSection() {
           {products.filter(p => !p.featured).map((product, index) => (
             <motion.div
               key={product.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
@@ -140,7 +139,6 @@ export function ProductsSection() {
                 to={product.detailHref}
                 className="group relative rounded-xl overflow-hidden block h-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-muted/50 to-card opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
                   <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
                     {product.icon && <product.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />}

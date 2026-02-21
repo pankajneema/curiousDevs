@@ -31,9 +31,9 @@ export function Header() {
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-3 group site-brand">
             <CuriousDevsLogo className="w-9 h-9" />
-            <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+            <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors brand-text">
               CuriousDevs
             </span>
           </Link>
@@ -58,7 +58,7 @@ export function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-72 bg-card border border-border rounded-xl shadow-xl overflow-hidden"
+                    className="absolute top-full left-0 mt-2 w-72 bg-card border border-border rounded-xl overflow-hidden"
                   >
                     <div className="p-2">
                       {products.map((product) => (

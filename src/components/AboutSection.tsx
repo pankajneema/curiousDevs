@@ -18,7 +18,7 @@ const stats = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 lg:py-32 relative overflow-hidden">
+    <section id="about" className="py-20 lg:py-24 relative overflow-hidden section-line">
       {/* Background accent */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
       
@@ -77,7 +77,7 @@ export function AboutSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* Mission Card */}
-            <div className="p-6 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/5 border border-primary/20 mb-8">
+            <div className="p-7 rounded-xl bg-card border border-border mb-8">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
                   <Rocket className="w-6 h-6 text-primary" />

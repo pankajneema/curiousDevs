@@ -5,18 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { CyberSentinelLogo } from "@/components/logos/CyberSentinelLogo";
 
 const API_URL = "https://api.curiousdevs.com/lead/create";
 
 const countryCodes = [
-  { code: "+1", country: "US", flag: "🇺🇸" },
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+91", country: "IN", flag: "🇮🇳" },
-  { code: "+61", country: "AU", flag: "🇦🇺" },
-  { code: "+81", country: "JP", flag: "🇯🇵" },
-  { code: "+86", country: "CN", flag: "🇨🇳" },
-  { code: "+49", country: "DE", flag: "🇩🇪" },
-  { code: "+33", country: "FR", flag: "🇫🇷" },
+  { code: "+1", country: "US" },
+  { code: "+44", country: "UK" },
+  { code: "+91", country: "IN" },
+  { code: "+61", country: "AU" },
+  { code: "+81", country: "JP" },
+  { code: "+86", country: "CN" },
+  { code: "+49", country: "DE" },
+  { code: "+33", country: "FR" },
 ];
 
 export function ContactSection() {
@@ -118,7 +119,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 lg:py-32 relative">
+    <section id="contact" className="py-20 lg:py-24 relative section-line">
       <div className="absolute inset-0 bg-gradient-to-t from-navy-light/30 to-background" />
 
       <div className="section-container relative z-10">
@@ -126,16 +127,16 @@ export function ContactSection() {
 
           {/* LEFT INFO */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl font-semibold mb-5">
               Let's <span className="gradient-text">Connect</span>
             </h2>
 
-            <p className="text-muted-foreground text-lg mb-10">
+            <p className="text-muted-foreground text-base sm:text-lg mb-8">
               Interested in CyberSentinel or future platforms?
               Send us a message and we'll respond quickly.
             </p>
@@ -147,14 +148,19 @@ export function ContactSection() {
               <InfoItem icon={Clock} label="Response" value="Within 24 hours" />
             </div>
 
-            <div className="mt-10 p-6 rounded-xl bg-card border border-border">
-              <h3 className="font-semibold mb-2">Explore CyberSentinel</h3>
-              <p className="text-sm text-muted-foreground mb-4">
+            <div className="mt-10 p-7 rounded-2xl bg-card border border-border/80 card-glow">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+                  <CyberSentinelLogo className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-semibold">Explore CyberSentinel</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-5">
                 Our live cybersecurity platform for Attack Surface Management.
               </p>
               <a href="#products">
-                <Button variant="heroPrimary" className="gap-2 group">
-                  Get Started 
+                <Button variant="heroPrimary" className="gap-2 group rounded-xl">
+                  Open Platform
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
@@ -163,8 +169,8 @@ export function ContactSection() {
 
           {/* RIGHT FORM */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
@@ -217,7 +223,7 @@ export function ContactSection() {
                     >
                       {countryCodes.map((c) => (
                         <option key={c.code} value={c.code}>
-                          {c.flag} {c.code}
+                          {c.country} {c.code}
                         </option>
                       ))}
                     </select>

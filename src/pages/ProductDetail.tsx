@@ -49,8 +49,8 @@ const cyberSentinelModules: Module[] = [
     tagline: "Find Vulnerabilities Before Hackers Do",
     description: "High-fidelity vulnerability scanning with contextual prioritization. Our scanner identifies CVEs, misconfigurations, and security weaknesses while providing actionable remediation guidance tailored to your environment.",
     status: "live",
-    color: "from-purple-500 to-pink-500",
-    iconBg: "bg-purple-500/20",
+    color: "from-sky-500 to-cyan-400",
+    iconBg: "bg-sky-500/20",
     icon: Bug,
     highlights: ["90% faster vulnerability detection", "Reduce false positives by 75%", "Automated fix suggestions"],
     features: [
@@ -157,7 +157,7 @@ const products = {
     description: "A powerful AI platform designed for building intelligent systems, Model Context Protocol (MCP) servers, and advanced context-aware automation. Enabling the next generation of AI-powered applications.",
     status: "coming" as const,
     icon: Brain,
-    color: "from-purple-500 to-pink-500",
+    color: "from-sky-500 to-cyan-400",
     features: [
       { icon: Brain, title: "Advanced ML Models", description: "Pre-trained and fine-tunable models for various use cases from NLP to computer vision." },
       { icon: Workflow, title: "MCP Server Infrastructure", description: "Build and deploy Model Context Protocol servers for context-aware AI interactions." },
@@ -317,11 +317,11 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
               <span className="badge-live px-4 py-1.5">LIVE</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground mb-4">
               {product.name}
             </h1>
-            <p className="text-xl lg:text-2xl text-primary mb-6">{product.tagline}</p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+            <p className="text-lg lg:text-xl text-primary mb-5">{product.tagline}</p>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-3xl">
               {product.description}
             </p>
 
@@ -336,7 +336,7 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
       </section>
 
       {/* Modules Section */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-24">
         <div className="section-container space-y-8">
           {cyberSentinelModules.map((module, index) => (
             <ModuleCard key={module.id} module={module} index={index} />
@@ -345,7 +345,7 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
       </section>
 
       {/* Integrations */}
-      <section className="py-16 lg:py-20 bg-gradient-to-b from-transparent via-navy-light/20 to-transparent">
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-transparent via-navy-light/20 to-transparent">
         <div className="section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -353,7 +353,7 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+            <h2 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
               Integrates With Your Stack
             </h2>
             <p className="text-muted-foreground">Connect with 500+ tools and platforms you already use</p>
@@ -379,7 +379,7 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
       </section>
 
       {/* Vision Section */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-24">
         <div className="section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -388,10 +388,10 @@ function CyberSentinelPage({ product }: { product: typeof products.cybersentinel
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-8">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-6">
               Our Vision
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-10">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-9">
               {product.vision}
             </p>
             
@@ -460,7 +460,7 @@ function GenericProductPage({ product }: { product: typeof products["ai-ml-mcp"]
       </section>
 
       {/* Features Section - Same style as CyberSentinel */}
-      <section className="py-20 lg:py-28">
+      <section className="py-20 lg:py-24">
         <div className="section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -512,7 +512,7 @@ function GenericProductPage({ product }: { product: typeof products["ai-ml-mcp"]
       </section>
 
       {/* Vision Section */}
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-transparent via-navy-light/30 to-transparent">
+      <section className="py-20 lg:py-24 bg-gradient-to-b from-transparent via-navy-light/30 to-transparent">
         <div className="section-container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

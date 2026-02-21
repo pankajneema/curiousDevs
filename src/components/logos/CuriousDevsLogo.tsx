@@ -44,7 +44,7 @@ export function CuriousDevsLogo({ className = "w-10 h-10" }: { className?: strin
         fontSize="28"
         fontWeight="bold"
         fill="url(#bulbBody)"
-        fontFamily="system-ui, sans-serif"
+        fontFamily="Syne, sans-serif"
       >
         C
       </text>
