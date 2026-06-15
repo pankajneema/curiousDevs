@@ -22,7 +22,7 @@ export default function Newsletter() {
   }
 
   return (
-    <section className="py-20 bg-midnight">
+    <section className="py-20 bg-midnight" id="newsletter">
       <div className="max-w-2xl mx-auto px-6 text-center">
         <p className="font-mono text-xs text-teal uppercase tracking-widest mb-3">Newsletter</p>
         <h2 className="font-head font-bold text-3xl lg:text-4xl text-white mb-3">

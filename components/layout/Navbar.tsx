@@ -41,6 +41,7 @@ const navLinks = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -138,7 +139,6 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-3 ml-auto">
-            <Link href="/contact" className="text-sm font-medium text-sub hover:text-midnight transition-colors">Contact</Link>
             <Link href="https://tokenfin.curiousdevs.com/login"
               className="px-4 py-2 text-sm font-semibold text-midnight border border-border rounded-lg hover:border-midnight hover:bg-surface transition-colors flex items-center gap-1.5">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -181,7 +181,6 @@ export default function Navbar() {
           {navLinks.map(l => (
             <Link key={l.href} href={l.href} className="text-base font-medium text-midnight py-2">{l.label}</Link>
           ))}
-          <Link href="/contact" className="text-base font-medium text-midnight py-2">Contact</Link>
           <div className="mt-4 flex flex-col gap-3">
             <Link href="https://tokenfin.curiousdevs.com/login"
               className="w-full py-3 text-center border border-border rounded-xl text-sm font-semibold text-midnight">

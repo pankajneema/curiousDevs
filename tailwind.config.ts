@@ -12,8 +12,9 @@ const config: Config = {
         midnight: '#1A1A2E',
         coral:    '#E8533A',
         teal:     '#00C48C',
-        surface:  '#F9F8F5',
-        sub:      '#6B6B8A',
+        surface:    '#F9F8F5',
+        'surface-2': '#F1EFE9',
+        sub:        '#6B6B8A',
         border:   '#E8E6E0',
       },
       fontFamily: {

@@ -16,7 +16,6 @@ const posts = [
     readTime: '8 min read',
     title: 'Why Your OpenAI Bill Lies to You: The Attribution Black Hole',
     excerpt: "You received a $14,000 OpenAI invoice. Engineering says it's the search feature. Product blames the summarization pipeline. The reality? Nobody actually knows. Here's how that happens — and how to fix it with token-level attribution.",
-    author: { name: 'Pankaj Kumar', role: 'Founder & CTO, CuriousDevs' },
     content: `
 Every AI team we talk to has the same conversation with their CFO:
 
@@ -69,7 +68,6 @@ Teams that implement token-level attribution consistently find 20–40% of their
     readTime: '12 min read',
     title: 'GPT-4o vs Claude 3.5 Sonnet vs Mistral Large: 200K Tokens of Real Enterprise Workloads',
     excerpt: "Provider leaderboards use academic benchmarks. We ran 200,000 tokens of actual enterprise workloads — code generation, document summarization, structured extraction, and multi-turn chat — through all three. The results surprised us.",
-    author: { name: 'Pankaj Kumar', role: 'Founder & CTO, CuriousDevs' },
     content: `
 Academic benchmarks are marketing. MMLU, HumanEval, and GSM8K don't reflect what enterprise AI teams actually build. We ran our own benchmark using real workload categories drawn from TokenFin users.
 
@@ -113,7 +111,6 @@ The right answer is almost always a **multi-model architecture** — different m
     readTime: '10 min read',
     title: 'The EU AI Act: A Practical Engineering Guide for Teams Shipping in 2026',
     excerpt: "The EU AI Act isn't just a compliance checkbox — it's a structural change to how you build, document, and deploy AI systems. Here's what every engineering team needs to know before the August 2026 deadline for high-risk AI systems.",
-    author: { name: 'Pankaj Kumar', role: 'Founder & CTO, CuriousDevs' },
     content: `
 Most engineering teams are treating the EU AI Act like GDPR — a legal problem to hand off to compliance. That's a mistake. The AI Act has direct engineering implications that require code changes, new infrastructure, and architectural decisions that can't be retrofitted at the last minute.
 
@@ -164,7 +161,6 @@ This is why we're building AgentOS. It auto-generates conformity documentation, 
     readTime: '7 min read',
     title: "From ₹39L/Month to ₹23L: How a Series B AI Startup Cut Their LLM Bill Without Changing a Single Feature",
     excerpt: "A 45-person AI startup was spending ₹39 lakhs/month on LLM APIs with no idea where it was going. After deploying TokenFin, they had attribution data in 20 minutes. Two weeks later, their bill was ₹23L. Here's exactly what they found and what they did.",
-    author: { name: 'Pankaj Kumar', role: 'Founder & CTO, CuriousDevs' },
     content: `
 This is a real engagement from TokenFin's private beta. Company name anonymized at their request.
 
@@ -231,14 +227,7 @@ export default function BlogPage() {
                 <h2 className="font-head font-bold text-2xl text-midnight mb-3 leading-tight">{p.title}</h2>
                 <p className="text-sub leading-relaxed mb-5">{p.excerpt}</p>
 
-                <div className="border-t border-border pt-5 flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-midnight flex items-center justify-center text-white font-bold text-sm">P</div>
-                    <div>
-                      <p className="font-semibold text-sm text-midnight">{p.author.name}</p>
-                      <p className="text-xs text-sub">{p.author.role}</p>
-                    </div>
-                  </div>
+                <div className="border-t border-border pt-5 flex items-center justify-end">
                   <Link href={`/blog/${p.slug}`}
                     className="inline-flex items-center gap-1 text-coral font-semibold text-sm hover:gap-2 transition-all">
                     Read article
