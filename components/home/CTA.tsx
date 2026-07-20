@@ -1,25 +1,27 @@
+import Link from 'next/link'
+import Reveal from '@/components/ui/Reveal'
+
 export default function CTA() {
   return (
-    <section className="py-24 bg-surface">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="font-head font-bold text-4xl lg:text-5xl text-midnight mb-4">
-          Ready to take control<br/>
-          <span className="text-coral">of your AI costs?</span>
-        </h2>
-        <p className="text-sub text-lg mb-10 max-w-xl mx-auto">
-          Join teams already saving 20–40% on their LLM bills. Free to start. No credit card required.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://tokenfin.curiousdevs.com"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-coral hover:bg-coral/90 text-white font-semibold rounded-xl transition-all text-lg">
-            Start free — it&apos;s instant →
-          </a>
-          <a href="/contact"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-border hover:border-midnight text-midnight font-semibold rounded-xl transition-all text-lg">
-            Talk to us
-          </a>
-        </div>
-        <p className="text-sub text-sm mt-6">Free plan forever · No credit card · Setup in &lt;15 min</p>
+    <section className="border-t border-brd bg-gradient-to-b from-ink to-ink-2">
+      <div className="max-w-content mx-auto px-6 py-24 text-center">
+        <Reveal>
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Ship agents you can trust</span>
+          <h2 className="font-head font-bold text-3xl md:text-5xl mt-4 max-w-[18ch] mx-auto tracking-tight">
+            Your machines are already acting. Start watching them today.
+          </h2>
+          <p className="text-muted max-w-[52ch] mx-auto mt-5 text-[17px]">
+            Get early access to AgentGuard, or talk to us about DPDP compliance and autonomous fleets.
+          </p>
+          <div className="flex gap-3.5 justify-center mt-9 flex-wrap">
+            <Link href="/contact" className="px-6 py-3.5 bg-gradient-to-br from-accent to-accent-deep text-ink text-sm font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all">
+              Get early access →
+            </Link>
+            <Link href="/careers" className="px-6 py-3.5 bg-white/[0.04] border border-brd-2 text-tx text-sm font-semibold rounded-xl hover:border-accent hover:text-accent transition-all">
+              Join the team
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

@@ -1,132 +1,42 @@
+import Reveal from '@/components/ui/Reveal'
 
-const cards = [
-  {
-    col: 'lg:col-span-2 lg:row-span-2',
-    tag: 'Core',
-    title: 'Token-level cost attribution',
-    desc: 'Every single LLM call — attributed to the exact feature, user, team, and model that generated it. No more guessing from a flat API invoice.',
-    accent: 'from-teal/20 to-teal/5 border-teal/30',
-    labelColor: 'text-teal',
-    mock: (
-      <div className="mt-4 bg-[#0E0E1C] rounded-xl p-4 font-mono text-xs space-y-1.5">
-        <div className="flex justify-between text-white/40 border-b border-white/10 pb-2 mb-2">
-          <span>Feature</span><span>Team</span><span>Model</span><span>Cost</span>
-        </div>
-        {[
-          ['search-v2', 'ml-infra', 'gpt-4o', '$0.0041'],
-          ['summarize', 'product', 'claude-3-5', '$0.0018'],
-          ['chat-bot', 'support', 'gpt-4o-mini', '$0.0003'],
-          ['embeddings', 'data', 'text-emb-3', '$0.0001'],
-        ].map(([f,t,m,c]) => (
-          <div key={f} className="flex justify-between text-white/70 hover:bg-white/5 rounded px-1 py-0.5 transition-colors">
-            <span className="text-teal">{f}</span>
-            <span>{t}</span>
-            <span className="text-[#F59E0B]">{m}</span>
-            <span className="text-white">{c}</span>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    col: 'lg:col-span-1',
-    tag: 'Real-time',
-    title: 'Live spend alerts',
-    desc: 'Burn-rate alerts fire before your bill does. Set team-level and feature-level thresholds.',
-    accent: 'from-coral/20 to-coral/5 border-coral/30',
-    labelColor: 'text-coral',
-    mock: (
-      <div className="mt-4 flex flex-col gap-2">
-        {[
-          { label: 'ml-infra/search', pct: 78, over: false },
-          { label: 'product/summarize', pct: 94, over: true },
-          { label: 'support/chat', pct: 41, over: false },
-        ].map(b => (
-          <div key={b.label}>
-            <div className="flex justify-between text-[10px] font-mono text-white/50 mb-1">
-              <span>{b.label}</span>
-              <span className={b.over ? 'text-coral' : 'text-white/40'}>{b.pct}%</span>
-            </div>
-            <div className="h-1.5 rounded-full bg-white/10">
-              <div className={`h-1.5 rounded-full transition-all ${b.over ? 'bg-coral' : 'bg-teal'}`}
-                style={{ width: `${b.pct}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    col: 'lg:col-span-1',
-    tag: 'Governance',
-    title: 'Budget guardrails',
-    desc: 'Hard caps and soft warnings per team or feature. Never get a surprise bill again.',
-    accent: 'from-[#8B5CF6]/20 to-[#8B5CF6]/5 border-[#8B5CF6]/30',
-    labelColor: 'text-[#8B5CF6]',
-    mock: null,
-  },
-  {
-    col: 'lg:col-span-1',
-    tag: 'Compliance',
-    title: 'Audit-ready logs',
-    desc: 'Every call, every decision, every policy event — searchable and export-ready for your audit team.',
-    accent: 'from-coral/20 to-coral/5 border-coral/30',
-    labelColor: 'text-coral',
-    mock: null,
-  },
-  {
-    col: 'lg:col-span-2',
-    tag: 'Analytics',
-    title: 'Model benchmarks on your real workloads',
-    desc: 'Stop relying on provider leaderboards. Compare GPT-4o, Claude 3.5 Sonnet, Mistral Large, and Gemini 1.5 Pro on your actual prompts — cost-per-token, latency p95, and quality scores side-by-side.',
-    accent: 'from-teal/20 to-teal/5 border-teal/30',
-    labelColor: 'text-teal',
-    mock: (
-      <div className="mt-4 grid grid-cols-4 gap-2 font-mono text-[10px]">
-        {[
-          ['gpt-4o', '$0.041/1K', '820ms', '9.1/10'],
-          ['claude-3-5', '$0.027/1K', '640ms', '9.3/10'],
-          ['mistral-lg', '$0.018/1K', '480ms', '8.6/10'],
-          ['gemini-1.5', '$0.021/1K', '590ms', '8.8/10'],
-        ].map(([m,c,l,q]) => (
-          <div key={m} className="bg-white/5 rounded-lg p-2 flex flex-col gap-1">
-            <span className="text-teal font-semibold">{m}</span>
-            <span className="text-white/50">Cost {c}</span>
-            <span className="text-white/50">p95 {l}</span>
-            <span className="text-white/70">Quality {q}</span>
-          </div>
-        ))}
-      </div>
-    ),
-  },
+const modules = [
+  { k: 'Module A', h: 'Agent IAM', p: 'A unique, cryptographic identity for every agent. Least-privilege policies and short-lived scoped credentials — with a live inventory of exactly what each agent can do.',
+    icon: <><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" strokeLinecap="round" /></> },
+  { k: 'Module B', h: 'Policy Engine', p: 'Guardrails as code in plain YAML, versioned in git. Argument limits, spend caps, rate limits and human-in-the-loop approvals — with dry-run against real traffic before you enforce.',
+    icon: <><path d="M4 6h16M4 12h16M4 18h10" strokeLinecap="round" /><circle cx="19" cy="18" r="2" fill="currentColor" stroke="none" /></> },
+  { k: 'Module C', h: 'Threat Detection', p: 'Millisecond classifiers catch prompt injection, goal drift and sequence anomalies, and redact PII, secrets and API keys before they ever leave the boundary.',
+    icon: <><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" strokeLinejoin="round" /><path d="M12 8v4M12 15h.01" strokeLinecap="round" /></> },
+  { k: 'Module D', h: 'Flight Recorder', p: 'A tamper-evident, append-only log of every prompt, call, verdict and response. Replay any incident step-by-step and export as SOC 2, ISO 27001 or DPDP evidence.',
+    icon: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" strokeLinecap="round" strokeLinejoin="round" /></> },
+  { k: 'Module E', h: 'MCP & Tool Supply-Chain Security', p: 'Scan every MCP server and tool definition before it connects — hidden instructions, permission overreach, suspicious endpoints. A curated trusted-tools registry the MCP ecosystem is missing today.', wide: true,
+    icon: <><path d="M4 7l8-4 8 4-8 4-8-4z" strokeLinejoin="round" /><path d="M4 7v6l8 4 8-4V7" strokeLinejoin="round" /><path d="M9 13.5l2 2 4-4.5" strokeLinecap="round" strokeLinejoin="round" /></> },
 ]
 
 export default function Platform() {
   return (
-    <section className="py-24 bg-midnight" id="platform">
-      <div className="max-w-content mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="font-mono text-xs text-teal uppercase tracking-widest mb-3">Platform</p>
-          <h2 className="font-head font-bold text-4xl lg:text-5xl text-white leading-tight">
-            Full-stack AI cost intelligence.<br/>
-            <span className="text-teal">Nothing left in the dark.</span>
-          </h2>
-          <p className="mt-4 text-white/50 max-w-xl mx-auto text-lg">
-            From raw token counts to board-level ROI — TokenFin connects every dollar to the decision that spent it.
-          </p>
-        </div>
+    <section id="platform" className="max-w-content mx-auto px-6 py-24 border-t border-brd">
+      <Reveal className="max-w-[680px] mb-12">
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">One platform, five modules</span>
+        <h2 className="font-head font-bold text-3xl md:text-4xl mt-4 tracking-tight">Everything an agent needs to be trusted in production.</h2>
+        <p className="text-muted mt-4 text-base">The AgentGuard platform — the security core reused across every CuriosDevs product.</p>
+      </Reveal>
 
-        <div className="grid lg:grid-cols-3 gap-4 auto-rows-auto">
-          {cards.map(c => (
-            <div key={c.title}
-              className={`${c.col} rounded-2xl border bg-gradient-to-br ${c.accent} p-7 flex flex-col`}>
-              <span className={`font-mono text-[10px] uppercase tracking-widest ${c.labelColor} mb-2`}>{c.tag}</span>
-              <h3 className="font-head font-bold text-xl text-white leading-snug">{c.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed mt-2">{c.desc}</p>
-              {c.mock}
+      <div className="grid md:grid-cols-2 gap-4">
+        {modules.map((m, i) => (
+          <Reveal key={m.h} delay={((i % 2) + 1) as 1 | 2} className={m.wide ? 'md:col-span-2' : ''}>
+            <div className="card-grad rounded-[18px] p-6 md:p-7 flex gap-5 h-full">
+              <div className="w-11 h-11 shrink-0 rounded-xl grid place-items-center bg-accent/10 text-accent">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">{m.icon}</svg>
+              </div>
+              <div>
+                <div className="font-mono text-[11px] uppercase tracking-wider text-faint">{m.k}</div>
+                <h3 className="font-head font-semibold text-lg mt-1.5 mb-2 tracking-tight">{m.h}</h3>
+                <p className="text-muted text-sm leading-relaxed">{m.p}</p>
+              </div>
             </div>
-          ))}
-        </div>
+          </Reveal>
+        ))}
       </div>
     </section>
   )

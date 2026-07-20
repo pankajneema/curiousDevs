@@ -62,8 +62,8 @@ export async function POST(req: NextRequest) {
           </div>
           <p style="color:#1A1A2E;font-size:15px">Hi ${name.split(' ')[0]},</p>
           <p style="color:#6B6B8A;line-height:1.6">We received your message and will reply to <strong style="color:#1A1A2E">${email}</strong> shortly — usually within a few hours during business days (IST).</p>
-          <p style="color:#6B6B8A;line-height:1.6">While you wait, explore TokenFin at <a href="https://tokenfin.curiousdevs.com" style="color:#E8533A;font-weight:600">tokenfin.curiousdevs.com</a>. Free plan, no credit card.</p>
-          <p style="color:#6B6B8A;margin-top:24px">— Pankaj &amp; the CuriousDevs team</p>
+          <p style="color:#6B6B8A;line-height:1.6">While you wait, learn more about how we secure autonomous systems at <a href="https://curiousdevs.com" style="color:#2E9BD8;font-weight:600">curiousdevs.com</a>.</p>
+          <p style="color:#6B6B8A;margin-top:24px">— The CuriosDevs team</p>
           <hr style="border:none;border-top:1px solid #E8E6E0;margin:28px 0"/>
           <p style="font-size:11px;color:#aaa;text-align:center">CuriousDevs · hello@curiousdevs.com · +91 8171268630 · India</p>
         </div>`

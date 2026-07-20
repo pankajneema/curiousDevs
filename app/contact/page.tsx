@@ -2,119 +2,67 @@ import type { Metadata } from 'next'
 import ContactForm from './ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact — CuriousDevs',
-  description: 'Reach the CuriousDevs team. We respond within 24 hours.',
+  title: 'Contact',
+  description: 'Reach the CuriosDevs team — AgentGuard early access, DPDP compliance, partnerships or investment. We respond within 24 hours.',
   alternates: { canonical: 'https://curiousdevs.com/contact' },
 }
 
+const methods = [
+  { label: 'Email us', value: 'hello@curiousdevs.com', href: 'mailto:hello@curiousdevs.com', sub: 'General & product questions',
+    icon: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 7l9 6 9-6" strokeLinecap="round" /></> },
+  { label: 'Partnerships', value: 'partners@curiousdevs.com', href: 'mailto:partners@curiousdevs.com', sub: 'Integrations & channel',
+    icon: <><path d="M4 4h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A16 16 0 014 6a2 2 0 012-2z" strokeLinejoin="round" /></> },
+  { label: 'Based in', value: 'India · Remote-first', href: null, sub: 'Serving teams worldwide',
+    icon: <><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" /></> },
+]
+
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-surface">
-      {/* Hero */}
-      <section className="bg-midnight pt-32 pb-16 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px' }}/>
-        <div className="relative max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-teal/20 text-teal font-mono text-xs px-4 py-2 rounded-full mb-6">
-            <span className="w-2 h-2 rounded-full bg-teal animate-pulse"/>
+    <>
+      <section className="pt-24 pb-12 px-6 text-center border-b border-brd">
+        <div className="max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-p2/10 text-p2 font-mono text-xs px-4 py-2 rounded-full mb-6">
+            <span className="w-2 h-2 rounded-full bg-p2 animate-blink" />
             We respond within 24 hours
           </div>
-          <h1 className="font-head font-black text-5xl lg:text-6xl text-white mb-4">Let&apos;s talk.</h1>
-          <p className="text-white/60 text-xl">
-            Whether you&apos;re evaluating TokenFin, exploring a partnership, or just want to say hi — we&apos;re a reply away.
+          <h1 className="font-head font-bold text-4xl lg:text-6xl mb-4 tracking-tight">Let&apos;s talk.</h1>
+          <p className="text-muted text-lg lg:text-xl max-w-[56ch] mx-auto">
+            Building agents, facing a DPDP deadline, want to partner, invest, or join the team? Tell us what you need — we reply to every message.
           </p>
         </div>
       </section>
 
-      {/* Main content */}
       <section className="py-16 px-6">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-10">
-
-          {/* Left — contact info */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-
-            {/* Direct contact cards */}
-            {[
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                    <polyline points="22,6 12,13 2,6"/>
-                  </svg>
-                ),
-                label: 'Email us',
-                value: 'hello@curiousdevs.com',
-                href: 'mailto:hello@curiousdevs.com',
-                sub: 'General & product questions',
-                color: 'text-teal',
-                bg: 'bg-teal/10',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                ),
-                label: 'Call us',
-                value: '+91 8171268630',
-                href: 'tel:+918171268630',
-                sub: 'Mon–Fri, 10am–6pm IST',
-                color: 'text-coral',
-                bg: 'bg-coral/10',
-              },
-              {
-                icon: (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                    <circle cx="12" cy="10" r="3"/>
-                  </svg>
-                ),
-                label: 'Location',
-                value: 'India',
-                href: null,
-                sub: 'Serving teams worldwide',
-                color: 'text-[#8B5CF6]',
-                bg: 'bg-[#8B5CF6]/10',
-              },
-            ].map(c => (
-              <div key={c.label} className="bg-white rounded-2xl border border-border p-5 flex items-start gap-4 hover:shadow-md transition-shadow">
-                <div className={`w-11 h-11 rounded-xl ${c.bg} ${c.color} flex items-center justify-center shrink-0`}>
-                  {c.icon}
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            {methods.map(c => (
+              <div key={c.label} className="card-grad rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-11 h-11 rounded-xl bg-accent/10 text-accent grid place-items-center shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">{c.icon}</svg>
                 </div>
                 <div>
-                  <p className="font-mono text-[10px] text-sub uppercase tracking-widest mb-0.5">{c.label}</p>
-                  {c.href ? (
-                    <a href={c.href} className={`font-head font-semibold text-midnight hover:${c.color} transition-colors`}>
-                      {c.value}
-                    </a>
-                  ) : (
-                    <p className="font-head font-semibold text-midnight">{c.value}</p>
-                  )}
-                  <p className="text-xs text-sub mt-0.5">{c.sub}</p>
+                  <p className="font-mono text-[10px] text-muted uppercase tracking-widest mb-0.5">{c.label}</p>
+                  {c.href
+                    ? <a href={c.href} className="font-head font-semibold text-tx hover:text-accent transition-colors">{c.value}</a>
+                    : <p className="font-head font-semibold text-tx">{c.value}</p>}
+                  <p className="text-xs text-muted mt-0.5">{c.sub}</p>
                 </div>
               </div>
             ))}
-
-            {/* Enterprise CTA */}
-            <div className="bg-midnight rounded-2xl p-6 mt-2">
-              <p className="font-mono text-[10px] text-coral uppercase tracking-widest mb-2">Enterprise</p>
-              <h3 className="font-head font-bold text-lg text-white mb-2">Need a custom deal?</h3>
-              <p className="text-white/50 text-sm mb-4 leading-relaxed">
-                Custom SLA, SSO, on-prem deployment, or volume pricing — our enterprise team can put together a proposal within 24 hours.
-              </p>
-              <a href="mailto:hello@curiousdevs.com?subject=Enterprise%20Inquiry"
-                className="inline-block px-5 py-2.5 bg-coral hover:bg-coral/90 text-white font-semibold rounded-xl text-sm transition-all">
-                Email enterprise sales →
+            <div className="card-grad rounded-2xl p-6 mt-1">
+              <p className="font-mono text-[10px] text-accent uppercase tracking-widest mb-2">Careers</p>
+              <h3 className="font-head font-bold text-lg mb-2">Want to build security with us?</h3>
+              <p className="text-muted text-sm mb-4 leading-relaxed">We&apos;re hiring security engineers and researchers. Send your resume through the careers page.</p>
+              <a href="/careers" className="inline-block px-5 py-2.5 bg-gradient-to-br from-accent to-accent-deep text-ink font-semibold rounded-xl text-sm hover:brightness-110 transition-all">
+                See open roles →
               </a>
             </div>
           </div>
-
-          {/* Right — form */}
           <div className="lg:col-span-3">
             <ContactForm />
           </div>
         </div>
       </section>
-    </main>
+    </>
   )
 }

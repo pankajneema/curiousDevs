@@ -1,63 +1,51 @@
-"use client"
+'use client'
 import { useState } from 'react'
 
 export default function Newsletter() {
   const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle')
+  const [state, setState] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle')
+  const [msg, setMsg] = useState('')
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault()
-    if (!email) return
-    setStatus('loading')
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setState('error'); setMsg('Please enter a valid email.'); return }
+    setState('loading')
     try {
       const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, type: 'newsletter' }),
       })
-      setStatus(res.ok ? 'done' : 'error')
-    } catch {
-      setStatus('error')
-    }
+      if (!res.ok) throw new Error()
+      setState('ok'); setMsg("You're on the list — welcome aboard.")
+    } catch { setState('error'); setMsg('Something went wrong. Please try again.') }
   }
 
   return (
-    <section className="py-20 bg-midnight" id="newsletter">
-      <div className="max-w-2xl mx-auto px-6 text-center">
-        <p className="font-mono text-xs text-teal uppercase tracking-widest mb-3">Newsletter</p>
-        <h2 className="font-head font-bold text-3xl lg:text-4xl text-white mb-3">
-          Stay ahead of AI cost trends.
-        </h2>
-        <p className="text-white/60 mb-8">
-          Monthly deep-dives on LLM FinOps, model benchmarks, governance updates, and what we&apos;re building. No spam. Unsubscribe anytime.
-        </p>
-        {status === 'done' ? (
-          <div className="bg-teal/20 border border-teal/30 rounded-xl px-6 py-4 text-teal font-semibold">
-            ✓ You&apos;re on the list — talk soon!
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center">
-            <input
-              type="email"
-              required
-              placeholder="you@company.com"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="flex-1 px-5 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-teal transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="px-7 py-3 bg-coral hover:bg-coral/90 text-white font-semibold rounded-xl transition-all disabled:opacity-60 whitespace-nowrap"
-            >
-              {status === 'loading' ? 'Subscribing…' : 'Subscribe →'}
-            </button>
-          </form>
-        )}
-        {status === 'error' && (
-          <p className="text-coral/80 text-sm mt-3">Something went wrong. Try again or email hello@curiousdevs.com</p>
-        )}
-        <p className="text-white/30 text-xs mt-4">We respect your privacy. Unsubscribe at any time.</p>
+    <section className="max-w-content mx-auto px-6 py-24 border-t border-brd">
+      <div className="relative overflow-hidden rounded-3xl border border-brd-2 bg-gradient-to-br from-ink-3 to-ink-2 px-8 md:px-11 py-13 md:py-14 text-center">
+        <div className="absolute -top-24 -right-16 w-[340px] h-[340px] rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, var(--glow), transparent 65%)' }} aria-hidden="true" />
+        <div className="relative z-10">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">The Autonomous Brief</span>
+          <h2 className="font-head font-bold text-2xl md:text-4xl mt-3.5 tracking-tight">Security research, product updates, in your inbox.</h2>
+          <p className="text-muted max-w-[52ch] mx-auto mt-3.5 text-[15.5px]">Deep-dives on agent security, DPDP readiness and the autonomous frontier — roughly twice a month, no noise.</p>
+
+          {state === 'ok' ? (
+            <p className="text-p2 font-mono text-sm mt-7">✓ {msg}</p>
+          ) : (
+            <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2.5 max-w-[480px] mx-auto mt-7" noValidate>
+              <input type="email" value={email} onChange={e => setEmail(e.target.value)}
+                placeholder="you@company.com" aria-label="Email address"
+                className="flex-1 bg-ink border border-brd-2 rounded-xl px-4 py-3.5 text-sm text-tx outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 transition" />
+              <button type="submit" disabled={state === 'loading'}
+                className="px-6 py-3.5 bg-gradient-to-br from-accent to-accent-deep text-ink text-sm font-semibold rounded-xl hover:brightness-110 transition disabled:opacity-60">
+                {state === 'loading' ? 'Subscribing…' : 'Subscribe'}
+              </button>
+            </form>
+          )}
+          {state === 'error' && <p className="text-p3 font-mono text-xs mt-3">{msg}</p>}
+          <p className="text-faint text-xs mt-3.5">No spam. Unsubscribe anytime. We respect your data — it&apos;s literally our business.</p>
+        </div>
       </div>
     </section>
   )

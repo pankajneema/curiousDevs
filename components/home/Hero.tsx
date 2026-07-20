@@ -1,139 +1,111 @@
+'use client'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const cv = canvasRef.current
+    if (!cv || reduce) return
+    const ctx = cv.getContext('2d')
+    if (!ctx) return
+    let W = 0, H = 0, raf = 0
+    let pts: { x: number; y: number; vx: number; vy: number }[] = []
+    const dpr = Math.min(window.devicePixelRatio || 1, 2)
+
+    const size = () => {
+      const r = cv.getBoundingClientRect()
+      W = cv.width = r.width * dpr
+      H = cv.height = r.height * dpr
+      const n = Math.min(44, Math.floor(r.width / 28))
+      pts = Array.from({ length: n }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.16 * dpr, vy: (Math.random() - 0.5) * 0.16 * dpr,
+      }))
+    }
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H)
+      const maxd = W / 7
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i]
+        p.x += p.vx; p.y += p.vy
+        if (p.x < 0 || p.x > W) p.vx *= -1
+        if (p.y < 0 || p.y > H) p.vy *= -1
+        for (let j = i + 1; j < pts.length; j++) {
+          const q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = Math.hypot(dx, dy)
+          if (d < maxd) {
+            ctx.globalAlpha = (1 - d / maxd) * 0.26
+            ctx.strokeStyle = '#38BDF8'; ctx.lineWidth = dpr
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke()
+          }
+        }
+        ctx.globalAlpha = 0.7; ctx.fillStyle = '#38BDF8'
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.4 * dpr, 0, Math.PI * 2); ctx.fill()
+      }
+      ctx.globalAlpha = 1
+      raf = requestAnimationFrame(draw)
+    }
+    size(); draw()
+    let to: ReturnType<typeof setTimeout>
+    const onResize = () => { cancelAnimationFrame(raf); clearTimeout(to); to = setTimeout(() => { size(); draw() }, 200) }
+    window.addEventListener('resize', onResize)
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
+  }, [])
+
+  const nodes = [
+    { lab: 'Agents', sub: 'software', color: 'text-p1', bg: 'bg-p1/10', icon: <><rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="9" cy="10" r="1.3" fill="currentColor" stroke="none" /><circle cx="15" cy="10" r="1.3" fill="currentColor" stroke="none" /><path d="M9 15h6" strokeLinecap="round" /></> },
+    { lab: 'Data', sub: 'compliance', color: 'text-p2', bg: 'bg-p2/10', icon: <><ellipse cx="12" cy="6" rx="7" ry="3" /><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" /></> },
+    { lab: 'Machines', sub: 'physical', color: 'text-p3', bg: 'bg-p3/10', icon: <><rect x="6" y="9" width="12" height="9" rx="2" /><path d="M12 9V5M12 5a1.6 1.6 0 100-.01" strokeLinecap="round" /><path d="M9.5 13h.01M14.5 13h.01M3 13v3M21 13v3" strokeLinecap="round" /></> },
+  ]
+
   return (
-    <section className="relative bg-midnight text-white overflow-hidden min-h-screen flex flex-col">
-      {/* Dot grid */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '32px 32px' }}/>
+    <section className="relative overflow-hidden pt-24 pb-16 text-center">
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-70" aria-hidden="true" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[820px] h-[520px] max-w-full rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at center, var(--glow), transparent 68%)' }} aria-hidden="true" />
+      <div className="relative z-10 max-w-content mx-auto px-6">
+        <span className="inline-flex items-center gap-2 font-mono text-xs text-muted bg-white/[0.04] border border-brd-2 rounded-full px-4 py-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-p2 animate-blink" style={{ boxShadow: '0 0 10px 1px #34E39B' }} />
+          Deep-tech security · Est. 2026
+        </span>
+        <h1 className="font-head font-bold tracking-tight text-4xl sm:text-6xl lg:text-7xl mt-6 max-w-[15ch] mx-auto leading-[1.05]">
+          Securing the <span className="gradient-text">autonomous future</span> — from AI agents to physical machines.
+        </h1>
+        <p className="text-muted text-lg lg:text-xl max-w-[60ch] mx-auto mt-6">
+          Autonomy is arriving faster than the trust to run it safely. CuriosDevs builds the accountability layer for
+          autonomous systems: the software agents acting today, the data they touch, and the machines they&apos;ll become.
+        </p>
+        <div className="flex gap-3.5 justify-center mt-9 flex-wrap">
+          <Link href="/#products" className="px-6 py-3 bg-gradient-to-br from-accent to-accent-deep text-ink text-sm font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all">
+            See what we&apos;re building →
+          </Link>
+          <Link href="/#platform" className="px-6 py-3 bg-white/[0.04] border border-brd-2 text-tx text-sm font-semibold rounded-xl hover:border-accent hover:text-accent transition-all">
+            Explore the platform
+          </Link>
+        </div>
 
-      {/* Coral glow */}
-      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[600px] pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(232,83,58,.14) 0%, transparent 65%)' }}/>
-
-      {/* Main content — flex-1 so it pushes wave to bottom */}
-      <div className="relative flex-1 max-w-content mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center pt-32 pb-20">
-        {/* Left: copy */}
-        <div className="flex flex-col gap-6">
-          <div className="inline-flex items-center gap-2 bg-white/[0.06] border border-white/10 rounded-full px-4 py-1.5 w-fit">
-            <span className="w-2 h-2 rounded-full bg-teal animate-pulse"/>
-            <span className="font-mono text-xs tracking-wider text-white/70">Building in public · TokenFin + AgentOS</span>
+        {/* trust spectrum */}
+        <div className="mt-20 max-w-[840px] mx-auto">
+          <div className="relative grid grid-cols-3">
+            <div className="absolute top-[33px] left-[9%] right-[9%] h-0.5 rounded-full opacity-60"
+              style={{ background: 'linear-gradient(90deg, var(--p1), var(--p2), var(--p3))' }} />
+            {nodes.map(n => (
+              <div key={n.lab} className="relative z-10 flex flex-col items-center gap-3.5">
+                <div className={`w-[70px] h-[70px] rounded-[20px] grid place-items-center border border-brd-2 ${n.bg} ${n.color}`}
+                  style={{ boxShadow: '0 20px 50px -20px rgba(0,0,0,.6)' }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">{n.icon}</svg>
+                </div>
+                <div className="font-mono text-[13px] font-semibold text-tx">{n.lab}</div>
+                <div className="text-xs text-faint -mt-1.5">{n.sub}</div>
+              </div>
+            ))}
           </div>
-
-          <h1 className="font-head font-bold text-5xl lg:text-7xl leading-[1.05] tracking-tight">
-            We build what<br/>the AI era<br/>
-            <span className="text-coral">is missing.</span>
-          </h1>
-
-          <p className="text-white/60 text-lg leading-relaxed max-w-lg">
-            CuriousDevs is an AI infrastructure company. We ship the products that AI teams desperately need — starting with LLM cost attribution and enterprise AI agent governance.
+          <p className="text-center mt-7 font-mono text-xs text-muted tracking-wide">
+            One guardian layer across <span className="text-tx">three domains</span> of autonomy.
           </p>
-
-          <div className="flex flex-wrap gap-4">
-            <Link href="/products/tokenfin"
-              className="flex items-center gap-2 px-6 py-3 bg-coral hover:bg-[#D4472F] text-white font-semibold rounded-xl transition-colors">
-              Explore our products
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 8h10M9 4l4 4-4 4"/>
-              </svg>
-            </Link>
-            <Link href="/#how-it-works"
-              className="flex items-center gap-2 px-6 py-3 bg-white/[0.07] hover:bg-white/10 text-white font-semibold rounded-xl border border-white/10 transition-colors">
-              How it works
-            </Link>
-          </div>
-          <p className="font-mono text-xs text-white/30 tracking-wide">Open source friendly · Design partners welcome · No sales call required</p>
         </div>
-
-        {/* Right: terminal */}
-        <div className="hidden lg:block relative">
-          <div className="bg-[#0E0E1C] rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/[0.02]">
-              <span className="w-3 h-3 rounded-full bg-[#FF5F57]"/>
-              <span className="w-3 h-3 rounded-full bg-[#FEBC2E]"/>
-              <span className="w-3 h-3 rounded-full bg-[#28C840]"/>
-              <span className="ml-3 font-mono text-xs text-white/30">tokenfin — curiousdevs.com</span>
-            </div>
-            <div className="p-5 font-mono text-xs leading-relaxed">
-              <p className="text-white/30"># Install TokenFin SDK</p>
-              <p><span className="text-teal">$</span> <span className="text-white">npm install @curiousdevs/tokenfin</span></p>
-              <br/>
-              <p className="text-white/30"># Wrap any LLM call — one line</p>
-              <p><span className="text-white">const res = await </span><span className="text-teal">track</span><span className="text-white">(openai.chat(&#123;...&#125;), &#123;</span></p>
-              <p><span className="text-white">  team: </span><span className="text-[#F59E0B]">&apos;ml-infra&apos;</span><span className="text-white">, feature: </span><span className="text-[#F59E0B]">&apos;search&apos;</span></p>
-              <p><span className="text-white">&#125;)</span></p>
-              <br/>
-              <p><span className="text-teal">✓</span> <span className="text-white/60">Cost attributed:</span> <span className="text-teal">$0.0034</span> <span className="text-white/40">→ ml-infra/search</span></p>
-              <p><span className="text-teal">✓</span> <span className="text-white/60">Monthly projection:</span> <span className="text-teal">$2,847</span></p>
-              <p><span className="text-teal">✓</span> <span className="text-white/60">Anomaly alert: spend</span> <span className="text-coral">+34%</span> <span className="text-white/40">vs last week</span></p>
-              <br/>
-              <p><span className="text-teal">$</span> <span className="text-white cursor-blink">█</span></p>
-            </div>
-          </div>
-
-          {/* Floating stat card */}
-          <div className="absolute -right-4 top-1/3 bg-white rounded-xl shadow-xl p-3 flex items-center gap-3 w-48">
-            <div className="w-8 h-8 rounded-lg bg-teal/10 flex items-center justify-center text-teal text-sm">💰</div>
-            <div>
-              <div className="font-head font-bold text-midnight text-sm">20–40%</div>
-              <div className="text-xs text-sub">Avg cost reduction</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ─── Animated wave transition: midnight → surface ─── */}
-      {/* overflow-visible so wave can spill 80px into the Stats section below */}
-      <div
-        className="relative w-full bg-midnight flex-shrink-0"
-        style={{ height: '220px', overflow: 'visible', zIndex: 10 }}
-      >
-
-        {/* Layer 1 — back, slowest, lightest */}
-        <div
-          className="absolute bottom-0 left-0 flex"
-          style={{ width: '200%', height: '100%', animation: 'waveScroll 22s linear infinite', opacity: 0.3 }}
-        >
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,110 C180,40 360,200 540,110 C720,30 900,200 1080,110 C1260,30 1380,150 1440,100 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,110 C180,40 360,200 540,110 C720,30 900,200 1080,110 C1260,30 1380,150 1440,100 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-        </div>
-
-        {/* Layer 2 — middle, medium speed, reversed */}
-        <div
-          className="absolute bottom-0 left-0 flex"
-          style={{ width: '200%', height: '100%', animation: 'waveScroll 14s linear infinite reverse', opacity: 0.55 }}
-        >
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,140 C120,50 360,210 600,130 C840,50 1080,205 1260,110 C1360,60 1420,145 1440,125 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,140 C120,50 360,210 600,130 C840,50 1080,205 1260,110 C1360,60 1420,145 1440,125 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-        </div>
-
-        {/* Layer 3 — front, fastest, fully opaque */}
-        <div
-          className="absolute bottom-0 left-0 flex"
-          style={{ width: '200%', height: '100%', animation: 'waveScroll 9s linear infinite' }}
-        >
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,165 C240,70 480,215 720,145 C960,70 1200,210 1440,160 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-          <svg style={{ display: 'block', flex: '0 0 50%', height: '100%' }}
-            viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,165 C240,70 480,215 720,145 C960,70 1200,210 1440,160 L1440,220 L0,220 Z" fill="#F9F8F5"/>
-          </svg>
-        </div>
-
       </div>
     </section>
   )
