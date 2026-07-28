@@ -3,11 +3,14 @@ node_modules/
 .pnp
 .pnp.js
 
-# ── Next.js build output ───────────────────────────────────────
-.next/
-out/
-build/
+# ── Vite / TanStack Start build output ──────────────────────────
 dist/
+dist-ssr/
+.output/
+.vinxi/
+.tanstack/
+.nitro/
+*.local
 
 # ── Environment variables — NEVER commit these ─────────────────
 .env

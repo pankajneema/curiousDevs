@@ -1,0 +1,522 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-amber-accent: var(--accent-amber);
+  --color-amber-soft: var(--accent-amber-soft);
+  --color-danger: var(--danger);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-hairline: var(--hairline);
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 70s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* CuriosDevs palette: obsidian black + azure cyan + spring teal */
+  --background: oklch(0.135 0.012 250);
+  --foreground: oklch(0.975 0.004 250);
+  --surface: oklch(0.175 0.015 250);
+  --surface-2: oklch(0.215 0.018 250);
+  --hairline: oklch(0.3 0.022 250);
+
+  --card: oklch(0.175 0.015 250);
+  --card-foreground: oklch(0.975 0.004 250);
+  --popover: oklch(0.175 0.015 250);
+  --popover-foreground: oklch(0.975 0.004 250);
+
+  --accent-amber: oklch(0.78 0.145 225);
+  --accent-amber-soft: oklch(0.84 0.15 168);
+  --danger: oklch(0.68 0.185 22);
+
+  --primary: oklch(0.78 0.145 225);
+  --primary-foreground: oklch(0.16 0.02 250);
+  --secondary: oklch(0.215 0.018 250);
+  --secondary-foreground: oklch(0.975 0.004 250);
+  --muted: oklch(0.215 0.018 250);
+  --muted-foreground: oklch(0.72 0.015 250);
+  --accent: oklch(0.215 0.018 250);
+  --accent-foreground: oklch(0.975 0.004 250);
+  --destructive: oklch(0.68 0.185 22);
+  --destructive-foreground: oklch(0.975 0.004 250);
+  --border: oklch(0.26 0.02 250);
+  --input: oklch(0.26 0.02 250);
+  --ring: oklch(0.78 0.145 225);
+  --chart-1: oklch(0.78 0.145 225);
+  --chart-2: oklch(0.84 0.15 168);
+  --chart-3: oklch(0.86 0.14 95);
+  --chart-4: oklch(0.55 0.05 250);
+  --chart-5: oklch(0.4 0.03 250);
+  --sidebar: oklch(0.175 0.015 250);
+  --sidebar-foreground: oklch(0.975 0.004 250);
+  --sidebar-primary: oklch(0.78 0.145 225);
+  --sidebar-primary-foreground: oklch(0.16 0.02 250);
+  --sidebar-accent: oklch(0.215 0.018 250);
+  --sidebar-accent-foreground: oklch(0.975 0.004 250);
+  --sidebar-border: oklch(0.26 0.02 250);
+  --sidebar-ring: oklch(0.78 0.145 225);
+
+
+}
+
+.dark {
+  --background: oklch(0.13 0.018 275);
+  --foreground: oklch(0.97 0.006 275);
+}
+
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility live-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+
+@utility text-aurora {
+  background-image: linear-gradient(
+    100deg,
+    var(--accent-amber) 0%,
+    var(--accent-amber-soft) 45%,
+    oklch(0.88 0.14 95) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility aurora-glow {
+  position: absolute;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 55% at 12% 22%, color-mix(in oklab, var(--accent-amber) 26%, transparent) 0%, transparent 70%),
+    radial-gradient(45% 50% at 88% 34%, color-mix(in oklab, var(--accent-amber-soft) 20%, transparent) 0%, transparent 72%),
+    radial-gradient(60% 45% at 50% 104%, color-mix(in oklab, oklch(0.86 0.14 95) 14%, transparent) 0%, transparent 70%);
+  filter: blur(10px);
+}
+
+@utility panel-sheen {
+  background-image: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--accent-amber) 7%, transparent) 0%,
+    transparent 45%
+  );
+}
+
+/* One continuous, site-wide atmosphere — mounted once at the root, behind
+   every route, so it persists across client-side navigation instead of
+   resetting per page. See <PageBackground />. */
+@utility site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  isolation: isolate;
+  overflow: hidden;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(
+        70% 45% at 8% -6%,
+        color-mix(in oklab, var(--accent-amber) 22%, transparent) 0%,
+        transparent 68%
+      ),
+      radial-gradient(
+        55% 40% at 96% 12%,
+        color-mix(in oklab, var(--accent-amber-soft) 16%, transparent) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        80% 50% at 50% 108%,
+        color-mix(in oklab, oklch(0.86 0.14 95) 12%, transparent) 0%,
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--accent-amber) 5%, var(--background)) 0%,
+        var(--background) 55%,
+        color-mix(in oklab, var(--accent-amber-soft) 5%, var(--background)) 100%
+      );
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.55;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--accent-amber) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--accent-amber) 14%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(85% 70% at 50% 30%, black 0%, transparent 85%);
+  }
+}
+
+
+/* ── Micro-interactions ─────────────────────────────────────────── */
+
+/* Primary buttons: soft lift + light sweep across the surface. */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 260ms ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      oklch(1 0 0 / 45%) 50%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 12px 30px -12px color-mix(in oklab, var(--accent-amber) 70%, transparent);
+  }
+
+  &:hover::after {
+    transform: translateX(120%);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.985);
+    transition-duration: 90ms;
+  }
+}
+
+/* Secondary / ghost buttons: quieter version of the same gesture. */
+@utility btn-quiet {
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 260ms ease,
+    border-color 260ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--accent-amber) 45%, transparent);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.985);
+    transition-duration: 90ms;
+  }
+}
+
+/* Grid cells inside hairline grids: can't lift (breaks the seams),
+   so they warm up and grow an accent rule along the top edge. */
+@utility cell-hover {
+  position: relative;
+  transition:
+    background-color 320ms ease,
+    box-shadow 320ms ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      var(--accent-amber),
+      color-mix(in oklab, var(--accent-amber-soft) 80%, transparent)
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover {
+    background-color: var(--surface-2, var(--surface));
+    box-shadow: inset 0 0 60px -20px color-mix(in oklab, var(--accent-amber) 30%, transparent);
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+/* Standalone panels/cards that are free to float. */
+@utility card-lift {
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 320ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--accent-amber) 35%, transparent);
+    box-shadow: 0 24px 60px -30px color-mix(in oklab, var(--accent-amber) 60%, transparent);
+  }
+}
+
+/* Stat tiles: number nudges up, label brightens. */
+@utility stat-tick {
+  transition:
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 300ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* Scroll reveal — opt-in via the Reveal component. */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Let long marquees settle when the pointer is on them. */
+@utility marquee-pause {
+  &:hover [class*="animate-marquee"] {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .live-dot,
+  [class*="animate-marquee"] {
+    animation: none !important;
+  }
+
+  .btn-shine::after,
+  .cell-hover::before {
+    display: none;
+  }
+
+
+  .btn-shine:hover,
+  .btn-quiet:hover,
+  .card-lift:hover,
+  .stat-tick:hover {
+    transform: none;
+  }
+}
+
+/* A thin horizontal connector with a glowing dot travelling along it —
+   reused anywhere two nodes in a system diagram need to look "live". */
+@keyframes flow-travel {
+  0% { left: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@utility flow-line {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--accent-amber) 45%, transparent) 50%,
+    transparent
+  );
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-radius: 9999px;
+    background: var(--accent-amber);
+    box-shadow: 0 0 8px 2px color-mix(in oklab, var(--accent-amber) 65%, transparent);
+    animation: flow-travel 2.6s linear infinite;
+    animation-delay: var(--flow-delay, 0s);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-line::after {
+    animation: none;
+    left: 50%;
+  }
+}
+
+/* Hero checkpoint figure — a pulse travelling into the gate, and a soft ring. */
+@keyframes cp-flow {
+  0% {
+    stroke-dasharray: 26 400;
+    stroke-dashoffset: 26;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dasharray: 26 400;
+    stroke-dashoffset: -400;
+    opacity: 0;
+  }
+}
+
+@keyframes cp-ring {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.09);
+  }
+}
+
+.cp-flow {
+  animation: cp-flow 3.4s linear infinite;
+}
+
+.cp-ring {
+  transform-origin: 210px 110px;
+  animation: cp-ring 3.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-flow,
+  .cp-ring {
+    animation: none;
+  }
+
+  .cp-flow {
+    opacity: 0.5;
+  }
+}
