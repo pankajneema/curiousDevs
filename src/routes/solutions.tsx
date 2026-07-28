@@ -8,11 +8,11 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/solutions")({
   head: () => ({
     meta: [
-      { title: "Solutions by Industry — Fintech, Healthcare, SaaS & Government | CuriosDevs" },
+      { title: "Solutions by Industry — Fintech, Healthcare, SaaS & Government | CuriousDevs" },
       {
         name: "description",
         content:
-          "How CuriosDevs governs AI agents across fintech, healthcare, enterprise SaaS and government — real risk scenarios and the verdicts that stop them.",
+          "How CuriousDevs governs AI agents across fintech, healthcare, enterprise SaaS and government — real risk scenarios and the verdicts that stop them.",
       },
       { property: "og:title", content: "Solutions by Industry" },
       {
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/solutions")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/solutions" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/solutions" }],
   }),

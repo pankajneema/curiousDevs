@@ -74,14 +74,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CuriosDevs — Securing the Autonomous Future" },
+      { title: "CuriousDevs — Securing the Autonomous Future" },
       {
         name: "description",
         content:
-          "CuriosDevs builds the accountability layer for autonomous systems: AgentGuard, CurioComply and AeroOS.",
+          "CuriousDevs builds the accountability layer for autonomous systems: AgentGuard, CurioComply and AeroOS.",
       },
-      { name: "author", content: "CuriosDevs" },
-      { property: "og:title", content: "CuriosDevs — Securing the Autonomous Future" },
+      { name: "author", content: "CuriousDevs" },
+      { property: "og:title", content: "CuriousDevs — Securing the Autonomous Future" },
       {
         property: "og:description",
         content:

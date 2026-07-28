@@ -102,7 +102,7 @@ export function ProductShowcase() {
                     <span className="size-2 rounded-full bg-amber-soft/50" />
                   </div>
                   <span className="font-mono text-[11px] tracking-wide text-muted-foreground">
-                    curiosdevs platform · {p.slug}
+                    curiousdevs platform · {p.slug}
                   </span>
                 </div>
                 <span className="flex items-center gap-1.5 rounded-full border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-amber-accent uppercase">

@@ -8,7 +8,7 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/problem")({
   head: () => ({
     meta: [
-      { title: "The Problem — Autonomy Without Accountability | CuriosDevs" },
+      { title: "The Problem — Autonomy Without Accountability | CuriousDevs" },
       {
         name: "description",
         content:
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/problem")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/problem" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/problem" }],
   }),

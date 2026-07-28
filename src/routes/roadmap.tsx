@@ -8,11 +8,11 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/roadmap")({
   head: () => ({
     meta: [
-      { title: "Roadmap 2026–2030 — Agents, Data, Machines | CuriosDevs" },
+      { title: "Roadmap 2026–2030 — Agents, Data, Machines | CuriousDevs" },
       {
         name: "description",
         content:
-          "The CuriosDevs path from AgentGuard runtime control to CurioComply evidence automation and AeroOS command for autonomous fleets, 2026 through 2030.",
+          "The CuriousDevs path from AgentGuard runtime control to CurioComply evidence automation and AeroOS command for autonomous fleets, 2026 through 2030.",
       },
       { property: "og:title", content: "Roadmap 2026–2030 — Agents, Data, Machines" },
       {
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/roadmap")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/roadmap" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/roadmap" }],
   }),

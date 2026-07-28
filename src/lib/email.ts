@@ -38,7 +38,7 @@ export async function sendMail(opts: {
     throw new Error("Email is not configured on the server (missing SMTP_* / CONTACT_EMAIL env vars).");
   }
   await getTransporter().sendMail({
-    from: `"CuriosDevs Website" <${process.env.SMTP_EMAIL}>`,
+    from: `"CuriousDevs Website" <${process.env.SMTP_EMAIL}>`,
     to,
     replyTo: opts.replyTo,
     subject: opts.subject,

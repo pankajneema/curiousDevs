@@ -8,11 +8,11 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How It Works — Control Plane & Runtime Enforcement | CuriosDevs" },
+      { title: "How It Works — Control Plane & Runtime Enforcement | CuriousDevs" },
       {
         name: "description",
         content:
-          "From adversarial discovery and policy signatures to inline runtime enforcement and signed evidence — the five steps behind every CuriosDevs verdict.",
+          "From adversarial discovery and policy signatures to inline runtime enforcement and signed evidence — the five steps behind every CuriousDevs verdict.",
       },
       { property: "og:title", content: "How It Works — Control Plane & Runtime Enforcement" },
       {
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/how-it-works")({
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/how-it-works" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/how-it-works" }],
   }),

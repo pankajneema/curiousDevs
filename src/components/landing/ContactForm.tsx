@@ -42,7 +42,7 @@ export function ContactForm() {
       });
       setSent(true);
     } catch {
-      setError("Couldn't send that — check your connection and try again, or email hello@curiosdevs.com directly.");
+      setError("Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.");
     } finally {
       setLoading(false);
     }

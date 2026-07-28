@@ -9,13 +9,13 @@ import { roles } from "@/content/site";
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — Security Roles at CuriosDevs" },
+      { title: "Careers — Security Roles at CuriousDevs" },
       {
         name: "description",
         content:
-          "CuriosDevs is hiring security roles only, right now: research, backend, ML detection and compliance. Noida, remote-friendly.",
+          "CuriousDevs is hiring security roles only, right now: research, backend, ML detection and compliance. Noida, remote-friendly.",
       },
-      { property: "og:title", content: "Careers — Security Roles at CuriosDevs" },
+      { property: "og:title", content: "Careers — Security Roles at CuriousDevs" },
       {
         property: "og:description",
         content: "Building the founding security team. Everyone ships code.",
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/careers")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/careers" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/careers" }],
   }),
@@ -38,7 +38,7 @@ function CareersPage() {
         eyebrow="Careers"
         title="We're hiring"
         accent="security roles only."
-        body="CuriosDevs is a founding team, not a department store. Every open role right now is a security role — research, backend, detection or compliance. Everyone ships code."
+        body="CuriousDevs is a founding team, not a department store. Every open role right now is a security role — research, backend, detection or compliance. Everyone ships code."
         action={false}
       />
 

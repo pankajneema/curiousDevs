@@ -76,10 +76,10 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="mailto:hello@curiosdevs.com"
+                  href="mailto:hello@curiousdevs.com"
                   className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
                 >
-                  <Mail className="size-4 text-amber-soft" /> hello@curiosdevs.com
+                  <Mail className="size-4 text-amber-soft" /> hello@curiousdevs.com
                 </a>
               </li>
               <li className="inline-flex items-center gap-2">
@@ -90,7 +90,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-8">
-          <span className="eyebrow">© {new Date().getFullYear()} CuriosDevs</span>
+          <span className="eyebrow">© {new Date().getFullYear()} CuriousDevs</span>
           <span className="eyebrow">Accountable autonomy · Engineered in India</span>
         </div>
       </div>

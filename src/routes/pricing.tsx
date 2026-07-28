@@ -8,7 +8,7 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — AgentGuard, CurioComply & AeroOS | CuriosDevs" },
+      { title: "Pricing — AgentGuard, CurioComply & AeroOS | CuriousDevs" },
       {
         name: "description",
         content:
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/pricing")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/pricing" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/pricing" }],
   }),

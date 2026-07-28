@@ -9,11 +9,11 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/product")({
   head: () => ({
     meta: [
-      { title: "Products — AgentGuard, CurioComply & AeroOS | CuriosDevs" },
+      { title: "Products — AgentGuard, CurioComply & AeroOS | CuriousDevs" },
       {
         name: "description",
         content:
-          "Explore the CuriosDevs product ladder: AgentGuard runtime security for AI agents, CurioComply DPDP automation, and AeroOS for autonomous fleets.",
+          "Explore the CuriousDevs product ladder: AgentGuard runtime security for AI agents, CurioComply DPDP automation, and AeroOS for autonomous fleets.",
       },
       { property: "og:title", content: "Products — AgentGuard, CurioComply & AeroOS" },
       {
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/product")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/product" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/product" }],
   }),

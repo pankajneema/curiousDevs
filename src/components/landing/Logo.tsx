@@ -23,7 +23,7 @@ export function Logo({ size = 26 }: { size?: number }) {
 export function Wordmark() {
   return (
     <span className="text-[15px] font-bold tracking-tight text-foreground">
-      Curios<span className="text-amber-accent">Devs</span>
+      Curious<span className="text-amber-accent">Devs</span>
     </span>
   );
 }

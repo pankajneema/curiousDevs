@@ -12,7 +12,7 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CuriosDevs — Security Infrastructure for Autonomous Systems" },
+      { title: "CuriousDevs — Security Infrastructure for Autonomous Systems" },
       {
         name: "description",
         content:
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "CuriosDevs — Security Infrastructure for Autonomous Systems",
+        content: "CuriousDevs — Security Infrastructure for Autonomous Systems",
       },
       {
         property: "og:description",
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),

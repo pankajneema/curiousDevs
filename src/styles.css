@@ -97,7 +97,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* CuriosDevs palette: obsidian black + azure cyan + spring teal */
+  /* CuriousDevs palette: obsidian black + azure cyan + spring teal */
   --background: oklch(0.135 0.012 250);
   --foreground: oklch(0.975 0.004 250);
   --surface: oklch(0.175 0.015 250);

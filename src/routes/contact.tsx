@@ -8,13 +8,13 @@ import { PageIntro } from "@/components/landing/PageIntro";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact CuriosDevs — Book a Checkpoint Review" },
+      { title: "Contact CuriousDevs — Book a Checkpoint Review" },
       {
         name: "description",
         content:
-          "Talk to the engineers building CuriosDevs. Bring one autonomous workflow and we will show you where the checkpoint goes and what it would have stopped.",
+          "Talk to the engineers building CuriousDevs. Bring one autonomous workflow and we will show you where the checkpoint goes and what it would have stopped.",
       },
-      { property: "og:title", content: "Contact CuriosDevs — Book a Checkpoint Review" },
+      { property: "og:title", content: "Contact CuriousDevs — Book a Checkpoint Review" },
       {
         property: "og:description",
         content: "45-minute working session, engineers on the call, no sales deck.",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contact")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/contact" },
-      { property: "og:site_name", content: "CuriosDevs" },
+      { property: "og:site_name", content: "CuriousDevs" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 const details = [
-  { icon: Mail, label: "Email", value: "hello@curiosdevs.com", href: "mailto:hello@curiosdevs.com" },
+  { icon: Mail, label: "Email", value: "hello@curiousdevs.com", href: "mailto:hello@curiousdevs.com" },
   { icon: MapPin, label: "Base", value: "Noida, India" },
   { icon: Clock, label: "Response time", value: "One business day" },
 ];
