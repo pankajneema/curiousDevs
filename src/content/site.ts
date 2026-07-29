@@ -41,7 +41,6 @@ export const faqs = [
   },
 ];
 
-
 export const timeline = [
   {
     year: "2026",
@@ -95,7 +94,7 @@ export const pricing = [
           "Local audit logging",
           "Community support",
         ],
-        cta: "View on GitHub",
+        cta: "Request early access",
         featured: false,
       },
       {
@@ -123,7 +122,7 @@ export const pricing = [
           "MCP registry + custom policies",
           "Audit exports, SLA support",
         ],
-        cta: "Talk to us",
+        cta: "Talk to sales",
         featured: false,
       },
     ],
@@ -139,7 +138,7 @@ export const pricing = [
         unit: "",
         desc: "A two-minute DPDP exposure check.",
         items: ["Automated readiness scan", "Shareable exposure report", "No commitment"],
-        cta: "Run a free scan",
+        cta: "Request a scan",
         featured: false,
       },
       {
@@ -175,13 +174,8 @@ export const pricing = [
         price: "₹25L+",
         unit: "/yr",
         desc: "Banks, insurers, Significant Data Fiduciaries.",
-        items: [
-          "Sectoral tri-filing engine",
-          "On-prem options",
-          "DPO workspace",
-          "Audit defence",
-        ],
-        cta: "Talk to us",
+        items: ["Sectoral tri-filing engine", "On-prem options", "DPO workspace", "Audit defence"],
+        cta: "Talk to sales",
         featured: false,
       },
     ],
@@ -220,7 +214,7 @@ export const pricing = [
           "AI anomaly detection",
           "Dedicated support",
         ],
-        cta: "Talk to us",
+        cta: "Talk to sales",
         featured: false,
       },
     ],
@@ -235,7 +229,6 @@ export const roles = [
     body: "Ex-law-firm or Big-4. Own CurioComply's regulatory content and the DPDP readiness scanner's accuracy.",
   },
 ];
-
 
 export const steps = [
   {
@@ -269,4 +262,3 @@ export const steps = [
     body: "Evidence exports map to SOC 2, ISO 27001 and DPDP. Telemetry feeds back and enforcement tightens continuously.",
   },
 ];
-

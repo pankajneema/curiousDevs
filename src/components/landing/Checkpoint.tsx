@@ -68,7 +68,15 @@ export function Checkpoint() {
             stroke="currentColor"
             strokeWidth="1"
           />
-          <circle cx="210" cy="110" r="22" className="fill-surface" stroke="currentColor" strokeOpacity="0.2" strokeWidth="1" />
+          <circle
+            cx="210"
+            cy="110"
+            r="22"
+            className="fill-surface"
+            stroke="currentColor"
+            strokeOpacity="0.2"
+            strokeWidth="1"
+          />
           <path
             d="M 201 110 l 6 6 l 12 -13"
             fill="none"

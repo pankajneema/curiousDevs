@@ -12,9 +12,18 @@ const points: [number, number, number][] = [
 ];
 
 const edges: [number, number][] = [
-  [2, 0], [2, 1], [2, 3], [2, 4], [2, 5],
-  [0, 1], [1, 3], [3, 4], [4, 5], [5, 0],
-  [0, 4], [1, 5],
+  [2, 0],
+  [2, 1],
+  [2, 3],
+  [2, 4],
+  [2, 5],
+  [0, 1],
+  [1, 3],
+  [3, 4],
+  [4, 5],
+  [5, 0],
+  [0, 4],
+  [1, 5],
 ];
 
 export function Wireframe({ className = "" }: { className?: string }) {
@@ -42,9 +51,11 @@ export function Wireframe({ className = "" }: { className?: string }) {
 
     const rotate = (p: [number, number, number], ay: number, ax: number) => {
       let [x, y, z] = p;
-      const cosY = Math.cos(ay), sinY = Math.sin(ay);
+      const cosY = Math.cos(ay),
+        sinY = Math.sin(ay);
       [x, z] = [x * cosY - z * sinY, x * sinY + z * cosY];
-      const cosX = Math.cos(ax), sinX = Math.sin(ax);
+      const cosX = Math.cos(ax),
+        sinX = Math.sin(ax);
       [y, z] = [y * cosX - z * sinX, y * sinX + z * cosX];
       return [x, y, z] as [number, number, number];
     };

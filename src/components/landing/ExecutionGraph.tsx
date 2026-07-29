@@ -16,7 +16,9 @@ export function ExecutionGraph() {
         <p className="eyebrow">Runtime execution graph</p>
         <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.03em]">
           Five modules,{" "}
-          <span className="font-serif font-normal text-muted-foreground italic">one path to a verdict.</span>
+          <span className="font-serif font-normal text-muted-foreground italic">
+            one path to a verdict.
+          </span>
         </h2>
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">
           Every tool-call walks the same graph, in the same order. Nothing skips a stage, and
@@ -24,7 +26,12 @@ export function ExecutionGraph() {
         </p>
 
         <div className="card-lift panel-sheen mt-12 overflow-x-auto rounded-2xl border border-hairline bg-surface p-6 sm:p-10">
-          <svg viewBox="0 0 980 160" className="w-full min-w-[820px]" role="img" aria-label="Diagram of the five AgentGuard modules connected in sequence, ending in a signed verdict">
+          <svg
+            viewBox="0 0 980 160"
+            className="w-full min-w-[820px]"
+            role="img"
+            aria-label="Diagram of the five AgentGuard modules connected in sequence, ending in a signed verdict"
+          >
             <defs>
               <linearGradient id="eg-line" x1="0" x2="1">
                 <stop offset="0%" stopColor="currentColor" stopOpacity="0.06" />
@@ -37,7 +44,12 @@ export function ExecutionGraph() {
                 const next = stages[i + 1];
                 return (
                   <g key={s.title}>
-                    <path d={`M ${s.x} ${Y} H ${next.x}`} stroke="url(#eg-line)" strokeWidth="1" fill="none" />
+                    <path
+                      d={`M ${s.x} ${Y} H ${next.x}`}
+                      stroke="url(#eg-line)"
+                      strokeWidth="1"
+                      fill="none"
+                    />
                     <path
                       d={`M ${s.x} ${Y} H ${next.x}`}
                       className="cp-flow text-amber-accent"
@@ -51,7 +63,12 @@ export function ExecutionGraph() {
                 );
               })}
 
-              <path d={`M ${stages[stages.length - 1].x} ${Y} H ${CHECKPOINT_X - 26}`} stroke="url(#eg-line)" strokeWidth="1" fill="none" />
+              <path
+                d={`M ${stages[stages.length - 1].x} ${Y} H ${CHECKPOINT_X - 26}`}
+                stroke="url(#eg-line)"
+                strokeWidth="1"
+                fill="none"
+              />
               <path
                 d={`M ${stages[stages.length - 1].x} ${Y} H ${CHECKPOINT_X - 26}`}
                 className="cp-flow text-amber-soft"
@@ -65,12 +82,36 @@ export function ExecutionGraph() {
               {stages.map((s) => (
                 <g key={s.title}>
                   <circle cx={s.x} cy={Y} r="5" className="fill-amber-accent" />
-                  <circle cx={s.x} cy={Y} r="9" className="text-amber-accent" fill="none" stroke="currentColor" strokeOpacity="0.3" />
+                  <circle
+                    cx={s.x}
+                    cy={Y}
+                    r="9"
+                    className="text-amber-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeOpacity="0.3"
+                  />
                 </g>
               ))}
 
-              <circle cx={CHECKPOINT_X} cy={Y} r="26" className="cp-ring text-amber-accent" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx={CHECKPOINT_X} cy={Y} r="19" className="fill-surface" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1" />
+              <circle
+                cx={CHECKPOINT_X}
+                cy={Y}
+                r="26"
+                className="cp-ring text-amber-accent"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+              <circle
+                cx={CHECKPOINT_X}
+                cy={Y}
+                r="19"
+                className="fill-surface"
+                stroke="currentColor"
+                strokeOpacity="0.25"
+                strokeWidth="1"
+              />
               <path
                 d={`M ${CHECKPOINT_X - 8} ${Y} l 5.5 5.5 l 11 -12`}
                 fill="none"
@@ -84,15 +125,30 @@ export function ExecutionGraph() {
 
             {stages.map((s) => (
               <g key={`${s.title}-label`}>
-                <text x={s.x} y={Y - 24} textAnchor="middle" className="fill-muted-foreground font-mono text-[9px] tracking-[0.16em] uppercase">
+                <text
+                  x={s.x}
+                  y={Y - 24}
+                  textAnchor="middle"
+                  className="fill-muted-foreground font-mono text-[9px] tracking-[0.16em] uppercase"
+                >
                   {s.tag}
                 </text>
-                <text x={s.x} y={Y + 34} textAnchor="middle" className="fill-foreground text-[12px] font-semibold">
+                <text
+                  x={s.x}
+                  y={Y + 34}
+                  textAnchor="middle"
+                  className="fill-foreground text-[12px] font-semibold"
+                >
                   {s.title}
                 </text>
               </g>
             ))}
-            <text x={CHECKPOINT_X} y={Y + 46} textAnchor="middle" className="fill-muted-foreground font-mono text-[9px] tracking-[0.16em] uppercase">
+            <text
+              x={CHECKPOINT_X}
+              y={Y + 46}
+              textAnchor="middle"
+              className="fill-muted-foreground font-mono text-[9px] tracking-[0.16em] uppercase"
+            >
               Verdict
             </text>
           </svg>

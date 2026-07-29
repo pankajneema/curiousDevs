@@ -6,6 +6,9 @@ import { Footer } from "@/components/landing/Footer";
 import { PageIntro } from "@/components/landing/PageIntro";
 
 export const Route = createFileRoute("/solutions")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    industry: typeof search.industry === "string" ? search.industry : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Solutions by Industry — Fintech, Healthcare, SaaS & Government | CuriousDevs" },
@@ -17,21 +20,23 @@ export const Route = createFileRoute("/solutions")({
       { property: "og:title", content: "Solutions by Industry" },
       {
         property: "og:description",
-        content: "Deterministic enforcement for AI agents operating in regulated, high-stakes environments.",
+        content:
+          "Deterministic enforcement for AI agents operating in regulated, high-stakes environments.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/solutions" },
+      { property: "og:url", content: "https://curiousdevs.com/solutions" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/solutions" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/solutions" }],
   }),
   component: SolutionsPage,
 });
 
 function SolutionsPage() {
+  const { industry } = Route.useSearch();
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="Use cases"
@@ -40,7 +45,7 @@ function SolutionsPage() {
         body="Deterministic enforcement for AI agents operating in regulated, high-stakes environments. Every action governed before execution."
         action={false}
       />
-      <Solutions />
+      <Solutions initialSlug={industry} />
       <FaqAndCta />
       <Footer />
     </main>

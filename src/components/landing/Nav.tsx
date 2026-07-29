@@ -10,15 +10,21 @@ const productItems = products.map((p) => ({
   label: p.name,
   desc: p.category,
   to: "/product" as const,
+  search: { p: p.slug },
 }));
 
 const solutionItems = solutions.map((s) => ({
   label: s.name,
   to: "/solutions" as const,
+  search: { industry: s.slug },
 }));
 
 const resourceItems = [
-  { label: "How It Works", desc: "Control plane & runtime enforcement", to: "/how-it-works" as const },
+  {
+    label: "How It Works",
+    desc: "Control plane & runtime enforcement",
+    to: "/how-it-works" as const,
+  },
   { label: "Roadmap", desc: "2026 – 2030", to: "/roadmap" as const },
   { label: "The Problem", desc: "Where autonomy breaks", to: "/problem" as const },
 ];
@@ -43,6 +49,7 @@ function DropdownTrigger({
       onClick={onClick}
       className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
       aria-expanded={open}
+      aria-haspopup="menu"
     >
       {label}
       <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
@@ -60,8 +67,15 @@ export function Nav() {
     const onClick = (e: MouseEvent) => {
       if (ddRef.current && !ddRef.current.contains(e.target as Node)) setMenu(null);
     };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenu(null);
+    };
     document.addEventListener("mousedown", onClick);
-    return () => document.removeEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
 
   useEffect(() => {
@@ -69,8 +83,7 @@ export function Nav() {
     setMenu(null);
   }, [pathname]);
 
-  const toggle = (m: "product" | "solutions" | "resources") =>
-    setMenu((v) => (v === m ? null : m));
+  const toggle = (m: "product" | "solutions" | "resources") => setMenu((v) => (v === m ? null : m));
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
@@ -83,13 +96,22 @@ export function Nav() {
 
           <div ref={ddRef} className="hidden flex-1 items-center gap-5 lg:flex">
             <div className="relative">
-              <DropdownTrigger label="Product" open={menu === "product"} onClick={() => toggle("product")} />
+              <DropdownTrigger
+                label="Product"
+                open={menu === "product"}
+                onClick={() => toggle("product")}
+              />
               {menu === "product" && (
-                <div className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl">
+                <div
+                  role="menu"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                >
                   {productItems.map((p, i) => (
                     <Link
                       key={p.label}
                       to={p.to}
+                      search={p.search}
+                      role="menuitem"
                       className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-surface-2"
                     >
                       <span className="font-mono text-[10px] text-amber-soft">0{i + 1}</span>
@@ -102,6 +124,7 @@ export function Nav() {
                   <div className="mt-1 border-t border-hairline pt-1">
                     <Link
                       to="/product"
+                      search={{ p: undefined }}
                       className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2"
                     >
                       View all products →
@@ -112,13 +135,22 @@ export function Nav() {
             </div>
 
             <div className="relative">
-              <DropdownTrigger label="Solutions" open={menu === "solutions"} onClick={() => toggle("solutions")} />
+              <DropdownTrigger
+                label="Solutions"
+                open={menu === "solutions"}
+                onClick={() => toggle("solutions")}
+              />
               {menu === "solutions" && (
-                <div className="absolute top-full left-0 mt-3 w-64 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl">
+                <div
+                  role="menu"
+                  className="absolute top-full left-0 mt-3 w-64 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                >
                   {solutionItems.map((s) => (
                     <Link
                       key={s.label}
                       to={s.to}
+                      search={s.search}
+                      role="menuitem"
                       className="block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
                     >
                       {s.label}
@@ -127,6 +159,7 @@ export function Nav() {
                   <div className="mt-1 border-t border-hairline pt-1">
                     <Link
                       to="/solutions"
+                      search={{ industry: undefined }}
                       className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2"
                     >
                       View all industries →
@@ -137,13 +170,21 @@ export function Nav() {
             </div>
 
             <div className="relative">
-              <DropdownTrigger label="Resources" open={menu === "resources"} onClick={() => toggle("resources")} />
+              <DropdownTrigger
+                label="Resources"
+                open={menu === "resources"}
+                onClick={() => toggle("resources")}
+              />
               {menu === "resources" && (
-                <div className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl">
+                <div
+                  role="menu"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                >
                   {resourceItems.map((r) => (
                     <Link
                       key={r.label}
                       to={r.to}
+                      role="menuitem"
                       className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-surface-2"
                     >
                       <div className="text-sm font-semibold tracking-tight">{r.label}</div>
@@ -190,7 +231,12 @@ export function Nav() {
             <ul className="divide-y divide-[var(--hairline)]">
               {productItems.map((p) => (
                 <li key={p.label}>
-                  <Link to={p.to} onClick={() => setOpen(false)} className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link
+                    to={p.to}
+                    search={p.search}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {p.label}
                   </Link>
                 </li>
@@ -201,7 +247,12 @@ export function Nav() {
             <ul className="divide-y divide-[var(--hairline)]">
               {solutionItems.map((s) => (
                 <li key={s.label}>
-                  <Link to={s.to} onClick={() => setOpen(false)} className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link
+                    to={s.to}
+                    search={s.search}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {s.label}
                   </Link>
                 </li>
@@ -212,7 +263,11 @@ export function Nav() {
             <ul className="divide-y divide-[var(--hairline)]">
               {resourceItems.map((r) => (
                 <li key={r.label}>
-                  <Link to={r.to} onClick={() => setOpen(false)} className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  <Link
+                    to={r.to}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {r.label}
                   </Link>
                 </li>
@@ -223,7 +278,11 @@ export function Nav() {
               <ul className="divide-y divide-[var(--hairline)]">
                 {flatLinks.map((l) => (
                   <li key={l.label}>
-                    <Link to={l.to} onClick={() => setOpen(false)} className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    <Link
+                      to={l.to}
+                      onClick={() => setOpen(false)}
+                      className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
                       {l.label}
                     </Link>
                   </li>

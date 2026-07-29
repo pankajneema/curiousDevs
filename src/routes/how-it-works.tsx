@@ -22,17 +22,17 @@ export const Route = createFileRoute("/how-it-works")({
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/how-it-works" },
+      { property: "og:url", content: "https://curiousdevs.com/how-it-works" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/how-it-works" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/how-it-works" }],
   }),
   component: HowItWorksPage,
 });
 
 function HowItWorksPage() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="The mechanism"

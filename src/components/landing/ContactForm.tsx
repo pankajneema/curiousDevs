@@ -42,7 +42,9 @@ export function ContactForm() {
       });
       setSent(true);
     } catch {
-      setError("Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.");
+      setError(
+        "Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.",
+      );
     } finally {
       setLoading(false);
     }
@@ -51,15 +53,28 @@ export function ContactForm() {
   return (
     <form className="space-y-4" onSubmit={onSubmit}>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field id="ct-name" label="Name">
+        <Field id="ct-name" label="Name" required>
           <input id="ct-name" name="name" required autoComplete="name" className={inputCls} />
         </Field>
-        <Field id="ct-email" label="Work email">
-          <input id="ct-email" name="email" type="email" required autoComplete="email" className={inputCls} />
+        <Field id="ct-email" label="Work email" required>
+          <input
+            id="ct-email"
+            name="email"
+            type="email"
+            required
+            autoComplete="email"
+            className={inputCls}
+          />
         </Field>
       </div>
-      <Field id="ct-company" label="Company">
-        <input id="ct-company" name="company" required autoComplete="organization" className={inputCls} />
+      <Field id="ct-company" label="Company" required>
+        <input
+          id="ct-company"
+          name="company"
+          required
+          autoComplete="organization"
+          className={inputCls}
+        />
       </Field>
 
       <fieldset>
@@ -104,11 +119,27 @@ export function ContactForm() {
 const inputCls =
   "w-full rounded-xl border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
 
-function Field({ id, label, children }: { id: string; label: string; children: ReactNode }) {
+function Field({
+  id,
+  label,
+  required,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  children: ReactNode;
+}) {
   return (
     <div>
       <label htmlFor={id} className="eyebrow mb-2 block">
         {label}
+        {required && (
+          <span className="text-amber-accent" aria-hidden="true">
+            {" "}
+            *
+          </span>
+        )}
       </label>
       {children}
     </div>

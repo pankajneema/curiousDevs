@@ -14,11 +14,14 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProblemRouteImport } from './routes/problem'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as TermsRouteImport } from './routes/terms'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -45,6 +48,11 @@ const PricingRoute = PricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProblemRoute = ProblemRouteImport.update({
   id: '/problem',
   path: '/problem',
@@ -60,6 +68,11 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -70,6 +83,11 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,11 +95,14 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,11 +110,14 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -102,11 +126,14 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
+  '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/terms': typeof TermsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -116,11 +143,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/pricing'
+    | '/privacy'
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/terms'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -128,11 +158,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/pricing'
+    | '/privacy'
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/terms'
   id:
     | '__root__'
     | '/'
@@ -140,11 +173,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/how-it-works'
     | '/pricing'
+    | '/privacy'
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/terms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,11 +189,14 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   HowItWorksRoute: typeof HowItWorksRoute
   PricingRoute: typeof PricingRoute
+  PrivacyRoute: typeof PrivacyRoute
   ProblemRoute: typeof ProblemRoute
   ProductRoute: typeof ProductRoute
   RoadmapRoute: typeof RoadmapRoute
+  SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsRoute: typeof SolutionsRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -197,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/problem': {
       id: '/problem'
       path: '/problem'
@@ -218,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -232,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -241,11 +301,14 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   HowItWorksRoute: HowItWorksRoute,
   PricingRoute: PricingRoute,
+  PrivacyRoute: PrivacyRoute,
   ProblemRoute: ProblemRoute,
   ProductRoute: ProductRoute,
   RoadmapRoute: RoadmapRoute,
+  SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsRoute: SolutionsRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

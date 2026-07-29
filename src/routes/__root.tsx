@@ -88,16 +88,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Security and compliance infrastructure for autonomous systems — from AI agents to physical machines.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://curiousdevs.com/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "CuriousDevs — Give autonomy a chain of command.",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://curiousdevs.com/og-image.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap",
-      },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
@@ -110,11 +112,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "CuriousDevs",
+  url: "https://curiousdevs.com",
+  logo: "https://curiousdevs.com/favicon.svg",
+  email: "hello@curiousdevs.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Noida",
+    addressRegion: "Uttar Pradesh",
+    addressCountry: "IN",
+  },
+  description:
+    "CuriousDevs builds the accountability layer for autonomous systems: AgentGuard, CurioComply and AeroOS.",
+};
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
       </head>
       <body>
         {children}
@@ -129,6 +152,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-amber-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-background"
+      >
+        Skip to content
+      </a>
       <PageBackground />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />

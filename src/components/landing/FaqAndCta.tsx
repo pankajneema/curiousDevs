@@ -3,12 +3,28 @@ import { ArrowRight, Minus, Plus } from "lucide-react";
 import { faqs } from "@/content/site";
 import { BookingDialog } from "./BookingDialog";
 
-
-export function FaqAndCta() {
+export function FaqAndCta({ schema = false }: { schema?: boolean } = {}) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <>
+      {schema && (
+        <script
+          type="application/ld+json"
+          // Static, developer-authored FAQ copy — safe to serialize directly.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            }),
+          }}
+        />
+      )}
       <section id="contact" className="relative border-b border-hairline py-32">
         <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-[clamp(2rem,5.5vw,3.75rem)] leading-[1] font-extrabold tracking-[-0.03em]">
@@ -43,11 +59,10 @@ export function FaqAndCta() {
               The things people ask first
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-              Short answers on how this runs, what it costs you in speed, and what you can hand to an
-              auditor.
+              Short answers on how this runs, what it costs you in speed, and what you can hand to
+              an auditor.
             </p>
           </div>
-
 
           <div className="mt-12 divide-y divide-[var(--hairline)] border-y border-hairline">
             {faqs.map((f, i) => (
@@ -71,8 +86,6 @@ export function FaqAndCta() {
           </div>
         </div>
       </section>
-
     </>
   );
 }
-

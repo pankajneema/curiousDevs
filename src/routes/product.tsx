@@ -7,6 +7,9 @@ import { FaqAndCta } from "@/components/landing/FaqAndCta";
 import { Footer } from "@/components/landing/Footer";
 
 export const Route = createFileRoute("/product")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    p: typeof search.p === "string" ? search.p : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Products — AgentGuard, CurioComply & AeroOS | CuriousDevs" },
@@ -23,19 +26,20 @@ export const Route = createFileRoute("/product")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/product" },
+      { property: "og:url", content: "https://curiousdevs.com/product" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/product" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/product" }],
   }),
   component: ProductPage,
 });
 
 function ProductPage() {
+  const { p } = Route.useSearch();
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
-      <ProductShowcase />
+      <ProductShowcase initialSlug={p} />
       <ExecutionGraph />
       <Capabilities />
       <FaqAndCta />
@@ -43,4 +47,3 @@ function ProductPage() {
     </main>
   );
 }
-

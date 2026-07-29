@@ -22,17 +22,17 @@ export const Route = createFileRoute("/roadmap")({
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/roadmap" },
+      { property: "og:url", content: "https://curiousdevs.com/roadmap" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/roadmap" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/roadmap" }],
   }),
   component: RoadmapPage,
 });
 
 function RoadmapPage() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="The path, 2026 to 2030"

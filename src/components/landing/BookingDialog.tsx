@@ -10,7 +10,12 @@ import {
 } from "@/components/ui/dialog";
 import { sendBookingRequest } from "@/lib/actions";
 
-const slots = ["Mon–Wed, mornings", "Mon–Wed, afternoons", "Thu–Fri, mornings", "Thu–Fri, afternoons"];
+const slots = [
+  "Mon–Wed, mornings",
+  "Mon–Wed, afternoons",
+  "Thu–Fri, mornings",
+  "Thu–Fri, afternoons",
+];
 
 const surfaces = ["AI agents", "Data & DPDP", "Machine fleets"];
 
@@ -40,7 +45,9 @@ export function BookingDialog({ children }: { children: ReactNode }) {
       });
       setSent(true);
     } catch {
-      setError("Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.");
+      setError(
+        "Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.",
+      );
     } finally {
       setLoading(false);
     }
@@ -51,7 +58,11 @@ export function BookingDialog({ children }: { children: ReactNode }) {
       open={open}
       onOpenChange={(v) => {
         setOpen(v);
-        if (!v) setTimeout(() => { setSent(false); setError(null); }, 200);
+        if (!v)
+          setTimeout(() => {
+            setSent(false);
+            setError(null);
+          }, 200);
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -91,10 +102,10 @@ export function BookingDialog({ children }: { children: ReactNode }) {
         ) : (
           <form className="space-y-4 px-6 py-6" onSubmit={onSubmit}>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field id="bk-name" label="Name">
+              <Field id="bk-name" label="Name" required>
                 <input id="bk-name" name="name" required autoComplete="name" className={inputCls} />
               </Field>
-              <Field id="bk-email" label="Work email">
+              <Field id="bk-email" label="Work email" required>
                 <input
                   id="bk-email"
                   name="email"
@@ -105,8 +116,14 @@ export function BookingDialog({ children }: { children: ReactNode }) {
                 />
               </Field>
             </div>
-            <Field id="bk-company" label="Company">
-              <input id="bk-company" name="company" required autoComplete="organization" className={inputCls} />
+            <Field id="bk-company" label="Company" required>
+              <input
+                id="bk-company"
+                name="company"
+                required
+                autoComplete="organization"
+                className={inputCls}
+              />
             </Field>
 
             <fieldset>
@@ -172,16 +189,24 @@ const inputCls =
 function Field({
   id,
   label,
+  required,
   children,
 }: {
   id: string;
   label: string;
+  required?: boolean;
   children: ReactNode;
 }) {
   return (
     <div>
       <label htmlFor={id} className="eyebrow mb-2 block">
         {label}
+        {required && (
+          <span className="text-amber-accent" aria-hidden="true">
+            {" "}
+            *
+          </span>
+        )}
       </label>
       {children}
     </div>

@@ -22,8 +22,9 @@ function getTransporter() {
 }
 
 export function escapeHtml(value: string): string {
-  return value.replace(/[&<>"']/g, (c) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string,
+  return value.replace(
+    /[&<>"']/g,
+    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string,
   );
 }
 
@@ -35,7 +36,9 @@ export async function sendMail(opts: {
 }) {
   const to = process.env.CONTACT_EMAIL || process.env.SMTP_EMAIL;
   if (!process.env.SMTP_EMAIL || !process.env.SMTP_PASSWORD || !to) {
-    throw new Error("Email is not configured on the server (missing SMTP_* / CONTACT_EMAIL env vars).");
+    throw new Error(
+      "Email is not configured on the server (missing SMTP_* / CONTACT_EMAIL env vars).",
+    );
   }
   await getTransporter().sendMail({
     from: `"CuriousDevs Website" <${process.env.SMTP_EMAIL}>`,

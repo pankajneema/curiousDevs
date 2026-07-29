@@ -21,23 +21,28 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: "https://curiousdevs.com/contact" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/contact" }],
   }),
   component: ContactPage,
 });
 
 const details = [
-  { icon: Mail, label: "Email", value: "hello@curiousdevs.com", href: "mailto:hello@curiousdevs.com" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "hello@curiousdevs.com",
+    href: "mailto:hello@curiousdevs.com",
+  },
   { icon: MapPin, label: "Base", value: "Noida, India" },
   { icon: Clock, label: "Response time", value: "One business day" },
 ];
 
 function ContactPage() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="Talk to us"
@@ -51,9 +56,7 @@ function ContactPage() {
         <div className="mx-auto grid max-w-6xl items-start gap-10 px-6 lg:grid-cols-[1fr_0.9fr]">
           <div className="card-lift panel-sheen rounded-2xl border border-hairline bg-surface p-8">
             <p className="eyebrow">Start here</p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">
-              Send us your workflow
-            </h2>
+            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Send us your workflow</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Pick what you&apos;re securing, tell us about it, and we come back with two concrete
               times.

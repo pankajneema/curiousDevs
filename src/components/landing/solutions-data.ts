@@ -65,7 +65,12 @@ export const solutions: Solution[] = [
     headline: "Patient data has one boundary:",
     accent: "the care relationship.",
     body: "Clinical assistants and patient-support agents sit next to some of the most sensitive data an organisation holds.",
-    compliance: ["DPDP Act, 2023 (health data)", "HIPAA (for global deployments)", "ISO 27001", "SOC 2"],
+    compliance: [
+      "DPDP Act, 2023 (health data)",
+      "HIPAA (for global deployments)",
+      "ISO 27001",
+      "SOC 2",
+    ],
     scenarios: [
       {
         n: "01",

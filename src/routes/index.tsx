@@ -8,7 +8,6 @@ import { FaqAndCta } from "@/components/landing/FaqAndCta";
 import { Reveal } from "@/components/landing/Reveal";
 import { Footer } from "@/components/landing/Footer";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -29,17 +28,17 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://curiousdevs.com/" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/" }],
   }),
   component: Index,
 });
 
 function Index() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <Hero />
       <Reveal>
@@ -52,10 +51,9 @@ function Index() {
         <Roadmap />
       </Reveal>
       <Reveal>
-        <FaqAndCta />
+        <FaqAndCta schema />
       </Reveal>
       <Footer />
     </main>
   );
 }
-

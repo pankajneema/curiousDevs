@@ -16,10 +16,10 @@ const columns = [
   {
     title: "Solutions",
     links: [
-      { label: "Fintech & Banking", to: "/solutions" },
-      { label: "Healthcare", to: "/solutions" },
-      { label: "Enterprise SaaS & IT", to: "/solutions" },
-      { label: "Government & Public Sector", to: "/solutions" },
+      { label: "Fintech & Banking", to: "/solutions", search: { industry: "fintech" } },
+      { label: "Healthcare", to: "/solutions", search: { industry: "healthcare" } },
+      { label: "Enterprise SaaS & IT", to: "/solutions", search: { industry: "enterprise-saas" } },
+      { label: "Government & Public Sector", to: "/solutions", search: { industry: "government" } },
     ],
   },
   {
@@ -30,13 +30,21 @@ const columns = [
       { label: "Contact", to: "/contact" },
     ],
   },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+      { label: "Security", to: "/security" },
+    ],
+  },
 ] as const;
 
 export function Footer() {
   return (
     <footer className="border-t border-hairline bg-surface/40">
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr_1fr_1fr]">
           <div>
             <Link to="/" className="flex items-center gap-2">
               <Logo size={22} />
@@ -61,6 +69,7 @@ export function Footer() {
                   <li key={l.label}>
                     <Link
                       to={l.to}
+                      search={"search" in l ? l.search : undefined}
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {l.label}

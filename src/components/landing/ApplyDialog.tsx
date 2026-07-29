@@ -35,7 +35,9 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
       await sendApplication({ data: form });
       setSent(true);
     } catch {
-      setError("Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.");
+      setError(
+        "Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.",
+      );
     } finally {
       setLoading(false);
     }
@@ -46,7 +48,12 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
       open={open}
       onOpenChange={(v) => {
         setOpen(v);
-        if (!v) setTimeout(() => { setSent(false); setError(null); setFileName(null); }, 200);
+        if (!v)
+          setTimeout(() => {
+            setSent(false);
+            setError(null);
+            setFileName(null);
+          }, 200);
       }}
     >
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -56,7 +63,9 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
             <p className="eyebrow flex items-center gap-2">
               <Send className="size-3.5 text-amber-accent" /> Application
             </p>
-            <DialogTitle className="text-xl font-extrabold tracking-tight">Apply — {role}</DialogTitle>
+            <DialogTitle className="text-xl font-extrabold tracking-tight">
+              Apply — {role}
+            </DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground">
               Tell us who you are and point us at your best work. We read every application
               ourselves.
@@ -83,18 +92,31 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
         ) : (
           <form className="space-y-4 px-6 py-6" onSubmit={onSubmit}>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field id="ap-name" label="Name">
+              <Field id="ap-name" label="Name" required>
                 <input id="ap-name" name="name" required autoComplete="name" className={inputCls} />
               </Field>
-              <Field id="ap-email" label="Email">
-                <input id="ap-email" name="email" type="email" required autoComplete="email" className={inputCls} />
+              <Field id="ap-email" label="Email" required>
+                <input
+                  id="ap-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className={inputCls}
+                />
               </Field>
             </div>
-            <Field id="ap-role" label="Role">
+            <Field id="ap-role" label="Role" required>
               <input id="ap-role" name="role" defaultValue={role} required className={inputCls} />
             </Field>
             <Field id="ap-link" label="LinkedIn, GitHub or portfolio">
-              <input id="ap-link" name="link" type="url" placeholder="https://" className={inputCls} />
+              <input
+                id="ap-link"
+                name="link"
+                type="url"
+                placeholder="https://"
+                className={inputCls}
+              />
             </Field>
 
             <Field id="ap-resume" label="Resume (PDF or DOC, up to 8MB)">
@@ -139,11 +161,27 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
 const inputCls =
   "w-full rounded-xl border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
 
-function Field({ id, label, children }: { id: string; label: string; children: ReactNode }) {
+function Field({
+  id,
+  label,
+  required,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  children: ReactNode;
+}) {
   return (
     <div>
       <label htmlFor={id} className="eyebrow mb-2 block">
         {label}
+        {required && (
+          <span className="text-amber-accent" aria-hidden="true">
+            {" "}
+            *
+          </span>
+        )}
       </label>
       {children}
     </div>

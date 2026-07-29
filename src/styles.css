@@ -4,6 +4,38 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Self-hosted — no Google Fonts CDN request on page load. Each family below
+   is a variable font; browsers pick the right static instance per the
+   font-weight descriptor even though several rules share one src file. */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/plus-jakarta-sans.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic.woff2") format("woff2");
+}
+
 /*
  * Design system definition.
  *
@@ -102,7 +134,9 @@
   --foreground: oklch(0.975 0.004 250);
   --surface: oklch(0.175 0.015 250);
   --surface-2: oklch(0.215 0.018 250);
-  --hairline: oklch(0.3 0.022 250);
+  /* L raised from 0.3 to meet WCAG 1.4.11's 3:1 non-text contrast minimum —
+     this border doubles as the visible edge of every form field and card. */
+  --hairline: oklch(0.48 0.022 250);
 
   --card: oklch(0.175 0.015 250);
   --card-foreground: oklch(0.975 0.004 250);
@@ -400,6 +434,14 @@
   }
 }
 
+/* The "why now" stats marquee has a static twin (all 6 stats, no scroll) that
+   only appears once the animated version is turned off below — otherwise a
+   reduced-motion visitor would never see the stats past whichever ones
+   happened to be on-screen when the animation froze. */
+.stats-static {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal[data-visible="true"] {
@@ -411,6 +453,14 @@
   .live-dot,
   [class*="animate-marquee"] {
     animation: none !important;
+  }
+
+  .stats-marquee-wrap {
+    display: none;
+  }
+
+  .stats-static {
+    display: grid;
   }
 
   .btn-shine::after,

@@ -4,23 +4,9 @@ import { BookingDialog } from "./BookingDialog";
 
 export function Pricing() {
   return (
-    <section id="pricing" className="border-b border-hairline py-28">
+    <section id="pricing" className="border-b border-hairline pt-4 pb-28">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center">
-          <p className="eyebrow">Pricing</p>
-          <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-            Free to start.{" "}
-            <span className="font-serif font-normal text-muted-foreground italic">
-              Priced when you need the cloud.
-            </span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
-            Each layer prices the way its market expects — open-core globally for AgentGuard,
-            India-priced for CurioComply, per-robot for AeroOS.
-          </p>
-        </div>
-
-        <div className="mt-20 flex flex-col gap-20">
+        <div className="flex flex-col gap-20">
           {pricing.map((product) => (
             <div key={product.slug}>
               <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-hairline pb-5">
@@ -61,7 +47,9 @@ export function Pricing() {
                         </li>
                       ))}
                     </ul>
-                    {tier.cta === "Talk to us" || tier.cta === "Book a working session" ? (
+                    {tier.cta === "Talk to us" ||
+                    tier.cta === "Talk to sales" ||
+                    tier.cta === "Book a working session" ? (
                       <BookingDialog>
                         <button
                           className={`btn-quiet mt-6 rounded-full border px-5 py-2.5 text-center text-sm font-semibold ${

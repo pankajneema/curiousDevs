@@ -2,8 +2,12 @@ import { useState } from "react";
 import { ShieldHalf } from "lucide-react";
 import { solutions, verdictClass } from "./solutions-data";
 
-export function Solutions() {
-  const [active, setActive] = useState(0);
+export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
+  const initialIndex = Math.max(
+    0,
+    solutions.findIndex((s) => s.slug === initialSlug),
+  );
+  const [active, setActive] = useState(initialIndex);
   const s = solutions[active];
 
   return (
@@ -42,14 +46,21 @@ export function Solutions() {
             <p className="eyebrow">{s.tag}</p>
             <h2 className="mt-3 max-w-2xl text-2xl leading-[1.05] font-extrabold tracking-[-0.02em] sm:text-3xl">
               {s.headline}{" "}
-              <span className="font-serif font-normal text-muted-foreground italic">{s.accent}</span>
+              <span className="font-serif font-normal text-muted-foreground italic">
+                {s.accent}
+              </span>
             </h2>
-            <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted-foreground">{s.body}</p>
+            <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted-foreground">
+              {s.body}
+            </p>
 
             <p className="eyebrow mt-6 mb-3">Enforcement pipeline</p>
             <div className="flex flex-col gap-2.5">
               {s.scenarios.map((sc, i) => (
-                <div key={sc.n} className="cell-hover rounded-xl border border-hairline bg-surface-2/40 p-4 sm:p-5">
+                <div
+                  key={sc.n}
+                  className="cell-hover rounded-xl border border-hairline bg-surface-2/40 p-4 sm:p-5"
+                >
                   <p className="flex items-baseline gap-2">
                     <span className="font-mono text-xs text-muted-foreground">{sc.n}</span>
                     <span className="text-sm font-semibold tracking-tight">{sc.title}</span>
@@ -60,7 +71,9 @@ export function Solutions() {
                       <span className="eyebrow flex items-center gap-2 text-danger">
                         <span className="size-1.5 rounded-full bg-danger" /> Risk
                       </span>
-                      <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">{sc.risk}</p>
+                      <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                        {sc.risk}
+                      </p>
                     </div>
 
                     <div
@@ -86,14 +99,19 @@ export function Solutions() {
                       >
                         {sc.verdict}
                       </span>
-                      <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">{sc.response}</p>
+                      <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                        {sc.response}
+                      </p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 border-t border-hairline pt-6">
+            <p className="eyebrow mt-6 border-t border-hairline pt-6">
+              Regulatory frameworks this scenario touches — not certifications CuriousDevs holds
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
               {s.compliance.map((c) => (
                 <span
                   key={c}

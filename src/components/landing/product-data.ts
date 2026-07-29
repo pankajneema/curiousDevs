@@ -47,8 +47,18 @@ export const products: Product[] = [
     activity: [
       { label: "support-agent", tag: "ALLOW", tone: "ok", detail: 'read_db("orders") · 4ms' },
       { label: "kyc-agent", tag: "DENY", tone: "bad", detail: 'exec_shell("rm -rf") · 6ms' },
-      { label: "ops-agent", tag: "ESCALATE", tone: "warn", detail: "tool.refund · pending approval" },
-      { label: "rag-pipeline", tag: "DENY", tone: "bad", detail: "mcp_call(unverified_tool) · 5ms" },
+      {
+        label: "ops-agent",
+        tag: "ESCALATE",
+        tone: "warn",
+        detail: "tool.refund · pending approval",
+      },
+      {
+        label: "rag-pipeline",
+        tag: "DENY",
+        tone: "bad",
+        detail: "mcp_call(unverified_tool) · 5ms",
+      },
     ],
   },
   {
@@ -82,7 +92,12 @@ export const products: Product[] = [
     activity: [
       { label: "checkout-service", tag: "MAPPED", tone: "ok", detail: "4 PII fields identified" },
       { label: "support-crm", tag: "FLAGGED", tone: "warn", detail: "unencrypted export path" },
-      { label: "dsr-request-2291", tag: "CLOSED", tone: "ok", detail: "erasure fulfilled within SLA" },
+      {
+        label: "dsr-request-2291",
+        tag: "CLOSED",
+        tone: "ok",
+        detail: "erasure fulfilled within SLA",
+      },
       { label: "vendor-export-job", tag: "OPEN", tone: "bad", detail: "review required" },
     ],
   },

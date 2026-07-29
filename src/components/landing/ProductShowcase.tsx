@@ -16,8 +16,12 @@ const statToneClass = {
 
 const tabs = ["Overview", "Activity"] as const;
 
-export function ProductShowcase() {
-  const [active, setActive] = useState(0);
+export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) {
+  const initialIndex = Math.max(
+    0,
+    products.findIndex((item) => item.slug === initialSlug),
+  );
+  const [active, setActive] = useState(initialIndex);
   const [tab, setTab] = useState<(typeof tabs)[number]>("Overview");
   const p = products[active];
 
@@ -28,8 +32,7 @@ export function ProductShowcase() {
           <span className="live-dot size-1.5 rounded-full bg-amber-accent" /> The platform
         </p>
         <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.02] font-extrabold tracking-[-0.03em]">
-          One checkpoint,{" "}
-          <span className="text-aurora">three places it has to hold.</span>
+          One checkpoint, <span className="text-aurora">three places it has to hold.</span>
         </h1>
         <p className="mt-5 max-w-2xl text-muted-foreground">
           These aren&apos;t three separate bets. Governing what agents do produces the evidence
@@ -106,7 +109,7 @@ export function ProductShowcase() {
                   </span>
                 </div>
                 <span className="flex items-center gap-1.5 rounded-full border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-amber-accent uppercase">
-                  <span className="live-dot size-1.5 rounded-full bg-amber-accent" /> Preview
+                  Illustrative preview
                 </span>
               </div>
 
@@ -159,8 +162,12 @@ export function ProductShowcase() {
                       className="cell-hover flex items-center justify-between gap-4 bg-surface px-4 py-2.5"
                     >
                       <div className="flex items-center gap-3 min-w-0">
-                        <span className="truncate font-mono text-[12.5px] text-foreground">{row.label}</span>
-                        <span className="hidden truncate text-xs text-muted-foreground sm:inline">{row.detail}</span>
+                        <span className="truncate font-mono text-[12.5px] text-foreground">
+                          {row.label}
+                        </span>
+                        <span className="hidden truncate text-xs text-muted-foreground sm:inline">
+                          {row.detail}
+                        </span>
                       </div>
                       <span
                         className={`shrink-0 rounded-full border px-2.5 py-0.5 font-mono text-[9.5px] tracking-wide uppercase ${toneClass[row.tone]}`}
@@ -172,6 +179,9 @@ export function ProductShowcase() {
                 </div>
               )}
             </div>
+            <p className="mt-2 px-6 text-[11px] text-muted-foreground italic sm:px-7">
+              Illustrative console, not live telemetry — {p.name} is {p.horizon.toLowerCase()}.
+            </p>
 
             <div className="p-6 pt-6 sm:p-7 sm:pt-6">
               <ul className="grid gap-2.5 border-t border-hairline pt-6 sm:grid-cols-2">
@@ -184,7 +194,7 @@ export function ProductShowcase() {
               </ul>
 
               <a
-                href="/#contact"
+                href="/contact"
                 className="mt-6 inline-flex items-center gap-2 btn-shine rounded-full bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
               >
                 Walk through {p.name} <ArrowRight className="size-4" />

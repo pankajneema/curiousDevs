@@ -13,7 +13,8 @@ function table(rows: [string, string][]) {
 
 export const sendContactMessage = createServerFn({ method: "POST" })
   .validator(
-    (data: { name: string; email: string; company: string; surface: string; notes: string }) => data,
+    (data: { name: string; email: string; company: string; surface: string; notes: string }) =>
+      data,
   )
   .handler(async ({ data }) => {
     if (!data.name || !data.email) throw new Error("Name and email are required.");

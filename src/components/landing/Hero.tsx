@@ -19,7 +19,6 @@ const stats = [
   { value: "3 layers", label: "Agents, data, machines", sub: "one accountability spine" },
 ];
 
-
 export function Hero() {
   return (
     <section id="top" className="relative pt-32 pb-0 overflow-hidden">
@@ -102,7 +101,14 @@ export function Hero() {
           <span className="eyebrow">Why now</span>
           <span className="eyebrow">2026 — 2030</span>
         </div>
-        <div className="overflow-hidden border-t border-hairline">
+        <div
+          className="stats-marquee-wrap overflow-hidden border-t border-hairline"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)",
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)",
+          }}
+        >
           <div className="animate-marquee-slow flex w-max">
             {[...stats, ...stats, ...stats].map((s, i) => (
               <div
@@ -119,6 +125,25 @@ export function Hero() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Static fallback: shown only under prefers-reduced-motion, so no stat is
+            permanently unreachable when the marquee animation is disabled. */}
+        <div className="stats-static grid border-t border-hairline sm:grid-cols-2 lg:grid-cols-3">
+          {stats.map((s) => (
+            <div
+              key={s.value}
+              className="flex items-center gap-4 border-r border-b border-hairline px-8 py-6 last:border-r-0"
+            >
+              <span className="text-2xl font-bold tracking-tight whitespace-nowrap text-amber-accent">
+                {s.value}
+              </span>
+              <span className="leading-tight">
+                <span className="block text-sm">{s.label}</span>
+                <span className="eyebrow">{s.sub}</span>
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

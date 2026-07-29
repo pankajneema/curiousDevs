@@ -1,7 +1,16 @@
 import { useState, type ReactNode } from "react";
 
-function KV({ label, value, tone }: { label: string; value: string; tone?: "ok" | "warn" | "bad" }) {
-  const toneClass = tone === "bad" ? "text-danger" : tone === "warn" ? "text-amber-accent" : "text-foreground";
+function KV({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone?: "ok" | "warn" | "bad";
+}) {
+  const toneClass =
+    tone === "bad" ? "text-danger" : tone === "warn" ? "text-amber-accent" : "text-foreground";
   return (
     <div className="flex items-center justify-between border-b border-hairline py-2 last:border-0">
       <span className="eyebrow">{label}</span>
@@ -85,7 +94,10 @@ const items = [
           "Tool response → hijack attempt",
           "Agent handoff → cross-agent inject",
         ].map((v) => (
-          <div key={v} className="flex items-center justify-between border-b border-hairline py-2 text-[12px] last:border-0">
+          <div
+            key={v}
+            className="flex items-center justify-between border-b border-hairline py-2 text-[12px] last:border-0"
+          >
             <span>{v}</span>
             <span className="rounded-full border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-danger uppercase">
               Blocked
@@ -146,7 +158,9 @@ export function Capabilities() {
         <p className="eyebrow">Enforcement capabilities</p>
         <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
           Complete{" "}
-          <span className="font-serif font-normal text-muted-foreground italic">surface coverage.</span>
+          <span className="font-serif font-normal text-muted-foreground italic">
+            surface coverage.
+          </span>
         </h2>
 
         <div className="mt-12 flex flex-col gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)]">
@@ -160,7 +174,9 @@ export function Capabilities() {
                   aria-expanded={isOpen}
                 >
                   <span className="font-mono text-xs text-muted-foreground">{it.n}</span>
-                  <span className="flex-1 text-[15px] font-semibold tracking-tight">{it.title}</span>
+                  <span className="flex-1 text-[15px] font-semibold tracking-tight">
+                    {it.title}
+                  </span>
                   <div className="hidden gap-2 sm:flex">
                     {it.tags.map((t) => (
                       <span

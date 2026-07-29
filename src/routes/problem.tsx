@@ -22,17 +22,17 @@ export const Route = createFileRoute("/problem")({
       },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/problem" },
+      { property: "og:url", content: "https://curiousdevs.com/problem" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/problem" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/problem" }],
   }),
   component: ProblemPage,
 });
 
 function ProblemPage() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="Where it breaks"

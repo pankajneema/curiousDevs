@@ -21,17 +21,17 @@ export const Route = createFileRoute("/pricing")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/pricing" },
+      { property: "og:url", content: "https://curiousdevs.com/pricing" },
       { property: "og:site_name", content: "CuriousDevs" },
     ],
-    links: [{ rel: "canonical", href: "/pricing" }],
+    links: [{ rel: "canonical", href: "https://curiousdevs.com/pricing" }],
   }),
   component: PricingPage,
 });
 
 function PricingPage() {
   return (
-    <main className="relative min-h-dvh">
+    <main id="main-content" className="relative">
       <Nav />
       <PageIntro
         eyebrow="Pricing"

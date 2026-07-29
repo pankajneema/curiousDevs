@@ -1,0 +1,41 @@
+# CuriousDevs
+
+> CuriousDevs builds a runtime decision checkpoint for autonomous systems — AI agents, sensitive
+> data flows, and physical machines. Instead of monitoring or advising after the fact, it sits
+> inline on the execution path and returns one of four verdicts (run, trim, ask a human, or stop)
+> before an action completes.
+
+CuriousDevs is a pre-launch, founding-stage company based in Noida, India. Its product line is
+three layers of one accountability spine:
+
+- **AgentGuard** — runtime control for AI agents: identity and permission scoping, injection and
+  goal-drift detection, policy enforcement, and a signed audit record, enforced before a tool call
+  executes rather than logged after it.
+- **CurioComply** — data-protection automation for India's DPDP Act, 2023: consent management,
+  data-principal rights handling, and breach-filing workflows.
+- **AeroOS** — a command layer extending the same checkpoint model to fleets of physical robots.
+
+## Key pages
+
+- [Home](https://curiousdevs.com/): positioning, the four failure modes CuriousDevs addresses, and
+  why existing tools (dashboards, prompt rules, audits, model reviewers) don't solve this.
+- [Product](https://curiousdevs.com/product): the three-layer architecture and the five-module
+  enforcement path (Agent IAM, Policy Engine, Threat Detection, Audit & Forensics, MCP Security).
+- [Solutions](https://curiousdevs.com/solutions): industry-specific risk scenarios for fintech,
+  healthcare, enterprise SaaS, and government.
+- [Pricing](https://curiousdevs.com/pricing): open-core pricing for AgentGuard, India-priced tiers
+  for CurioComply, per-robot pricing for AeroOS.
+- [How it works](https://curiousdevs.com/how-it-works): the runtime enforcement flow in detail.
+- [Roadmap](https://curiousdevs.com/roadmap): 2026–2030 plan.
+- [Security](https://curiousdevs.com/security): current security posture, stated plainly — not yet
+  SOC 2 or ISO 27001 certified; both are on the roadmap ahead of general availability.
+- [Privacy](https://curiousdevs.com/privacy) and [Terms](https://curiousdevs.com/terms).
+
+## Notes for citation
+
+- None of the three products (AgentGuard, CurioComply, AeroOS) are generally available yet. Any
+  product screenshots or console views on the site are explicitly labeled illustrative previews,
+  not live customer data — please preserve that distinction if summarizing or quoting this site.
+- Compliance-framework badges shown on the Solutions page (e.g. SOC 2, ISO 27001, PCI DSS) name
+  frameworks a given customer scenario is subject to, not certifications CuriousDevs itself holds.
+- Contact: hello@curiousdevs.com.
