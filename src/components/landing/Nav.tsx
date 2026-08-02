@@ -30,13 +30,13 @@ const resourceItems = [
 ];
 
 const flatLinks = [
-  { label: "Pricing", to: "/pricing" as const },
+  // { label: "Pricing", to: "/pricing" as const },
   { label: "Careers", to: "/careers" as const },
   { label: "Contact", to: "/contact" as const },
 ];
 
 function DropdownTrigger({
-  label,
+  label, 
   open,
   onClick,
 }: {
