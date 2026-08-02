@@ -57,9 +57,7 @@ export function HowItWorks() {
           <p className="eyebrow">How it Works</p>
           <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
             From failure modes{" "}
-            <span className="font-serif font-normal text-muted-foreground italic">
-              to runtime enforcement.
-            </span>
+            <span className="text-muted-foreground">to runtime enforcement.</span>
           </h2>
         </div>
 

@@ -115,7 +115,7 @@ export function Checkpoint() {
           { k: "Signed", v: "every outcome" },
         ].map((s) => (
           <div key={s.k} className="stat-tick bg-surface/60 px-4 py-4">
-            <div className="text-sm font-semibold tracking-tight text-amber-accent">{s.k}</div>
+            <div className="text-sm font-semibold tracking-tight text-foreground">{s.k}</div>
             <div className="eyebrow mt-1">{s.v}</div>
           </div>
         ))}

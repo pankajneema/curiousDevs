@@ -54,7 +54,7 @@ export function Pricing() {
                         <button
                           className={`btn-quiet mt-6 rounded-full border px-5 py-2.5 text-center text-sm font-semibold ${
                             tier.featured
-                              ? "border-amber-accent/50 bg-amber-accent/10 text-amber-accent"
+                              ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
                               : "border-hairline bg-surface-2 text-foreground"
                           }`}
                         >

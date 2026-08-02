@@ -141,7 +141,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
               <textarea id="ap-notes" name="notes" rows={4} className={inputCls} />
             </Field>
 
-            {error && <p className="text-xs text-danger">{error}</p>}
+            {error && <p className="text-xs font-medium text-foreground">{error}</p>}
 
             <button
               type="submit"

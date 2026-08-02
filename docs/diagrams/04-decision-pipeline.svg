@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 560" width="1020" height="560">
+<rect width="1020" height="560" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 4 — The decision pipeline</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">What happens between an agent deciding to act and the action reaching the world.</text>
+<rect x="34" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="34" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="48" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Intercept</text>
+<text x="48" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">capture the call,</text>
+<text x="48" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">normalise to CallContext</text>
+<circle cx="164" cy="114" r="11" fill="#0284C7"/>
+<text x="164" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">1</text>
+<text x="108" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">~0.2 ms</text>
+<line x1="182" y1="154" x2="196" y2="154" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="196" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="196" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="210" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Authenticate</text>
+<text x="210" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">verify agent identity,</text>
+<text x="210" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">resolve delegation chain</text>
+<circle cx="326" cy="114" r="11" fill="#0284C7"/>
+<text x="326" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">2</text>
+<text x="270" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">0.5 ms</text>
+<line x1="344" y1="154" x2="358" y2="154" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="358" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="358" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="372" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Authorise</text>
+<text x="372" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">evaluate policy over call,</text>
+<text x="372" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">session and taint state</text>
+<circle cx="488" cy="114" r="11" fill="#0284C7"/>
+<text x="488" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">3</text>
+<text x="432" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">1 ms</text>
+<line x1="506" y1="154" x2="520" y2="154" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="520" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="520" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="534" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Inspect</text>
+<text x="534" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">tier 0 deterministic,</text>
+<text x="534" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">tier 1 classifier</text>
+<circle cx="650" cy="114" r="11" fill="#0284C7"/>
+<text x="650" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">4</text>
+<text x="594" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">1-5 ms</text>
+<line x1="668" y1="154" x2="682" y2="154" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="682" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="682" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="696" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Enforce</text>
+<text x="696" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">apply the verdict,</text>
+<text x="696" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">mutate or stop the call</text>
+<circle cx="812" cy="114" r="11" fill="#0284C7"/>
+<text x="812" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">5</text>
+<text x="756" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">0.1 ms</text>
+<line x1="830" y1="154" x2="844" y2="154" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="844" y="96" width="148" height="116" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="844" y="96" width="5" height="116" rx="2.5" fill="#0284C7"/>
+<text x="858" y="113" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">Record</text>
+<text x="858" y="129.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">hash and enqueue;</text>
+<text x="858" y="141.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">write happens async</text>
+<circle cx="974" cy="114" r="11" fill="#0284C7"/>
+<text x="974" y="118" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">6</text>
+<text x="918" y="232" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="9" fill="#475569" font-weight="normal" text-anchor="middle">0.5 ms</text>
+<rect x="34" y="248" width="958" height="6" rx="3" fill="#F0F9FF" stroke="#38BDF8"/>
+<text x="34" y="274" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="normal" text-anchor="start">Total on the critical path: 3.3 ms without the tier-1 classifier, 6.3-8.3 ms with it. Tiers 2 and 3 run asynchronously and never block.</text>
+<text x="34" y="320" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">THE FIVE VERDICTS</text>
+<rect x="34" y="338" width="92" height="20" rx="10.0" fill="#12B76A"/>
+<text x="80.0" y="351.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">ALLOW</text>
+<text x="140" y="352" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#475569" font-weight="normal" text-anchor="start">the call proceeds unchanged</text>
+<rect x="34" y="366" width="92" height="20" rx="10.0" fill="#F79009"/>
+<text x="80.0" y="379.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">REDACT</text>
+<text x="140" y="380" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#475569" font-weight="normal" text-anchor="start">the call proceeds with arguments or results modified</text>
+<rect x="34" y="394" width="92" height="20" rx="10.0" fill="#F79009"/>
+<text x="80.0" y="407.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">ESCALATE</text>
+<text x="140" y="408" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#475569" font-weight="normal" text-anchor="start">held for a named human; times out closed</text>
+<rect x="34" y="422" width="92" height="20" rx="10.0" fill="#7A5AF8"/>
+<text x="80.0" y="435.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">SANDBOX</text>
+<text x="140" y="436" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#475569" font-weight="normal" text-anchor="start">runs isolated, egress denied, results marked tainted</text>
+<rect x="34" y="450" width="92" height="20" rx="10.0" fill="#F04438"/>
+<text x="80.0" y="463.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">BLOCK</text>
+<text x="140" y="464" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#475569" font-weight="normal" text-anchor="start">the call never executes</text>
+<rect x="560" y="330" width="432" height="76.0" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1"/>
+<text x="572" y="347" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#0284C7" font-weight="bold" text-anchor="start">Why SANDBOX exists</text>
+<text x="572" y="362.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Without it the only options for a risky-but-plausible action are</text>
+<text x="572" y="374.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">block, which breaks the agent, or allow, which defeats the control.</text>
+<text x="572" y="387.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">SANDBOX lets the action run where it cannot cause harm, and marks</text>
+<text x="572" y="399.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">everything it returns as untrusted for the rest of the session.</text>
+<rect x="34" y="490" width="958" height="38.5" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1"/>
+<text x="46" y="507" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#0284C7" font-weight="bold" text-anchor="start">Design constraint</text>
+<text x="46" y="522.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Stage 3 is deterministic and total — no I/O, no network, no model in the loop. That is what makes a verdict replayable years later, and what lets an auditor re-derive it.</text>
+</svg>

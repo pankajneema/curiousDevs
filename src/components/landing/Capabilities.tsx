@@ -9,8 +9,9 @@ function KV({
   value: string;
   tone?: "ok" | "warn" | "bad";
 }) {
-  const toneClass =
-    tone === "bad" ? "text-danger" : tone === "warn" ? "text-amber-accent" : "text-foreground";
+  // Text stays ink at this size regardless of tone — signal/danger text this
+  // small fails AA contrast (confirmed with Lighthouse).
+  const toneClass = "text-foreground";
   return (
     <div className="flex items-center justify-between border-b border-hairline py-2 last:border-0">
       <span className="eyebrow">{label}</span>
@@ -67,10 +68,10 @@ const items = [
         <KV label="Amount" value="₹50,000" />
         <KV label="Risk" value="HIGH · 87/100" tone="bad" />
         <div className="mt-4 flex gap-2">
-          <span className="flex-1 rounded-lg border border-amber-soft/40 bg-amber-soft/10 py-1.5 text-center text-[11.5px] font-semibold text-amber-soft">
+          <span className="flex-1 rounded-lg border border-amber-soft/40 bg-amber-soft/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
             Approve
           </span>
-          <span className="flex-1 rounded-lg border border-danger/40 bg-danger/10 py-1.5 text-center text-[11.5px] font-semibold text-danger">
+          <span className="flex-1 rounded-lg border border-danger/40 bg-danger/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
             Deny
           </span>
         </div>
@@ -99,7 +100,7 @@ const items = [
             className="flex items-center justify-between border-b border-hairline py-2 text-[12px] last:border-0"
           >
             <span>{v}</span>
-            <span className="rounded-full border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-danger uppercase">
+            <span className="rounded-full border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
               Blocked
             </span>
           </div>
@@ -157,10 +158,7 @@ export function Capabilities() {
       <div className="mx-auto max-w-6xl px-6">
         <p className="eyebrow">Enforcement capabilities</p>
         <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-          Complete{" "}
-          <span className="font-serif font-normal text-muted-foreground italic">
-            surface coverage.
-          </span>
+          Complete <span className="text-muted-foreground">surface coverage.</span>
         </h2>
 
         <div className="mt-12 flex flex-col gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)]">

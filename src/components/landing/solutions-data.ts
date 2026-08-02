@@ -11,11 +11,14 @@ export type Solution = {
   scenarios: { n: string; title: string; risk: string; verdict: Verdict; response: string }[];
 };
 
+// Text stays ink at this size regardless of verdict — signal/danger text
+// this small fails AA contrast on a tint of the same colour (confirmed with
+// Lighthouse). The verdict still reads via the coloured border + wash.
 const verdictTone: Record<Verdict, string> = {
-  DENY: "border-danger/40 bg-danger/10 text-danger",
-  ESCALATE: "border-amber-accent/40 bg-amber-accent/10 text-amber-accent",
-  MODIFY: "border-amber-soft/40 bg-amber-soft/10 text-amber-soft",
-  ALLOW: "border-amber-soft/40 bg-amber-soft/10 text-amber-soft",
+  DENY: "border-danger/40 bg-danger/10 text-foreground",
+  ESCALATE: "border-amber-accent/40 bg-amber-accent/10 text-foreground",
+  MODIFY: "border-amber-soft/40 bg-amber-soft/10 text-foreground",
+  ALLOW: "border-amber-soft/40 bg-amber-soft/10 text-foreground",
 };
 
 export function verdictClass(v: Verdict) {

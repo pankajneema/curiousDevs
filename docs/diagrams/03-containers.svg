@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 740" width="1020" height="740">
+<rect width="1020" height="740" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 3 — Container view</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">The deployable units and how they split across the trust boundary. C4 level 2.</text>
+<rect x="28" y="74" width="964" height="96" rx="9" fill="#FEF6F5" stroke="#FDA29B" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="978" y="92" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#F04438" font-weight="bold" text-anchor="end" letter-spacing="1.4">AGENT RUNTIME  ·  UNTRUSTED</text>
+<rect x="46" y="100" width="300" height="56" rx="6" fill="#FEF3F2" stroke="#FDA29B" stroke-width="1.2"/>
+<rect x="46" y="100" width="5" height="56" rx="2.5" fill="#F04438"/>
+<text x="60" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Agent process</text>
+<text x="60" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">model, orchestration, memory, credentials</text>
+<rect x="364" y="100" width="300" height="56" rx="6" fill="#FFFFFF" stroke="#FDA29B" stroke-width="1.2"/>
+<text x="375" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">AgentGuard SDK  (in-process)</text>
+<text x="375" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">captures the call, requests a verdict, enforces it</text>
+<text x="375" y="145.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">instrumentation client — not the security boundary</text>
+<rect x="682" y="100" width="292" height="56" rx="6" fill="#FFFFFF" stroke="#FDA29B" stroke-width="1.2"/>
+<text x="693" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Agent tools &amp; MCP clients</text>
+<text x="693" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">browser, shell, HTTP, database drivers</text>
+<rect x="28" y="196" width="964" height="218" rx="9" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1.2"/>
+<text x="978" y="214" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="end" letter-spacing="1.4">DATA PLANE  ·  ON THE EXECUTION PATH  ·  BUDGET &lt; 10 ms</text>
+<rect x="46" y="224" width="226" height="54" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="224" width="5" height="54" rx="2.5" fill="#0284C7"/>
+<text x="60" y="241" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">MCP Wrapper</text>
+<text x="60" y="257.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">stdio + HTTP</text>
+<text x="60" y="269.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">zero code change</text>
+<rect x="280" y="224" width="226" height="54" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="280" y="224" width="5" height="54" rx="2.5" fill="#0284C7"/>
+<text x="294" y="241" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Model Egress Proxy</text>
+<text x="294" y="257.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">pins provider, model</text>
+<text x="294" y="269.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">prompt DLP</text>
+<rect x="514" y="224" width="226" height="54" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="514" y="224" width="5" height="54" rx="2.5" fill="#0284C7"/>
+<text x="528" y="241" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Output Filter</text>
+<text x="528" y="257.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">strips auto-fetch</text>
+<text x="528" y="269.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">rewrites links</text>
+<rect x="748" y="224" width="226" height="54" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="748" y="224" width="5" height="54" rx="2.5" fill="#0284C7"/>
+<text x="762" y="241" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Network Enforcer</text>
+<text x="762" y="257.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">deny-by-default</text>
+<text x="762" y="269.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">destinations</text>
+<rect x="46" y="296" width="694" height="100" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.6"/>
+<rect x="46" y="296" width="5" height="100" rx="2.5" fill="#0284C7"/>
+<text x="60" y="313" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0F172A" font-weight="bold" text-anchor="start">Decision Engine</text>
+<text x="60" y="329.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Normalise → authenticate → evaluate policy → inspect (tier 0/1) → enforce → emit record.</text>
+<text x="60" y="341.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Deterministic. No I/O, no network call and no model on the critical path.</text>
+<text x="60" y="354.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Verdicts:  ALLOW · BLOCK · REDACT · ESCALATE · SANDBOX</text>
+<rect x="756" y="296" width="218" height="100" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<text x="767" y="313" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Local cache</text>
+<text x="767" y="329.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">compiled policy bundle</text>
+<text x="767" y="341.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">session + taint state</text>
+<text x="767" y="354.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">counters for budgets</text>
+<text x="767" y="366.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start"></text>
+<text x="767" y="379.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">keeps working if the</text>
+<text x="767" y="391.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">control plane is down</text>
+<line x1="159" y1="278" x2="159" y2="292" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<line x1="393" y1="278" x2="393" y2="292" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<line x1="627" y1="278" x2="627" y2="292" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<line x1="861" y1="278" x2="861" y2="292" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="28" y="440" width="964" height="246" rx="9" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="978" y="458" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="end" letter-spacing="1.4">CONTROL PLANE  ·  OFF THE EXECUTION PATH</text>
+<rect x="46" y="468" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="468" width="5" height="62" rx="2.5" fill="#0284C7"/>
+<text x="60" y="485" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Policy Store</text>
+<text x="60" y="501.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">git-backed, signed bundles</text>
+<text x="60" y="513.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">outside every agent's write scope</text>
+<rect x="280" y="468" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="280" y="468" width="5" height="62" rx="2.5" fill="#7A5AF8"/>
+<text x="294" y="485" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Identity Service</text>
+<text x="294" y="501.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">agent identity, SPIFFE</text>
+<text x="294" y="513.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">short-lived scoped credentials</text>
+<rect x="514" y="468" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="514" y="468" width="5" height="62" rx="2.5" fill="#12B76A"/>
+<text x="528" y="485" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Tool &amp; MCP Registry</text>
+<text x="528" y="501.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">pinned digests, drift quarantine</text>
+<text x="528" y="513.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">description scanning</text>
+<rect x="748" y="468" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="748" y="468" width="5" height="62" rx="2.5" fill="#12B76A"/>
+<text x="762" y="485" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Threat Intelligence</text>
+<text x="762" y="501.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">known-bad servers and tools</text>
+<text x="762" y="513.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">injection payload families</text>
+<rect x="46" y="548" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="548" width="5" height="62" rx="2.5" fill="#0284C7"/>
+<text x="60" y="565" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Decision Log</text>
+<text x="60" y="581.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">append-only Merkle tree</text>
+<text x="60" y="593.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">inclusion + consistency proofs</text>
+<rect x="280" y="548" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="280" y="548" width="5" height="62" rx="2.5" fill="#0284C7"/>
+<text x="294" y="565" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Query Store</text>
+<text x="294" y="581.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">ClickHouse, forensics</text>
+<text x="294" y="593.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">replay and evidence export</text>
+<rect x="514" y="548" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="514" y="548" width="5" height="62" rx="2.5" fill="#F79009"/>
+<text x="528" y="565" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Approval Service</text>
+<text x="528" y="581.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">raw-action display</text>
+<text x="528" y="593.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">records what was shown</text>
+<rect x="748" y="548" width="226" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="748" y="548" width="5" height="62" rx="2.5" fill="#0284C7"/>
+<text x="762" y="565" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Console</text>
+<text x="762" y="581.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">decisions, agents, policy</text>
+<text x="762" y="593.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">risk and approvals</text>
+<rect x="46" y="628" width="928" height="42" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="628" width="5" height="42" rx="2.5" fill="#475569"/>
+<text x="60" y="645" font-family="Helvetica, Arial, sans-serif" font-size="9.8" fill="#0F172A" font-weight="bold" text-anchor="start">Platform hygiene</text>
+<text x="60" y="661.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">signed releases · SBOM and SLSA provenance · admin audit log of AgentGuard itself · disclosure policy · vendor-insider controls</text>
+<line x1="200" y1="436" x2="200" y2="404" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<text x="210" y="424" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">signed policy bundle</text>
+<line x1="560" y1="404" x2="560" y2="436" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<text x="570" y="424" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">decision records (async)</text>
+<line x1="346" y1="128" x2="360" y2="128" stroke="#F04438" stroke-width="1.4" marker-end="url(#ab)"/>
+<line x1="514" y1="158" x2="420" y2="194" stroke="#F04438" stroke-width="1.4" marker-end="url(#ab)" stroke-dasharray="4 3"/>
+<line x1="830" y1="158" x2="861" y2="194" stroke="#F04438" stroke-width="1.4" marker-end="url(#ab)" stroke-dasharray="4 3"/>
+<rect x="28" y="699" width="10" height="10" rx="2.5" fill="#F04438"/>
+<text x="43" y="707.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">untrusted</text>
+<rect x="107.075" y="699" width="10" height="10" rx="2.5" fill="#0284C7"/>
+<text x="122.075" y="707.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">AgentGuard core</text>
+<rect x="214.20000000000002" y="699" width="10" height="10" rx="2.5" fill="#7A5AF8"/>
+<text x="229.20000000000002" y="707.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">identity</text>
+<rect x="288.6" y="699" width="10" height="10" rx="2.5" fill="#12B76A"/>
+<text x="303.6" y="707.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">supply chain</text>
+<rect x="381.70000000000005" y="699" width="10" height="10" rx="2.5" fill="#F79009"/>
+<text x="396.70000000000005" y="707.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">human in the loop</text>
+</svg>

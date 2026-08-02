@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1010" width="1160" height="1010">
+<rect width="1160" height="1010" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 0 — End-to-end flow</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">From a customer arriving, to an agent acting, to an auditor asking for proof. The whole product in one picture.</text>
+<rect x="28" y="78" width="1104" height="138" rx="9" fill="#FDFDFE" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="44" y="98" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">ACT 1  ·  GETTING STARTED  —  day one to week two</text>
+<rect x="44" y="110" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="44" y="110" width="5" height="96" rx="2.5" fill="#0284C7"/>
+<text x="58" y="127" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Install</text>
+<text x="58" y="143.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Wrap the agent with the MCP wrapper,</text>
+<text x="58" y="155.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">or add the SDK. No code rewrite.</text>
+<text x="58" y="168.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Runs on a laptop or in the cluster.</text>
+<circle cx="276" cy="129" r="12" fill="#0284C7"/>
+<text x="276" y="133" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">1</text>
+<line x1="296" y1="158" x2="308" y2="158" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="312" y="110" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="312" y="110" width="5" height="96" rx="2.5" fill="#0284C7"/>
+<text x="326" y="127" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Connect and discover</text>
+<text x="326" y="143.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">AgentGuard finds every agent, tool</text>
+<text x="326" y="155.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">and MCP server already running.</text>
+<text x="326" y="168.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Most teams are surprised here.</text>
+<circle cx="544" cy="129" r="12" fill="#0284C7"/>
+<text x="544" y="133" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">2</text>
+<line x1="564" y1="158" x2="576" y2="158" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="580" y="110" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="580" y="110" width="5" height="96" rx="2.5" fill="#0284C7"/>
+<text x="594" y="127" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">See the inventory</text>
+<text x="594" y="143.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">What agents exist, who owns them,</text>
+<text x="594" y="155.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">what each one can actually reach.</text>
+<text x="594" y="168.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">The first thing an auditor asks.</text>
+<circle cx="812" cy="129" r="12" fill="#0284C7"/>
+<text x="812" y="133" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">3</text>
+<line x1="832" y1="158" x2="844" y2="158" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="848" y="110" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="848" y="110" width="5" height="96" rx="2.5" fill="#0284C7"/>
+<text x="862" y="127" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Watch, do not block</text>
+<text x="862" y="143.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Detect-only mode. Real traffic,</text>
+<text x="862" y="155.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">real verdicts, nothing stopped.</text>
+<text x="862" y="168.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Dry-run rules before enforcing.</text>
+<circle cx="1080" cy="129" r="12" fill="#0284C7"/>
+<text x="1080" y="133" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">4</text>
+<rect x="28" y="236" width="1104" height="504" rx="9" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1.2"/>
+<text x="44" y="256" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">ACT 2  ·  WHAT HAPPENS ON EVERY SINGLE ACTION  —  forever, in under 10 ms</text>
+<rect x="44" y="274" width="236" height="62" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="44" y="274" width="5" height="62" rx="2.5" fill="#475569"/>
+<text x="58" y="291" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">A request arrives</text>
+<text x="58" y="307.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">a customer ticket, a scheduled job,</text>
+<text x="58" y="319.5" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">a user asking the agent to do something</text>
+<line x1="162" y1="336" x2="162" y2="356" stroke="#475569" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="44" y="356" width="236" height="84" rx="6" fill="#FEF3F2" stroke="#FDA29B" stroke-width="1.2"/>
+<rect x="44" y="356" width="5" height="84" rx="2.5" fill="#F04438"/>
+<text x="58" y="373" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">The agent decides to act</text>
+<text x="58" y="389.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">It wants to call a tool — read a record,</text>
+<text x="58" y="401.5" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">send an email, run a query, move money.</text>
+<text x="58" y="414.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start"></text>
+<text x="58" y="426.5" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">We assume this decision may already be poisoned.</text>
+<line x1="280" y1="398" x2="316" y2="398" stroke="#F04438" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="298.0" y="391" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="middle">the call</text>
+<rect x="44" y="470" width="236" height="76" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="44" y="470" width="5" height="76" rx="2.5" fill="#0284C7"/>
+<text x="58" y="487" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Nothing reaches the world</text>
+<text x="58" y="503.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">until AgentGuard has answered</text>
+<text x="58" y="515.5" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">four questions and written down</text>
+<text x="58" y="528.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">the answer.</text>
+<rect x="322" y="288" width="348" height="62" rx="7" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.4"/>
+<rect x="322" y="288" width="5" height="62" rx="2.5" fill="#7A5AF8"/>
+<text x="337" y="308" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#0F172A" font-weight="bold" text-anchor="start">Who is this agent?</text>
+<text x="657" y="308" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#94A3B8" font-weight="normal" text-anchor="end" letter-spacing="0.8">AUTHENTICATE</text>
+<text x="337" y="326.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">Verified identity, not a shared API key.</text>
+<text x="337" y="338.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">Delegation chain resolved — who asked for this.</text>
+<line x1="496.0" y1="350" x2="496.0" y2="366" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="322" y="366" width="348" height="74" rx="7" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.4"/>
+<rect x="322" y="366" width="5" height="74" rx="2.5" fill="#0284C7"/>
+<text x="337" y="386" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#0F172A" font-weight="bold" text-anchor="start">Is it allowed to do this?</text>
+<text x="657" y="386" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#94A3B8" font-weight="normal" text-anchor="end" letter-spacing="0.8">AUTHORISE</text>
+<text x="337" y="404.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">Plain rules, evaluated outside the model.</text>
+<text x="337" y="416.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">Checks the tool, the arguments, the budget,</text>
+<text x="337" y="429.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">and what this session has already touched.</text>
+<line x1="496.0" y1="440" x2="496.0" y2="456" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="322" y="456" width="348" height="62" rx="7" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.4"/>
+<rect x="322" y="456" width="5" height="62" rx="2.5" fill="#F79009"/>
+<text x="337" y="476" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#0F172A" font-weight="bold" text-anchor="start">Does this look like an attack?</text>
+<text x="657" y="476" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#94A3B8" font-weight="normal" text-anchor="end" letter-spacing="0.8">INSPECT</text>
+<text x="337" y="494.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">Injection markers, odd sequences, secrets</text>
+<text x="337" y="506.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">leaving in the payload. Backup, not the main lock.</text>
+<line x1="496.0" y1="518" x2="496.0" y2="540" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<path d="M496.0,538 L592.0,570 L496.0,602 L400.0,570 Z" fill="#0284C7" stroke="#0284C7"/>
+<text x="496.0" y="567" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#FFFFFF" font-weight="bold" text-anchor="middle">What do we do?</text>
+<text x="496.0" y="582" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#BAE6FD" font-weight="normal" text-anchor="middle">ENFORCE</text>
+<line x1="496.0" y1="602" x2="496.0" y2="626" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="322" y="626" width="348" height="58" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="322" y="626" width="5" height="58" rx="2.5" fill="#12B76A"/>
+<text x="336" y="643" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Write it down — always</text>
+<text x="336" y="659.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">Every answer, including the boring ones, becomes a</text>
+<text x="336" y="671.5" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">signed record nobody can quietly edit later.</text>
+<rect x="706" y="288" width="410" height="66" rx="7" fill="#FFFFFF" stroke="#CBD5E1"/>
+<rect x="718" y="300" width="84" height="19" rx="9.5" fill="#12B76A"/>
+<text x="760.0" y="312.7" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">ALLOW</text>
+<text x="814" y="314" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">It runs</text>
+<text x="718" y="336" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">The tool executes. Anything it returns is labelled with where it came from.</text>
+<line x1="676" y1="570" x2="700" y2="321" stroke="#CBD5E1" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="706" y="364" width="410" height="66" rx="7" fill="#FFFFFF" stroke="#CBD5E1"/>
+<rect x="718" y="376" width="84" height="19" rx="9.5" fill="#F79009"/>
+<text x="760.0" y="388.7" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">REDACT</text>
+<text x="814" y="390" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">It runs, trimmed</text>
+<text x="718" y="412" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Secrets stripped, an amount capped, a field removed. The agent still gets an answer.</text>
+<line x1="676" y1="570" x2="700" y2="397" stroke="#CBD5E1" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="706" y="440" width="410" height="66" rx="7" fill="#FFFFFF" stroke="#CBD5E1"/>
+<rect x="718" y="452" width="84" height="19" rx="9.5" fill="#7A5AF8"/>
+<text x="760.0" y="464.7" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">SANDBOX</text>
+<text x="814" y="466" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">It runs, fenced off</text>
+<text x="718" y="488" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Executes where it cannot cause harm. Results marked untrusted.</text>
+<line x1="676" y1="570" x2="700" y2="473" stroke="#CBD5E1" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="706" y="516" width="410" height="66" rx="7" fill="#FFFFFF" stroke="#CBD5E1"/>
+<rect x="718" y="528" width="84" height="19" rx="9.5" fill="#F79009"/>
+<text x="760.0" y="540.7" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">ESCALATE</text>
+<text x="814" y="542" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">A human decides</text>
+<text x="718" y="564" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Held. A named person sees the real action, not the agent's summary.</text>
+<line x1="676" y1="570" x2="700" y2="549" stroke="#CBD5E1" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="706" y="592" width="410" height="66" rx="7" fill="#FFFFFF" stroke="#CBD5E1"/>
+<rect x="718" y="604" width="84" height="19" rx="9.5" fill="#F04438"/>
+<text x="760.0" y="616.7" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">BLOCK</text>
+<text x="814" y="618" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#0F172A" font-weight="bold" text-anchor="start">It never happens</text>
+<text x="718" y="640" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">The agent gets a clear refusal and the reason. Nothing reached the world.</text>
+<line x1="676" y1="570" x2="700" y2="625" stroke="#CBD5E1" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="706" y="668" width="410" height="44" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="706" y="668" width="5" height="44" rx="2.5" fill="#0284C7"/>
+<text x="720" y="685" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Then: alert, count, and learn</text>
+<text x="720" y="701.0" font-family="Helvetica, Arial, sans-serif" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">Slack or SIEM if it mattered. Budgets tick down. Baselines update.</text>
+<text x="44" y="566" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="normal" text-anchor="start">This loop runs on every</text>
+<text x="44" y="580" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="normal" text-anchor="start">tool call, every model</text>
+<text x="44" y="594" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="normal" text-anchor="start">call, every reply, every</text>
+<text x="44" y="608" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="normal" text-anchor="start">memory write, every</text>
+<text x="44" y="622" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#475569" font-weight="bold" text-anchor="start">network connection.</text>
+<text x="44" y="650" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#0284C7" font-weight="bold" text-anchor="start">All five channels.</text>
+<rect x="28" y="760" width="1104" height="186" rx="9" fill="#FDFDFE" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="44" y="780" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">ACT 3  ·  WHAT THE CUSTOMER ACTUALLY GETS</text>
+<rect x="44" y="794" width="252" height="92" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="44" y="794" width="5" height="92" rx="2.5" fill="#0284C7"/>
+<text x="58" y="811" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Day to day</text>
+<text x="58" y="827.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">A live view of what every agent is doing</text>
+<text x="58" y="839.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">right now, and what was stopped.</text>
+<text x="58" y="852.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">One screen instead of guessing.</text>
+<rect x="312" y="794" width="252" height="92" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="312" y="794" width="5" height="92" rx="2.5" fill="#F04438"/>
+<text x="326" y="811" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">When something is wrong</text>
+<text x="326" y="827.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">An alert, then one button to revoke</text>
+<text x="326" y="839.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">an agent's access completely.</text>
+<text x="326" y="852.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Circuit breakers stop cascades.</text>
+<rect x="580" y="794" width="252" height="92" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="580" y="794" width="5" height="92" rx="2.5" fill="#F79009"/>
+<text x="594" y="811" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">After an incident</text>
+<text x="594" y="827.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">Replay the whole session step by step.</text>
+<text x="594" y="839.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">See exactly what the agent saw,</text>
+<text x="594" y="852.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">decided and did. Not a guess.</text>
+<rect x="848" y="794" width="252" height="92" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="848" y="794" width="5" height="92" rx="2.5" fill="#12B76A"/>
+<text x="862" y="811" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">When the auditor asks</text>
+<text x="862" y="827.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">An evidence pack that proves nothing</text>
+<text x="862" y="839.5" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">was deleted — mapped to EU AI Act,</text>
+<text x="862" y="852.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">SOC 2, ISO and DPDP.</text>
+<text x="44" y="922" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">The promise in one line:  every action an agent takes is checked before it happens, and every decision can be proved afterwards.</text>
+<rect x="600" y="973" width="10" height="10" rx="2.5" fill="#12B76A"/>
+<text x="615" y="981.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">allowed</text>
+<rect x="669.725" y="973" width="10" height="10" rx="2.5" fill="#F79009"/>
+<text x="684.725" y="981.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">modified or held</text>
+<rect x="781.5250000000001" y="973" width="10" height="10" rx="2.5" fill="#7A5AF8"/>
+<text x="796.5250000000001" y="981.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">isolated</text>
+<rect x="855.9250000000001" y="973" width="10" height="10" rx="2.5" fill="#F04438"/>
+<text x="870.9250000000001" y="981.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">stopped</text>
+<rect x="925.6500000000001" y="973" width="10" height="10" rx="2.5" fill="#0284C7"/>
+<text x="940.6500000000001" y="981.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">AgentGuard</text>
+</svg>

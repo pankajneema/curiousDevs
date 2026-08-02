@@ -137,7 +137,7 @@ export function BookingDialog({ children }: { children: ReactNode }) {
                     aria-pressed={surface === s}
                     className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
                       surface === s
-                        ? "border-amber-accent/50 bg-amber-accent/10 text-amber-accent"
+                        ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
                         : "border-hairline bg-surface-2 text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -166,7 +166,7 @@ export function BookingDialog({ children }: { children: ReactNode }) {
               <textarea id="bk-notes" name="notes" rows={3} className={inputCls} />
             </Field>
 
-            {error && <p className="text-xs text-danger">{error}</p>}
+            {error && <p className="text-xs font-medium text-foreground">{error}</p>}
 
             <button
               type="submit"

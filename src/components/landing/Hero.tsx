@@ -60,7 +60,7 @@ export function Hero() {
               Software that acts on its own is already inside your stack — booking payments, reading
               customer records, calling tools you never reviewed. CuriousDevs puts a decision
               checkpoint in front of every one of those actions, so autonomy stays{" "}
-              <span className="font-serif text-foreground italic">answerable</span>.
+              <span className="text-foreground">answerable</span>.
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">

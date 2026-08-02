@@ -6,14 +6,17 @@ export function renderErrorPage(): string {
     <title>This page didn't load</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      body { font: 15px/1.5 system-ui, -apple-system, sans-serif; background: #fafafa; color: #111; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; }
+      /* This page renders when the app shell itself fails to boot, so it
+         can't load styles/tokens.css — values below are hand-matched to
+         --paper/--ink/--slate/--rule/--signal rather than imported. */
+      body { font: 15px/1.5 -apple-system, "Inter", system-ui, sans-serif; background: #faf8f5; color: #0a1424; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; }
       .card { max-width: 28rem; width: 100%; text-align: center; padding: 2rem; }
       h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
-      p { color: #4b5563; margin: 0 0 1.5rem; }
+      p { color: #5a6572; margin: 0 0 1.5rem; }
       .actions { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
-      a, button { padding: 0.5rem 1rem; border-radius: 0.375rem; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
-      .primary { background: #111; color: #fff; }
-      .secondary { background: #fff; color: #111; border-color: #d1d5db; }
+      a, button { padding: 0.5rem 1rem; border-radius: 6px; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+      .primary { background: #1c60fa; color: #faf8f5; }
+      .secondary { background: #faf8f5; color: #0a1424; border-color: #e3ded6; }
     </style>
   </head>
   <body>

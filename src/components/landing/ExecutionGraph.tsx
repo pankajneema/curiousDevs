@@ -15,10 +15,7 @@ export function ExecutionGraph() {
       <div className="mx-auto max-w-6xl px-6">
         <p className="eyebrow">Runtime execution graph</p>
         <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.03em]">
-          Five modules,{" "}
-          <span className="font-serif font-normal text-muted-foreground italic">
-            one path to a verdict.
-          </span>
+          Five modules, <span className="text-muted-foreground">one path to a verdict.</span>
         </h2>
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">
           Every tool-call walks the same graph, in the same order. Nothing skips a stage, and

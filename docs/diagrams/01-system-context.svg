@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 620" width="980" height="620">
+<rect width="980" height="620" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 1 — System context</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">Who and what AgentGuard sits between. C4 level 1.</text>
+<rect x="28" y="72" width="924" height="92" rx="9" fill="#FDFDFE" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="42" y="89" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">PEOPLE</text>
+<rect x="46" y="100" width="200" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="100" width="5" height="56" rx="2.5" fill="#0284C7"/>
+<text x="60" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Developer</text>
+<text x="60" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">writes agents, installs</text>
+<text x="60" y="145.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">the SDK or wrapper</text>
+<rect x="280" y="100" width="200" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="280" y="100" width="5" height="56" rx="2.5" fill="#0284C7"/>
+<text x="294" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Security engineer</text>
+<text x="294" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">authors policy,</text>
+<text x="294" y="145.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">reviews decisions</text>
+<rect x="514" y="100" width="200" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="514" y="100" width="5" height="56" rx="2.5" fill="#0284C7"/>
+<text x="528" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Approver</text>
+<text x="528" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">clears escalated</text>
+<text x="528" y="145.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">actions</text>
+<rect x="748" y="100" width="200" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="748" y="100" width="5" height="56" rx="2.5" fill="#0284C7"/>
+<text x="762" y="117" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Auditor / regulator</text>
+<text x="762" y="133.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">asks for evidence</text>
+<text x="762" y="145.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">of what agents did</text>
+<rect x="300" y="190" width="380" height="96" rx="6" fill="#FEF3F2" stroke="#FDA29B" stroke-width="1.2"/>
+<rect x="300" y="190" width="5" height="96" rx="2.5" fill="#F04438"/>
+<text x="314" y="207" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0F172A" font-weight="bold" text-anchor="start">AI agent</text>
+<text x="314" y="223.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Model plus orchestration code. Holds credentials, calls tools,</text>
+<text x="314" y="235.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">reads untrusted content, keeps memory.</text>
+<text x="314" y="248.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">ASSUMED COMPROMISED — this is the trust boundary.</text>
+<line x1="490" y1="164" x2="490" y2="186" stroke="#475569" stroke-width="1.4" marker-end="url(#a)"/>
+<rect x="300" y="322" width="380" height="108" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="300" y="322" width="5" height="108" rx="2.5" fill="#0284C7"/>
+<text x="314" y="339" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0F172A" font-weight="bold" text-anchor="start">AgentGuard</text>
+<text x="314" y="355.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Reference monitor for agent actions.</text>
+<text x="314" y="367.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Authenticates the agent, evaluates policy, enforces a verdict,</text>
+<text x="314" y="380.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">and records tamper-evident evidence of every decision.</text>
+<rect x="600" y="336" width="66" height="18" rx="9.0" fill="#0284C7"/>
+<text x="633.0" y="348.2" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#FFFFFF" font-weight="bold" text-anchor="middle">OUR SYSTEM</text>
+<line x1="490" y1="288" x2="490" y2="318" stroke="#F04438" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="500" y="307" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">every action</text>
+<rect x="28" y="462" width="924" height="130" rx="9" fill="#FDFDFE" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="940" y="479" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="end" letter-spacing="1.4">SYSTEMS THE AGENT WANTS TO REACH</text>
+<rect x="46" y="490" width="200" height="58" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="46" y="490" width="5" height="58" rx="2.5" fill="#475569"/>
+<text x="60" y="507" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Databases &amp; internal APIs</text>
+<text x="60" y="523.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">orders, customers,</text>
+<text x="60" y="535.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">records</text>
+<rect x="280" y="490" width="200" height="58" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="280" y="490" width="5" height="58" rx="2.5" fill="#475569"/>
+<text x="294" y="507" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Payment &amp; email systems</text>
+<text x="294" y="523.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">money movement,</text>
+<text x="294" y="535.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">outbound messages</text>
+<rect x="514" y="490" width="200" height="58" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="514" y="490" width="5" height="58" rx="2.5" fill="#475569"/>
+<text x="528" y="507" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">MCP servers &amp; tools</text>
+<text x="528" y="523.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">third-party, often</text>
+<text x="528" y="535.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">unvetted</text>
+<rect x="748" y="490" width="200" height="58" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="748" y="490" width="5" height="58" rx="2.5" fill="#475569"/>
+<text x="762" y="507" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">LLM providers</text>
+<text x="762" y="523.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">the full context window</text>
+<text x="762" y="535.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">leaves here every turn</text>
+<line x1="490" y1="430" x2="490" y2="458" stroke="#0284C7" stroke-width="1.4" marker-end="url(#a)"/>
+<text x="500" y="450" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#0284C7" font-weight="normal" text-anchor="start">only what policy allowed</text>
+<rect x="700" y="190" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="700" y="190" width="5" height="96" rx="2.5" fill="#7A5AF8"/>
+<text x="714" y="207" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Enterprise systems</text>
+<text x="714" y="223.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Identity provider  —  SSO, agent identity</text>
+<text x="714" y="235.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">SIEM  —  decision events out</text>
+<text x="714" y="248.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Secrets manager  —  short-lived credentials</text>
+<line x1="698" y1="262" x2="686" y2="366" stroke="#94A3B8" stroke-width="1.4" marker-end="url(#a)" stroke-dasharray="4 3"/>
+<rect x="28" y="190" width="252" height="96" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="28" y="190" width="5" height="96" rx="2.5" fill="#12B76A"/>
+<text x="42" y="207" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">Threat intelligence</text>
+<text x="42" y="223.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">Known-bad MCP servers,</text>
+<text x="42" y="235.5" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">malicious tool digests,</text>
+<text x="42" y="248.0" font-family="Helvetica, Arial, sans-serif" font-size="8.8" fill="#475569" font-weight="normal" text-anchor="start">injection payload families</text>
+<line x1="282" y1="262" x2="294" y2="366" stroke="#94A3B8" stroke-width="1.4" marker-end="url(#a)" stroke-dasharray="4 3"/>
+<rect x="28" y="599" width="10" height="10" rx="2.5" fill="#F04438"/>
+<text x="43" y="607.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">untrusted / assumed compromised</text>
+<rect x="209.925" y="599" width="10" height="10" rx="2.5" fill="#0284C7"/>
+<text x="224.925" y="607.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">AgentGuard</text>
+<rect x="293.675" y="599" width="10" height="10" rx="2.5" fill="#475569"/>
+<text x="308.675" y="607.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">systems under protection</text>
+<rect x="442.875" y="599" width="10" height="10" rx="2.5" fill="#7A5AF8"/>
+<text x="457.875" y="607.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">enterprise integrations</text>
+</svg>

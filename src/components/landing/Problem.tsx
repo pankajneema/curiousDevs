@@ -53,14 +53,11 @@ export function Problem() {
     <section id="problem" className="relative border-b border-hairline py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <span className="eyebrow inline-flex items-center gap-2 rounded-full border border-danger/40 bg-danger/10 px-3 py-1.5 text-danger">
+          <span className="eyebrow inline-flex items-center gap-2 rounded-full border border-danger/40 bg-danger/10 px-3 py-1.5 text-foreground">
             Where it breaks
           </span>
           <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4rem)] leading-[0.98] font-extrabold tracking-[-0.03em]">
-            Nothing alarms{" "}
-            <span className="font-serif font-normal text-muted-foreground italic">
-              when autonomy goes wrong.
-            </span>
+            Nothing alarms <span className="text-muted-foreground">when autonomy goes wrong.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
             There is no stack trace for a decision. The system runs green while doing precisely the
@@ -89,9 +86,7 @@ export function Problem() {
           <p className="eyebrow">The missing control</p>
           <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3.25rem)] leading-[1] font-extrabold tracking-[-0.03em]">
             Everything you own today{" "}
-            <span className="font-serif font-normal text-muted-foreground italic">
-              watches, none of it decides.
-            </span>
+            <span className="text-muted-foreground">watches, none of it decides.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Four familiar categories, one shared blind spot: none of them stand between intent and

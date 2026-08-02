@@ -18,6 +18,11 @@ export function NeuralNetwork() {
     let nodes: Node[] = [];
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    // Read the token at runtime rather than duplicating its hex here —
+    // --slate is the only colour this restrained, low-opacity texture uses.
+    const slateHex = getComputedStyle(document.documentElement).getPropertyValue("--slate").trim();
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(slateHex.slice(i, i + 2), 16));
+
     const seed = () => {
       const rect = canvas.getBoundingClientRect();
       width = canvas.width = rect.width * dpr;
@@ -50,7 +55,7 @@ export function NeuralNetwork() {
           const dist = Math.hypot(dx, dy);
           if (dist < linkDist) {
             const alpha = (1 - dist / linkDist) * 0.16;
-            ctx.strokeStyle = `rgba(110,190,240,${alpha})`;
+            ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
             ctx.lineWidth = dpr * 0.7;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
@@ -62,7 +67,7 @@ export function NeuralNetwork() {
 
       for (const n of nodes) {
         ctx.beginPath();
-        ctx.fillStyle = "rgba(140,210,250,0.5)";
+        ctx.fillStyle = `rgba(${r},${g},${b},0.35)`;
         ctx.arc(n.x, n.y, 1.3 * dpr, 0, Math.PI * 2);
         ctx.fill();
       }

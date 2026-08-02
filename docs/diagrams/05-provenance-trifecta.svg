@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 600" width="1020" height="600">
+<rect width="1020" height="600" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 5 — Provenance and the lethal trifecta</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">Why an allowlist cannot stop the attacks that matter, and what replaces it.</text>
+<text x="34" y="92" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#F04438" font-weight="bold" text-anchor="start" letter-spacing="1.4">THE PROBLEM</text>
+<rect x="34" y="102" width="460" height="86" rx="6" fill="#FEF3F2" stroke="#FDA29B" stroke-width="1.2"/>
+<rect x="34" y="102" width="5" height="86" rx="2.5" fill="#F04438"/>
+<text x="48" y="119" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#0F172A" font-weight="bold" text-anchor="start">Every capability involved is individually legitimate</text>
+<text x="48" y="135.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">A support agent may read the customer database.  It may read incoming tickets.</text>
+<text x="48" y="147.5" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">It may send email.  Each permission is correct on its own.</text>
+<text x="48" y="160.0" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="start">EchoLeak and the GitHub MCP exfiltration chain used only permitted capabilities.</text>
+<text x="534" y="92" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">THE THREE CAPABILITIES</text>
+<rect x="534" y="102" width="452" height="40" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="534" y="102" width="5" height="40" rx="2.5" fill="#7A5AF8"/>
+<text x="548" y="119" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">reads_private_data</text>
+<text x="548" y="135.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">customer records, source code, secrets</text>
+<rect x="534" y="148" width="452" height="40" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="534" y="148" width="5" height="40" rx="2.5" fill="#F79009"/>
+<text x="548" y="165" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">sees_untrusted_content</text>
+<text x="548" y="181.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">tickets, web pages, documents, tool output</text>
+<rect x="534" y="194" width="452" height="40" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="534" y="194" width="5" height="40" rx="2.5" fill="#F04438"/>
+<text x="548" y="211" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">can_exfiltrate</text>
+<text x="548" y="227.0" font-family="Helvetica, Arial, sans-serif" font-size="8.4" fill="#475569" font-weight="normal" text-anchor="start">email, HTTP, file write, external API</text>
+<text x="34" y="232" font-family="Helvetica, Arial, sans-serif" font-size="9" fill="#0284C7" font-weight="bold" text-anchor="start" letter-spacing="1.4">HOW TAINT FLOWS</text>
+<rect x="34" y="246" width="170" height="66" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="34" y="246" width="5" height="66" rx="2.5" fill="#0284C7"/>
+<text x="48" y="263" font-family="Helvetica, Arial, sans-serif" font-size="9.6" fill="#0F172A" font-weight="bold" text-anchor="start">1  Tool is labelled</text>
+<text x="48" y="279.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">each tool declares its</text>
+<text x="48" y="291.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">capability metadata</text>
+<line x1="204" y1="279" x2="220" y2="279" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="222" y="246" width="170" height="66" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="222" y="246" width="5" height="66" rx="2.5" fill="#F79009"/>
+<text x="236" y="263" font-family="Helvetica, Arial, sans-serif" font-size="9.6" fill="#0F172A" font-weight="bold" text-anchor="start">2  Call returns data</text>
+<text x="236" y="279.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">a ticket is read —</text>
+<text x="236" y="291.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">untrusted_content applied</text>
+<line x1="392" y1="279" x2="408" y2="279" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="410" y="246" width="170" height="66" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="410" y="246" width="5" height="66" rx="2.5" fill="#F79009"/>
+<text x="424" y="263" font-family="Helvetica, Arial, sans-serif" font-size="9.6" fill="#0F172A" font-weight="bold" text-anchor="start">3  Taint propagates</text>
+<text x="424" y="279.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">session and anything</text>
+<text x="424" y="291.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">derived from it inherit it</text>
+<line x1="580" y1="279" x2="596" y2="279" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="598" y="246" width="170" height="66" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="598" y="246" width="5" height="66" rx="2.5" fill="#F79009"/>
+<text x="612" y="263" font-family="Helvetica, Arial, sans-serif" font-size="9.6" fill="#0F172A" font-weight="bold" text-anchor="start">4  Taint persists</text>
+<text x="612" y="279.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">written to memory, the</text>
+<text x="612" y="291.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">label is stored with it</text>
+<line x1="768" y1="279" x2="784" y2="279" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<rect x="786" y="246" width="170" height="66" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="786" y="246" width="5" height="66" rx="2.5" fill="#F04438"/>
+<text x="800" y="263" font-family="Helvetica, Arial, sans-serif" font-size="9.6" fill="#0F172A" font-weight="bold" text-anchor="start">5  Gate on combination</text>
+<text x="800" y="279.0" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">all three present →</text>
+<text x="800" y="291.5" font-family="Helvetica, Arial, sans-serif" font-size="8.2" fill="#475569" font-weight="normal" text-anchor="start">deny or escalate</text>
+<rect x="34" y="336" width="500" height="134" rx="6" fill="#0F172A" stroke="#0F172A" stroke-width="1.2"/>
+<text x="45" y="353" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="start">The rule, as written</text>
+<text x="50" y="376.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#7DD3FC" font-weight="normal" text-anchor="start">- id: trifecta-guard</text>
+<text x="50" y="389.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#7DD3FC" font-weight="normal" text-anchor="start">  effect: escalate</text>
+<text x="50" y="403.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#E2E8F0" font-weight="normal" text-anchor="start">  when:</text>
+<text x="50" y="416.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#E2E8F0" font-weight="normal" text-anchor="start">    taint: { all_of: [untrusted_content, private_data] }</text>
+<text x="50" y="430.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#E2E8F0" font-weight="normal" text-anchor="start">    tool:  { capability: can_exfiltrate }</text>
+<text x="50" y="443.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#E2E8F0" font-weight="normal" text-anchor="start">  message: "Outbound action from a context that mixed</text>
+<text x="50" y="457.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.6" fill="#E2E8F0" font-weight="normal" text-anchor="start">            untrusted input with private data"</text>
+<rect x="560" y="336" width="432" height="101.0" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1"/>
+<text x="572" y="353" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#0284C7" font-weight="bold" text-anchor="start">Status of this approach</text>
+<text x="572" y="368.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Described in the CaMeL research (arXiv:2503.18813) and in advisory</text>
+<text x="572" y="380.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">literature. As of mid-2026 no surveyed product ships it.</text>
+<text x="572" y="393.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start"></text>
+<text x="572" y="405.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">The Cloud Security Alliance found the trifecta present in 98% of</text>
+<text x="572" y="418.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">agents assessed in Q2 2026 — so this is not an edge case, it is</text>
+<text x="572" y="430.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">the normal configuration of a deployed agent.</text>
+<rect x="34" y="486" width="958" height="51.0" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1"/>
+<text x="46" y="503" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#0284C7" font-weight="bold" text-anchor="start">The two hard parts, stated honestly</text>
+<text x="46" y="518.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Granularity — session-level taint is cheap but over-blocks; call-level dataflow is correct but expensive. We ship session-level first.</text>
+<text x="46" y="530.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Declassification — there must be a sanctioned way to say 'this is safe now', or the system deadlocks. Without it, taint only ever accumulates.</text>
+</svg>

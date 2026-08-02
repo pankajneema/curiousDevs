@@ -1,47 +1,19 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
-  /** Stagger in milliseconds. */
+  /** Unused — kept so existing call sites don't need to change. */
   delay?: number;
   className?: string;
   as?: ElementType;
 };
 
-/** Fades + lifts its children into view the first time they cross the viewport. */
-export function Reveal({ children, delay = 0, className = "", as }: RevealProps) {
+/**
+ * Renders its children directly. Marketing pages don't animate on scroll —
+ * no fade-in, no parallax, no ticking counters (Design System, Motion).
+ * Kept as a pass-through wrapper rather than removed from every call site.
+ */
+export function Reveal({ children, className = "", as }: RevealProps) {
   const Tag = (as ?? "div") as ElementType;
-  const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <Tag
-      ref={ref}
-      data-visible={visible}
-      className={`reveal ${className}`}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
-    >
-      {children}
-    </Tag>
-  );
+  return <Tag className={className}>{children}</Tag>;
 }

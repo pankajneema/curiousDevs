@@ -8,10 +8,7 @@ export function Roadmap() {
           <div>
             <p className="eyebrow">The path, 2026 to 2030</p>
             <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3rem)] leading-[1.02] font-extrabold tracking-[-0.03em]">
-              Ambitious,{" "}
-              <span className="font-serif font-normal text-muted-foreground italic">
-                but in order.
-              </span>
+              Ambitious, <span className="text-muted-foreground">but in order.</span>
             </h2>
             <div className="mt-10 divide-y divide-[var(--hairline)] border-y border-hairline">
               {timeline.map((t) => (
@@ -30,7 +27,7 @@ export function Roadmap() {
 
           <div className="card-lift panel-sheen rounded-2xl border border-hairline bg-surface p-8">
             <p className="eyebrow">What we believe</p>
-            <p className="mt-4 font-serif text-2xl leading-snug italic">
+            <p className="mt-4 text-2xl leading-snug">
               &ldquo;Any action a machine takes on its own should have a name attached, a reason
               recorded, and someone who can answer for it.&rdquo;
             </p>

@@ -88,7 +88,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
       <div className="w-full max-w-5xl">
-        <nav className="flex items-center gap-2 rounded-full border border-hairline bg-surface/80 px-3 py-2 backdrop-blur-xl sm:gap-5 sm:px-5">
+        <nav className="flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-2 shadow-sm sm:gap-5 sm:px-5">
           <Link to="/" className="flex items-center gap-2 pr-1">
             <Logo size={26} />
             <Wordmark />
@@ -104,7 +104,7 @@ export function Nav() {
               {menu === "product" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
                 >
                   {productItems.map((p, i) => (
                     <Link
@@ -125,7 +125,7 @@ export function Nav() {
                     <Link
                       to="/product"
                       search={{ p: undefined }}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2"
+                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
                     >
                       View all products →
                     </Link>
@@ -143,7 +143,7 @@ export function Nav() {
               {menu === "solutions" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-64 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute top-full left-0 mt-3 w-64 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
                 >
                   {solutionItems.map((s) => (
                     <Link
@@ -160,7 +160,7 @@ export function Nav() {
                     <Link
                       to="/solutions"
                       search={{ industry: undefined }}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2"
+                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
                     >
                       View all industries →
                     </Link>
@@ -178,7 +178,7 @@ export function Nav() {
               {menu === "resources" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface/95 p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
                 >
                   {resourceItems.map((r) => (
                     <Link
@@ -226,7 +226,7 @@ export function Nav() {
         </nav>
 
         {open && (
-          <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-3xl border border-hairline bg-surface/95 p-3 backdrop-blur-xl lg:hidden">
+          <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-3xl border border-hairline bg-surface p-3 shadow-lg lg:hidden">
             <p className="eyebrow px-3 pt-2 pb-1">Product</p>
             <ul className="divide-y divide-[var(--hairline)]">
               {productItems.map((p) => (

@@ -2,16 +2,19 @@ import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { products } from "./product-data";
 
+// Text stays --foreground (ink) at these small sizes — signal/danger text on
+// a tint of the same colour measures under the 4.5:1 AA minimum (confirmed
+// with Lighthouse). The tone still reads via the border + background wash.
 const toneClass = {
-  ok: "text-amber-soft border-amber-soft/30 bg-amber-soft/10",
-  warn: "text-amber-accent border-amber-accent/30 bg-amber-accent/10",
-  bad: "text-danger border-danger/30 bg-danger/10",
+  ok: "text-foreground border-amber-soft/30 bg-amber-soft/10",
+  warn: "text-foreground border-amber-accent/30 bg-amber-accent/10",
+  bad: "text-foreground border-danger/30 bg-danger/10",
 } as const;
 
 const statToneClass = {
-  ok: "text-amber-soft",
-  warn: "text-amber-accent",
-  bad: "text-danger",
+  ok: "text-foreground",
+  warn: "text-foreground",
+  bad: "text-foreground",
 } as const;
 
 const tabs = ["Overview", "Activity"] as const;
@@ -59,11 +62,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                   <span className="eyebrow">
                     {item.role} · {item.n}
                   </span>
-                  <span
-                    className={`mt-1.5 text-base font-bold tracking-tight ${
-                      on ? "text-amber-accent" : "text-foreground"
-                    }`}
-                  >
+                  <span className="mt-1.5 text-base font-bold tracking-tight text-foreground">
                     {item.name}
                   </span>
                   <span className="mt-0.5 text-xs text-muted-foreground">{item.category}</span>
@@ -81,15 +80,13 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
           <article className="panel-sheen bg-surface">
             <div className="p-6 pb-0 sm:p-7 sm:pb-0">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="rounded-full border border-amber-accent/40 bg-amber-accent/10 px-3 py-1 font-mono text-[11px] tracking-[0.18em] text-amber-accent uppercase">
+                <span className="rounded-full border border-amber-accent/40 bg-amber-accent/10 px-3 py-1 font-mono text-[11px] tracking-[0.18em] text-foreground uppercase">
                   {p.role}
                 </span>
                 <span className="eyebrow">{p.horizon}</span>
               </div>
               <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">{p.name}</h2>
-              <p className="mt-2 font-serif text-lg leading-snug text-muted-foreground italic">
-                {p.line}
-              </p>
+              <p className="mt-2 text-lg leading-snug text-muted-foreground">{p.line}</p>
               <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted-foreground">
                 {p.summary}
               </p>
@@ -108,7 +105,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                     curiousdevs platform · {p.slug}
                   </span>
                 </div>
-                <span className="flex items-center gap-1.5 rounded-full border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-amber-accent uppercase">
+                <span className="flex items-center gap-1.5 rounded-full border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
                   Illustrative preview
                 </span>
               </div>
@@ -120,7 +117,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                     onClick={() => setTab(t)}
                     className={`rounded-t-lg px-3 py-1.5 font-mono text-[11px] tracking-wide uppercase transition-colors ${
                       tab === t
-                        ? "border-b-2 border-amber-accent text-amber-accent"
+                        ? "border-b-2 border-amber-accent text-foreground"
                         : "border-b-2 border-transparent text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -215,7 +212,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                 i === active ? "bg-surface-2" : "bg-surface hover:bg-surface-2/60"
               }`}
             >
-              <span className="font-mono text-xs text-amber-soft">LAYER {item.n}</span>
+              <span className="font-mono text-xs text-foreground">LAYER {item.n}</span>
               <h3 className="mt-3 text-lg font-bold tracking-tight">{item.name}</h3>
               <p className="eyebrow mt-1">{item.category}</p>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.line}</p>

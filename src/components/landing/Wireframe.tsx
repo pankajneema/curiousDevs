@@ -43,6 +43,12 @@ export function Wireframe({ className = "" }: { className?: string }) {
     let angleX = 0.3;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    // Read the token at runtime rather than duplicating its hex here.
+    const signalHex = getComputedStyle(document.documentElement)
+      .getPropertyValue("--signal")
+      .trim();
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(signalHex.slice(i, i + 2), 16));
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       width = canvas.width = rect.width * dpr;
@@ -78,7 +84,7 @@ export function Wireframe({ className = "" }: { className?: string }) {
         const pb = projected[b];
         const depth = (pa.scale + pb.scale) / 2;
         const alpha = Math.min(0.32, Math.max(0.06, 0.16 * depth));
-        ctx.strokeStyle = `rgba(110,190,240,${alpha})`;
+        ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
         ctx.lineWidth = dpr;
         ctx.beginPath();
         ctx.moveTo(pa.x, pa.y);
@@ -87,14 +93,11 @@ export function Wireframe({ className = "" }: { className?: string }) {
       }
 
       for (const p of projected) {
-        const r = 2.4 * dpr * p.scale;
+        const pointRadius = 2.4 * dpr * p.scale;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(140,210,250,${Math.min(0.9, 0.55 * p.scale)})`;
-        ctx.shadowColor = "rgba(110,190,240,0.6)";
-        ctx.shadowBlur = 8 * dpr;
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(0.9, 0.55 * p.scale)})`;
+        ctx.arc(p.x, p.y, pointRadius, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0;
       }
 
       angleY += 0.0022;

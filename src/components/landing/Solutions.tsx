@@ -45,10 +45,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
           <article className="panel-sheen bg-surface p-6 sm:p-7">
             <p className="eyebrow">{s.tag}</p>
             <h2 className="mt-3 max-w-2xl text-2xl leading-[1.05] font-extrabold tracking-[-0.02em] sm:text-3xl">
-              {s.headline}{" "}
-              <span className="font-serif font-normal text-muted-foreground italic">
-                {s.accent}
-              </span>
+              {s.headline} <span className="text-muted-foreground">{s.accent}</span>
             </h2>
             <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted-foreground">
               {s.body}
@@ -68,7 +65,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
 
                   <div className="mt-3.5 flex flex-col gap-3.5 sm:flex-row sm:items-center sm:gap-0">
                     <div className="sm:flex-1 sm:pr-4">
-                      <span className="eyebrow flex items-center gap-2 text-danger">
+                      <span className="eyebrow flex items-center gap-2 text-foreground">
                         <span className="size-1.5 rounded-full bg-danger" /> Risk
                       </span>
                       <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">

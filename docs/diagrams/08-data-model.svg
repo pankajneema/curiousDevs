@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 620" width="1020" height="620">
+<rect width="1020" height="620" fill="#FFFFFF"/>
+<defs>
+<marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#475569"/></marker>
+<marker id="aa" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#0284C7"/></marker>
+<marker id="ab" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#F04438"/></marker>
+</defs>
+<text x="28" y="34" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#0F172A" font-weight="bold" text-anchor="start">Figure 8 — The core data model</text>
+<text x="28" y="54" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#475569" font-weight="normal" text-anchor="start">Everything is downstream of these two structures. They freeze at the end of MVP-1.</text>
+<rect x="34" y="92" width="470" height="380" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="34" y="92" width="5" height="380" rx="2.5" fill="#0284C7"/>
+<text x="48" y="109" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0F172A" font-weight="bold" text-anchor="start">CallContext</text>
+<text x="48" y="125.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">one attempted action, completely described</text>
+<rect x="52" y="146" width="434" height="69" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="52" y="146" width="5" height="69" rx="2.5" fill="#7A5AF8"/>
+<text x="66" y="163" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">principal</text>
+<text x="66" y="179.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">agent_id, agent_version</text>
+<text x="66" y="191.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">spiffe_id, session_id</text>
+<text x="66" y="204.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">on_behalf_of, delegation_chain</text>
+<text x="474" y="162" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#7A5AF8" font-weight="bold" text-anchor="end" letter-spacing="1">WHO</text>
+<rect x="52" y="225" width="434" height="69" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="52" y="225" width="5" height="69" rx="2.5" fill="#0284C7"/>
+<text x="66" y="242" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">action</text>
+<text x="66" y="258.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">tool_name, tool_version, tool_digest</text>
+<text x="66" y="270.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">arguments (structured, never a blob)</text>
+<text x="66" y="283.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">target (resolved), environment</text>
+<text x="474" y="241" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#0284C7" font-weight="bold" text-anchor="end" letter-spacing="1">WHAT</text>
+<rect x="52" y="304" width="434" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="52" y="304" width="5" height="56" rx="2.5" fill="#F79009"/>
+<text x="66" y="321" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">provenance</text>
+<text x="66" y="337.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">taint_labels, sources</text>
+<text x="66" y="349.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">plan_step, declared_intent</text>
+<text x="474" y="320" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#F79009" font-weight="bold" text-anchor="end" letter-spacing="1">WHY TRUSTABLE</text>
+<rect x="52" y="370" width="434" height="43" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="52" y="370" width="5" height="43" rx="2.5" fill="#475569"/>
+<text x="66" y="387" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">runtime</text>
+<text x="66" y="403.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">framework, model, call_index</text>
+<text x="474" y="386" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#475569" font-weight="bold" text-anchor="end" letter-spacing="1">CONTEXT</text>
+<line x1="504" y1="280" x2="542" y2="280" stroke="#0284C7" stroke-width="1.4" marker-end="url(#aa)"/>
+<text x="523.0" y="273" font-family="Helvetica, Arial, sans-serif" font-size="8.5" fill="#475569" font-weight="normal" text-anchor="middle">evaluated</text>
+<rect x="548" y="92" width="444" height="380" rx="6" fill="#FFFFFF" stroke="#38BDF8" stroke-width="1.2"/>
+<rect x="548" y="92" width="5" height="380" rx="2.5" fill="#0284C7"/>
+<text x="562" y="109" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0F172A" font-weight="bold" text-anchor="start">DecisionRecord</text>
+<text x="562" y="125.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">the call, the verdict, and the proof</text>
+<rect x="566" y="146" width="408" height="43" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="146" width="5" height="43" rx="2.5" fill="#0284C7"/>
+<text x="580" y="163" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">call</text>
+<text x="580" y="179.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">the full CallContext, embedded</text>
+<rect x="566" y="197" width="408" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="197" width="5" height="56" rx="2.5" fill="#12B76A"/>
+<text x="580" y="214" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">verdict + matched_rules</text>
+<text x="580" y="230.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">ALLOW / BLOCK / REDACT / ESCALATE / SANDBOX</text>
+<text x="580" y="242.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">rule_id, policy_version, effect</text>
+<rect x="566" y="261" width="408" height="43" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="261" width="5" height="43" rx="2.5" fill="#475569"/>
+<text x="580" y="278" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">signals</text>
+<text x="580" y="294.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">detector, score, tier, latency_us</text>
+<rect x="566" y="312" width="408" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="312" width="5" height="56" rx="2.5" fill="#F79009"/>
+<text x="580" y="329" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">approval</text>
+<text x="580" y="345.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">approver, decided_at, latency_ms</text>
+<text x="580" y="357.5" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">presented — the exact bytes shown</text>
+<text x="962" y="328" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#F79009" font-weight="bold" text-anchor="end" letter-spacing="1">ASI09</text>
+<rect x="566" y="376" width="408" height="43" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="376" width="5" height="43" rx="2.5" fill="#475569"/>
+<text x="580" y="393" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">outcome + timing</text>
+<text x="580" y="409.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">status, result_digest, per_stage_us</text>
+<rect x="566" y="427" width="408" height="43" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="566" y="427" width="5" height="43" rx="2.5" fill="#0284C7"/>
+<text x="580" y="444" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#0F172A" font-weight="bold" text-anchor="start">chain</text>
+<text x="580" y="460.0" font-family="'DejaVu Sans Mono', Menlo, Consolas, monospace" font-size="8.3" fill="#475569" font-weight="normal" text-anchor="start">seq, prev_hash, entry_hash, signature</text>
+<text x="962" y="443" font-family="Helvetica, Arial, sans-serif" font-size="7.6" fill="#0284C7" font-weight="bold" text-anchor="end" letter-spacing="1">PROOF</text>
+<rect x="34" y="494" width="958" height="63.5" rx="6" fill="#F0F9FF" stroke="#38BDF8" stroke-width="1"/>
+<text x="46" y="511" font-family="Helvetica, Arial, sans-serif" font-size="9.2" fill="#0284C7" font-weight="bold" text-anchor="start">Why these two are the only irreversible decision in the plan</text>
+<text x="46" y="526.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Policy matches on them. The log stores them. Replay reconstructs from them. The compliance export is a projection of them, and the bridge to CurioComply depends on that projection staying stable.</text>
+<text x="46" y="538.5" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">Audit records outlive the code by years, so the schemas live in a neutral IDL under semver with a migration path. The provenance and delegation fields are present from v1 even before they are enforced —</text>
+<text x="46" y="551.0" font-family="Helvetica, Arial, sans-serif" font-size="8.6" fill="#475569" font-weight="normal" text-anchor="start">adding them later would mean re-issuing every record ever written.</text>
+</svg>

@@ -88,7 +88,7 @@ export function ContactForm() {
               aria-pressed={surface === s}
               className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 surface === s
-                  ? "border-amber-accent/50 bg-amber-accent/10 text-amber-accent"
+                  ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
                   : "border-hairline bg-surface-2 text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -102,7 +102,7 @@ export function ContactForm() {
         <textarea id="ct-notes" name="notes" rows={4} className={inputCls} />
       </Field>
 
-      {error && <p className="text-xs text-danger">{error}</p>}
+      {error && <p className="text-xs font-medium text-foreground">{error}</p>}
 
       <button
         type="submit"
