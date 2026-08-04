@@ -4,27 +4,16 @@ import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { ContactForm } from "@/components/landing/ContactForm";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact CuriousDevs — Book a Checkpoint Review" },
-      {
-        name: "description",
-        content:
-          "Talk to the engineers building CuriousDevs. Bring one autonomous workflow and we will show you where the checkpoint goes and what it would have stopped.",
-      },
-      { property: "og:title", content: "Contact CuriousDevs — Book a Checkpoint Review" },
-      {
-        property: "og:description",
-        content: "45-minute working session, engineers on the call, no sales deck.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/contact" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/contact" }],
+  head: () => buildSeoHead({
+    path: "/contact",
+    title: "Contact CuriousDevs — Book a Checkpoint Review",
+    description:
+      "Talk to the engineers building CuriousDevs. Bring one autonomous workflow and we will show you where the checkpoint goes and what it would have stopped.",
+    keywords: ["AI security contact", "book a working session", "AgentGuard demo", "CuriousDevs contact"],
+    ogType: "website",
   }),
   component: ContactPage,
 });
@@ -43,6 +32,18 @@ const details = [
 function ContactPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/contact",
+              "Contact CuriousDevs — Book a Checkpoint Review",
+              "Reach the team behind AgentGuard, CurioComply and AeroOS for a working session or technical discussion.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="Talk to us"

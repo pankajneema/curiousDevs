@@ -4,27 +4,16 @@ import { Pricing } from "@/components/landing/Pricing";
 import { FaqAndCta } from "@/components/landing/FaqAndCta";
 import { Footer } from "@/components/landing/Footer";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/pricing")({
-  head: () => ({
-    meta: [
-      { title: "Pricing — AgentGuard, CurioComply & AeroOS | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "Open-core pricing for AgentGuard, India-first tiers for CurioComply, and per-robot pricing for AeroOS.",
-      },
-      { property: "og:title", content: "Pricing — AgentGuard, CurioComply & AeroOS" },
-      {
-        property: "og:description",
-        content: "Free to self-host. Priced when you need the managed cloud.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/pricing" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/pricing" }],
+  head: () => buildSeoHead({
+    path: "/pricing",
+    title: "Pricing — AgentGuard, CurioComply & AeroOS | CuriousDevs",
+    description:
+      "Open-core pricing for AgentGuard, India-first tiers for CurioComply, and per-robot pricing for AeroOS.",
+    keywords: ["AI security pricing", "AgentGuard pricing", "DPDP compliance pricing", "AeroOS pricing"],
+    ogType: "website",
   }),
   component: PricingPage,
 });
@@ -32,6 +21,18 @@ export const Route = createFileRoute("/pricing")({
 function PricingPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/pricing",
+              "Pricing — AgentGuard, CurioComply & AeroOS",
+              "Open-core pricing for AgentGuard, India-first tiers for CurioComply, and per-robot pricing for AeroOS.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="Pricing"

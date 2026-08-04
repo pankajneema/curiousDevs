@@ -4,28 +4,16 @@ import { Footer } from "@/components/landing/Footer";
 import { Problem } from "@/components/landing/Problem";
 import { Reveal } from "@/components/landing/Reveal";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/problem")({
-  head: () => ({
-    meta: [
-      { title: "The Problem — Autonomy Without Accountability | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "Borrowed authority, instruction hijack, quiet data exit and machines in motion: the four ways autonomous systems fail silently inside enterprises.",
-      },
-      { property: "og:title", content: "The Problem — Autonomy Without Accountability" },
-      {
-        property: "og:description",
-        content:
-          "Nothing alarms when autonomy goes wrong. Here are the four failure modes we built the checkpoint for.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/problem" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/problem" }],
+  head: () => buildSeoHead({
+    path: "/problem",
+    title: "The Problem — Autonomy Without Accountability | CuriousDevs",
+    description:
+      "Borrowed authority, instruction hijack, quiet data exit and machines in motion: the four ways autonomous systems fail silently inside enterprises.",
+    keywords: ["AI autonomy risk", "agent failure modes", "instruction hijack", "AI compliance risk"],
+    ogType: "article",
   }),
   component: ProblemPage,
 });
@@ -33,6 +21,18 @@ export const Route = createFileRoute("/problem")({
 function ProblemPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/problem",
+              "The Problem — Autonomy Without Accountability",
+              "The four failure modes we built the checkpoint for in autonomous systems and AI agents.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="Where it breaks"

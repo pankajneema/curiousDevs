@@ -5,31 +5,19 @@ import { ExecutionGraph } from "@/components/landing/ExecutionGraph";
 import { Capabilities } from "@/components/landing/Capabilities";
 import { FaqAndCta } from "@/components/landing/FaqAndCta";
 import { Footer } from "@/components/landing/Footer";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/product")({
   validateSearch: (search: Record<string, unknown>) => ({
     p: typeof search.p === "string" ? search.p : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "Products — AgentGuard, CurioComply & AeroOS | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "Explore the CuriousDevs product ladder: AgentGuard runtime security for AI agents, CurioComply DPDP automation, and AeroOS for autonomous fleets.",
-      },
-      { property: "og:title", content: "Products — AgentGuard, CurioComply & AeroOS" },
-      {
-        property: "og:description",
-        content:
-          "Three modules, one execution path — runtime enforcement, compliance evidence and fleet governance.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/product" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/product" }],
+  head: () => buildSeoHead({
+    path: "/product",
+    title: "Products — AgentGuard, CurioComply & AeroOS | CuriousDevs",
+    description:
+      "Explore the CuriousDevs product ladder: AgentGuard runtime security for AI agents, CurioComply DPDP automation, and AeroOS for autonomous fleets.",
+    keywords: ["AgentGuard", "CurioComply", "AeroOS", "AI security", "compliance platform"],
+    ogType: "website",
   }),
   component: ProductPage,
 });
@@ -38,6 +26,18 @@ function ProductPage() {
   const { p } = Route.useSearch();
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/product",
+              "Products — AgentGuard, CurioComply & AeroOS",
+              "Three modules, one execution path for runtime enforcement, compliance evidence and fleet governance.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <ProductShowcase initialSlug={p} />
       <ExecutionGraph />

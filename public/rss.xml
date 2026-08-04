@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CuriousDevs</title>
+    <link>https://curiousdevs.com</link>
+    <description>Security infrastructure for autonomous systems, AI agents and machine fleets.</description>
+    <language>en-us</language>
+    <atom:link href="https://curiousdevs.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CuriousDevs — Security Infrastructure for Autonomous Systems</title>
+      <link>https://curiousdevs.com/</link>
+      <guid>https://curiousdevs.com/</guid>
+      <description>Runtime security, compliance evidence and fleet governance for autonomous systems.</description>
+    </item>
+    <item>
+      <title>Products — AgentGuard, CurioComply &amp; AeroOS</title>
+      <link>https://curiousdevs.com/product</link>
+      <guid>https://curiousdevs.com/product</guid>
+      <description>Three modules, one execution path for security, evidence and fleet governance.</description>
+    </item>
+    <item>
+      <title>How It Works — Runtime Enforcement</title>
+      <link>https://curiousdevs.com/how-it-works</link>
+      <guid>https://curiousdevs.com/how-it-works</guid>
+      <description>The five-step mechanism behind every CuriousDevs runtime verdict.</description>
+    </item>
+  </channel>
+</rss>

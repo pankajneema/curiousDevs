@@ -5,27 +5,16 @@ import { Footer } from "@/components/landing/Footer";
 import { PageIntro } from "@/components/landing/PageIntro";
 import { ApplyDialog } from "@/components/landing/ApplyDialog";
 import { roles } from "@/content/site";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/careers")({
-  head: () => ({
-    meta: [
-      { title: "Careers — Compliance Lead at CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "CuriousDevs is a founding security team hiring one role at a time. Right now: Compliance Lead, Noida, remote-friendly.",
-      },
-      { property: "og:title", content: "Careers — Security Roles at CuriousDevs" },
-      {
-        property: "og:description",
-        content: "Building the founding security team. Everyone ships code.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/careers" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/careers" }],
+  head: () => buildSeoHead({
+    path: "/careers",
+    title: "Careers — Compliance Lead at CuriousDevs",
+    description:
+      "CuriousDevs is a founding security team hiring one role at a time. Right now: Compliance Lead, Noida, remote-friendly.",
+    keywords: ["careers", "security jobs", "compliance lead", "Noida jobs"],
+    ogType: "website",
   }),
   component: CareersPage,
 });
@@ -33,6 +22,18 @@ export const Route = createFileRoute("/careers")({
 function CareersPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/careers",
+              "Careers — Security Roles at CuriousDevs",
+              "Join the founding team building runtime security infrastructure for agents and fleets.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="Careers"

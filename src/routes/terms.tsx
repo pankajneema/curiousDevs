@@ -2,27 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title: "Terms of Service | CuriousDevs" },
-      {
-        name: "description",
-        content: "The terms that govern your use of curiousdevs.com.",
-      },
-      { property: "og:title", content: "Terms of Service | CuriousDevs" },
-      {
-        property: "og:description",
-        content: "The terms that govern your use of curiousdevs.com.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/terms" },
-      { property: "og:site_name", content: "CuriousDevs" },
-      { name: "robots", content: "index, follow" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/terms" }],
+  head: () => buildSeoHead({
+    path: "/terms",
+    title: "Terms of Service | CuriousDevs",
+    description: "The terms that govern your use of curiousdevs.com.",
+    keywords: ["terms of service", "website terms", "CuriousDevs legal"],
+    ogType: "website",
+    robots: "index, follow",
   }),
   component: TermsPage,
 });
@@ -30,6 +19,18 @@ export const Route = createFileRoute("/terms")({
 function TermsPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/terms",
+              "Terms of Service",
+              "The terms governing use of curiousdevs.com and the published product overview pages.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <LegalDoc
         eyebrow="Legal"

@@ -2,28 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/security")({
-  head: () => ({
-    meta: [
-      { title: "Security | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "How CuriousDevs handles security today, honestly stated for a pre-launch company — plus what's on the roadmap before general availability.",
-      },
-      { property: "og:title", content: "Security | CuriousDevs" },
-      {
-        property: "og:description",
-        content: "What's true today, and what's on the roadmap before general availability.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/security" },
-      { property: "og:site_name", content: "CuriousDevs" },
-      { name: "robots", content: "index, follow" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/security" }],
+  head: () => buildSeoHead({
+    path: "/security",
+    title: "Security | CuriousDevs",
+    description:
+      "How CuriousDevs handles security today, honestly stated for a pre-launch company — plus what's on the roadmap before general availability.",
+    keywords: ["security policy", "responsible disclosure", "AI security", "product security"],
+    ogType: "website",
+    robots: "index, follow",
   }),
   component: SecurityPage,
 });
@@ -31,6 +20,18 @@ export const Route = createFileRoute("/security")({
 function SecurityPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/security",
+              "Security",
+              "CuriousDevs' security posture, responsible disclosure process and roadmap commitments.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <LegalDoc
         eyebrow="Legal"

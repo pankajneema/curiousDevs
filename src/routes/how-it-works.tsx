@@ -4,28 +4,16 @@ import { Footer } from "@/components/landing/Footer";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Reveal } from "@/components/landing/Reveal";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/how-it-works")({
-  head: () => ({
-    meta: [
-      { title: "How It Works — Control Plane & Runtime Enforcement | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "From adversarial discovery and policy signatures to inline runtime enforcement and signed evidence — the five steps behind every CuriousDevs verdict.",
-      },
-      { property: "og:title", content: "How It Works — Control Plane & Runtime Enforcement" },
-      {
-        property: "og:description",
-        content:
-          "Two planes, five steps: baseline behaviour before production, enforce deterministically at runtime, and keep an append-only record.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/how-it-works" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/how-it-works" }],
+  head: () => buildSeoHead({
+    path: "/how-it-works",
+    title: "How It Works — Control Plane & Runtime Enforcement | CuriousDevs",
+    description:
+      "From adversarial discovery and policy signatures to inline runtime enforcement and signed evidence — the five steps behind every CuriousDevs verdict.",
+    keywords: ["runtime enforcement", "policy engine", "AI governance", "control plane"],
+    ogType: "article",
   }),
   component: HowItWorksPage,
 });
@@ -33,6 +21,18 @@ export const Route = createFileRoute("/how-it-works")({
 function HowItWorksPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/how-it-works",
+              "How It Works — Control Plane & Runtime Enforcement",
+              "The five-step mechanism behind every CuriousDevs runtime verdict.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="The mechanism"

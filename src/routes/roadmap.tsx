@@ -4,28 +4,16 @@ import { Footer } from "@/components/landing/Footer";
 import { Roadmap } from "@/components/landing/Roadmap";
 import { Reveal } from "@/components/landing/Reveal";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/roadmap")({
-  head: () => ({
-    meta: [
-      { title: "Roadmap 2026–2030 — Agents, Data, Machines | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "The CuriousDevs path from AgentGuard runtime control to CurioComply evidence automation and AeroOS command for autonomous fleets, 2026 through 2030.",
-      },
-      { property: "og:title", content: "Roadmap 2026–2030 — Agents, Data, Machines" },
-      {
-        property: "og:description",
-        content:
-          "Ambitious, but in order: each layer ships only once the one below it is running in production.",
-      },
-      { property: "og:type", content: "article" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/roadmap" },
-      { property: "og:site_name", content: "CuriousDevs" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/roadmap" }],
+  head: () => buildSeoHead({
+    path: "/roadmap",
+    title: "Roadmap 2026–2030 — Agents, Data, Machines | CuriousDevs",
+    description:
+      "The CuriousDevs path from AgentGuard runtime control to CurioComply evidence automation and AeroOS command for autonomous fleets, 2026 through 2030.",
+    keywords: ["AI roadmap", "agent security roadmap", "DPDP product roadmap", "autonomous fleets"],
+    ogType: "article",
   }),
   component: RoadmapPage,
 });
@@ -33,6 +21,18 @@ export const Route = createFileRoute("/roadmap")({
 function RoadmapPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/roadmap",
+              "Roadmap 2026–2030 — Agents, Data, Machines",
+              "The product path from AgentGuard to CurioComply and AeroOS for autonomous fleets.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <PageIntro
         eyebrow="The path, 2026 to 2030"

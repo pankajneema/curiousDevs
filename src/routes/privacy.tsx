@@ -2,28 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
+import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "What CuriousDevs collects through this website, why, and how to exercise your rights under India's DPDP Act, 2023.",
-      },
-      { property: "og:title", content: "Privacy Policy | CuriousDevs" },
-      {
-        property: "og:description",
-        content: "What we collect through this website, why, and your rights under the DPDP Act.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://curiousdevs.com/privacy" },
-      { property: "og:site_name", content: "CuriousDevs" },
-      { name: "robots", content: "index, follow" },
-    ],
-    links: [{ rel: "canonical", href: "https://curiousdevs.com/privacy" }],
+  head: () => buildSeoHead({
+    path: "/privacy",
+    title: "Privacy Policy | CuriousDevs",
+    description:
+      "What CuriousDevs collects through this website, why, and how to exercise your rights under India's DPDP Act, 2023.",
+    keywords: ["privacy policy", "DPDP", "India privacy", "data rights"],
+    ogType: "website",
+    robots: "index, follow",
   }),
   component: PrivacyPage,
 });
@@ -31,6 +20,18 @@ export const Route = createFileRoute("/privacy")({
 function PrivacyPage() {
   return (
     <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            buildWebPageSchema(
+              "/privacy",
+              "Privacy Policy",
+              "The privacy terms for curiousdevs.com and the data handling practices on this website.",
+            ),
+          ),
+        }}
+      />
       <Nav />
       <LegalDoc
         eyebrow="Legal"

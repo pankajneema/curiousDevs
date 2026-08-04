@@ -11,6 +11,14 @@ import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { PageBackground } from "../components/landing/PageBackground";
+import {
+  buildSeoHead,
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+  SITE_DESCRIPTION,
+  SITE_DOMAIN,
+  SITE_NAME,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -70,41 +78,40 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CuriousDevs — Securing the Autonomous Future" },
-      {
-        name: "description",
-        content:
-          "CuriousDevs builds the accountability layer for autonomous systems: AgentGuard, CurioComply and AeroOS.",
-      },
-      { name: "author", content: "CuriousDevs" },
-      { property: "og:title", content: "CuriousDevs — Securing the Autonomous Future" },
-      {
-        property: "og:description",
-        content:
-          "Security and compliance infrastructure for autonomous systems — from AI agents to physical machines.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://curiousdevs.com/og-image.jpg" },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      {
-        property: "og:image:alt",
-        content: "CuriousDevs — Give autonomy a chain of command.",
-      },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://curiousdevs.com/og-image.jpg" },
-    ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.ico", sizes: "any" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-    ],
-  }),
+  head: () => {
+    const seo = buildSeoHead({
+      path: "/",
+      title: `${SITE_NAME} — Securing the Autonomous Future`,
+      description: SITE_DESCRIPTION,
+      keywords: [
+        "AI security",
+        "agent runtime enforcement",
+        "DPDP compliance",
+        "autonomous systems",
+        "AI governance",
+      ],
+      image: `${SITE_DOMAIN}/og-image.jpg`,
+      ogType: "website",
+    });
+
+    return {
+      ...seo,
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        ...seo.meta,
+        { name: "author", content: SITE_NAME },
+        { name: "twitter:image", content: `${SITE_DOMAIN}/og-image.jpg` },
+      ],
+      links: [
+        { rel: "stylesheet", href: appCss },
+        ...seo.links,
+        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+        { rel: "icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      ],
+    };
+  },
 
   shellComponent: RootShell,
   component: RootComponent,
@@ -112,22 +119,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "CuriousDevs",
-  url: "https://curiousdevs.com",
-  logo: "https://curiousdevs.com/favicon.svg",
-  email: "hello@curiousdevs.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Noida",
-    addressRegion: "Uttar Pradesh",
-    addressCountry: "IN",
-  },
-  description:
-    "CuriousDevs builds the accountability layer for autonomous systems: AgentGuard, CurioComply and AeroOS.",
-};
+const organizationSchema = buildOrganizationSchema();
+const websiteSchema = buildWebSiteSchema();
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
@@ -137,6 +130,10 @@ function RootShell({ children }: { children: ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body>

@@ -18,6 +18,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProblemRouteImport } from './routes/problem'
 import { Route as ProductRouteImport } from './routes/product'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionsRouteImport } from './routes/solutions'
@@ -68,6 +69,11 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesById {
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
   '/roadmap': typeof RoadmapRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
@@ -162,6 +172,7 @@ export interface FileRouteTypes {
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
@@ -177,6 +188,7 @@ export interface FileRouteTypes {
     | '/problem'
     | '/product'
     | '/roadmap'
+    | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
@@ -193,6 +205,7 @@ export interface RootRouteChildren {
   ProblemRoute: typeof ProblemRoute
   ProductRoute: typeof ProductRoute
   RoadmapRoute: typeof RoadmapRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsRoute: typeof SolutionsRoute
@@ -264,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/security': {
       id: '/security'
       path: '/security'
@@ -305,6 +325,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProblemRoute: ProblemRoute,
   ProductRoute: ProductRoute,
   RoadmapRoute: RoadmapRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsRoute: SolutionsRoute,
