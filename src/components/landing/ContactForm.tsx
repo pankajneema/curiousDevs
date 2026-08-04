@@ -13,7 +13,7 @@ export function ContactForm() {
   if (sent) {
     return (
       <div className="py-10 text-center">
-        <span className="mx-auto flex size-12 items-center justify-center rounded-full border border-amber-accent/40 bg-amber-accent/10">
+        <span className="mx-auto flex size-12 items-center justify-center rounded-none border border-amber-accent/40 bg-amber-accent/10">
           <Check className="size-5 text-amber-accent" />
         </span>
         <h3 className="mt-5 text-lg font-semibold tracking-tight">Message received</h3>
@@ -86,7 +86,7 @@ export function ContactForm() {
               key={s}
               onClick={() => setSurface(s)}
               aria-pressed={surface === s}
-              className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
+              className={`rounded-none border px-3.5 py-1.5 text-xs font-medium transition-colors ${
                 surface === s
                   ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
                   : "border-hairline bg-surface-2 text-muted-foreground hover:text-foreground"
@@ -107,7 +107,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
+        className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
       >
         {loading ? "Sending…" : "Send message"} <ArrowRight className="size-4" />
       </button>
@@ -117,7 +117,7 @@ export function ContactForm() {
 }
 
 const inputCls =
-  "w-full rounded-xl border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
+  "w-full rounded-none border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
 
 function Field({
   id,

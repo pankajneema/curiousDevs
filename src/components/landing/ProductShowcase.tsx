@@ -32,7 +32,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
     <section className="relative border-b border-hairline pt-32 pb-20">
       <div className="relative mx-auto max-w-6xl px-6">
         <p className="eyebrow flex items-center gap-2">
-          <span className="live-dot size-1.5 rounded-full bg-amber-accent" /> The platform
+          <span className="live-dot size-1.5 rounded-none bg-amber-accent" /> The platform
         </p>
         <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.02] font-extrabold tracking-[-0.03em]">
           One checkpoint, <span className="text-aurora">three places it has to hold.</span>
@@ -43,7 +43,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
           own.
         </p>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] lg:grid-cols-[260px_minmax(0,1fr)]">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] lg:grid-cols-[260px_minmax(0,1fr)]">
           <div className="flex flex-col gap-px bg-[var(--hairline)]">
             {products.map((item, i) => {
               const on = i === active;
@@ -80,7 +80,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
           <article className="panel-sheen bg-surface">
             <div className="p-6 pb-0 sm:p-7 sm:pb-0">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="rounded-full border border-amber-accent/40 bg-amber-accent/10 px-3 py-1 font-mono text-[11px] tracking-[0.18em] text-foreground uppercase">
+                <span className="rounded-none border border-amber-accent/40 bg-amber-accent/10 px-3 py-1 font-mono text-[11px] tracking-[0.18em] text-foreground uppercase">
                   {p.role}
                 </span>
                 <span className="eyebrow">{p.horizon}</span>
@@ -93,19 +93,19 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
             </div>
 
             {/* Console */}
-            <div className="mt-5 overflow-hidden rounded-xl border border-hairline bg-surface-2/60 sm:mx-7 sm:mt-5">
+            <div className="mt-5 overflow-hidden rounded-none border border-hairline bg-surface-2/60 sm:mx-7 sm:mt-5">
               <div className="flex items-center justify-between gap-3 border-b border-hairline px-4 py-2.5">
                 <div className="flex items-center gap-3">
                   <div className="hidden gap-1.5 sm:flex">
-                    <span className="size-2 rounded-full bg-danger/50" />
-                    <span className="size-2 rounded-full bg-amber-accent/50" />
-                    <span className="size-2 rounded-full bg-amber-soft/50" />
+                    <span className="size-2 rounded-none bg-danger/50" />
+                    <span className="size-2 rounded-none bg-amber-accent/50" />
+                    <span className="size-2 rounded-none bg-amber-soft/50" />
                   </div>
                   <span className="font-mono text-[11px] tracking-wide text-muted-foreground">
                     curiousdevs platform · {p.slug}
                   </span>
                 </div>
-                <span className="flex items-center gap-1.5 rounded-full border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
+                <span className="flex items-center gap-1.5 rounded-none border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
                   Illustrative preview
                 </span>
               </div>
@@ -115,7 +115,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                   <button
                     key={t}
                     onClick={() => setTab(t)}
-                    className={`rounded-t-lg px-3 py-1.5 font-mono text-[11px] tracking-wide uppercase transition-colors ${
+                    className={`rounded-none px-3 py-1.5 font-mono text-[11px] tracking-wide uppercase transition-colors ${
                       tab === t
                         ? "border-b-2 border-amber-accent text-foreground"
                         : "border-b-2 border-transparent text-muted-foreground hover:text-foreground"
@@ -167,7 +167,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                         </span>
                       </div>
                       <span
-                        className={`shrink-0 rounded-full border px-2.5 py-0.5 font-mono text-[9.5px] tracking-wide uppercase ${toneClass[row.tone]}`}
+                        className={`shrink-0 rounded-none border px-2.5 py-0.5 font-mono text-[9.5px] tracking-wide uppercase ${toneClass[row.tone]}`}
                       >
                         {row.tag}
                       </span>
@@ -184,7 +184,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
               <ul className="grid gap-2.5 border-t border-hairline pt-6 sm:grid-cols-2">
                 {p.points.map((pt) => (
                   <li key={pt} className="flex gap-3 text-[13.5px] text-muted-foreground">
-                    <span className="mt-2 size-1 shrink-0 rounded-full bg-amber-accent" />
+                    <span className="mt-2 size-1 shrink-0 rounded-none bg-amber-accent" />
                     {pt}
                   </li>
                 ))}
@@ -192,7 +192,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
 
               <a
                 href="/contact"
-                className="mt-6 inline-flex items-center gap-2 btn-shine rounded-full bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
+                className="mt-6 inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
               >
                 Walk through {p.name} <ArrowRight className="size-4" />
               </a>
@@ -200,7 +200,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
           </article>
         </div>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] md:grid-cols-3">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] md:grid-cols-3">
           {products.map((item, i) => (
             <button
               key={item.slug}

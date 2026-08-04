@@ -61,11 +61,11 @@ export function HowItWorks() {
           </h2>
         </div>
 
-        <div className="card-lift mt-16 rounded-2xl border border-hairline bg-surface/50 p-5 sm:p-8">
+        <div className="card-lift mt-16 rounded-none border border-hairline bg-surface/50 p-5 sm:p-8">
           {planes.map((plane, pi) => (
             <div key={plane.label} className={pi ? "mt-8" : ""}>
               <p className="eyebrow">{plane.label}</p>
-              <div className="mt-4 grid gap-px overflow-hidden rounded-xl border border-hairline bg-[var(--hairline)] md:grid-cols-3">
+              <div className="mt-4 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] md:grid-cols-3">
                 {plane.blocks.map((b) => (
                   <div key={b.title} className="cell-hover bg-surface-2 p-6">
                     <h3 className="text-base font-semibold tracking-tight">{b.title}</h3>
@@ -74,7 +74,7 @@ export function HowItWorks() {
                       {b.chips.map((c) => (
                         <span
                           key={c}
-                          className="rounded-full border border-hairline px-2 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground"
+                          className="rounded-none border border-hairline px-2 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground"
                         >
                           {c}
                         </span>
@@ -93,7 +93,7 @@ export function HowItWorks() {
           ))}
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-5">
           {steps.map((s) => (
             <article key={s.n} className="cell-hover bg-surface p-6">
               <p className="font-mono text-xs text-amber-accent">

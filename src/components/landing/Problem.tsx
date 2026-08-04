@@ -50,24 +50,24 @@ const gaps = [
 
 export function Problem() {
   return (
-    <section id="problem" className="relative border-b border-hairline py-28">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="problem" className="relative border-b border-hairline py-24 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <div className="text-center">
-          <span className="eyebrow inline-flex items-center gap-2 rounded-full border border-danger/40 bg-danger/10 px-3 py-1.5 text-foreground">
+          <span className="eyebrow inline-flex items-center gap-2 rounded-none border border-danger/40 bg-danger/10 px-3 py-1.5 text-foreground">
             Where it breaks
           </span>
-          <h2 className="mt-6 text-[clamp(2.25rem,5.5vw,4rem)] leading-[0.98] font-extrabold tracking-[-0.03em]">
+          <h2 className="mt-5 text-[clamp(2.1rem,5vw,3.8rem)] leading-[0.98] font-extrabold tracking-[-0.03em] sm:mt-6">
             Nothing alarms <span className="text-muted-foreground">when autonomy goes wrong.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground sm:mt-5">
             There is no stack trace for a decision. The system runs green while doing precisely the
             wrong thing, and you find out from a customer, a regulator or a bank statement.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] md:grid-cols-2">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] md:grid-cols-2">
           {scenarios.map((s) => (
-            <article key={s.n} className="cell-hover bg-surface p-8">
+            <article key={s.n} className="cell-hover rounded-none border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.04)] sm:p-8">
               <p className="flex items-center gap-3">
                 <span className="font-mono text-xs text-amber-accent">{s.n}</span>
                 <span className="eyebrow">{s.tag}</span>
@@ -82,7 +82,7 @@ export function Problem() {
           ))}
         </div>
 
-        <div className="mt-28 text-center">
+        <div className="mt-24 text-center sm:mt-28">
           <p className="eyebrow">The missing control</p>
           <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3.25rem)] leading-[1] font-extrabold tracking-[-0.03em]">
             Everything you own today{" "}
@@ -94,9 +94,9 @@ export function Problem() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-4">
           {gaps.map((g) => (
-            <article key={g.title} className="cell-hover bg-surface p-7">
+            <article key={g.title} className="cell-hover border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.03)] sm:p-7">
               <h3 className="text-lg font-semibold tracking-tight">{g.title}</h3>
               <p className="eyebrow mt-2 text-amber-soft">{g.state}</p>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{g.body}</p>

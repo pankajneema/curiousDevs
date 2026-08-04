@@ -15,7 +15,7 @@ export function Pricing() {
               </div>
 
               <div
-                className={`mt-8 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] ${
+                className={`mt-8 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] ${
                   product.tiers.length === 3 ? "md:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"
                 }`}
               >
@@ -27,7 +27,7 @@ export function Pricing() {
                     }`}
                   >
                     {tier.featured && (
-                      <span className="mb-3 inline-flex w-fit items-center rounded-full bg-amber-accent px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-background uppercase">
+                      <span className="mb-3 inline-flex w-fit items-center rounded-none bg-amber-accent px-3 py-1 font-mono text-[10px] font-bold tracking-widest text-background uppercase">
                         Most adopted
                       </span>
                     )}
@@ -52,7 +52,7 @@ export function Pricing() {
                     tier.cta === "Book a working session" ? (
                       <BookingDialog>
                         <button
-                          className={`btn-quiet mt-6 rounded-full border px-5 py-2.5 text-center text-sm font-semibold ${
+                          className={`btn-quiet mt-6 rounded-none border px-5 py-2.5 text-center text-sm font-semibold ${
                             tier.featured
                               ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
                               : "border-hairline bg-surface-2 text-foreground"
@@ -64,7 +64,7 @@ export function Pricing() {
                     ) : (
                       <a
                         href="/contact"
-                        className="btn-quiet mt-6 rounded-full border border-hairline bg-surface-2 px-5 py-2.5 text-center text-sm font-semibold"
+                        className="btn-quiet mt-6 rounded-none border border-hairline bg-surface-2 px-5 py-2.5 text-center text-sm font-semibold"
                       >
                         {tier.cta}
                       </a>

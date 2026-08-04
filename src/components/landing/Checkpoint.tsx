@@ -108,7 +108,7 @@ export function Checkpoint() {
         </text>
       </svg>
 
-      <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-hairline bg-hairline">
+      <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-none border border-hairline bg-hairline">
         {[
           { k: "<10ms", v: "decision time" },
           { k: "No model", v: "in the hot path" },

@@ -52,9 +52,9 @@ function ContactPage() {
         action={false}
       />
 
-      <section className="py-20">
-        <div className="mx-auto grid max-w-6xl items-start gap-10 px-6 lg:grid-cols-[1fr_0.9fr]">
-          <div className="card-lift panel-sheen rounded-2xl border border-hairline bg-surface p-8">
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto grid max-w-6xl items-start gap-8 px-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="card-lift border border-hairline bg-surface/80 p-6 shadow-[0_8px_24px_rgba(10,20,36,0.05)] sm:p-8">
             <p className="eyebrow">Start here</p>
             <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Send us your workflow</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -66,9 +66,9 @@ function ContactPage() {
             </div>
           </div>
 
-          <ul className="grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline">
+          <ul className="grid gap-px overflow-hidden border border-hairline bg-hairline shadow-[0_8px_24px_rgba(10,20,36,0.04)]">
             {details.map((d) => (
-              <li key={d.label} className="cell-hover bg-surface/60 px-8 py-7">
+              <li key={d.label} className="cell-hover border-b border-hairline/70 bg-surface/70 px-6 py-6 last:border-b-0 sm:px-8 sm:py-7">
                 <p className="eyebrow flex items-center gap-2">
                   <d.icon className="size-3.5 text-amber-soft" /> {d.label}
                 </p>

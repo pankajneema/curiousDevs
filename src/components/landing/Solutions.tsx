@@ -13,7 +13,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
   return (
     <section className="border-b border-hairline pb-28">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)] lg:grid-cols-[240px_minmax(0,1fr)]">
+        <div className="grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] lg:grid-cols-[240px_minmax(0,1fr)]">
           <div className="flex flex-col gap-px bg-[var(--hairline)]">
             <div className="bg-surface p-5">
               <p className="eyebrow">Industries</p>
@@ -30,7 +30,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                 >
                   {on && <span className="absolute inset-y-0 left-0 w-[3px] bg-amber-accent" />}
                   <span
-                    className={`size-1.5 shrink-0 rounded-full ${on ? "bg-amber-accent" : "bg-hairline"}`}
+                    className={`size-1.5 shrink-0 rounded-none ${on ? "bg-amber-accent" : "bg-hairline"}`}
                   />
                   <span
                     className={`text-sm font-medium tracking-tight ${on ? "text-foreground" : "text-muted-foreground"}`}
@@ -56,7 +56,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
               {s.scenarios.map((sc, i) => (
                 <div
                   key={sc.n}
-                  className="cell-hover rounded-xl border border-hairline bg-surface-2/40 p-4 sm:p-5"
+                  className="cell-hover rounded-none border border-hairline bg-surface-2/40 p-4 sm:p-5"
                 >
                   <p className="flex items-baseline gap-2">
                     <span className="font-mono text-xs text-muted-foreground">{sc.n}</span>
@@ -66,7 +66,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                   <div className="mt-3.5 flex flex-col gap-3.5 sm:flex-row sm:items-center sm:gap-0">
                     <div className="sm:flex-1 sm:pr-4">
                       <span className="eyebrow flex items-center gap-2 text-foreground">
-                        <span className="size-1.5 rounded-full bg-danger" /> Risk
+                        <span className="size-1.5 rounded-none bg-danger" /> Risk
                       </span>
                       <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
                         {sc.risk}
@@ -79,7 +79,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                     />
 
                     <div className="flex shrink-0 flex-col items-center gap-1.5 sm:w-16">
-                      <span className="flex size-9 items-center justify-center rounded-full border border-hairline bg-surface text-amber-accent">
+                      <span className="flex size-9 items-center justify-center rounded-none border border-hairline bg-surface text-amber-accent">
                         <ShieldHalf className="size-3.5" strokeWidth={1.7} />
                       </span>
                       <span className="eyebrow whitespace-nowrap">Checkpoint</span>
@@ -92,7 +92,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
 
                     <div className="sm:flex-1 sm:pl-4 sm:text-right">
                       <span
-                        className={`inline-block rounded-full border px-2.5 py-0.5 font-mono text-[10px] tracking-wide uppercase ${verdictClass(sc.verdict)}`}
+                        className={`inline-block rounded-none border px-2.5 py-0.5 font-mono text-[10px] tracking-wide uppercase ${verdictClass(sc.verdict)}`}
                       >
                         {sc.verdict}
                       </span>
@@ -112,7 +112,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
               {s.compliance.map((c) => (
                 <span
                   key={c}
-                  className="rounded-full border border-hairline px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground uppercase"
+                  className="rounded-none border border-hairline px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground uppercase"
                 >
                   {c}
                 </span>

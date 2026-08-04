@@ -28,18 +28,18 @@ export function NeuralNetwork() {
       width = canvas.width = rect.width * dpr;
       height = canvas.height = rect.height * dpr;
       const area = rect.width * rect.height;
-      const count = Math.max(36, Math.min(120, Math.round(area / 16000)));
+      const count = Math.max(28, Math.min(72, Math.round(area / 22000)));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.12 * dpr,
-        vy: (Math.random() - 0.5) * 0.12 * dpr,
+        vx: (Math.random() - 0.5) * 0.06 * dpr,
+        vy: (Math.random() - 0.5) * 0.06 * dpr,
       }));
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      const linkDist = Math.min(width, height) * 0.11;
+      const linkDist = Math.min(width, height) * 0.16;
 
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
@@ -54,9 +54,9 @@ export function NeuralNetwork() {
           const dy = n.y - o.y;
           const dist = Math.hypot(dx, dy);
           if (dist < linkDist) {
-            const alpha = (1 - dist / linkDist) * 0.16;
+            const alpha = (1 - dist / linkDist) * 0.08;
             ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-            ctx.lineWidth = dpr * 0.7;
+            ctx.lineWidth = dpr * 0.55;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(o.x, o.y);
@@ -67,8 +67,8 @@ export function NeuralNetwork() {
 
       for (const n of nodes) {
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${r},${g},${b},0.35)`;
-        ctx.arc(n.x, n.y, 1.3 * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},0.22)`;
+        ctx.arc(n.x, n.y, 1.05 * dpr, 0, Math.PI * 2);
         ctx.fill();
       }
 

@@ -55,7 +55,7 @@ export function Footer() {
               checkpoint.
             </p>
             <BookingDialog>
-              <button className="btn-quiet mt-6 rounded-full border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold">
+              <button className="btn-quiet mt-6 rounded-none border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold">
                 Book a working session
               </button>
             </BookingDialog>

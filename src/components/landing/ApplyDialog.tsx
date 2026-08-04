@@ -75,7 +75,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
 
         {sent ? (
           <div className="px-6 py-12 text-center">
-            <span className="mx-auto flex size-12 items-center justify-center rounded-full border border-amber-accent/40 bg-amber-accent/10">
+            <span className="mx-auto flex size-12 items-center justify-center rounded-none border border-amber-accent/40 bg-amber-accent/10">
               <Check className="size-5 text-amber-accent" />
             </span>
             <h3 className="mt-5 text-lg font-semibold tracking-tight">Application received</h3>
@@ -84,7 +84,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
             </p>
             <button
               onClick={() => setOpen(false)}
-              className="btn-quiet mt-7 rounded-full border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold"
+              className="btn-quiet mt-7 rounded-none border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold"
             >
               Close
             </button>
@@ -122,7 +122,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
             <Field id="ap-resume" label="Resume (PDF or DOC, up to 8MB)">
               <label
                 htmlFor="ap-resume"
-                className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-dashed border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-muted-foreground transition-colors hover:border-amber-accent/50 hover:text-foreground"
+                className="flex cursor-pointer items-center gap-2.5 rounded-none border border-dashed border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-muted-foreground transition-colors hover:border-amber-accent/50 hover:text-foreground"
               >
                 <Paperclip className="size-3.5 shrink-0" />
                 <span className="truncate">{fileName ?? "Attach a file"}</span>
@@ -146,7 +146,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
             <button
               type="submit"
               disabled={loading}
-              className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
+              className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
             >
               {loading ? "Sending…" : "Send application"} <ArrowRight className="size-4" />
             </button>
@@ -159,7 +159,7 @@ export function ApplyDialog({ role, children }: { role: string; children: ReactN
 }
 
 const inputCls =
-  "w-full rounded-xl border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
+  "w-full rounded-none border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
 
 function Field({
   id,

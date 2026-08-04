@@ -42,13 +42,13 @@ function CareersPage() {
         action={false}
       />
 
-      <section className="border-b border-hairline pb-28">
+      <section className="border-b border-hairline pb-24 sm:pb-28">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-col divide-y divide-[var(--hairline)] border-y border-hairline">
+          <div className="flex flex-col divide-y divide-[var(--hairline)] border border-hairline bg-surface/70 shadow-[0_8px_24px_rgba(10,20,36,0.04)]">
             {roles.map((r) => (
               <div
                 key={r.title}
-                className="cell-hover flex flex-col gap-3 p-7 sm:flex-row sm:items-start sm:justify-between"
+                className="cell-hover flex flex-col gap-3 bg-surface/80 p-6 sm:flex-row sm:items-start sm:justify-between sm:p-7"
               >
                 <div>
                   <p className="eyebrow">
@@ -60,7 +60,7 @@ function CareersPage() {
                   </p>
                 </div>
                 <ApplyDialog role={r.title}>
-                  <button className="btn-quiet inline-flex shrink-0 items-center gap-2 rounded-full border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold">
+                  <button className="btn-quiet inline-flex shrink-0 items-center gap-2 border border-hairline bg-surface/90 px-5 py-2.5 text-sm font-semibold">
                     <Mail className="size-3.5" /> Apply
                   </button>
                 </ApplyDialog>

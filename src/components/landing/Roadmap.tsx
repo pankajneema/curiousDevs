@@ -25,7 +25,7 @@ export function Roadmap() {
             </div>
           </div>
 
-          <div className="card-lift panel-sheen rounded-2xl border border-hairline bg-surface p-8">
+          <div className="card-lift panel-sheen rounded-none border border-hairline bg-surface p-8">
             <p className="eyebrow">What we believe</p>
             <p className="mt-4 text-2xl leading-snug">
               &ldquo;Any action a machine takes on its own should have a name attached, a reason

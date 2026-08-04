@@ -39,6 +39,7 @@ function DropdownTrigger({
   label, 
   open,
   onClick,
+
 }: {
   label: string;
   open: boolean;
@@ -88,7 +89,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
       <div className="w-full max-w-5xl">
-        <nav className="flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-2 shadow-sm sm:gap-5 sm:px-5">
+        <nav className="flex items-center gap-2 rounded-none border border-hairline bg-surface/85 px-3 py-2 shadow-[0_10px_30px_rgba(10,20,36,0.08)] backdrop-blur-xl sm:gap-5 sm:px-5">
           <Link to="/" className="flex items-center gap-2 pr-1">
             <Logo size={26} />
             <Wordmark />
@@ -104,7 +105,7 @@ export function Nav() {
               {menu === "product" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-none border border-hairline bg-surface p-2 shadow-lg"
                 >
                   {productItems.map((p, i) => (
                     <Link
@@ -112,7 +113,7 @@ export function Nav() {
                       to={p.to}
                       search={p.search}
                       role="menuitem"
-                      className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-surface-2"
+                      className="flex items-center gap-3 rounded-none px-3 py-2.5 transition-colors hover:bg-surface-2"
                     >
                       <span className="font-mono text-[10px] text-amber-soft">0{i + 1}</span>
                       <div>
@@ -125,7 +126,7 @@ export function Nav() {
                     <Link
                       to="/product"
                       search={{ p: undefined }}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
+                      className="block rounded-none px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
                     >
                       View all products →
                     </Link>
@@ -143,7 +144,7 @@ export function Nav() {
               {menu === "solutions" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-64 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
+                  className="absolute top-full left-0 mt-3 w-64 rounded-none border border-hairline bg-surface/95 p-2 shadow-[0_18px_40px_rgba(10,20,36,0.12)] backdrop-blur-xl"
                 >
                   {solutionItems.map((s) => (
                     <Link
@@ -151,7 +152,7 @@ export function Nav() {
                       to={s.to}
                       search={s.search}
                       role="menuitem"
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
+                      className="block rounded-none px-3 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
                     >
                       {s.label}
                     </Link>
@@ -160,7 +161,7 @@ export function Nav() {
                     <Link
                       to="/solutions"
                       search={{ industry: undefined }}
-                      className="block rounded-xl px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
+                      className="block rounded-none px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
                     >
                       View all industries →
                     </Link>
@@ -178,14 +179,14 @@ export function Nav() {
               {menu === "resources" && (
                 <div
                   role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-2xl border border-hairline bg-surface p-2 shadow-lg"
+                  className="absolute top-full left-0 mt-3 w-72 rounded-none border border-hairline bg-surface p-2 shadow-lg"
                 >
                   {resourceItems.map((r) => (
                     <Link
                       key={r.label}
                       to={r.to}
                       role="menuitem"
-                      className="block rounded-xl px-3 py-2.5 transition-colors hover:bg-surface-2"
+                      className="block rounded-none px-3 py-2.5 transition-colors hover:bg-surface-2"
                     >
                       <div className="text-sm font-semibold tracking-tight">{r.label}</div>
                       <div className="text-xs text-muted-foreground">{r.desc}</div>
@@ -210,7 +211,7 @@ export function Nav() {
 
           <div className="ml-auto flex items-center gap-2">
             <BookingDialog>
-              <button className="btn-shine rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm">
+              <button className="btn-shine rounded-none bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm">
                 Talk to us
               </button>
             </BookingDialog>
@@ -218,7 +219,7 @@ export function Nav() {
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
-              className="flex size-9 min-h-9 items-center justify-center rounded-full border border-hairline text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+              className="flex size-9 min-h-9 items-center justify-center rounded-none border border-hairline text-muted-foreground transition-colors hover:text-foreground lg:hidden"
             >
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
@@ -226,7 +227,7 @@ export function Nav() {
         </nav>
 
         {open && (
-          <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-3xl border border-hairline bg-surface p-3 shadow-lg lg:hidden">
+          <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-none border border-hairline bg-surface p-2.5 shadow-lg lg:hidden">
             <p className="eyebrow px-3 pt-2 pb-1">Product</p>
             <ul className="divide-y divide-[var(--hairline)]">
               {productItems.map((p) => (

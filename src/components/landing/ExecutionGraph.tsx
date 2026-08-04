@@ -22,7 +22,7 @@ export function ExecutionGraph() {
           nothing executes before the checkpoint returns a verdict.
         </p>
 
-        <div className="card-lift panel-sheen mt-12 overflow-x-auto rounded-2xl border border-hairline bg-surface p-6 sm:p-10">
+        <div className="card-lift panel-sheen mt-12 overflow-x-auto rounded-none border border-hairline bg-surface p-6 sm:p-10">
           <svg
             viewBox="0 0 980 160"
             className="w-full min-w-[820px]"

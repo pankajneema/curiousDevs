@@ -22,7 +22,7 @@ function KV({
 
 function MockPanel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="overflow-hidden rounded-xl border border-hairline bg-surface-2/60">
+    <div className="overflow-hidden rounded-none border border-hairline bg-surface-2/60">
       <div className="border-b border-hairline px-5 py-2.5">
         <span className="eyebrow">{title}</span>
       </div>
@@ -68,10 +68,10 @@ const items = [
         <KV label="Amount" value="₹50,000" />
         <KV label="Risk" value="HIGH · 87/100" tone="bad" />
         <div className="mt-4 flex gap-2">
-          <span className="flex-1 rounded-lg border border-amber-soft/40 bg-amber-soft/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
+          <span className="flex-1 rounded-none border border-amber-soft/40 bg-amber-soft/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
             Approve
           </span>
-          <span className="flex-1 rounded-lg border border-danger/40 bg-danger/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
+          <span className="flex-1 rounded-none border border-danger/40 bg-danger/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
             Deny
           </span>
         </div>
@@ -100,7 +100,7 @@ const items = [
             className="flex items-center justify-between border-b border-hairline py-2 text-[12px] last:border-0"
           >
             <span>{v}</span>
-            <span className="rounded-full border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
+            <span className="rounded-none border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
               Blocked
             </span>
           </div>
@@ -161,7 +161,7 @@ export function Capabilities() {
           Complete <span className="text-muted-foreground">surface coverage.</span>
         </h2>
 
-        <div className="mt-12 flex flex-col gap-px overflow-hidden rounded-2xl border border-hairline bg-[var(--hairline)]">
+        <div className="mt-12 flex flex-col gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)]">
           {items.map((it, i) => {
             const isOpen = open === i;
             return (
@@ -179,7 +179,7 @@ export function Capabilities() {
                     {it.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-hairline px-2.5 py-0.5 font-mono text-[9px] tracking-wide text-muted-foreground uppercase"
+                        className="rounded-none border border-hairline px-2.5 py-0.5 font-mono text-[9px] tracking-wide text-muted-foreground uppercase"
                       >
                         {t}
                       </span>
@@ -188,13 +188,13 @@ export function Capabilities() {
                   <span className="text-lg text-amber-accent">{isOpen ? "−" : "+"}</span>
                 </button>
                 {isOpen && (
-                  <div className="grid gap-8 px-6 pb-8 md:grid-cols-2">
+                  <div className="grid gap-8 px-6 pb-8 md:grid-cols-2 md:items-center">
                     <div>
                       <p className="text-sm leading-relaxed text-muted-foreground">{it.body}</p>
                       <ul className="mt-4 flex flex-col gap-2">
                         {it.points.map((p) => (
                           <li key={p} className="flex gap-2.5 text-[13px] text-foreground">
-                            <span className="mt-1.5 size-1 shrink-0 rounded-full bg-amber-accent" />
+                            <span className="mt-1.5 size-1 shrink-0 rounded-none bg-amber-accent" />
                             {p}
                           </li>
                         ))}

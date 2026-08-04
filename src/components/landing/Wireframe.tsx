@@ -70,8 +70,8 @@ export function Wireframe({ className = "" }: { className?: string }) {
       ctx.clearRect(0, 0, width, height);
       const cx = width / 2;
       const cy = height / 2;
-      const radius = Math.min(width, height) * 0.42;
-      const focal = 2.6;
+      const radius = Math.min(width, height) * 0.34;
+      const focal = 2.8;
 
       const projected = points.map((p) => {
         const [x, y, z] = rotate(p, angleY, angleX);
@@ -83,9 +83,9 @@ export function Wireframe({ className = "" }: { className?: string }) {
         const pa = projected[a];
         const pb = projected[b];
         const depth = (pa.scale + pb.scale) / 2;
-        const alpha = Math.min(0.32, Math.max(0.06, 0.16 * depth));
+        const alpha = Math.min(0.2, Math.max(0.04, 0.09 * depth));
         ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-        ctx.lineWidth = dpr;
+        ctx.lineWidth = dpr * 0.8;
         ctx.beginPath();
         ctx.moveTo(pa.x, pa.y);
         ctx.lineTo(pb.x, pb.y);
@@ -93,15 +93,15 @@ export function Wireframe({ className = "" }: { className?: string }) {
       }
 
       for (const p of projected) {
-        const pointRadius = 2.4 * dpr * p.scale;
+        const pointRadius = 1.6 * dpr * p.scale;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(0.9, 0.55 * p.scale)})`;
+        ctx.fillStyle = `rgba(${r},${g},${b},${Math.min(0.6, 0.3 * p.scale)})`;
         ctx.arc(p.x, p.y, pointRadius, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      angleY += 0.0022;
-      angleX = 0.3 + Math.sin(angleY * 0.6) * 0.12;
+      angleY += 0.0014;
+      angleX = 0.3 + Math.sin(angleY * 0.45) * 0.08;
       raf = requestAnimationFrame(draw);
     };
 
