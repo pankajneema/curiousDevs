@@ -7,14 +7,20 @@ import { PageIntro } from "@/components/landing/PageIntro";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/roadmap")({
-  head: () => buildSeoHead({
-    path: "/roadmap",
-    title: "Roadmap 2026–2030 — Agents, Data, Machines | CuriousDevs",
-    description:
-      "The CuriousDevs path from AgentGuard runtime control to CurioComply evidence automation and AeroOS command for autonomous fleets, 2026 through 2030.",
-    keywords: ["AI roadmap", "agent security roadmap", "DPDP product roadmap", "autonomous fleets"],
-    ogType: "article",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/roadmap",
+      title: "Operating Model — Service to IP | CuriousDevs",
+      description:
+        "How CuriousDevs moves from founding AI engineering engagements to repeatable delivery systems and reusable internal IP.",
+      keywords: [
+        "AI engineering studio",
+        "AI services roadmap",
+        "service to IP",
+        "AI startup operating model",
+      ],
+      ogType: "article",
+    }),
   component: RoadmapPage,
 });
 
@@ -27,18 +33,18 @@ function RoadmapPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/roadmap",
-              "Roadmap 2026–2030 — Agents, Data, Machines",
-              "The product path from AgentGuard to CurioComply and AeroOS for autonomous fleets.",
+              "Operating Model — Service to IP",
+              "The CuriousDevs path from founding AI engineering engagements to repeatable internal IP.",
             ),
           ),
         }}
       />
       <Nav />
       <PageIntro
-        eyebrow="The path, 2026 to 2030"
-        title="One layer at a time,"
-        accent="in the order it has to ship."
-        body="We are not selling a platform vision. Runtime control for agents comes first, the evidence engine follows because it needs those verdicts, and machine fleets come last because they need both."
+        eyebrow="The path from service to IP"
+        title="Solve real problems first,"
+        accent="then build leverage."
+        body="We are building a service engine before a product company: complete founding engagements, measure outcomes, publish proof, standardize delivery, and turn repeated customer problems into reusable internal IP."
       />
       <Reveal>
         <Roadmap />

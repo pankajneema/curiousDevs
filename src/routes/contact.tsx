@@ -7,14 +7,21 @@ import { PageIntro } from "@/components/landing/PageIntro";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
-  head: () => buildSeoHead({
-    path: "/contact",
-    title: "Contact CuriousDevs — Book a Checkpoint Review",
-    description:
-      "Talk to the engineers building CuriousDevs. Bring one autonomous workflow and we will show you where the checkpoint goes and what it would have stopped.",
-    keywords: ["AI security contact", "book a working session", "AgentGuard demo", "CuriousDevs contact"],
-    ogType: "website",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/contact",
+      title: "Contact CuriousDevs — Start an AI Project",
+      description:
+        "Talk to the CuriousDevs engineers about building, fixing, or scaling an AI system.",
+      keywords: [
+        "AI engineering contact",
+        "AI development",
+        "AI audit",
+        "MLOps",
+        "CuriousDevs contact",
+      ],
+      ogType: "website",
+    }),
   component: ContactPage,
 });
 
@@ -25,7 +32,7 @@ const details = [
     value: "hello@curiousdevs.com",
     href: "mailto:hello@curiousdevs.com",
   },
-  { icon: MapPin, label: "Base", value: "Noida, India" },
+  { icon: MapPin, label: "Base", value: "Gurugram, India" },
   { icon: Clock, label: "Response time", value: "One business day" },
 ];
 
@@ -38,8 +45,8 @@ function ContactPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/contact",
-              "Contact CuriousDevs — Book a Checkpoint Review",
-              "Reach the team behind AgentGuard, CurioComply and AeroOS for a working session or technical discussion.",
+              "Contact CuriousDevs — Start an AI Project",
+              "Reach CuriousDevs about building, fixing, or scaling an AI system.",
             ),
           ),
         }}
@@ -47,9 +54,9 @@ function ContactPage() {
       <Nav />
       <PageIntro
         eyebrow="Talk to us"
-        title="Bring the workflow"
-        accent="you are nervous about."
-        body="We run a 45-minute session with the people who built the enforcement path. You leave with a map of where the checkpoint sits in your stack and what it would have blocked last month."
+        title="Bring the AI problem"
+        accent="you need solved."
+        body="Tell us what you are building, what is failing, or what needs to reach production. We will help define the right service line and next step."
         action={false}
       />
 
@@ -57,10 +64,10 @@ function ContactPage() {
         <div className="mx-auto grid max-w-6xl items-start gap-8 px-6 lg:grid-cols-[1.08fr_0.92fr]">
           <div className="card-lift border border-hairline bg-surface/80 p-6 shadow-[0_8px_24px_rgba(10,20,36,0.05)] sm:p-8">
             <p className="eyebrow">Start here</p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Send us your workflow</h2>
+            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Tell us what you need</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Pick what you&apos;re securing, tell us about it, and we come back with two concrete
-              times.
+              Pick the service direction, tell us about the system or idea, and we come back with
+              two concrete times.
             </p>
             <div className="mt-6">
               <ContactForm />
@@ -69,7 +76,10 @@ function ContactPage() {
 
           <ul className="grid gap-px overflow-hidden border border-hairline bg-hairline shadow-[0_8px_24px_rgba(10,20,36,0.04)]">
             {details.map((d) => (
-              <li key={d.label} className="cell-hover border-b border-hairline/70 bg-surface/70 px-6 py-6 last:border-b-0 sm:px-8 sm:py-7">
+              <li
+                key={d.label}
+                className="cell-hover border-b border-hairline/70 bg-surface/70 px-6 py-6 last:border-b-0 sm:px-8 sm:py-7"
+              >
                 <p className="eyebrow flex items-center gap-2">
                   <d.icon className="size-3.5 text-amber-soft" /> {d.label}
                 </p>

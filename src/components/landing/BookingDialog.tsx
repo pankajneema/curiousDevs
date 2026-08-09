@@ -17,13 +17,19 @@ const slots = [
   "Thu–Fri, afternoons",
 ];
 
-const surfaces = ["AI agents", "Data & DPDP", "Machine fleets"];
+const surfaces = ["Build AI", "AI Audit / Assessment", "Fix existing AI", "Scale to production"];
 
-export function BookingDialog({ children }: { children: ReactNode }) {
+export function BookingDialog({
+  children,
+  defaultSurface = surfaces[0],
+}: {
+  children: ReactNode;
+  defaultSurface?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [slot, setSlot] = useState(slots[0]);
-  const [surface, setSurface] = useState(surfaces[0]);
+  const [surface, setSurface] = useState(defaultSurface);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -73,11 +79,13 @@ export function BookingDialog({ children }: { children: ReactNode }) {
               <CalendarCheck className="size-3.5 text-amber-accent" /> 45-minute working session
             </p>
             <DialogTitle className="text-xl font-extrabold tracking-tight">
-              Book a checkpoint review
+              {defaultSurface === "AI Audit / Assessment"
+                ? "Audit my existing AI"
+                : "Start an AI Project"}
             </DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground">
-              Bring one workflow you are nervous about. We map where the checkpoint goes and what it
-              would have stopped last month.
+              Tell us what you are building, what is failing, or what needs to reach production. We
+              will use the session to define the right workstream and next step.
             </DialogDescription>
           </DialogHeader>
         </div>
@@ -127,7 +135,7 @@ export function BookingDialog({ children }: { children: ReactNode }) {
             </Field>
 
             <fieldset>
-              <legend className="eyebrow mb-2">What are you securing</legend>
+              <legend className="eyebrow mb-2">What do you need help with</legend>
               <div className="flex flex-wrap gap-2">
                 {surfaces.map((s) => (
                   <button
@@ -162,7 +170,7 @@ export function BookingDialog({ children }: { children: ReactNode }) {
               </select>
             </Field>
 
-            <Field id="bk-notes" label="The workflow you want reviewed">
+            <Field id="bk-notes" label="What are you building or trying to fix">
               <textarea id="bk-notes" name="notes" rows={3} className={inputCls} />
             </Field>
 

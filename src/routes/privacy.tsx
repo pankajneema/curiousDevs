@@ -5,15 +5,16 @@ import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => buildSeoHead({
-    path: "/privacy",
-    title: "Privacy Policy | CuriousDevs",
-    description:
-      "What CuriousDevs collects through this website, why, and how to exercise your rights under India's DPDP Act, 2023.",
-    keywords: ["privacy policy", "DPDP", "India privacy", "data rights"],
-    ogType: "website",
-    robots: "index, follow",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/privacy",
+      title: "Privacy Policy | CuriousDevs",
+      description:
+        "What CuriousDevs collects through this website, why, and how to exercise your rights under India's DPDP Act, 2023.",
+      keywords: ["privacy policy", "DPDP", "India privacy", "data rights"],
+      ogType: "website",
+      robots: "index, follow",
+    }),
   component: PrivacyPage,
 });
 
@@ -42,9 +43,9 @@ function PrivacyPage() {
         <LegalSection n="01" title="Who this covers">
           <p>
             This policy covers <strong className="text-foreground">curiousdevs.com</strong> — the
-            marketing website you're on now. It does not yet cover AgentGuard, CurioComply, or
-            AeroOS as deployed products, since none of them are generally available. A separate,
-            product-specific privacy policy will ship alongside each product's public release.
+            marketing website and service inquiry flows you're using now. It does not yet cover
+            customer production systems or any deployed client environment. Service-specific data
+            handling terms are agreed in the applicable statement of work.
           </p>
         </LegalSection>
 
@@ -56,8 +57,8 @@ function PrivacyPage() {
           <ul className="list-disc space-y-2 pl-5">
             <li>
               <strong className="text-foreground">Contact form</strong> — name, work email, company,
-              the category you select ("AI agents," "Data & DPDP," or "Machine fleets"), and
-              anything you write in the message field.
+              the service direction you select ("Build AI," "Fix existing AI," or "Scale to
+              production"), and anything you write in the message field.
             </li>
             <li>
               <strong className="text-foreground">Booking request</strong> — the same fields, plus
@@ -136,7 +137,7 @@ function PrivacyPage() {
             >
               hello@curiousdevs.com
             </a>{" "}
-            · CuriousDevs, Noida, India.
+            · CuriousDevs, Gurugram, India.
           </p>
         </LegalSection>
       </LegalDoc>

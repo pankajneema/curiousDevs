@@ -1,50 +1,50 @@
 const scenarios = [
   {
     n: "01",
-    tag: "Borrowed authority",
-    title: "The assistant inherits access nobody granted it.",
-    body: "It was wired up with a service credential so it would 'just work'. Now it reads every row a human never could, and no ticket records the moment that started.",
+    tag: "Unclear scope",
+    title: "The AI demo works. The production problem is undefined.",
+    body: "Teams start with a model call, a prompt, and a hopeful workflow. Without clear architecture, ownership, baseline, or acceptance criteria, the project expands without becoming reliable.",
   },
   {
     n: "02",
-    tag: "Instruction hijack",
-    title: "A document tells the agent what to do next.",
-    body: "The page it retrieved carries a sentence written for the model, not the reader. The agent obeys. Your prompt never mentioned any of it.",
+    tag: "RAG failure",
+    title: "Retrieval returns context that sounds right but is wrong.",
+    body: "Chunking, metadata, ranking, and evaluation are not measured. The team sees plausible answers and cannot explain which evidence was used or why the system failed.",
   },
   {
     n: "03",
-    tag: "Quiet data exit",
-    title: "Personal records leave through a helper call.",
-    body: "One integration widens its payload during an upgrade. Identity fields ride along to a vendor you never mapped, and the export looks routine in the logs.",
+    tag: "Agent reliability",
+    title: "The workflow fails on the edge case nobody tested.",
+    body: "The happy path is impressive, but tool permissions, state, retries, fallbacks, and human handoffs are not covered by a regression suite.",
   },
   {
     n: "04",
-    tag: "Machines in motion",
-    title: "Nothing broke. The robot simply improvised.",
-    body: "The task was under-specified, so the fleet resolved the ambiguity itself. Every individual choice was defensible; the combined outcome was not.",
+    tag: "Production gap",
+    title: "The system works locally but cannot be operated.",
+    body: "There is no release path, cost attribution, observability, runbook, or clear handover. A working prototype becomes an operational risk instead of a product capability.",
   },
 ];
 
 const gaps = [
   {
-    title: "Dashboards",
-    state: "Recorded",
-    body: "They narrate the incident after the money left. Useful for the write-up, powerless at the moment of action.",
+    title: "Architecture",
+    state: "Defined",
+    body: "The system needs clear boundaries, data flows, integrations, and an owner before more features are added.",
   },
   {
-    title: "Prompt rules",
-    state: "Suggested",
-    body: "Text inside a prompt is persuasion. A long context, a clever input or a bad day is enough to talk the model out of it.",
+    title: "Evaluation",
+    state: "Measured",
+    body: "A test set and regression loop turn vague quality concerns into engineering decisions.",
   },
   {
-    title: "Annual audits",
-    state: "Snapshot",
-    body: "A binder describing last quarter's system. Your data flows changed on Tuesday and the evidence never caught up.",
+    title: "Security",
+    state: "Hardened",
+    body: "Prompt injection, tool permissions, data leakage, and unsafe fallback behavior need active review.",
   },
   {
-    title: "Model reviewers",
-    state: "Approximate",
-    body: "Asking a model to police a model doubles both the uncertainty and the bill, and still yields no reproducible verdict.",
+    title: "Operations",
+    state: "Operable",
+    body: "Deployment, observability, cost controls, runbooks, and handover determine whether the system can survive production.",
   },
 ];
 
@@ -54,20 +54,24 @@ export function Problem() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <div className="text-center">
           <span className="eyebrow inline-flex items-center gap-2 rounded-none border border-danger/40 bg-danger/10 px-3 py-1.5 text-foreground">
-            Where it breaks
+            Where AI breaks
           </span>
           <h2 className="mt-5 text-[clamp(2.1rem,5vw,3.8rem)] leading-[0.98] font-extrabold tracking-[-0.03em] sm:mt-6">
-            Nothing alarms <span className="text-muted-foreground">when autonomy goes wrong.</span>
+            AI is easy to demo.{" "}
+            <span className="text-muted-foreground">Production is different.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground sm:mt-5">
-            There is no stack trace for a decision. The system runs green while doing precisely the
-            wrong thing, and you find out from a customer, a regulator or a bank statement.
+            RAG returns irrelevant context. Agents fail on edge cases. Costs grow unpredictably.
+            Latency hurts the user experience. Security gaps appear around prompts, tools, and data.
           </p>
         </div>
 
         <div className="mt-16 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] md:grid-cols-2">
           {scenarios.map((s) => (
-            <article key={s.n} className="cell-hover rounded-none border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.04)] sm:p-8">
+            <article
+              key={s.n}
+              className="cell-hover rounded-none border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.04)] sm:p-8"
+            >
               <p className="flex items-center gap-3">
                 <span className="font-mono text-xs text-amber-accent">{s.n}</span>
                 <span className="eyebrow">{s.tag}</span>
@@ -83,20 +87,23 @@ export function Problem() {
         </div>
 
         <div className="mt-24 text-center sm:mt-28">
-          <p className="eyebrow">The missing control</p>
+          <p className="eyebrow">The missing engineering system</p>
           <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3.25rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-            Everything you own today{" "}
-            <span className="text-muted-foreground">watches, none of it decides.</span>
+            Every serious AI project needs{" "}
+            <span className="text-muted-foreground">more than a model call.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-            Four familiar categories, one shared blind spot: none of them stand between intent and
-            execution while the system is live.
+            The missing pieces are usually architecture, evaluation, security, optimization,
+            deployment discipline, and an owner for the outcome.
           </p>
         </div>
 
         <div className="mt-12 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-4">
           {gaps.map((g) => (
-            <article key={g.title} className="cell-hover border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.03)] sm:p-7">
+            <article
+              key={g.title}
+              className="cell-hover border border-hairline/70 bg-surface p-6 shadow-[0_8px_24px_rgba(10,20,36,0.03)] sm:p-7"
+            >
               <h3 className="text-lg font-semibold tracking-tight">{g.title}</h3>
               <p className="eyebrow mt-2 text-amber-soft">{g.state}</p>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{g.body}</p>

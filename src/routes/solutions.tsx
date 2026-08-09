@@ -10,14 +10,21 @@ export const Route = createFileRoute("/solutions")({
   validateSearch: (search: Record<string, unknown>) => ({
     industry: typeof search.industry === "string" ? search.industry : undefined,
   }),
-  head: () => buildSeoHead({
-    path: "/solutions",
-    title: "Solutions by Industry — Fintech, Healthcare, SaaS & Government | CuriousDevs",
-    description:
-      "How CuriousDevs governs AI agents across fintech, healthcare, enterprise SaaS and government — real risk scenarios and the verdicts that stop them.",
-    keywords: ["AI governance", "regulatory AI", "fintech AI security", "healthcare AI", "government AI"],
-    ogType: "website",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/solutions",
+      title: "Solutions by Industry — Fintech, Healthcare, SaaS & Government | CuriousDevs",
+      description:
+        "How CuriousDevs builds, audits, diagnoses, secures, and productionizes AI systems across fintech, healthcare, enterprise SaaS, and government.",
+      keywords: [
+        "AI engineering solutions",
+        "fintech AI",
+        "healthcare AI",
+        "enterprise AI",
+        "government AI",
+      ],
+      ogType: "website",
+    }),
   component: SolutionsPage,
 });
 
@@ -32,7 +39,7 @@ function SolutionsPage() {
             buildWebPageSchema(
               "/solutions",
               "Solutions by Industry",
-              "Deterministic enforcement for AI agents operating in regulated, high-stakes environments.",
+              "AI engineering for regulated, high-stakes environments where reliability, security, and evidence matter.",
             ),
           ),
         }}
@@ -40,9 +47,9 @@ function SolutionsPage() {
       <Nav />
       <PageIntro
         eyebrow="Use cases"
-        title="Built for the industries"
-        accent="that can't afford to guess."
-        body="Deterministic enforcement for AI agents operating in regulated, high-stakes environments. Every action governed before execution."
+        title="See where AI can help"
+        accent="and where it needs care."
+        body="Explore simple examples of how CuriousDevs can help teams build useful AI, improve an existing system, and move it into production safely."
         action={false}
       />
       <Solutions initialSlug={industry} />

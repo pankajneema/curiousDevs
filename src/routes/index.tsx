@@ -10,20 +10,21 @@ import { Footer } from "@/components/landing/Footer";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => buildSeoHead({
-    path: "/",
-    title: "CuriousDevs — Security Infrastructure for Autonomous Systems",
-    description:
-      "AgentGuard, CurioComply and AeroOS: runtime security for AI agents, DPDP compliance automation, and an operating system for autonomous fleets.",
-    keywords: [
-      "AI security",
-      "autonomous systems",
-      "DPDP compliance",
-      "agent guard",
-      "runtime enforcement",
-    ],
-    ogType: "website",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/",
+      title: "CuriousDevs — AI Engineering Studio for Production Systems",
+      description:
+        "CuriousDevs builds AI-native products and makes existing AI systems reliable, secure, measurable, and production-ready.",
+      keywords: [
+        "AI engineering services",
+        "AI-native development",
+        "AI audit",
+        "AI reliability",
+        "MLOps",
+      ],
+      ogType: "website",
+    }),
   component: Index,
 });
 
@@ -36,8 +37,8 @@ function Index() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/",
-              "CuriousDevs — Security Infrastructure for Autonomous Systems",
-              "Runtime security, compliance evidence and fleet governance for autonomous systems.",
+              "CuriousDevs — AI Engineering Studio for Production Systems",
+              "AI-native development, reliability engineering, security, optimization, and production infrastructure.",
             ),
           ),
         }}

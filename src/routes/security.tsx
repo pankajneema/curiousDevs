@@ -5,15 +5,16 @@ import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/security")({
-  head: () => buildSeoHead({
-    path: "/security",
-    title: "Security | CuriousDevs",
-    description:
-      "How CuriousDevs handles security today, honestly stated for a pre-launch company — plus what's on the roadmap before general availability.",
-    keywords: ["security policy", "responsible disclosure", "AI security", "product security"],
-    ogType: "website",
-    robots: "index, follow",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/security",
+      title: "Security | CuriousDevs",
+      description:
+        "How CuriousDevs handles security today, honestly stated for a pre-launch company — plus what's on the roadmap before general availability.",
+      keywords: ["security policy", "responsible disclosure", "AI security", "product security"],
+      ogType: "website",
+      robots: "index, follow",
+    }),
   component: SecurityPage,
 });
 
@@ -86,11 +87,10 @@ function SecurityPage() {
 
         <LegalSection n="04" title="What's on the roadmap">
           <p>
-            Before AgentGuard, CurioComply, or AeroOS reach general availability, our plan is to
-            pursue SOC 2 Type II and complete a third-party penetration test, and to publish an
-            architecture overview for security teams evaluating the product ahead of a deployment
-            decision. None of that exists yet; this line will be updated the moment any of it does,
-            not before.
+            As our service work grows, our plan is to pursue SOC 2 Type II, complete a third-party
+            penetration test, and publish a technical security overview for clients evaluating an
+            engagement or production handover. None of that exists yet; this line will be updated
+            the moment any of it does, not before.
           </p>
         </LegalSection>
 
@@ -102,7 +102,7 @@ function SecurityPage() {
             >
               hello@curiousdevs.com
             </a>{" "}
-            · CuriousDevs, Noida, India.
+            · CuriousDevs, Gurugram, India.
           </p>
         </LegalSection>
       </LegalDoc>

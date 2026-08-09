@@ -26,7 +26,9 @@ export function PageIntro({
         <h1 className="mt-3 max-w-4xl text-[clamp(1.75rem,4.6vw,3.1rem)] leading-[1.05] font-extrabold tracking-[-0.03em] sm:mt-4">
           {title} <span className="text-aurora">{accent}</span>
         </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:mt-4">{body}</p>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:mt-4">
+          {body}
+        </p>
         {action && (
           <BookingDialog>
             <button className="btn-shine mt-5 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background sm:mt-6">

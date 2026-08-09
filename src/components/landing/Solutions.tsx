@@ -1,6 +1,27 @@
 import { useState } from "react";
-import { ShieldHalf } from "lucide-react";
+import {
+  Blocks,
+  Building2,
+  Factory,
+  GraduationCap,
+  HeartPulse,
+  Landmark,
+  ShieldHalf,
+  ShoppingBag,
+  Truck,
+} from "lucide-react";
 import { solutions, verdictClass } from "./solutions-data";
+
+const industryIcons = {
+  blocks: Blocks,
+  "building-2": Building2,
+  factory: Factory,
+  "graduation-cap": GraduationCap,
+  "heart-pulse": HeartPulse,
+  landmark: Landmark,
+  "shopping-bag": ShoppingBag,
+  truck: Truck,
+} as const;
 
 export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
   const initialIndex = Math.max(
@@ -29,9 +50,15 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                   }`}
                 >
                   {on && <span className="absolute inset-y-0 left-0 w-[3px] bg-amber-accent" />}
-                  <span
-                    className={`size-1.5 shrink-0 rounded-none ${on ? "bg-amber-accent" : "bg-hairline"}`}
-                  />
+                  {(() => {
+                    const Icon = industryIcons[item.icon as keyof typeof industryIcons];
+                    return (
+                      <Icon
+                        className={`size-4 shrink-0 ${on ? "text-amber-accent" : "text-muted-foreground"}`}
+                        strokeWidth={1.7}
+                      />
+                    );
+                  })()}
                   <span
                     className={`text-sm font-medium tracking-tight ${on ? "text-foreground" : "text-muted-foreground"}`}
                   >
@@ -51,7 +78,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
               {s.body}
             </p>
 
-            <p className="eyebrow mt-6 mb-3">Enforcement pipeline</p>
+            <p className="eyebrow mt-6 mb-3">How we help</p>
             <div className="flex flex-col gap-2.5">
               {s.scenarios.map((sc, i) => (
                 <div
@@ -66,7 +93,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                   <div className="mt-3.5 flex flex-col gap-3.5 sm:flex-row sm:items-center sm:gap-0">
                     <div className="sm:flex-1 sm:pr-4">
                       <span className="eyebrow flex items-center gap-2 text-foreground">
-                        <span className="size-1.5 rounded-none bg-danger" /> Risk
+                        <span className="size-1.5 rounded-none bg-danger" /> Problem
                       </span>
                       <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
                         {sc.risk}
@@ -82,7 +109,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
                       <span className="flex size-9 items-center justify-center rounded-none border border-hairline bg-surface text-amber-accent">
                         <ShieldHalf className="size-3.5" strokeWidth={1.7} />
                       </span>
-                      <span className="eyebrow whitespace-nowrap">Checkpoint</span>
+                      <span className="eyebrow whitespace-nowrap">Our response</span>
                     </div>
 
                     <div
@@ -106,7 +133,7 @@ export function Solutions({ initialSlug }: { initialSlug?: string } = {}) {
             </div>
 
             <p className="eyebrow mt-6 border-t border-hairline pt-6">
-              Regulatory frameworks this scenario touches — not certifications CuriousDevs holds
+              Important areas for this industry — not certifications CuriousDevs holds
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {s.compliance.map((c) => (

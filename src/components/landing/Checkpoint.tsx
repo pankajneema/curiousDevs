@@ -1,7 +1,8 @@
 const lanes = [
-  { label: "Agents", y: 46 },
-  { label: "Data", y: 110 },
-  { label: "Machines", y: 174 },
+  { label: "Build", y: 30 },
+  { label: "Audit", y: 83 },
+  { label: "Fix", y: 137 },
+  { label: "Scale", y: 190 },
 ];
 
 export function Checkpoint() {
@@ -11,7 +12,7 @@ export function Checkpoint() {
         viewBox="0 0 420 220"
         className="w-full"
         role="img"
-        aria-label="Three streams of activity converging into one checkpoint that returns a signed verdict"
+        aria-label="Four CuriousDevs service lines converging into one evidence-based delivery system"
       >
         <defs>
           <linearGradient id="cp-line" x1="0" x2="1">
@@ -104,15 +105,15 @@ export function Checkpoint() {
           textAnchor="end"
           className="fill-muted-foreground font-mono text-[10px] tracking-[0.18em] uppercase"
         >
-          Verdict
+          Outcome
         </text>
       </svg>
 
       <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-none border border-hairline bg-hairline">
         {[
-          { k: "<10ms", v: "decision time" },
-          { k: "No model", v: "in the hot path" },
-          { k: "Signed", v: "every outcome" },
+          { k: "Baseline", v: "before the work" },
+          { k: "Evidence", v: "after the work" },
+          { k: "Handover", v: "your team can run" },
         ].map((s) => (
           <div key={s.k} className="stat-tick bg-surface/60 px-4 py-4">
             <div className="text-sm font-semibold tracking-tight text-foreground">{s.k}</div>

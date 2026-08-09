@@ -2,48 +2,48 @@ import { steps } from "@/content/site";
 
 const planes = [
   {
-    label: "Pre-Production · Control Plane",
+    label: "Discovery · Control Plane",
     blocks: [
       {
-        title: "Discovery & Evals",
-        sub: "Adversarial · Security · Compliance",
-        chips: ["Quality", "Security", "DPDP"],
-        foot: "Sandboxed reconstruction",
+        title: "Problem discovery",
+        sub: "Users · Workflows · Architecture",
+        chips: ["Context", "Risk", "Scope"],
+        foot: "A clear problem statement",
       },
       {
-        title: "Behavioural Baseline",
-        sub: "Risk & compliance scoring",
-        chips: ["Compliance Risk", "Security Score"],
-        foot: "From observed failure modes",
+        title: "Baseline and evaluation",
+        sub: "Quality · Cost · Latency · Security",
+        chips: ["Test Set", "Metrics", "Evidence"],
+        foot: "Comparable starting point",
       },
       {
-        title: "Policy Signatures",
-        sub: "Reusable rules, deterministic, not prompt-based",
-        chips: ["Data Protection", "Governance", "Context Mgmt"],
-        foot: "Shift-left risk discovery",
+        title: "Architecture and SOW",
+        sub: "Deliverables · Assumptions · Acceptance",
+        chips: ["Build", "Fix", "Scale"],
+        foot: "A defined workstream",
       },
     ],
   },
   {
-    label: "Runtime · Data Plane",
+    label: "Delivery · Evidence Plane",
     blocks: [
       {
-        title: "Policy Enforcement",
-        sub: "Detect · Allow · Deny · before execution",
-        chips: ["Allow", "Deny", "Modify", "Escalate"],
-        foot: "Inline, deterministic, real-time",
+        title: "Build or diagnose",
+        sub: "Implement · Investigate · Engineer",
+        chips: ["Backend", "RAG", "Agents"],
+        foot: "Working system or failure map",
       },
       {
-        title: "Real-time Monitoring",
-        sub: "Every signal observed continuously",
-        chips: ["User Input", "LLM Calls", "Tool Calls"],
-        foot: "Full audit trail on every decision",
+        title: "Evaluate and re-test",
+        sub: "Edge cases · Regression · Acceptance",
+        chips: ["Accuracy", "Reliability", "Security"],
+        foot: "Before-and-after evidence",
       },
       {
-        title: "Continuous Hardening",
-        sub: "Production tightens enforcement",
-        chips: ["Telemetry", "Policy Updates"],
-        foot: "No redeployment. No system modification.",
+        title: "Deploy and hand over",
+        sub: "Infrastructure · Observability · Runbooks",
+        chips: ["MLOps", "QA", "Training"],
+        foot: "A system your team can operate",
       },
     ],
   },
@@ -56,8 +56,8 @@ export function HowItWorks() {
         <div className="text-center">
           <p className="eyebrow">How it Works</p>
           <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-            From failure modes{" "}
-            <span className="text-muted-foreground">to runtime enforcement.</span>
+            From problem discovery{" "}
+            <span className="text-muted-foreground">to production proof.</span>
           </h2>
         </div>
 
@@ -86,7 +86,7 @@ export function HowItWorks() {
               </div>
               {pi === 0 && (
                 <p className="eyebrow mt-6 text-center text-amber-accent">
-                  ↓ Unified Policy Engine · Deploy
+                  ↓ Engineering workstream · Evaluate
                 </p>
               )}
             </div>

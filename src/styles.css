@@ -412,6 +412,133 @@
   }
 }
 
+/* Inline mascot artwork. Its parts stay vector-based so each state can move
+   independently without depending on a raster sprite. */
+.mascot-source {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mascot-source > span:first-child,
+.mascot-source > span:first-child > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mascot-source > span:first-child > svg {
+  shape-rendering: crispEdges;
+}
+
+.mascot-computer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  shape-rendering: crispEdges;
+  animation: mascot-computer-in 360ms var(--ease-out) both;
+}
+
+.mascot-eye-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.mascot-eye-mark {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mascot-eye-blink {
+  transform-origin: 87px 83px;
+}
+
+.mascot-computer-outline {
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.mascot-computer-screen {
+  fill: var(--deep);
+}
+
+.mascot-computer-base {
+  fill: var(--surface-2);
+}
+
+.mascot-computer-glint {
+  fill: color-mix(in oklab, var(--paper) 18%, var(--deep));
+}
+
+.mascot-computer-mark {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mascot-computer-key {
+  stroke: var(--signal);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.mascot-source-seated > span:first-child > svg {
+  animation: mascot-source-seat 360ms var(--ease-out) both;
+}
+
+@keyframes mascot-source-seat {
+  from {
+    transform: translateY(-5px) scale(1.02);
+  }
+  65% {
+    transform: translateY(3px) scale(0.97);
+  }
+  to {
+    transform: translateY(5px) scale(0.95);
+  }
+}
+
+@keyframes mascot-computer-in {
+  from {
+    opacity: 0;
+    transform: translateX(8px) scale(0.88);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-2px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot-source-seated > span:first-child > svg,
+  .mascot-computer {
+    animation: none;
+  }
+}
+
 /* A thin horizontal connector with a solid signal dot travelling along it —
    reused anywhere two nodes in a system diagram need to look "live". No
    glow: a flat dot on a flat rule line. */
@@ -530,8 +657,71 @@
   animation: c-dot-orbit 1.2s linear infinite;
 }
 
+@keyframes assistant-mascot-jump {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  45% {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  70% {
+    transform: translateY(0) rotate(2deg);
+  }
+}
+
+@keyframes assistant-mascot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes assistant-mascot-land {
+  0% {
+    transform: translateY(-12px) scale(1.04);
+  }
+  55% {
+    transform: translateY(3px) scale(0.96);
+  }
+  78% {
+    transform: translateY(-2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(9px) scale(0.96);
+  }
+}
+
+.assistant-mascot {
+  animation: assistant-mascot-float 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.assistant-mascot-seated {
+  transform: translateY(9px) scale(0.96);
+  animation: assistant-mascot-land 520ms var(--ease-standard) both;
+}
+
+.assistant-mascot-auto-jump {
+  animation: assistant-mascot-jump 650ms var(--ease-standard) both;
+}
+
+.group:hover .assistant-mascot:not(.assistant-mascot-seated) {
+  animation: assistant-mascot-jump 520ms var(--ease-standard);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .c-dot-loader-orbit {
+    animation: none;
+  }
+
+  .assistant-mascot,
+  .assistant-mascot-seated,
+  .assistant-mascot-auto-jump,
+  .group:hover .assistant-mascot:not(.assistant-mascot-seated) {
     animation: none;
   }
 }

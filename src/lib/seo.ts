@@ -1,20 +1,21 @@
 export const SITE_NAME = "CuriousDevs";
 export const SITE_DOMAIN = "https://curiousdevs.com";
 export const SITE_DESCRIPTION =
-  "CuriousDevs builds the accountability layer for autonomous systems: runtime enforcement, compliance evidence, and fleet governance for AI agents and machines.";
+  "CuriousDevs is an AI Engineering Studio that builds, audits, fixes, and scales reliable AI systems for teams moving from prototype to production.";
 export const DEFAULT_IMAGE = `${SITE_DOMAIN}/og-image.jpg`;
 export const DEFAULT_KEYWORDS = [
+  "AI engineering services",
+  "AI-native development",
+  "AI audit and assessment",
+  "AI reliability",
   "AI security",
-  "autonomous systems",
-  "agent runtime control",
-  "compliance automation",
-  "DPDP",
-  "AI governance",
-  "agent guard",
-  "curiocomply",
-  "aeroos",
-  "LLM security",
-  "machine fleet security",
+  "RAG engineering",
+  "AI agents",
+  "MLOps",
+  "AI optimization",
+  "production AI",
+  "AI engineering studio",
+  "AI productionization",
 ];
 
 export type BreadcrumbItem = {
@@ -73,7 +74,7 @@ export function buildSeoHead(options: SeoPageOptions) {
       { name: "publisher", content: publisher },
       { name: "language", content: locale },
       { name: "theme-color", content: "#ffffff" },
-      { name: "color-scheme", content: "light dark" },
+      { name: "color-scheme", content: "light" },
       { name: "application-name", content: siteName },
       { name: "apple-mobile-web-app-title", content: siteName },
       { property: "og:title", content: fullTitle },
@@ -90,28 +91,60 @@ export function buildSeoHead(options: SeoPageOptions) {
       { name: "twitter:title", content: fullTitle },
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: image },
-      { name: "twitter:site", content: "@curiousdevs" },
-      { name: "twitter:creator", content: "@curiousdevs" },
       article ? { property: "article:publisher", content: publisher } : undefined,
       article ? { property: "article:author", content: author } : undefined,
     ].filter(Boolean),
     links: [
       { rel: "canonical", href: canonical },
-      { rel: "alternate", href: canonical, hreflang: "en" },
-      { rel: "alternate", href: canonical, hreflang: "x-default" },
+      { rel: "alternate", href: canonical, hrefLang: "en" },
+      { rel: "alternate", href: canonical, hrefLang: "x-default" },
       { rel: "alternate", href: `${SITE_DOMAIN}/rss.xml`, type: "application/rss+xml" },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-      { rel: "preconnect", href: "https://www.google-analytics.com" },
-      { rel: "preconnect", href: "https://www.googletagmanager.com" },
-      { rel: "preload", href: "/fonts/inter-400.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: "/fonts/inter-500.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: "/fonts/inter-600.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: "/fonts/inter-700.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: "/fonts/jetbrains-mono-400.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-      { rel: "preload", href: "/fonts/jetbrains-mono-700.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      {
+        rel: "preload",
+        href: "/fonts/inter-400.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
+      {
+        rel: "preload",
+        href: "/fonts/inter-500.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
+      {
+        rel: "preload",
+        href: "/fonts/inter-600.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
+      {
+        rel: "preload",
+        href: "/fonts/inter-700.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
+      {
+        rel: "preload",
+        href: "/fonts/jetbrains-mono-400.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
+      {
+        rel: "preload",
+        href: "/fonts/jetbrains-mono-700.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous" as const,
+      },
     ],
   };
 }
@@ -119,17 +152,32 @@ export function buildSeoHead(options: SeoPageOptions) {
 export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
     name: SITE_NAME,
     url: SITE_DOMAIN,
     logo: `${SITE_DOMAIN}/favicon.svg`,
     email: "hello@curiousdevs.com",
-    sameAs: ["https://www.linkedin.com/", "https://github.com/"],
     description: SITE_DESCRIPTION,
+    areaServed: ["IN", "US", "CA", "GB", "AE"],
+    knowsAbout: [
+      "AI engineering",
+      "RAG systems",
+      "AI agents",
+      "AI evaluation",
+      "AI security",
+      "MLOps",
+      "AI productionization",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "hello@curiousdevs.com",
+      availableLanguage: ["English", "Hindi"],
+    },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Noida",
-      addressRegion: "Uttar Pradesh",
+      addressLocality: "Gurugram",
+      addressRegion: "Haryana",
       addressCountry: "IN",
     },
     foundingDate: "2026",
@@ -147,11 +195,6 @@ export function buildWebSiteSchema() {
     description: SITE_DESCRIPTION,
     publisher: {
       "@id": `${SITE_DOMAIN}/#organization`,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE_DOMAIN}/?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
     },
   };
 }
@@ -182,41 +225,6 @@ export function buildBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
-export function buildSoftwareApplicationSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "AgentGuard",
-    applicationCategory: "SecurityApplication",
-    operatingSystem: "Web, Linux, macOS, Windows",
-    description:
-      "A runtime control plane for AI agents and autonomous tools that enforces deterministic policy before execution.",
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-}
-
-export function buildProductSchema() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: "CuriousDevs Security Platform",
-    description: SITE_DESCRIPTION,
-    brand: { "@type": "Brand", name: SITE_NAME },
-    category: "AI security and compliance software",
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-}
-
 export function buildFaqSchema(questionAnswers: Array<{ question: string; answer: string }>) {
   return {
     "@context": "https://schema.org",
@@ -229,7 +237,11 @@ export function buildFaqSchema(questionAnswers: Array<{ question: string; answer
   };
 }
 
-export function buildHowToSchema(name: string, description: string, steps: Array<{ name: string; text: string }>) {
+export function buildHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string }>,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -244,7 +256,12 @@ export function buildHowToSchema(name: string, description: string, steps: Array
   };
 }
 
-export function buildArticleSchema(path: string, title: string, description: string, datePublished: string) {
+export function buildArticleSchema(
+  path: string,
+  title: string,
+  description: string,
+  datePublished: string,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -284,7 +301,12 @@ export function buildCollectionPageSchema(path: string, title: string, descripti
   };
 }
 
-export function buildTechArticleSchema(path: string, title: string, description: string, datePublished: string) {
+export function buildTechArticleSchema(
+  path: string,
+  title: string,
+  description: string,
+  datePublished: string,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "TechArticle",

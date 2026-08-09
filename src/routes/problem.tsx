@@ -3,18 +3,18 @@ import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { Problem } from "@/components/landing/Problem";
 import { Reveal } from "@/components/landing/Reveal";
-import { PageIntro } from "@/components/landing/PageIntro";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/problem")({
-  head: () => buildSeoHead({
-    path: "/problem",
-    title: "The Problem — Autonomy Without Accountability | CuriousDevs",
-    description:
-      "Borrowed authority, instruction hijack, quiet data exit and machines in motion: the four ways autonomous systems fail silently inside enterprises.",
-    keywords: ["AI autonomy risk", "agent failure modes", "instruction hijack", "AI compliance risk"],
-    ogType: "article",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/problem",
+      title: "The Problem — Why AI Projects Fail in Production | CuriousDevs",
+      description:
+        "Unclear scope, RAG failures, unreliable agents, and missing production systems: the ways AI projects fail inside companies.",
+      keywords: ["AI project failure", "RAG reliability", "agent reliability", "production AI"],
+      ogType: "article",
+    }),
   component: ProblemPage,
 });
 
@@ -27,19 +27,13 @@ function ProblemPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/problem",
-              "The Problem — Autonomy Without Accountability",
-              "The four failure modes we built the checkpoint for in autonomous systems and AI agents.",
+              "The Problem — Why AI Projects Fail in Production",
+              "The failure modes CuriousDevs helps teams diagnose, fix, and prevent in production AI systems.",
             ),
           ),
         }}
       />
       <Nav />
-      <PageIntro
-        eyebrow="Where it breaks"
-        title="Autonomy fails quietly,"
-        accent="and the logs stay green."
-        body="Agents act with credentials nobody scoped, documents rewrite their instructions, and personal records ride out through an integration that looks routine. These are the four patterns we keep finding."
-      />
       <Reveal>
         <Problem />
       </Reveal>

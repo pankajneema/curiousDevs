@@ -11,6 +11,7 @@ import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { PageBackground } from "../components/landing/PageBackground";
+import { ChatAssistant } from "../components/landing/ChatAssistant";
 import {
   buildSeoHead,
   buildOrganizationSchema,
@@ -81,14 +82,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => {
     const seo = buildSeoHead({
       path: "/",
-      title: `${SITE_NAME} — Securing the Autonomous Future`,
+      title: `${SITE_NAME} — AI Engineering for Production Systems`,
       description: SITE_DESCRIPTION,
       keywords: [
-        "AI security",
-        "agent runtime enforcement",
-        "DPDP compliance",
-        "autonomous systems",
-        "AI governance",
+        "AI engineering services",
+        "AI-native development",
+        "AI reliability",
+        "AI audit",
+        "MLOps",
       ],
       image: `${SITE_DOMAIN}/og-image.jpg`,
       ogType: "website",
@@ -156,6 +157,7 @@ function RootComponent() {
         Skip to content
       </a>
       <PageBackground />
+      <ChatAssistant />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

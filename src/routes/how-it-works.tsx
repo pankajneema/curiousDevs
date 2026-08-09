@@ -7,14 +7,15 @@ import { PageIntro } from "@/components/landing/PageIntro";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/how-it-works")({
-  head: () => buildSeoHead({
-    path: "/how-it-works",
-    title: "How It Works — Control Plane & Runtime Enforcement | CuriousDevs",
-    description:
-      "From adversarial discovery and policy signatures to inline runtime enforcement and signed evidence — the five steps behind every CuriousDevs verdict.",
-    keywords: ["runtime enforcement", "policy engine", "AI governance", "control plane"],
-    ogType: "article",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/how-it-works",
+      title: "How It Works — CuriousDevs AI Engineering Delivery",
+      description:
+        "The CuriousDevs delivery system for discovering, building, auditing, optimizing, evaluating, and deploying AI systems.",
+      keywords: ["AI engineering process", "AI audit process", "AI productionization", "MLOps"],
+      ogType: "article",
+    }),
   component: HowItWorksPage,
 });
 
@@ -27,18 +28,18 @@ function HowItWorksPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/how-it-works",
-              "How It Works — Control Plane & Runtime Enforcement",
-              "The five-step mechanism behind every CuriousDevs runtime verdict.",
+              "How It Works — CuriousDevs AI Engineering Delivery",
+              "The evidence-based delivery system behind every CuriousDevs engagement.",
             ),
           ),
         }}
       />
       <Nav />
       <PageIntro
-        eyebrow="The mechanism"
-        title="Decide before the action runs,"
-        accent="prove it afterwards."
-        body="Discovery and evaluation happen off the hot path. Enforcement happens inline, deterministically, in under 10 milliseconds. Every verdict leaves a signed record an auditor can read without trusting us."
+        eyebrow="The delivery system"
+        title="Build or fix the system,"
+        accent="prove the result afterwards."
+        body="Every engagement follows the same discipline: discover, baseline, architect, build or diagnose, evaluate, harden, deploy, and document. No improvement claim without comparable evidence."
       />
       <Reveal>
         <HowItWorks />

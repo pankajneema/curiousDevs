@@ -5,12 +5,12 @@ import { Logo, Wordmark } from "./Logo";
 
 const columns = [
   {
-    title: "Platform",
+    title: "Services",
     links: [
-      { label: "Product overview", to: "/product" },
+      { label: "Service catalog", to: "/product" },
       { label: "How it works", to: "/how-it-works" },
-      { label: "Pricing", to: "/pricing" },
-      { label: "Roadmap", to: "/roadmap" },
+      { label: "Frequently asked questions", to: "/faq" },
+      { label: "Operating model", to: "/roadmap" },
     ],
   },
   {
@@ -51,12 +51,12 @@ export function Footer() {
               <Wordmark />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              The accountability layer for autonomous systems — agents, data and machines under one
-              checkpoint.
+              An AI engineering studio that builds, fixes, and scales serious AI systems for
+              production.
             </p>
             <BookingDialog>
               <button className="btn-quiet mt-6 rounded-none border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold">
-                Book a working session
+                Start an AI Project
               </button>
             </BookingDialog>
           </div>
@@ -92,7 +92,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="inline-flex items-center gap-2">
-                <MapPin className="size-4 text-amber-soft" /> Noida, India
+                <MapPin className="size-4 text-amber-soft" /> Gurugram, India
               </li>
             </ul>
           </div>
@@ -100,7 +100,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-8">
           <span className="eyebrow">© {new Date().getFullYear()} CuriousDevs</span>
-          <span className="eyebrow">Accountable autonomy · Engineered in India</span>
+          <span className="eyebrow">AI engineering studio · Engineered in India</span>
         </div>
       </div>
     </footer>

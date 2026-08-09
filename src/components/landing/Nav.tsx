@@ -22,24 +22,23 @@ const solutionItems = solutions.map((s) => ({
 const resourceItems = [
   {
     label: "How It Works",
-    desc: "Control plane & runtime enforcement",
+    desc: "Build, fix, and scale AI systems",
     to: "/how-it-works" as const,
   },
-  { label: "Roadmap", desc: "2026 – 2030", to: "/roadmap" as const },
-  { label: "The Problem", desc: "Where autonomy breaks", to: "/problem" as const },
+  { label: "The Problem", desc: "Where AI projects break", to: "/problem" as const },
 ];
 
 const flatLinks = [
   // { label: "Pricing", to: "/pricing" as const },
+  { label: "FAQ", to: "/faq" as const },
   { label: "Careers", to: "/careers" as const },
   { label: "Contact", to: "/contact" as const },
 ];
 
 function DropdownTrigger({
-  label, 
+  label,
   open,
   onClick,
-
 }: {
   label: string;
   open: boolean;
@@ -98,7 +97,7 @@ export function Nav() {
           <div ref={ddRef} className="hidden flex-1 items-center gap-5 lg:flex">
             <div className="relative">
               <DropdownTrigger
-                label="Product"
+                label="Services"
                 open={menu === "product"}
                 onClick={() => toggle("product")}
               />
@@ -128,7 +127,7 @@ export function Nav() {
                       search={{ p: undefined }}
                       className="block rounded-none px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
                     >
-                      View all products →
+                      View all services →
                     </Link>
                   </div>
                 </div>
@@ -228,7 +227,7 @@ export function Nav() {
 
         {open && (
           <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-none border border-hairline bg-surface p-2.5 shadow-lg lg:hidden">
-            <p className="eyebrow px-3 pt-2 pb-1">Product</p>
+            <p className="eyebrow px-3 pt-2 pb-1">Services</p>
             <ul className="divide-y divide-[var(--hairline)]">
               {productItems.map((p) => (
                 <li key={p.label}>

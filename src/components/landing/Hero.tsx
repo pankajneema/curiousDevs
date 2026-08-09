@@ -4,19 +4,31 @@ import { Wireframe } from "./Wireframe";
 import { BookingDialog } from "./BookingDialog";
 
 const badgeTicker = [
-  "RUNTIME AGENT CONTROL",
-  "DATA-PROTECTION AUTOPILOT",
-  "FLEET COMMAND LAYER",
-  "ENGINEERED IN INDIA",
+  "AI-NATIVE DEVELOPMENT",
+  "RELIABILITY ENGINEERING",
+  "SECURITY + GUARDRAILS",
+  "AI ENGINEERING STUDIO · EST. 2026",
 ];
 
 const stats = [
-  { value: "45:1", label: "Non-human to human identities", sub: "typical enterprise estate" },
-  { value: "13 May 2027", label: "India's data-protection cutover", sub: "a date nobody can move" },
-  { value: "₹250 cr", label: "Maximum penalty per violation", sub: "under the DPDP Act" },
-  { value: "6 hours", label: "Incident reporting window", sub: "CERT-In directions" },
-  { value: "<10ms", label: "Verdict on every tool call", sub: "no model in the hot path" },
-  { value: "3 layers", label: "Agents, data, machines", sub: "one accountability spine" },
+  {
+    value: "BUILD",
+    label: "AI-native products and features",
+    sub: "from idea to working capability",
+  },
+  {
+    value: "FIX",
+    label: "Accuracy, security, cost, latency",
+    sub: "diagnose the highest-value failure",
+  },
+  {
+    value: "SCALE",
+    label: "Production AI infrastructure",
+    sub: "deployment, MLOps, observability",
+  },
+  { value: "20", label: "Founding engagements per service line", sub: "limited learning cohort" },
+  { value: "8", label: "Production dimensions assessed", sub: "from accuracy to observability" },
+  { value: "01", label: "Integrated delivery system", sub: "baseline to handover" },
 ];
 
 export function Hero() {
@@ -29,7 +41,7 @@ export function Hero() {
             <div className="flex w-fit max-w-full items-center gap-0 overflow-hidden rounded-none border border-hairline bg-surface/80 shadow-[0_8px_24px_rgba(10,20,36,0.06)]">
               <span className="shrink-0 rounded-none border border-amber-accent/40 bg-amber-accent/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.18em] text-amber-accent uppercase">
                 <span className="live-dot mr-2 inline-block size-1.5 rounded-none bg-amber-soft align-middle" />
-                Deep-tech security · Est. 2026
+                AI engineering studio · Est. 2026
               </span>
               <div
                 className="relative hidden w-64 overflow-hidden sm:block"
@@ -51,35 +63,33 @@ export function Hero() {
             </div>
 
             <h1 className="mt-6 text-[clamp(2.6rem,6.5vw,4.4rem)] leading-[0.95] font-extrabold tracking-[-0.03em] sm:mt-8">
-              Give autonomy
+              Build AI
               <br />
-              <span className="text-aurora">a chain of command.</span>
+              <span className="text-aurora">for production.</span>
             </h1>
 
             <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:mt-7 sm:text-[17px]">
-              Software that acts on its own is already inside your stack — booking payments, reading
-              customer records, calling tools you never reviewed. CuriousDevs puts a decision
-              checkpoint in front of every one of those actions, so autonomy stays{" "}
-              <span className="text-foreground">answerable</span>.
+              CuriousDevs builds AI-native products and makes existing AI systems reliable, secure,
+              measurable, and production-ready. Bring us an AI idea, a failing system, or a product
+              that needs to scale.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3 sm:mt-9">
               <BookingDialog>
                 <button className="inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
-                  Book a working session <ArrowRight className="size-4" />
+                  Start an AI Project <ArrowRight className="size-4" />
                 </button>
               </BookingDialog>
-              <a
-                href="/product"
-                className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2"
-              >
-                See the platform
-              </a>
+              <BookingDialog defaultSurface="AI Audit / Assessment">
+                <button className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2">
+                  Audit My Existing AI
+                </button>
+              </BookingDialog>
             </div>
 
-            <p className="eyebrow mt-10 sm:mt-12">Built as one stack</p>
+            <p className="eyebrow mt-10 sm:mt-12">One studio, four ways to engage</p>
             <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-8">
-              {["AgentGuard", "CurioComply", "AeroOS"].map((p, i) => (
+              {["Build", "Audit", "Fix", "Scale"].map((p, i) => (
                 <div key={p} className="flex items-baseline gap-2">
                   <span className="font-mono text-[11px] text-amber-soft">0{i + 1}</span>
                   <span className="text-lg font-semibold tracking-tight">{p}</span>

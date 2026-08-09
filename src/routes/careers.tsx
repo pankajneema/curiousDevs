@@ -1,21 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { PageIntro } from "@/components/landing/PageIntro";
-import { ApplyDialog } from "@/components/landing/ApplyDialog";
-import { roles } from "@/content/site";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/careers")({
-  head: () => buildSeoHead({
-    path: "/careers",
-    title: "Careers — Compliance Lead at CuriousDevs",
-    description:
-      "CuriousDevs is a founding security team hiring one role at a time. Right now: Compliance Lead, Noida, remote-friendly.",
-    keywords: ["careers", "security jobs", "compliance lead", "Noida jobs"],
-    ogType: "website",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/careers",
+      title: "Careers — CuriousDevs",
+      description:
+        "CuriousDevs is not hiring right now. Follow the company for future AI engineering opportunities.",
+      keywords: ["CuriousDevs careers", "AI engineering jobs", "Gurugram technology company"],
+      ogType: "website",
+    }),
   component: CareersPage,
 });
 
@@ -28,8 +26,8 @@ function CareersPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/careers",
-              "Careers — Security Roles at CuriousDevs",
-              "Join the founding team building runtime security infrastructure for agents and fleets.",
+              "Careers — CuriousDevs",
+              "CuriousDevs is not hiring right now.",
             ),
           ),
         }}
@@ -37,46 +35,22 @@ function CareersPage() {
       <Nav />
       <PageIntro
         eyebrow="Careers"
-        title="We're hiring for one role right now,"
-        accent="deliberately."
-        body="CuriousDevs is a founding team, not a department store. We open roles one at a time as the product needs them — right now, that's security compliance. Everyone ships code."
+        title="We are not hiring right now,"
+        accent="and we want to be clear."
+        body="CuriousDevs is focused on building its founding AI engineering service practice. When the next role opens, this page will say exactly what it is and how to apply."
         action={false}
       />
 
       <section className="border-b border-hairline pb-24 sm:pb-28">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-col divide-y divide-[var(--hairline)] border border-hairline bg-surface/70 shadow-[0_8px_24px_rgba(10,20,36,0.04)]">
-            {roles.map((r) => (
-              <div
-                key={r.title}
-                className="cell-hover flex flex-col gap-3 bg-surface/80 p-6 sm:flex-row sm:items-start sm:justify-between sm:p-7"
-              >
-                <div>
-                  <p className="eyebrow">
-                    {r.team} · {r.location}
-                  </p>
-                  <h3 className="mt-2 text-lg font-bold tracking-tight">{r.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                    {r.body}
-                  </p>
-                </div>
-                <ApplyDialog role={r.title}>
-                  <button className="btn-quiet inline-flex shrink-0 items-center gap-2 border border-hairline bg-surface/90 px-5 py-2.5 text-sm font-semibold">
-                    <Mail className="size-3.5" /> Apply
-                  </button>
-                </ApplyDialog>
-              </div>
-            ))}
+          <div className="border border-hairline bg-surface/70 p-7 text-center shadow-[0_8px_24px_rgba(10,20,36,0.04)] sm:p-10">
+            <p className="eyebrow">Current status</p>
+            <h2 className="mt-3 text-2xl font-extrabold tracking-tight">No open roles</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              We are keeping the team intentionally small while we build the service engine. This
+              page will be updated when hiring resumes.
+            </p>
           </div>
-          <p className="mt-8 text-center text-sm text-muted-foreground">
-            Don&apos;t see your role?{" "}
-            <ApplyDialog role="General application">
-              <button className="text-foreground underline underline-offset-4">
-                Write to us anyway
-              </button>
-            </ApplyDialog>
-            .
-          </p>
         </div>
       </section>
 

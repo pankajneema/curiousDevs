@@ -34,66 +34,58 @@ function MockPanel({ title, children }: { title: string; children: ReactNode }) 
 const items = [
   {
     n: "01",
-    title: "Agent IAM",
-    tags: ["LEAST-PRIVILEGE", "SCOPED CREDENTIALS"],
-    body: "Every agent receives a unique, cryptographically-verifiable identity — exactly as employees do.",
+    title: "AI-native Development",
+    tags: ["RAG", "AGENTS"],
+    body: "We design AI capabilities around real users, workflows, data, and production constraints instead of building disconnected demos.",
     points: [
-      "Least-privilege policy per agent, down to the tool and argument",
-      "Short-lived, scoped credentials issued per session, auto-rotated",
-      "Full inventory: every agent, every permission, every credential",
+      "RAG applications, knowledge copilots, and intelligent search",
+      "AI agents, tool use, memory, state, and workflow automation",
+      "AI-native product features with backend and integration design",
     ],
     mock: (
-      <MockPanel title="Agent Inventory">
-        <KV label="support-agent" value="4 tools · scoped" tone="ok" />
-        <KV label="ops-agent" value="7 tools · scoped" tone="ok" />
-        <KV label="kyc-agent" value="2 tools · scoped" tone="ok" />
-        <KV label="rag-pipeline" value="1 tool · review" tone="warn" />
+      <MockPanel title="Build Scope">
+        <KV label="workflow" value="mapped" tone="ok" />
+        <KV label="architecture" value="defined" tone="ok" />
+        <KV label="evaluation set" value="drafted" tone="warn" />
+        <KV label="handover" value="planned" tone="ok" />
       </MockPanel>
     ),
   },
   {
     n: "02",
-    title: "Policy Engine",
-    tags: ["ESCALATE", "DRY-RUN"],
-    body: "Policies are plain YAML, versioned in git — reviewable, testable, auditable.",
+    title: "Retrieval and Evaluation",
+    tags: ["BASELINE", "REGRESSION"],
+    body: "We make quality measurable through test sets, retrieval analysis, edge cases, regression suites, and comparable before-and-after evidence.",
     points: [
-      "Argument limits, spend caps, rate limits, time windows",
-      "Human-in-the-loop escalation for sensitive actions",
-      "Dry-run mode against historical traffic before enforcement",
+      "Chunking, metadata, hybrid retrieval, reranking, and vector tuning",
+      "Accuracy, grounding, hallucination, latency, and cost analysis",
+      "Agent trajectory tests, QA automation, and regression checks",
     ],
     mock: (
-      <MockPanel title="Escalation Request">
-        <KV label="Agent" value="support-agent" />
-        <KV label="Action" value="tool.refund" />
-        <KV label="Amount" value="₹50,000" />
-        <KV label="Risk" value="HIGH · 87/100" tone="bad" />
-        <div className="mt-4 flex gap-2">
-          <span className="flex-1 rounded-none border border-amber-soft/40 bg-amber-soft/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
-            Approve
-          </span>
-          <span className="flex-1 rounded-none border border-danger/40 bg-danger/10 py-1.5 text-center text-[11.5px] font-semibold text-foreground">
-            Deny
-          </span>
-        </div>
+      <MockPanel title="Evaluation Summary">
+        <KV label="accuracy" value="baseline" tone="warn" />
+        <KV label="retrieval" value="measured" tone="ok" />
+        <KV label="edge cases" value="queued" tone="warn" />
+        <KV label="regression" value="tracked" tone="ok" />
       </MockPanel>
     ),
   },
   {
     n: "03",
-    title: "Threat Detection",
-    tags: ["INJECTION", "DRIFT"],
-    body: "Millisecond classifiers screen every call for injection, drift and leakage.",
+    title: "Audit and Diagnosis",
+    tags: ["SECURITY", "FAILURE MAP"],
+    body: "We identify why an existing AI system fails across reliability, security, data flow, cost, and latency before recommending the fix.",
     points: [
-      "Injection detection via fine-tuned classifiers plus heuristics",
-      "Goal-drift detection against expected per-task behaviour",
-      "PII, secret and API-key exfiltration guard on every output",
+      "RAG reliability and AI security and guardrails audits",
+      "Prompt-injection, system-prompt leak, MCP, and tool-permission review",
+      "Root-cause diagnosis with a prioritized remediation roadmap",
     ],
     mock: (
-      <MockPanel title="Attack Vectors Blocked">
+      <MockPanel title="Failure Map">
         {[
-          "User input → injected payload",
-          "Tool response → hijack attempt",
-          "Agent handoff → cross-agent inject",
+          "retrieval → irrelevant context",
+          "agent → unsafe trajectory",
+          "production → missing observability",
         ].map((v) => (
           <div
             key={v}
@@ -101,7 +93,7 @@ const items = [
           >
             <span>{v}</span>
             <span className="rounded-none border border-danger/40 bg-danger/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
-              Blocked
+              Review
             </span>
           </div>
         ))}
@@ -110,41 +102,39 @@ const items = [
   },
   {
     n: "04",
-    title: "Audit & Forensics",
-    tags: ["SOC 2", "DPDP"],
-    body: "A tamper-evident, append-only log of every prompt, call, verdict and response.",
+    title: "Optimization and Hardening",
+    tags: ["COST", "LATENCY"],
+    body: "We improve the system after diagnosis through retrieval changes, model routing, caching, permissions, resilience, and fallback design.",
     points: [
-      "Session replay, reconstructed step-by-step for any incident",
-      "SHA-256 hash per entry — tamper-evident by design",
-      "One-click exports mapped to SOC 2, ISO 27001 and DPDP evidence",
+      "Model routing, semantic caching, and token attribution",
+      "Latency profiling, payload optimization, and cost controls",
+      "Guardrails, access governance, data-leakage prevention, and resilience",
     ],
     mock: (
-      <MockPanel title="Audit Log Entry">
-        <pre className="font-mono text-[11px] leading-relaxed whitespace-pre-wrap text-muted-foreground">{`{
-  "decision": "DENY",
-  "tool": "exec_shell",
-  "agent": "kyc-agent",
-  "latency_ms": 6,
-  "hash": "sha256:a3f9c281…"
-}`}</pre>
+      <MockPanel title="Optimization Plan">
+        <KV label="critical path" value="isolated" tone="ok" />
+        <KV label="model route" value="review" tone="warn" />
+        <KV label="cache policy" value="proposed" tone="ok" />
+        <KV label="security gaps" value="hardened" tone="ok" />
       </MockPanel>
     ),
   },
   {
     n: "05",
-    title: "MCP Security",
-    tags: ["REGISTRY", "RE-VERIFY"],
-    body: "Every MCP server and tool is scanned before it connects — and continuously after.",
+    title: "Production Infrastructure",
+    tags: ["MLOPS", "HANDOVER"],
+    body: "We make a working AI capability operable through infrastructure, deployment, observability, documentation, and knowledge transfer.",
     points: [
-      "Static and behavioural scanning for hidden instructions",
-      "A curated trusted-tools registry the MCP ecosystem is missing",
-      "Continuous re-verification; drift after approval is quarantined",
+      "Docker, Kubernetes, CI/CD, cloud, private, or VPC deployment",
+      "Logs, traces, metrics, alerts, runbooks, release controls, and QA",
+      "Production handover, training, documentation, and ongoing engineering",
     ],
     mock: (
-      <MockPanel title="Connected Tools">
-        <KV label="calendar-mcp" value="verified" tone="ok" />
-        <KV label="crm-mcp" value="verified" tone="ok" />
-        <KV label="unknown-tool-v2" value="quarantined" tone="bad" />
+      <MockPanel title="Production Readiness">
+        <KV label="deployment" value="ready" tone="ok" />
+        <KV label="observability" value="connected" tone="ok" />
+        <KV label="runbooks" value="in review" tone="warn" />
+        <KV label="handover" value="scheduled" tone="ok" />
       </MockPanel>
     ),
   },
@@ -156,9 +146,9 @@ export function Capabilities() {
   return (
     <section className="border-b border-hairline py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="eyebrow">Enforcement capabilities</p>
+        <p className="eyebrow">Engineering capabilities</p>
         <h2 className="mt-4 text-[clamp(2rem,5vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-          Complete <span className="text-muted-foreground">surface coverage.</span>
+          Full lifecycle <span className="text-muted-foreground">AI engineering.</span>
         </h2>
 
         <div className="mt-12 flex flex-col gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)]">

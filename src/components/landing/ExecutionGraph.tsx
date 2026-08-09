@@ -1,9 +1,9 @@
 const stages = [
-  { x: 40, tag: "IDENTITY", title: "Agent IAM" },
-  { x: 224, tag: "ENFORCE", title: "Policy Engine" },
-  { x: 408, tag: "INSPECT", title: "Threat Detection" },
-  { x: 592, tag: "RECORD", title: "Audit & Forensics" },
-  { x: 776, tag: "REGISTRY", title: "MCP Security" },
+  { x: 40, tag: "DISCOVER", title: "Problem" },
+  { x: 224, tag: "BASELINE", title: "Measure" },
+  { x: 408, tag: "ENGINEER", title: "Build / Fix" },
+  { x: 592, tag: "EVALUATE", title: "Re-test" },
+  { x: 776, tag: "HANDOVER", title: "Deploy" },
 ];
 
 const CHECKPOINT_X = 916;
@@ -13,13 +13,13 @@ export function ExecutionGraph() {
   return (
     <section className="border-b border-hairline py-24">
       <div className="mx-auto max-w-6xl px-6">
-        <p className="eyebrow">Runtime execution graph</p>
+        <p className="eyebrow">Delivery execution graph</p>
         <h2 className="mt-4 text-[clamp(1.85rem,4.5vw,3rem)] leading-[1.05] font-extrabold tracking-[-0.03em]">
-          Five modules, <span className="text-muted-foreground">one path to a verdict.</span>
+          One delivery system, <span className="text-muted-foreground">from problem to proof.</span>
         </h2>
         <p className="mt-4 max-w-xl text-sm text-muted-foreground">
-          Every tool-call walks the same graph, in the same order. Nothing skips a stage, and
-          nothing executes before the checkpoint returns a verdict.
+          Every engagement follows the same evidence-based path. The work may be Build, Fix, or
+          Scale, but the baseline, evaluation, and handover discipline stays consistent.
         </p>
 
         <div className="card-lift panel-sheen mt-12 overflow-x-auto rounded-none border border-hairline bg-surface p-6 sm:p-10">
@@ -27,7 +27,7 @@ export function ExecutionGraph() {
             viewBox="0 0 980 160"
             className="w-full min-w-[820px]"
             role="img"
-            aria-label="Diagram of the five AgentGuard modules connected in sequence, ending in a signed verdict"
+            aria-label="Diagram of the CuriousDevs delivery stages connected from discovery to deployment"
           >
             <defs>
               <linearGradient id="eg-line" x1="0" x2="1">
@@ -146,7 +146,7 @@ export function ExecutionGraph() {
               textAnchor="middle"
               className="fill-muted-foreground font-mono text-[9px] tracking-[0.16em] uppercase"
             >
-              Verdict
+              Handover
             </text>
           </svg>
         </div>

@@ -3,26 +3,32 @@
   <channel>
     <title>CuriousDevs</title>
     <link>https://curiousdevs.com</link>
-    <description>Security infrastructure for autonomous systems, AI agents and machine fleets.</description>
+    <description>AI engineering services for building, auditing, fixing, and scaling production AI systems.</description>
     <language>en-us</language>
     <atom:link href="https://curiousdevs.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CuriousDevs — Security Infrastructure for Autonomous Systems</title>
+      <title>CuriousDevs — AI Engineering Studio for Production Systems</title>
       <link>https://curiousdevs.com/</link>
       <guid>https://curiousdevs.com/</guid>
-      <description>Runtime security, compliance evidence and fleet governance for autonomous systems.</description>
+      <description>Build AI-native products, audit existing systems, fix reliability problems, and scale AI into production.</description>
     </item>
     <item>
-      <title>Products — AgentGuard, CurioComply &amp; AeroOS</title>
+      <title>AI Engineering Services — Build, Audit, Fix &amp; Scale</title>
       <link>https://curiousdevs.com/product</link>
       <guid>https://curiousdevs.com/product</guid>
-      <description>Three modules, one execution path for security, evidence and fleet governance.</description>
+      <description>Specialized AI engineering across development, assessment, reliability, security, optimization, and production infrastructure.</description>
     </item>
     <item>
-      <title>How It Works — Runtime Enforcement</title>
+      <title>How It Works — Evidence-Based AI Engineering</title>
       <link>https://curiousdevs.com/how-it-works</link>
       <guid>https://curiousdevs.com/how-it-works</guid>
-      <description>The five-step mechanism behind every CuriousDevs runtime verdict.</description>
+      <description>How CuriousDevs discovers, baselines, engineers, evaluates, secures, and hands over AI systems.</description>
+    </item>
+    <item>
+      <title>FAQ — CuriousDevs AI Engineering Studio</title>
+      <link>https://curiousdevs.com/faq</link>
+      <guid>https://curiousdevs.com/faq</guid>
+      <description>Answers about AI engineering delivery, audits, security, data access, timelines, ownership, and engagement terms.</description>
     </item>
   </channel>
 </rss>

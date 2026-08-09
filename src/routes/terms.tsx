@@ -5,14 +5,15 @@ import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
-  head: () => buildSeoHead({
-    path: "/terms",
-    title: "Terms of Service | CuriousDevs",
-    description: "The terms that govern your use of curiousdevs.com.",
-    keywords: ["terms of service", "website terms", "CuriousDevs legal"],
-    ogType: "website",
-    robots: "index, follow",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/terms",
+      title: "Terms of Service | CuriousDevs",
+      description: "The terms that govern your use of curiousdevs.com.",
+      keywords: ["terms of service", "website terms", "CuriousDevs legal"],
+      ogType: "website",
+      robots: "index, follow",
+    }),
   component: TermsPage,
 });
 
@@ -26,7 +27,7 @@ function TermsPage() {
             buildWebPageSchema(
               "/terms",
               "Terms of Service",
-              "The terms governing use of curiousdevs.com and the published product overview pages.",
+              "The terms governing use of curiousdevs.com and the published CuriousDevs service pages.",
             ),
           ),
         }}
@@ -36,7 +37,7 @@ function TermsPage() {
         eyebrow="Legal"
         title="Terms of Service"
         updated="28 July 2026"
-        intro="These terms cover your use of curiousdevs.com — the marketing website. AgentGuard, CurioComply, and AeroOS will each carry their own terms of service once generally available; nothing here should be read as a service agreement for a product that hasn't shipped."
+        intro="These terms cover your use of curiousdevs.com — the marketing website and service inquiry flows. They do not replace a statement of work, data-processing agreement, or other written terms agreed for a client engagement."
       >
         <LegalSection n="01" title="Acceptance">
           <p>
@@ -48,19 +49,16 @@ function TermsPage() {
         <LegalSection n="02" title="What this site is">
           <p>
             curiousdevs.com is an informational and lead-generation website describing CuriousDevs'
-            products, roadmap, and how to get in touch. It is not, itself, a software product, and
-            using it does not create a customer relationship, a support obligation, or a service
-            level agreement of any kind.
+            services, delivery process, operating model, and how to get in touch. Using it does not
+            create a customer relationship, a delivery obligation, or a service level agreement.
           </p>
         </LegalSection>
 
         <LegalSection n="03" title="Forward-looking statements">
           <p>
-            Product descriptions, pricing, timelines, and the "shipping from 2026" and similar
-            horizon labels throughout this site describe our current plans and are not commitments.
-            Product screens shown on this site — including the AgentGuard console preview — are
-            illustrative mockups, not live product data, and are labeled as such on the page.
-            Features, pricing, and availability may change before general release.
+            Service descriptions, timelines, capability examples, and illustrative workspace screens
+            describe our current approach and are not commitments. Final deliverables, timelines,
+            acceptance criteria, data handling, and fees are defined in a signed statement of work.
           </p>
         </LegalSection>
 
@@ -91,7 +89,7 @@ function TermsPage() {
         <LegalSection n="07" title="Governing law">
           <p>
             These terms are governed by the laws of India. Disputes arising from use of this site
-            fall under the jurisdiction of the courts in Noida, Uttar Pradesh.
+            fall under the jurisdiction of the courts in Gurugram, Haryana.
           </p>
         </LegalSection>
 
@@ -110,7 +108,7 @@ function TermsPage() {
             >
               hello@curiousdevs.com
             </a>{" "}
-            · CuriousDevs, Noida, India.
+            · CuriousDevs, Gurugram, India.
           </p>
         </LegalSection>
       </LegalDoc>

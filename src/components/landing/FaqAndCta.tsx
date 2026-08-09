@@ -28,25 +28,24 @@ export function FaqAndCta({ schema = false }: { schema?: boolean } = {}) {
       <section id="contact" className="relative border-b border-hairline py-24 sm:py-32">
         <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-8">
           <h2 className="text-[clamp(2rem,5.5vw,3.75rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-            Let something decide for you.{" "}
-            <span className="text-aurora">Just not unsupervised.</span>
+            Have an AI idea? Build it.{" "}
+            <span className="text-aurora">Have an AI system? Improve it.</span>
           </h2>
           <p className="mt-5 text-muted-foreground sm:mt-6">
-            Bring one workflow you are nervous about. We will show you exactly where the checkpoint
-            goes and what it would have stopped last month.
+            Tell us what you are trying to build or what is going wrong with the AI you already
+            have. We will help define the right service and next step.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 sm:mt-9">
             <BookingDialog>
               <button className="inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
-                Book a working session <ArrowRight className="size-4" />
+                Start an AI Project <ArrowRight className="size-4" />
               </button>
             </BookingDialog>
-            <a
-              href="/product"
-              className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2"
-            >
-              See the platform <ArrowRight className="size-4" />
-            </a>
+            <BookingDialog defaultSurface="AI Audit / Assessment">
+              <button className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2">
+                Audit My Existing AI <ArrowRight className="size-4" />
+              </button>
+            </BookingDialog>
           </div>
         </div>
       </section>
@@ -59,8 +58,8 @@ export function FaqAndCta({ schema = false }: { schema?: boolean } = {}) {
               The things people ask first
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-muted-foreground sm:mt-4">
-              Short answers on how this runs, what it costs you in speed, and what you can hand to
-              an auditor.
+              Short answers on what we build, what we fix, how we measure improvement, and how
+              founding engagements work.
             </p>
           </div>
 

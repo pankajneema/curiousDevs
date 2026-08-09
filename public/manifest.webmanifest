@@ -1,7 +1,7 @@
 {
   "name": "CuriousDevs",
   "short_name": "CuriousDevs",
-  "description": "Security infrastructure for autonomous systems, AI agents and machine fleets.",
+  "description": "AI engineering services for building, auditing, fixing, and scaling production AI systems.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

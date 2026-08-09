@@ -32,15 +32,15 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
     <section className="relative border-b border-hairline pt-32 pb-20">
       <div className="relative mx-auto max-w-6xl px-6">
         <p className="eyebrow flex items-center gap-2">
-          <span className="live-dot size-1.5 rounded-none bg-amber-accent" /> The platform
+          <span className="live-dot size-1.5 rounded-none bg-amber-accent" /> Services
         </p>
         <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.02] font-extrabold tracking-[-0.03em]">
-          One checkpoint, <span className="text-aurora">three places it has to hold.</span>
+          One studio, <span className="text-aurora">four ways to engage.</span>
         </h1>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          These aren&apos;t three separate bets. Governing what agents do produces the evidence
-          regulators want, and both are the prerequisite for trusting machines that move on their
-          own.
+          Choose the entry point that matches your situation: build a new AI capability, understand
+          an existing system, fix the highest-value problems, or take working AI into production.
+          The same engineering discipline runs through all four.
         </p>
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] lg:grid-cols-[260px_minmax(0,1fr)]">
@@ -65,14 +65,17 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                   <span className="mt-1.5 text-base font-bold tracking-tight text-foreground">
                     {item.name}
                   </span>
-                  <span className="mt-0.5 text-xs text-muted-foreground">{item.category}</span>
+                  <span className="mt-0.5 block max-w-full truncate text-xs text-muted-foreground">
+                    {item.category}
+                  </span>
                 </button>
               );
             })}
             <div className="flex-1 bg-surface p-5">
               <p className="eyebrow">Sequence</p>
               <p className="mt-2.5 text-[13px] leading-relaxed text-muted-foreground">
-                Each layer is usable alone, and worth more when the one below it is already running.
+                Start with the problem you have today. We scope the smallest workstream that can
+                produce a measurable outcome.
               </p>
             </div>
           </div>
@@ -102,7 +105,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                     <span className="size-2 rounded-none bg-amber-soft/50" />
                   </div>
                   <span className="font-mono text-[11px] tracking-wide text-muted-foreground">
-                    curiousdevs platform · {p.slug}
+                    curiousdevs services · {p.slug}
                   </span>
                 </div>
                 <span className="flex items-center gap-1.5 rounded-none border border-amber-accent/30 bg-amber-accent/10 px-2 py-0.5 font-mono text-[9.5px] tracking-wide text-foreground uppercase">
@@ -177,7 +180,8 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
               )}
             </div>
             <p className="mt-2 px-6 text-[11px] text-muted-foreground italic sm:px-7">
-              Illustrative console, not live telemetry — {p.name} is {p.horizon.toLowerCase()}.
+              Illustrative workspace, not live client data — {p.name} engagements are currently
+              open.
             </p>
 
             <div className="p-6 pt-6 sm:p-7 sm:pt-6">
@@ -194,13 +198,13 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                 href="/contact"
                 className="mt-6 inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
               >
-                Walk through {p.name} <ArrowRight className="size-4" />
+                Discuss {p.name} <ArrowRight className="size-4" />
               </a>
             </div>
           </article>
         </div>
 
-        <div className="mt-10 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] md:grid-cols-3">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-4">
           {products.map((item, i) => (
             <button
               key={item.slug}
@@ -212,10 +216,12 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
                 i === active ? "bg-surface-2" : "bg-surface hover:bg-surface-2/60"
               }`}
             >
-              <span className="font-mono text-xs text-foreground">LAYER {item.n}</span>
+              <span className="font-mono text-xs text-foreground">SERVICE {item.n}</span>
               <h3 className="mt-3 text-lg font-bold tracking-tight">{item.name}</h3>
-              <p className="eyebrow mt-1">{item.category}</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.line}</p>
+              <p className="eyebrow mt-1 truncate">{item.category}</p>
+              <p className="mt-3 truncate text-sm leading-relaxed text-muted-foreground">
+                {item.line}
+              </p>
             </button>
           ))}
         </div>

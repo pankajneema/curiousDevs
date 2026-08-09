@@ -2,7 +2,7 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { sendContactMessage } from "@/lib/actions";
 
-const surfaces = ["AI agents", "Data & DPDP", "Machine fleets"];
+const surfaces = ["Build AI", "AI Audit / Assessment", "Fix existing AI", "Scale to production"];
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
@@ -78,7 +78,7 @@ export function ContactForm() {
       </Field>
 
       <fieldset>
-        <legend className="eyebrow mb-2">What are you securing</legend>
+        <legend className="eyebrow mb-2">What do you need help with</legend>
         <div className="flex flex-wrap gap-2">
           {surfaces.map((s) => (
             <button
@@ -98,7 +98,7 @@ export function ContactForm() {
         </div>
       </fieldset>
 
-      <Field id="ct-notes" label="The workflow you want reviewed">
+      <Field id="ct-notes" label="What are you building or trying to fix">
         <textarea id="ct-notes" name="notes" rows={4} className={inputCls} />
       </Field>
 

@@ -7,14 +7,22 @@ import { PageIntro } from "@/components/landing/PageIntro";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/pricing")({
-  head: () => buildSeoHead({
-    path: "/pricing",
-    title: "Pricing — AgentGuard, CurioComply & AeroOS | CuriousDevs",
-    description:
-      "Open-core pricing for AgentGuard, India-first tiers for CurioComply, and per-robot pricing for AeroOS.",
-    keywords: ["AI security pricing", "AgentGuard pricing", "DPDP compliance pricing", "AeroOS pricing"],
-    ogType: "website",
-  }),
+  head: () =>
+    buildSeoHead({
+      path: "/pricing",
+      title: "Services — Build, Fix, and Scale AI | CuriousDevs",
+      description:
+        "Explore CuriousDevs service lines for AI-native development, audits, diagnosis, optimization, hardening, and production infrastructure.",
+      keywords: [
+        "AI engineering services",
+        "AI development",
+        "AI audit",
+        "AI optimization",
+        "MLOps",
+      ],
+      ogType: "website",
+      robots: "noindex, follow",
+    }),
   component: PricingPage,
 });
 
@@ -27,18 +35,18 @@ function PricingPage() {
           __html: JSON.stringify(
             buildWebPageSchema(
               "/pricing",
-              "Pricing — AgentGuard, CurioComply & AeroOS",
-              "Open-core pricing for AgentGuard, India-first tiers for CurioComply, and per-robot pricing for AeroOS.",
+              "Services — Build, Fix, and Scale AI",
+              "AI-native development, audit, diagnosis, optimization, hardening, and production infrastructure from CuriousDevs.",
             ),
           ),
         }}
       />
       <Nav />
       <PageIntro
-        eyebrow="Pricing"
-        title="Free to run yourself,"
-        accent="priced when you need the cloud."
-        body="Start on AgentGuard's open-source core with zero limits on your own infrastructure. CurioComply and AeroOS price the way their markets expect — India-first and per-robot."
+        eyebrow="Services"
+        title="Build AI for production,"
+        accent="fix AI that is already failing."
+        body="We are not publishing fixed prices during the founding customer cohort. Tell us what you are building or what is going wrong, and we will return with a scoped proposal after discovery."
         action={false}
       />
       <Pricing />
