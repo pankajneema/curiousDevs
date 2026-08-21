@@ -34,7 +34,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://curiousdevs.com/sitemap.xml
+Sitemap: https://www.curiousdevs.com/sitemap.xml
 `;
 
         return new Response(body, {

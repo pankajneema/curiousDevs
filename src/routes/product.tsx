@@ -15,7 +15,7 @@ export const Route = createFileRoute("/product")({
   head: () =>
     buildSeoHead({
       path: "/product",
-      title: "AI Engineering Services — Build, Fix, and Scale | CuriousDevs",
+      title: "AI Engineering Services — Build, Audit, Fix & Scale | CuriousDevs",
       description:
         "Explore CuriousDevs services for AI-native development, audits, diagnosis, optimization, hardening, and production infrastructure.",
       keywords: [
@@ -61,7 +61,7 @@ function ProductPage() {
                 name: service.name,
                 serviceType: service.category,
                 description: service.summary,
-                provider: { "@id": "https://curiousdevs.com/#organization" },
+                provider: { "@id": "https://www.curiousdevs.com/#organization" },
                 areaServed: ["IN", "US", "CA", "GB", "AE"],
               },
             })),

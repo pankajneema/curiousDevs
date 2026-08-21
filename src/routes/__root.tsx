@@ -106,7 +106,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       ],
       links: [
         { rel: "stylesheet", href: appCss },
-        ...seo.links,
+        // Every route sets its own canonical/hrefLang via buildSeoHead (see
+        // e.g. routes/index.tsx for "/"). TanStack Router concatenates
+        // `links` across the route tree instead of deduping by rel like it
+        // does for `meta`, so including seo.links here unfiltered would
+        // stack this root's "/" canonical onto every single page's <head>
+        // alongside its real one — two conflicting canonical tags per page.
+        ...seo.links.filter((link) => link.rel !== "canonical" && !("hrefLang" in link)),
         { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

@@ -26,6 +26,7 @@ const resourceItems = [
     to: "/how-it-works" as const,
   },
   { label: "The Problem", desc: "Where AI projects break", to: "/problem" as const },
+  { label: "Blog", desc: "AI engineering notes", to: "/blog" as const },
 ];
 
 const flatLinks = [

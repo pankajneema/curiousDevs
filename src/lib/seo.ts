@@ -1,5 +1,5 @@
 export const SITE_NAME = "CuriousDevs";
-export const SITE_DOMAIN = "https://curiousdevs.com";
+export const SITE_DOMAIN = "https://www.curiousdevs.com";
 export const SITE_DESCRIPTION =
   "CuriousDevs is an AI Engineering Studio that builds, audits, fixes, and scales reliable AI systems for teams moving from prototype to production.";
 export const DEFAULT_IMAGE = `${SITE_DOMAIN}/og-image.jpg`;
@@ -37,6 +37,7 @@ export type SeoPageOptions = {
   publisher?: string;
   article?: boolean;
   breadcrumbs?: BreadcrumbItem[];
+  canonicalUrl?: string;
 };
 
 export function buildCanonicalUrl(path: string) {
@@ -58,9 +59,10 @@ export function buildSeoHead(options: SeoPageOptions) {
     author = SITE_NAME,
     publisher = SITE_NAME,
     article = false,
+    canonicalUrl,
   } = options;
 
-  const canonical = buildCanonicalUrl(path);
+  const canonical = canonicalUrl || buildCanonicalUrl(path);
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
   return {
@@ -298,6 +300,31 @@ export function buildCollectionPageSchema(path: string, title: string, descripti
     name: title,
     url: buildCanonicalUrl(path),
     description,
+  };
+}
+
+export function buildBlogPostingSchema(
+  path: string,
+  title: string,
+  description: string,
+  datePublished: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url: buildCanonicalUrl(path),
+    datePublished,
+    dateModified: datePublished,
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+    },
+    publisher: {
+      "@id": `${SITE_DOMAIN}/#organization`,
+    },
+    mainEntityOfPage: buildCanonicalUrl(path),
   };
 }
 

@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CuriousDevs</title>
-    <link>https://curiousdevs.com</link>
+    <link>https://www.curiousdevs.com</link>
     <description>AI engineering services for building, auditing, fixing, and scaling production AI systems.</description>
     <language>en-us</language>
-    <atom:link href="https://curiousdevs.com/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.curiousdevs.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CuriousDevs — AI Engineering Studio for Production Systems</title>
-      <link>https://curiousdevs.com/</link>
-      <guid>https://curiousdevs.com/</guid>
+      <link>https://www.curiousdevs.com/</link>
+      <guid>https://www.curiousdevs.com/</guid>
       <description>Build AI-native products, audit existing systems, fix reliability problems, and scale AI into production.</description>
     </item>
     <item>
       <title>AI Engineering Services — Build, Audit, Fix &amp; Scale</title>
-      <link>https://curiousdevs.com/product</link>
-      <guid>https://curiousdevs.com/product</guid>
+      <link>https://www.curiousdevs.com/product</link>
+      <guid>https://www.curiousdevs.com/product</guid>
       <description>Specialized AI engineering across development, assessment, reliability, security, optimization, and production infrastructure.</description>
     </item>
     <item>
       <title>How It Works — Evidence-Based AI Engineering</title>
-      <link>https://curiousdevs.com/how-it-works</link>
-      <guid>https://curiousdevs.com/how-it-works</guid>
+      <link>https://www.curiousdevs.com/how-it-works</link>
+      <guid>https://www.curiousdevs.com/how-it-works</guid>
       <description>How CuriousDevs discovers, baselines, engineers, evaluates, secures, and hands over AI systems.</description>
     </item>
     <item>
       <title>FAQ — CuriousDevs AI Engineering Studio</title>
-      <link>https://curiousdevs.com/faq</link>
-      <guid>https://curiousdevs.com/faq</guid>
+      <link>https://www.curiousdevs.com/faq</link>
+      <guid>https://www.curiousdevs.com/faq</guid>
       <description>Answers about AI engineering delivery, audits, security, data access, timelines, ownership, and engagement terms.</description>
     </item>
   </channel>
