@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { format } from "date-fns";
+import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
-import { getAllPosts } from "@/lib/blog";
+import { Wireframe } from "@/components/landing/Wireframe";
+import { BookingDialog } from "@/components/landing/BookingDialog";
+import { getAllPosts, getCategories, type BlogPost } from "@/lib/blog";
 import { buildSeoHead, buildCollectionPageSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
@@ -18,8 +22,86 @@ export const Route = createFileRoute("/blog/")({
   component: BlogIndexPage,
 });
 
+function PostMeta({ post }: { post: BlogPost }) {
+  return (
+    <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+      <time dateTime={post.date}>{format(new Date(post.date), "MMM d, yyyy").toUpperCase()}</time>
+      <span aria-hidden="true">·</span>
+      <span>{post.readingTime.toUpperCase()}</span>
+    </p>
+  );
+}
+
+function FeaturedCard({ post }: { post: BlogPost }) {
+  return (
+    <Link
+      to="/blog/$slug"
+      params={{ slug: post.slug }}
+      className="group grid overflow-hidden border border-hairline sm:grid-cols-[1.1fr_1fr]"
+    >
+      <div
+        className="relative aspect-[16/10] overflow-hidden bg-[var(--ink)] sm:aspect-auto"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          backgroundSize: "18px 18px",
+        }}
+      >
+        <Wireframe className="top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2" />
+      </div>
+      <div className="flex flex-col justify-center gap-3 bg-surface p-8 sm:p-10">
+        <p className="font-mono text-xs tracking-wide text-amber-accent uppercase">
+          01 / {post.category}
+        </p>
+        <h2 className="text-2xl leading-tight font-extrabold tracking-tight transition-colors group-hover:text-amber-accent sm:text-[1.75rem]">
+          {post.title}
+        </h2>
+        <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{post.description}</p>
+        <div className="mt-2 flex items-center justify-between">
+          <PostMeta post={post} />
+          <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+function LatestRow({ post, index }: { post: BlogPost; index: number }) {
+  return (
+    <Link
+      to="/blog/$slug"
+      params={{ slug: post.slug }}
+      className="group flex items-baseline gap-6 border-b border-hairline py-7 first:pt-0"
+    >
+      <span className="w-10 shrink-0 font-mono text-2xl font-extrabold text-muted-foreground/40 tabular-nums">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+          {post.category}
+        </p>
+        <h3 className="mt-1 text-lg font-bold tracking-tight transition-colors group-hover:text-amber-accent">
+          {post.title}
+        </h3>
+        <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          {post.description}
+        </p>
+      </div>
+      <div className="hidden shrink-0 flex-col items-end gap-2 text-right sm:flex">
+        <PostMeta post={post} />
+      </div>
+      <ArrowRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
+    </Link>
+  );
+}
+
 function BlogIndexPage() {
   const posts = getAllPosts();
+  const categories = getCategories();
+  const [active, setActive] = useState("ALL");
+
+  const [featured, ...rest] = posts;
+  const filtered =
+    active === "ALL" ? rest : rest.filter((p) => p.category.toUpperCase() === active);
 
   return (
     <main id="main-content" className="relative">
@@ -36,49 +118,73 @@ function BlogIndexPage() {
         }}
       />
       <Nav />
-      <section className="mx-auto max-w-5xl px-6 pb-24 pt-36 sm:px-8 sm:pb-32">
-        <div className="max-w-2xl">
-          <p className="eyebrow flex items-center gap-2 text-amber-accent">
-            <span className="live-dot inline-block size-1.5 rounded-none bg-amber-accent" />
-            Blog
-          </p>
-          <h1 className="mt-4 text-[clamp(2.4rem,6vw,4.75rem)] leading-[0.98] font-extrabold tracking-[-0.04em]">
-            AI engineering notes.
+      <section className="mx-auto max-w-6xl px-6 pt-32 sm:px-8 sm:pt-36">
+        <p className="eyebrow text-amber-accent">/ Blog</p>
+        <div className="mt-4 flex flex-col gap-6 border-b border-hairline pb-10 sm:flex-row sm:items-end sm:justify-between">
+          <h1 className="max-w-xl text-[clamp(2.1rem,5vw,3.25rem)] leading-[1.03] font-extrabold tracking-[-0.03em]">
+            Engineering AI for production.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
             Technical notes on building, auditing, and scaling AI systems in production.
           </p>
         </div>
 
-        <div className="mt-14 flex flex-col gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)]">
-          {posts.map((post, i) => (
-            <Link
-              key={post.slug}
-              to="/blog/$slug"
-              params={{ slug: post.slug }}
-              className="cell-hover group flex flex-col gap-1 bg-surface p-6 sm:flex-row sm:items-baseline sm:gap-6 sm:p-8"
-            >
-              <span className="font-mono text-xs text-amber-accent sm:w-10 sm:shrink-0">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="eyebrow flex items-center gap-2 text-muted-foreground">
-                  <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{post.readingTime}</span>
-                </p>
-                <h2 className="mt-2 text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-amber-accent sm:text-2xl">
-                  {post.title}
-                </h2>
-                <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-                  {post.description}
-                </p>
-              </div>
-            </Link>
-          ))}
+        {featured && (
+          <div className="pt-10 sm:pt-12">
+            <p className="eyebrow">Featured</p>
+            <div className="mt-5">
+              <FeaturedCard post={featured} />
+            </div>
+          </div>
+        )}
+
+        {rest.length > 0 && (
+          <div className="pt-16 sm:pt-20">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-hairline pb-4">
+              <p className="eyebrow">Latest</p>
+              {categories.length > 1 && (
+                <div className="flex flex-wrap gap-2 font-mono text-xs">
+                  {["ALL", ...categories.map((c) => c.toUpperCase())].map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => setActive(c)}
+                      className={`border px-2.5 py-1 tracking-wide transition-colors ${
+                        active === c
+                          ? "border-foreground bg-foreground text-background"
+                          : "border-hairline text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="mt-2">
+              {filtered.map((post, i) => (
+                <LatestRow key={post.slug} post={post} index={i} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border border-hairline bg-surface-2 px-8 py-10 sm:mt-20 sm:flex-row sm:items-center">
+          <div>
+            <p className="text-lg font-bold tracking-tight sm:text-xl">
+              Have an AI system worth building?
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">Let's make it production-ready.</p>
+          </div>
+          <BookingDialog>
+            <button className="btn-shine flex shrink-0 items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm font-semibold text-background">
+              Start an AI project <ArrowRight className="size-4" />
+            </button>
+          </BookingDialog>
         </div>
       </section>
-      <Footer />
+      <div className="mt-24 sm:mt-32">
+        <Footer />
+      </div>
     </main>
   );
 }

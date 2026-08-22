@@ -224,17 +224,30 @@
   font-size: 15px;
   line-height: 1.75;
   color: var(--muted-foreground);
+  counter-reset: section;
 
   & > * + * {
     margin-top: 1.25em;
   }
 
   & h2 {
-    margin-top: 2em;
+    margin-top: 3em;
+    scroll-margin-top: 6.5rem;
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--foreground);
+    counter-increment: section;
+  }
+
+  & h2::before {
+    content: counter(section, decimal-leading-zero);
+    display: block;
+    margin-bottom: 0.5em;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--signal);
   }
 
   & h3 {

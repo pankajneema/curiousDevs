@@ -30,6 +30,7 @@ const resourceItems = [
 ];
 
 const flatLinks = [
+  { label: "Product", to: "/janus" as const },
   // { label: "Pricing", to: "/pricing" as const },
   { label: "FAQ", to: "/faq" as const },
   { label: "Careers", to: "/careers" as const },

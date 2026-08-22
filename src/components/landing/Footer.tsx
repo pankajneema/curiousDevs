@@ -7,6 +7,7 @@ const columns = [
   {
     title: "Services",
     links: [
+      { label: "Janus (product)", to: "/janus" },
       { label: "Service catalog", to: "/product" },
       { label: "How it works", to: "/how-it-works" },
       { label: "Frequently asked questions", to: "/faq" },

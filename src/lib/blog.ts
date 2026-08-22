@@ -1,13 +1,16 @@
-import { marked } from "marked";
+import { Marked } from "marked";
 
 const PRODUCT_SERVICE_SLUGS = ["build", "audit", "fix", "scale"] as const;
 export type ProductServiceSlug = (typeof PRODUCT_SERVICE_SLUGS)[number];
+
+export type BlogHeading = { id: string; text: string };
 
 export type BlogPostFrontmatter = {
   title: string;
   slug: string;
   description: string;
   date: string;
+  category: string;
   targetQuery: string;
   canonical: string;
   service: ProductServiceSlug;
@@ -16,6 +19,7 @@ export type BlogPostFrontmatter = {
 export type BlogPost = BlogPostFrontmatter & {
   html: string;
   readingTime: string;
+  headings: BlogHeading[];
 };
 
 const WORDS_PER_MINUTE = 200;
@@ -23,7 +27,15 @@ const WORDS_PER_MINUTE = 200;
 function computeReadingTime(content: string) {
   const words = content.trim().split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(words / WORDS_PER_MINUTE));
-  return `${minutes} min read`;
+  return minutes;
+}
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 function stripQuotes(value: string) {
@@ -61,6 +73,27 @@ function parseFrontmatter(source: string): { data: Record<string, string>; conte
   return { data, content };
 }
 
+/**
+ * A fresh Marked instance per post rather than the module-level singleton —
+ * the renderer needs to collect h2 headings (for the sticky TOC) as a side
+ * effect of parsing, and per-instance state keeps that from leaking across
+ * posts if this ever runs concurrently.
+ */
+function renderMarkdown(content: string): { html: string; headings: BlogHeading[] } {
+  const headings: BlogHeading[] = [];
+  const marked = new Marked({
+    renderer: {
+      heading({ tokens, depth, text }) {
+        const id = slugify(text);
+        if (depth === 2) headings.push({ id, text });
+        return `<h${depth} id="${id}">${this.parser.parseInline(tokens)}</h${depth}>\n`;
+      },
+    },
+  });
+  const html = marked.parse(content, { async: false }) as string;
+  return { html, headings };
+}
+
 const rawPosts = import.meta.glob("/src/content/blog/*.md", {
   eager: true,
   query: "?raw",
@@ -82,16 +115,21 @@ function parsePost(source: string, filePath: string): BlogPost {
     );
   }
 
+  const { html, headings } = renderMarkdown(content);
+  const minutes = computeReadingTime(content);
+
   return {
     title: data.title,
     slug: data.slug,
     description: data.description,
     date: data.date,
+    category: data.category || "Notes",
     targetQuery: data.targetQuery ?? "",
     canonical: data.canonical ?? "",
     service: data.service as ProductServiceSlug,
-    html: marked.parse(content, { async: false }),
-    readingTime: computeReadingTime(content),
+    html,
+    headings,
+    readingTime: `${minutes} min read`,
   };
 }
 
@@ -105,4 +143,8 @@ export function getAllPosts(): BlogPost[] {
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   return allPosts.find((post) => post.slug === slug);
+}
+
+export function getCategories(): string[] {
+  return Array.from(new Set(allPosts.map((post) => post.category)));
 }

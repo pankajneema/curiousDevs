@@ -14,6 +14,7 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as JanusRouteImport } from './routes/janus'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProblemRouteImport } from './routes/problem'
@@ -50,6 +51,11 @@ const FaqRoute = FaqRouteImport.update({
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JanusRoute = JanusRouteImport.update({
+  id: '/janus',
+  path: '/janus',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/janus': typeof JanusRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/janus': typeof JanusRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/janus': typeof JanusRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/how-it-works'
+    | '/janus'
     | '/pricing'
     | '/privacy'
     | '/problem'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/how-it-works'
+    | '/janus'
     | '/pricing'
     | '/privacy'
     | '/problem'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/faq'
     | '/how-it-works'
+    | '/janus'
     | '/pricing'
     | '/privacy'
     | '/problem'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  JanusRoute: typeof JanusRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ProblemRoute: typeof ProblemRoute
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       path: '/how-it-works'
       fullPath: '/how-it-works'
       preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/janus': {
+      id: '/janus'
+      path: '/janus'
+      fullPath: '/janus'
+      preLoaderRoute: typeof JanusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -381,6 +401,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   HowItWorksRoute: HowItWorksRoute,
+  JanusRoute: JanusRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ProblemRoute: ProblemRoute,
