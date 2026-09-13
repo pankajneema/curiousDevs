@@ -117,7 +117,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         // stack this root's "/" canonical onto every single page's <head>
         // alongside its real one — two conflicting canonical tags per page.
         ...seo.links.filter((link) => link.rel !== "canonical" && !("hrefLang" in link)),
-        { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+        {
+          rel: "icon",
+          href: "/brand/curiousdevs-mark-128.png",
+          type: "image/png",
+          sizes: "128x126",
+        },
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       ],

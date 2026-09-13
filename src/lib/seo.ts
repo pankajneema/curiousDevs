@@ -102,7 +102,7 @@ export function buildSeoHead(options: SeoPageOptions) {
       { rel: "alternate", href: canonical, hrefLang: "x-default" },
       { rel: "alternate", href: `${SITE_DOMAIN}/rss.xml`, type: "application/rss+xml" },
       { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/brand/curiousdevs-mark-128.png", type: "image/png", sizes: "128x126" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       {
