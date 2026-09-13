@@ -1,39 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Clock } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { ContactForm } from "@/components/landing/ContactForm";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { Eyebrow } from "@/components/landing/SectionHeading";
+import { company, contact } from "@/content/site";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
+
+const TITLE = "Contact — Have a Difficult Problem?";
+const DESCRIPTION =
+  "Tell CuriousDevs what you're trying to build, fix or explore — an AI system, a new product, or a research question.";
 
 export const Route = createFileRoute("/contact")({
   head: () =>
     buildSeoHead({
       path: "/contact",
-      title: "Contact CuriousDevs — Start an AI Project",
-      description:
-        "Talk to the CuriousDevs engineers about building, fixing, or scaling an AI system.",
-      keywords: [
-        "AI engineering contact",
-        "AI development",
-        "AI audit",
-        "MLOps",
-        "CuriousDevs contact",
-      ],
+      title: TITLE,
+      description: DESCRIPTION,
+      keywords: ["contact CuriousDevs", "AI engineering", "intelligent systems", "robotics"],
       ogType: "website",
     }),
   component: ContactPage,
 });
 
-const details = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "hello@curiousdevs.com",
-    href: "mailto:hello@curiousdevs.com",
-  },
-  { icon: MapPin, label: "Base", value: "Gurugram, India" },
-  { icon: Clock, label: "Response time", value: "One business day" },
+const nextSteps = [
+  "You tell us the problem — what you're building, fixing or exploring.",
+  "We reply by email with questions, or a time to talk.",
+  "We define the problem properly before proposing anything.",
 ];
 
 function ContactPage() {
@@ -42,60 +35,63 @@ function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildWebPageSchema(
-              "/contact",
-              "Contact CuriousDevs — Start an AI Project",
-              "Reach CuriousDevs about building, fixing, or scaling an AI system.",
-            ),
-          ),
+          __html: JSON.stringify(buildWebPageSchema("/contact", TITLE, DESCRIPTION)),
         }}
       />
       <Nav />
       <PageIntro
-        eyebrow="Talk to us"
-        title="Bring the AI problem"
-        accent="you need solved."
-        body="Tell us what you are building, what is failing, or what needs to reach production. We will help define the right service line and next step."
-        action={false}
+        compact
+        eyebrow="Contact"
+        title={contact.title}
+        accent={contact.accent}
+        body={contact.body}
       />
 
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl items-start gap-8 px-6 lg:grid-cols-[1.08fr_0.92fr]">
-          <div className="card-lift border border-hairline bg-surface/80 p-6 shadow-[0_8px_24px_rgba(10,20,36,0.05)] sm:p-8">
-            <p className="eyebrow">Start here</p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Tell us what you need</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Pick the service direction, tell us about the system or idea, and we come back with
-              two concrete times.
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 sm:px-8 lg:grid-cols-[1.4fr_0.6fr] lg:gap-10">
+          <div className="panel p-6 sm:p-10">
+            <Eyebrow>Start the conversation</Eyebrow>
+            <h2 className="mt-4 text-2xl font-medium tracking-tight sm:text-[1.75rem]">
+              Tell us what you're working on.
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              The more context you share, the more useful our first reply can be.
             </p>
-            <div className="mt-6">
+            <div className="mt-8 border-t border-hairline pt-8">
               <ContactForm />
             </div>
           </div>
 
-          <ul className="grid gap-px overflow-hidden border border-hairline bg-hairline shadow-[0_8px_24px_rgba(10,20,36,0.04)]">
-            {details.map((d) => (
-              <li
-                key={d.label}
-                className="cell-hover border-b border-hairline/70 bg-surface/70 px-6 py-6 last:border-b-0 sm:px-8 sm:py-7"
+          <aside className="space-y-4 lg:sticky lg:top-24">
+            <div className="on-dark relative isolate overflow-hidden rounded-[var(--radius-card)] border border-hairline bg-night p-6 sm:p-7">
+              <div
+                aria-hidden="true"
+                className="glow-orange absolute -top-24 -right-24 -z-10 size-64 rounded-full"
+              />
+              <p className="eyebrow">Email</p>
+              <a
+                href={`mailto:${contact.email}`}
+                className="mt-3 block text-lg font-medium tracking-tight break-words transition-colors hover:text-orange"
               >
-                <p className="eyebrow flex items-center gap-2">
-                  <d.icon className="size-3.5 text-amber-soft" /> {d.label}
-                </p>
-                {d.href ? (
-                  <a
-                    href={d.href}
-                    className="mt-2 block text-lg font-semibold tracking-tight transition-colors hover:text-amber-accent"
-                  >
-                    {d.value}
-                  </a>
-                ) : (
-                  <p className="mt-2 text-lg font-semibold tracking-tight">{d.value}</p>
-                )}
-              </li>
-            ))}
-          </ul>
+                {contact.email}
+              </a>
+              <p className="eyebrow mt-7">Base</p>
+              <p className="mt-3 text-lg font-medium tracking-tight">{company.base}</p>
+            </div>
+            <div className="panel p-6 sm:p-7">
+              <p className="eyebrow">What happens next</p>
+              <ol className="mt-5 space-y-4">
+                {nextSteps.map((s, i) => (
+                  <li key={s} className="flex gap-4">
+                    <span className="pt-0.5 font-mono text-xs text-amber-accent">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{s}</p>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
         </div>
       </section>
 

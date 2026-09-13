@@ -10,7 +10,7 @@ export const Route = createFileRoute("/security")({
       path: "/security",
       title: "Security | CuriousDevs",
       description:
-        "How CuriousDevs handles security today, honestly stated for a pre-launch company — plus what's on the roadmap before general availability.",
+        "How CuriousDevs handles security today, stated plainly — and how to report an issue.",
       keywords: ["security policy", "responsible disclosure", "AI security", "product security"],
       ogType: "website",
       robots: "index, follow",
@@ -28,7 +28,7 @@ function SecurityPage() {
             buildWebPageSchema(
               "/security",
               "Security",
-              "CuriousDevs' security posture, responsible disclosure process and roadmap commitments.",
+              "CuriousDevs' current security posture and responsible disclosure process.",
             ),
           ),
         }}
@@ -38,16 +38,15 @@ function SecurityPage() {
         eyebrow="Legal"
         title="Security"
         updated="28 July 2026"
-        intro="We build security software, so we hold this site and our own practices to the standard we're asking customers to trust us with. That means saying plainly what's true today and what isn't yet — not borrowing the language of certifications we don't hold."
+        intro="Security is part of how we engineer intelligent systems, so we hold this site and our own practices to the same standard. That means saying plainly what's true today and what isn't yet — not borrowing the language of certifications we don't hold."
       >
         <LegalSection n="01" title="Where we are">
           <p>
             CuriousDevs is a pre-launch, founding-stage team. We are{" "}
             <strong className="text-foreground">not</strong> currently SOC 2 or ISO 27001 certified.
-            Where those frameworks appear elsewhere on this site — for example, on the industry
-            solutions pages — they describe regulatory or compliance frameworks a given scenario
-            touches, not certifications CuriousDevs holds. We think that distinction matters enough
-            to state it twice.
+            Where those frameworks are mentioned, they describe regulatory or compliance frameworks
+            a given scenario touches, not certifications CuriousDevs holds. We think that
+            distinction matters enough to state it twice.
           </p>
         </LegalSection>
 
@@ -87,10 +86,9 @@ function SecurityPage() {
 
         <LegalSection n="04" title="What's on the roadmap">
           <p>
-            As our service work grows, our plan is to pursue SOC 2 Type II, complete a third-party
-            penetration test, and publish a technical security overview for clients evaluating an
-            engagement or production handover. None of that exists yet; this line will be updated
-            the moment any of it does, not before.
+            As our work grows, our plan is to pursue SOC 2 Type II, complete a third-party
+            penetration test, and publish a technical security overview. None of that exists yet;
+            this line will be updated the moment any of it does, not before.
           </p>
         </LegalSection>
 

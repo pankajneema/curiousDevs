@@ -1,63 +1,74 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  Activity,
+  ArrowDown,
+  ArrowRight,
+  BookOpen,
+  Bot,
+  Boxes,
+  Cpu,
+  FlaskConical,
+  Rocket,
+  ShieldCheck,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
-import { BookingDialog } from "@/components/landing/BookingDialog";
+import { PageIntro } from "@/components/landing/PageIntro";
+import { FinalCta } from "@/components/landing/FinalCta";
+import { Eyebrow, SectionHeading } from "@/components/landing/SectionHeading";
+import { revealDelay } from "@/components/landing/motion";
+import { ArchitectureDiagram } from "@/components/landing/visuals/ArchitectureDiagram";
+import { JanusConsole } from "@/components/landing/visuals/JanusConsole";
+import { janus } from "@/content/site";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
+
+const TITLE = "Janus — Intelligent Systems Platform";
+const DESCRIPTION =
+  "Janus is CuriousDevs' proprietary technology direction for building, evaluating, deploying and operating intelligent systems, starting with production AI systems.";
 
 export const Route = createFileRoute("/janus")({
   head: () =>
     buildSeoHead({
       path: "/janus",
-      title: "Janus — AI-Native Customer Operations Platform | CuriousDevs",
-      description:
-        "Janus connects lead capture, CRM, communication, support, automation, knowledge and analytics into one AI-native customer operations platform. Built by CuriousDevs.",
-      keywords: ["AI CRM", "customer operations platform", "AI-native CRM", "unified inbox AI"],
+      title: TITLE,
+      description: DESCRIPTION,
+      keywords: [
+        "Janus intelligent systems platform",
+        "AI systems platform",
+        "AI evaluation",
+        "AI observability",
+        "agent orchestration",
+      ],
       ogType: "website",
     }),
   component: JanusPage,
 });
 
-const features: {
-  image: string;
-  alt: string;
-  title: string;
-  body: string;
-}[] = [
+const MODULE_ICONS: Record<string, LucideIcon> = {
+  models: Cpu,
+  knowledge: BookOpen,
+  agents: Bot,
+  workflows: Workflow,
+  evaluation: FlaskConical,
+  security: ShieldCheck,
+  observability: Activity,
+  deploy: Rocket,
+};
+
+const concept = [
   {
-    image: "/janus/janus-dashboard.png",
-    alt: "Janus overview dashboard showing pipeline, open support and AI operations",
-    title: "One dashboard, what actually needs attention",
-    body: "New leads, pipeline value, open support and AI resolution rate in one view — with a prioritized queue of what needs a human decision next.",
+    title: "Workspace",
+    body: "Systems, models, knowledge, agents, workflows, evaluation, security and deployment — one navigation for the whole system.",
   },
   {
-    image: "/janus/janus-inbox.png",
-    alt: "Janus unified inbox with an AI-drafted reply and human handoff",
-    title: "Every channel, one thread",
-    body: "WhatsApp, email and chat unified per customer. AI drafts replies grounded in context, and hands off to a human the moment it should.",
+    title: "Live system graph",
+    body: "The actual path a request takes — documents → RAG → agent → tools → action — with state on every node.",
   },
   {
-    image: "/janus/janus-customer.png",
-    alt: "Janus customer profile with AI summary and health breakdown",
-    title: "One page per customer, not five tabs",
-    body: "Identity, timeline, health score and an embedded AI assistant on a single screen — the same customer story everywhere it shows up.",
-  },
-  {
-    image: "/janus/janus-tickets.png",
-    alt: "Janus support ticket with AI replies, confidence scores and human takeover",
-    title: "AI support that hands off cleanly",
-    body: "Every AI reply carries a confidence score and the sources it used. When it's not sure, it escalates with a reason instead of guessing.",
-  },
-  {
-    image: "/janus/janus-automations.png",
-    alt: "Janus automation library with run counts and success rates",
-    title: "Automations you can actually audit",
-    body: "Visual workflows for lead routing, follow-ups and escalations — each one showing real run counts and success rates, not just an on/off toggle.",
-  },
-  {
-    image: "/janus/janus-ai.png",
-    alt: "Janus Ask Your Business panel answering a question with a chart and cited data",
-    title: "Answers grounded in your own data",
-    body: "Ask a plain-language question about leads, pipeline or support. Every answer cites the records it used — never invented.",
+    title: "Inspector",
+    body: "Status, model, tools, evaluation, latency, cost and security for whatever is selected.",
   },
 ];
 
@@ -67,93 +78,153 @@ function JanusPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildWebPageSchema(
-              "/janus",
-              "Janus — AI-Native Customer Operations Platform",
-              "Janus connects lead capture, CRM, communication, support, automation, knowledge and analytics into one AI-native customer operations platform.",
-            ),
-          ),
+          __html: JSON.stringify(buildWebPageSchema("/janus", TITLE, DESCRIPTION)),
         }}
       />
       <Nav />
-      <section className="relative border-b border-hairline pt-28 pb-16 sm:pt-32 sm:pb-20">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8">
-          <p className="eyebrow flex items-center gap-2">
-            <span className="live-dot inline-block size-1.5 rounded-none bg-amber-accent" />
-            Product · Built by CuriousDevs
-          </p>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5.5vw,4rem)] leading-[1.02] font-extrabold tracking-[-0.03em] sm:mt-4">
-            Janus <span className="text-aurora">connects your customer lifecycle.</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:mt-5">
-            An AI-native customer operations platform that connects lead capture, CRM,
-            communication, support, automation, knowledge and analytics into one connected customer
-            lifecycle — instead of eight disconnected tools.
-          </p>
-          <div className="mt-5 flex flex-wrap items-center gap-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-accent/40 bg-amber-accent/10 px-3 py-1 font-mono text-[11px] font-semibold tracking-wide text-amber-accent uppercase">
-              Demo
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Working prototype, running on realistic mock data — every screen below is real.
-            </p>
-          </div>
-          <BookingDialog>
-            <button className="btn-shine mt-6 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
+      <PageIntro
+        eyebrow="Proprietary technology"
+        title={janus.name}
+        accent={`${janus.tagline}.`}
+        body={janus.positioning}
+        actions={
+          <>
+            <Link to="/contact" className="btn-primary group">
               Talk to us about Janus
-            </button>
-          </BookingDialog>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <a href="#architecture" className="btn-outline">
+              See the architecture <ArrowDown className="size-4" />
+            </a>
+          </>
+        }
+      >
+        <div className="relative mt-20 sm:mt-24">
+          <div
+            aria-hidden="true"
+            className="glow-orange pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[110%] -translate-x-1/2 -translate-y-1/2 rounded-full"
+          />
+          <JanusConsole />
+        </div>
+      </PageIntro>
 
-          <div className="mt-12 overflow-hidden border border-hairline bg-surface shadow-[0_20px_50px_rgba(10,20,36,0.08)] sm:mt-14">
-            <img
-              src="/janus/janus-hero.png"
-              alt="Janus dashboard showing pipeline, open support, AI resolution rate and the queue of items needing a human decision"
-              className="w-full"
-            />
+      <section className="py-28 sm:py-36">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Production AI system platform"
+            title="Everything a production"
+            accent="AI system depends on."
+            body="The first practical form of Janus focuses on production AI systems — the parts an engineering team needs to understand and operate together."
+          />
+          <ul className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {janus.modules.map((m, i) => {
+              const Icon = MODULE_ICONS[m.key] ?? Boxes;
+              return (
+                <li
+                  key={m.key}
+                  data-reveal
+                  style={revealDelay((i % 4) * 70)}
+                  className="panel spotlight flex flex-col p-7"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="flex size-11 items-center justify-center rounded-xl border border-hairline bg-background">
+                      <Icon className="size-5 text-orange" strokeWidth={1.6} />
+                    </span>
+                    <span className="font-mono text-xs text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="mt-8 text-lg font-medium tracking-tight">{m.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+
+      <section id="architecture" className="on-navy border-t border-hairline py-28 sm:py-36">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Conceptual architecture"
+            title="Many parts."
+            accent="One intelligent system."
+            body="Models, knowledge, agents, tools, workflows, evaluation, security and observability — brought together by Janus into one system an engineer can understand and operate."
+          />
+          <div data-reveal className="mt-16">
+            <ArchitectureDiagram />
           </div>
         </div>
       </section>
 
-      <section className="border-b border-hairline py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-6 sm:px-8">
-          <div className="grid gap-px overflow-hidden rounded-none border border-hairline bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((f) => (
-              <article key={f.title} className="cell-hover flex flex-col bg-surface">
-                <img
-                  src={f.image}
-                  alt={f.alt}
-                  loading="lazy"
-                  className="aspect-[21/10] w-full border-b border-hairline object-cover object-left-top"
-                />
-                <div className="p-6">
-                  <h2 className="text-base font-bold tracking-tight">{f.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
+      <section className="py-28 sm:py-36">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+          <div data-reveal>
+            <Eyebrow>Product principle</Eyebrow>
+            <blockquote className="display mt-7 text-[clamp(1.9rem,3.4vw,2.9rem)] leading-[1.14]">
+              <span className="text-orange">“</span>
+              {janus.principle}
+              <span className="text-orange">”</span>
+            </blockquote>
+          </div>
+          <div className="grid gap-4 self-start">
+            {concept.map((c, i) => (
+              <div
+                key={c.title}
+                data-reveal
+                style={revealDelay(i * 90)}
+                className="panel spotlight flex gap-5 p-6 sm:p-7"
+              >
+                <span className="font-mono text-xs text-amber-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-lg font-medium tracking-tight">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
                 </div>
-              </article>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 text-center sm:py-20">
-        <div className="mx-auto max-w-xl px-6 sm:px-8">
-          <p className="eyebrow">From the studio that builds this for clients</p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">
-            Janus is CuriousDevs' own AI engineering, built on itself.
-          </h2>
-          <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-            The same evaluation, grounding and production discipline we bring to client engagements
-            — Build, Audit, Fix, and Scale — went into Janus. If you want that for your own AI
-            systems, that's what we do.
-          </p>
-          <BookingDialog>
-            <button className="btn-shine mt-6 rounded-none bg-foreground px-6 py-3 text-sm font-semibold text-background">
-              Start a conversation
-            </button>
-          </BookingDialog>
+      <section className="on-dark border-t border-hairline py-28 sm:py-36">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading
+            eyebrow="Long-term extension"
+            title="From production AI"
+            accent="toward machines."
+            body="The architecture is designed to extend as the technology matures — from software systems to edge runtimes, sensors and physical machines."
+          />
+          <ol className="relative mt-20 grid gap-10 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
+            <span
+              aria-hidden="true"
+              className="absolute top-[7px] right-0 left-0 hidden h-px bg-[linear-gradient(to_right,var(--signal-bright),var(--border-dark)_40%)] lg:block"
+            />
+            {janus.extension.map((label, i) => (
+              <li key={label} data-reveal style={revealDelay(i * 80)} className="relative">
+                <span
+                  className={`relative block size-3.5 rounded-full border-2 ${i === 0 ? "border-orange-bright bg-orange-bright shadow-[0_0_0_6px_color-mix(in_oklab,var(--signal-bright)_20%,transparent)]" : "border-hairline bg-background"}`}
+                />
+                <p className="mt-7 font-mono text-xs text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p
+                  className={`mt-2 text-xl font-medium tracking-tight ${i === 0 ? "text-orange" : ""}`}
+                >
+                  {label}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
+
+      <FinalCta
+        title="Is Janus built for"
+        accent="your problem?"
+        body="If the problems Janus addresses are problems you have, tell us — it helps shape what gets built first."
+      />
       <Footer />
     </main>
   );

@@ -1,25 +1,22 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { ArrowRight, Check } from "lucide-react";
+import { contact } from "@/content/site";
 import { sendContactMessage } from "@/lib/actions";
-
-const surfaces = ["Build AI", "AI Audit / Assessment", "Fix existing AI", "Scale to production"];
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
-  const [surface, setSurface] = useState(surfaces[0]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   if (sent) {
     return (
-      <div className="py-10 text-center">
-        <span className="mx-auto flex size-12 items-center justify-center rounded-none border border-amber-accent/40 bg-amber-accent/10">
-          <Check className="size-5 text-amber-accent" />
+      <div className="py-10 text-center" role="status">
+        <span className="mx-auto flex size-12 items-center justify-center rounded-full border border-orange">
+          <Check className="size-5 text-orange" />
         </span>
-        <h3 className="mt-5 text-lg font-semibold tracking-tight">Message received</h3>
+        <h3 className="mt-5 text-xl font-medium tracking-tight">Message received</h3>
         <p className="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">
-          We reply within one business day with two concrete times to talk, focused on{" "}
-          <span className="text-foreground">{surface.toLowerCase()}</span>.
+          Thank you. We'll reply by email with a few useful questions or a time to talk.
         </p>
       </div>
     );
@@ -29,21 +26,24 @@ export function ContactForm() {
     e.preventDefault();
     setError(null);
     const form = new FormData(e.currentTarget);
+    const value = (key: string) => String(form.get(key) ?? "").trim();
     setLoading(true);
     try {
       await sendContactMessage({
         data: {
-          name: String(form.get("name") ?? ""),
-          email: String(form.get("email") ?? ""),
-          company: String(form.get("company") ?? ""),
-          surface,
-          notes: String(form.get("notes") ?? ""),
+          name: value("name"),
+          email: value("email"),
+          company: value("company"),
+          building: value("building"),
+          stage: value("stage"),
+          message: value("message"),
+          source: "Contact page",
         },
       });
       setSent(true);
     } catch {
       setError(
-        "Couldn't send that — check your connection and try again, or email hello@curiousdevs.com directly.",
+        `Couldn't send that — check your connection and try again, or email ${contact.email} directly.`,
       );
     } finally {
       setLoading(false);
@@ -51,8 +51,8 @@ export function ContactForm() {
   }
 
   return (
-    <form className="space-y-4" onSubmit={onSubmit}>
-      <div className="grid gap-4 sm:grid-cols-2">
+    <form className="space-y-6" onSubmit={onSubmit}>
+      <div className="grid gap-5 sm:grid-cols-2">
         <Field id="ct-name" label="Name" required>
           <input id="ct-name" name="name" required autoComplete="name" className={inputCls} />
         </Field>
@@ -67,57 +67,67 @@ export function ContactForm() {
           />
         </Field>
       </div>
-      <Field id="ct-company" label="Company" required>
+
+      <Field id="ct-company" label="Company">
+        <input id="ct-company" name="company" autoComplete="organization" className={inputCls} />
+      </Field>
+
+      <Field id="ct-building" label="What are you building?" required>
         <input
-          id="ct-company"
-          name="company"
+          id="ct-building"
+          name="building"
           required
-          autoComplete="organization"
+          placeholder="An AI system, a new product, a research question…"
           className={inputCls}
         />
       </Field>
 
-      <fieldset>
-        <legend className="eyebrow mb-2">What do you need help with</legend>
-        <div className="flex flex-wrap gap-2">
-          {surfaces.map((s) => (
-            <button
-              type="button"
-              key={s}
-              onClick={() => setSurface(s)}
-              aria-pressed={surface === s}
-              className={`rounded-none border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                surface === s
-                  ? "border-amber-accent/50 bg-amber-accent/10 text-foreground"
-                  : "border-hairline bg-surface-2 text-muted-foreground hover:text-foreground"
-              }`}
-            >
+      <Field id="ct-stage" label="Current stage">
+        <select id="ct-stage" name="stage" className={inputCls} defaultValue={contact.stages[0]}>
+          {contact.stages.map((s) => (
+            <option key={s} value={s}>
               {s}
-            </button>
+            </option>
           ))}
-        </div>
-      </fieldset>
-
-      <Field id="ct-notes" label="What are you building or trying to fix">
-        <textarea id="ct-notes" name="notes" rows={4} className={inputCls} />
+        </select>
       </Field>
 
-      {error && <p className="text-xs font-medium text-foreground">{error}</p>}
+      <Field id="ct-message" label="Message">
+        <textarea
+          id="ct-message"
+          name="message"
+          rows={5}
+          placeholder="Tell us what you're trying to build, fix or explore."
+          className={inputCls}
+        />
+      </Field>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
-      >
-        {loading ? "Sending…" : "Send message"} <ArrowRight className="size-4" />
-      </button>
-      <p className="eyebrow text-center">No sales deck · engineers on the call</p>
+      {error && (
+        <p role="alert" className="text-sm font-medium text-foreground">
+          {error}
+        </p>
+      )}
+
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <button type="submit" disabled={loading} className="btn-primary">
+          {loading ? "Sending…" : "Start the Conversation"} <ArrowRight className="size-4" />
+        </button>
+        <p className="text-xs text-muted-foreground">
+          Or email{" "}
+          <a
+            href={`mailto:${contact.email}`}
+            className="text-foreground underline underline-offset-4"
+          >
+            {contact.email}
+          </a>
+        </p>
+      </div>
     </form>
   );
 }
 
 const inputCls =
-  "w-full rounded-none border border-hairline bg-surface-2 px-3.5 py-2.5 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-amber-accent/60 focus-visible:ring-2 focus-visible:ring-amber-accent/25";
+  "w-full rounded-[var(--radius)] border border-hairline bg-ivory px-3.5 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-orange focus-visible:ring-2 focus-visible:ring-orange/20";
 
 function Field({
   id,

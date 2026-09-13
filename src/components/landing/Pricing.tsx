@@ -70,7 +70,7 @@ export function Pricing() {
                     {service.desc}
                   </p>
                   <BookingDialog>
-                    <button className="btn-quiet mt-6 rounded-none border border-amber-accent/50 bg-amber-accent/10 px-5 py-2.5 text-center text-sm font-semibold">
+                    <button className="btn-quiet mt-6 rounded-full border border-amber-accent/50 bg-amber-accent/10 px-5 py-2.5 text-center text-sm font-semibold">
                       Discuss this service
                     </button>
                   </BookingDialog>

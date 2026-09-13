@@ -1,30 +1,43 @@
 /*
- * CuriousDevs design tokens.
+ * CuriousDevs design tokens — Website V2.
  * Source of truth for every colour, type step, space, radius, shadow and
- * motion value in the product. Nothing outside this file may hardcode a hex
- * value — everything else reads these custom properties, directly or via
- * the semantic layer in styles.css.
+ * motion value. Nothing outside this file may hardcode a brand hex value —
+ * everything else reads these custom properties, directly or via the
+ * semantic layer in styles.css.
  *
- * Values are locked by the Brand Book (v1.4) and the Design and Asset
- * System (v1.0). Do not add, substitute or "improve" a value here without
- * updating those source documents first.
+ * Palette locked by "CuriousDevs Website V2 — 02 Visual System": warm light
+ * surfaces, deep navy, burnt orange, technical grid. Contrast notes are
+ * WCAG 2.2 ratios measured against the surface they are used on.
  */
 
 :root {
-  /* Core palette */
-  --ink: #0a1424; /* text, dark surfaces — 17.40:1 on paper */
-  --deep: #132840; /* elevated dark panels */
-  --signal: #2563eb; /* THE accent — 4.83:1 on paper */
-  --signal-deep: #1d4ed8; /* hover, small links — 7.30:1 on paper */
-  --paper: #ffffff; /* page background — clean white */
-  --rule: #e8e1d8; /* borders, dividers */
-  --slate: #647085; /* secondary text — 5.60:1 on paper */
+  /* V2 core palette */
+  --deep-navy: #08111f; /* dark sections / primary technical surface */
+  --near-black: #050a12; /* hero depth / high contrast */
+  --paper: #f5f2eb; /* warm ivory — main light background */
+  --paper-2: #ece8df; /* light surface — cards / subtle separation */
+  --signal: #c65a08; /* burnt orange — signature accent / active states */
+  --signal-bright: #f26a0a; /* bright orange — primary CTA */
+  --technical-gray: #8b8f94; /* metadata / secondary text on dark (6.10:1) */
+
+  /* Derived for accessibility — same hues, adjusted lightness only.
+     #C65A08 measures 3.86:1 on ivory: fine for large display type, icons and
+     borders, too low for small text. --signal-ink is the small-text orange
+     (5.04:1 on ivory, 4.61:1 on --paper-2). --slate replaces technical gray
+     for body copy on light surfaces, where #8B8F94 is only 2.91:1. */
+  --signal-ink: #a94c06;
+  --slate: #5e636b; /* 5.41:1 on ivory */
+  --ink: var(--deep-navy); /* text on light — 16.92:1 on ivory */
+  --rule: #d8d2c6; /* borders, dividers on light */
+  --border-dark: #1b2533; /* borders, dividers on dark */
+  --navy-raised: #0d1828; /* elevated panels inside navy sections */
+  --paper-raised: #fbf9f4; /* elevated cards on ivory — lifted, never pure white */
 
   /* Reserved — logo only, never UI or text */
-  --accent-coral: #e56a4b; /* the logo dot */
-  --wordmark-silver: #9aa7b5; /* "Devs" in the wordmark, on dark only */
+  --accent-coral: #e56a4b;
+  --wordmark-silver: #9aa7b5;
 
-  /* Product verdicts — never decoration, never a marketing button */
+  /* Product verdicts — kept for existing product diagrams only */
   --verdict-allow: #1e9e6a;
   --verdict-escalate: #d98b14;
   --verdict-block: #d2483f;
@@ -34,26 +47,7 @@
   --font-sans: "Inter", -apple-system, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 
-  --text-display: 44px;
-  --leading-display: 48px; /* weight 600, tracking -2% */
-  --text-h1: 32px;
-  --leading-h1: 38px; /* 600 */
-  --text-h2: 24px;
-  --leading-h2: 30px; /* 600 */
-  --text-h3: 18px;
-  --leading-h3: 26px; /* 600 */
-  --text-body-l: 18px;
-  --leading-body-l: 30px; /* 400, long-form */
-  --text-body: 16px;
-  --leading-body: 26px; /* 400, default */
-  --text-small: 14px;
-  --leading-small: 22px; /* 400 */
-  --text-caption: 12px;
-  --leading-caption: 18px; /* 500 */
-  --text-mono: 14px;
-  --leading-mono: 24px; /* 400 */
-
-  /* Space — 4px base, every value a multiple of 4 */
+  /* Space — 4px base */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -64,24 +58,24 @@
   --space-8: 64px;
   --space-9: 96px;
 
-  /* Shape */
-  --radius: 0px; /* buttons, inputs, small cards */
-  --radius-card: 0px; /* content cards, panels */
-  --radius-pill: 999px; /* verdict chips and status badges ONLY */
-  --border: 1px solid var(--rule); /* never 2px */
+  /* Shape — restrained: near-square cards, pill buttons */
+  --radius: 6px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --border: 1px solid var(--rule);
 
-  --shadow-1: 0 1px 2px rgba(10, 20, 36, 0.05);
-  --shadow-2: 0 8px 24px rgba(10, 20, 36, 0.08);
-  --shadow-3: 0 12px 32px rgba(10, 20, 36, 0.1); /* modals only */
+  --shadow-1: 0 1px 2px rgba(5, 10, 18, 0.06);
+  --shadow-2: 0 10px 28px rgba(5, 10, 18, 0.1);
+  --shadow-3: 0 24px 64px rgba(5, 10, 18, 0.28);
 
   /* Motion */
   --dur-instant: 100ms;
   --dur-fast: 160ms;
   --dur-base: 240ms;
   --dur-slow: 320ms;
-  --ease-out: cubic-bezier(0.2, 0, 0, 1); /* entering — default */
-  --ease-in: cubic-bezier(0.4, 0, 1, 1); /* leaving */
-  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1); /* moving within the screen */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
 
   --content-max: 720px;
 }

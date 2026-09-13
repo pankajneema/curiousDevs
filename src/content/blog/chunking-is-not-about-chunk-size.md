@@ -23,11 +23,11 @@ The problem is that chunk size is a proxy for the thing that is broken, and a ba
 
 Two failure shapes account for most of what gets misdiagnosed as a chunking problem.
 
-**The orphaned reference.** The late chunking paper illustrates this with a Wikipedia article about Berlin. The first sentence says "Berlin." Every sentence after that says "the city," "its," "here." Split that document into fixed-size chunks and every chunk after the first one is a passage about an unnamed city. Embed it and you get a vector that points at *cities in general*, not at Berlin. A user asks "what is the population of Berlin," the chunk containing the population is a semantic near-miss, and it does not surface.
+**The orphaned reference.** The late chunking paper illustrates this with a Wikipedia article about Berlin. The first sentence says "Berlin." Every sentence after that says "the city," "its," "here." Split that document into fixed-size chunks and every chunk after the first one is a passage about an unnamed city. Embed it and you get a vector that points at _cities in general_, not at Berlin. A user asks "what is the population of Berlin," the chunk containing the population is a semantic near-miss, and it does not surface.
 
-Nothing about that failure is fixed by changing 512 to 256. Smaller chunks orphan *more* references, not fewer.
+Nothing about that failure is fixed by changing 512 to 256. Smaller chunks orphan _more_ references, not fewer.
 
-**The split claim.** A policy document says a claim is reimbursable if it was filed within 90 days *and* the member was enrolled on the service date. Those two conditions sit in adjacent sentences. The chunk boundary lands between them.
+**The split claim.** A policy document says a claim is reimbursable if it was filed within 90 days _and_ the member was enrolled on the service date. Those two conditions sit in adjacent sentences. The chunk boundary lands between them.
 
 Now retrieval works perfectly and the system is still wrong. The top-ranked chunk is genuinely the most relevant passage in the corpus. It just contains half a rule. The model reads it, sees no contradiction, and answers confidently that a claim filed on day 80 is reimbursable. The evaluation harness — if it is scoring the final answer, which most are — marks that as a retrieval success and a generation failure, and the team spends the next sprint on prompt engineering.
 
@@ -55,7 +55,7 @@ So: two techniques that help, both modestly, both with conditions attached, and 
 
 Here is what makes chunk-size tuning so seductive. You can do it in thirty seconds and it produces a number that moves.
 
-What you cannot do in thirty seconds is answer the question that matters: *when the system gets an answer wrong, was the correct passage in the retrieved set or not?*
+What you cannot do in thirty seconds is answer the question that matters: _when the system gets an answer wrong, was the correct passage in the retrieved set or not?_
 
 Most teams cannot answer that. They have an end-to-end evaluation — a set of questions, a set of expected answers, an LLM judge scoring similarity. What they do not have is a labelled retrieval set: for each question, which chunk or chunks actually contain the answer. Without that, retrieval failure and generation failure are indistinguishable from the outside, and every debugging session is a guess.
 
@@ -79,7 +79,7 @@ Then attach context to each chunk. The parent document title, the section headin
 
 Then add BM25 alongside the vector search. Semantic search is systematically weak on exact identifiers — error codes, part numbers, clause references, names. Hybrid retrieval is one of the few changes with a consistently positive record across the studies above, and the added cost is an index and some fusion logic.
 
-Only then consider contextual retrieval or late chunking, and evaluate them on *your* corpus with *your* embedding model. Given the BGE-M3 result, treating either as a default rather than a hypothesis is how you ship a regression.
+Only then consider contextual retrieval or late chunking, and evaluate them on _your_ corpus with _your_ embedding model. Given the BGE-M3 result, treating either as a default rather than a hypothesis is how you ship a regression.
 
 And overlap. Overlap is a real mitigation for split claims and it costs storage and retrieval latency in direct proportion. That trade is usually worth making and it should be a decision, not a default.
 
@@ -95,11 +95,11 @@ Chunk size is a real parameter. It is just nowhere near the top of the list, and
 
 ## References
 
-1. Günther et al., *Late Chunking: Contextual Chunk Embeddings Using Long-Context Embedding Models*, arXiv:2409.04701. <https://arxiv.org/pdf/2409.04701>
-2. Anthropic, *Introducing Contextual Retrieval*. <https://www.anthropic.com/news/contextual-retrieval>
-3. *Reconstructing Context*, arXiv:2504.19754. <https://arxiv.org/html/2504.19754v1>
-4. Jina AI, *What Late Chunking Really Is & What It's Not: Part II*. <https://jina.ai/news/what-late-chunking-really-is-and-what-its-not-part-ii/>
+1. Günther et al., _Late Chunking: Contextual Chunk Embeddings Using Long-Context Embedding Models_, arXiv:2409.04701. <https://arxiv.org/pdf/2409.04701>
+2. Anthropic, _Introducing Contextual Retrieval_. <https://www.anthropic.com/news/contextual-retrieval>
+3. _Reconstructing Context_, arXiv:2504.19754. <https://arxiv.org/html/2504.19754v1>
+4. Jina AI, _What Late Chunking Really Is & What It's Not: Part II_. <https://jina.ai/news/what-late-chunking-really-is-and-what-its-not-part-ii/>
 
 ---
 
-CuriousDevs is an AI engineering studio in Gurugram, India. We build, audit, fix and scale AI systems for production — RAG failure like this is one of the recurring ways AI projects break before they reach it.
+CuriousDevs is an AI Engineering Studio based in Gurugram, India. We build, audit, fix and scale AI systems for production — RAG failure like this is one of the recurring ways AI projects break before they reach it.

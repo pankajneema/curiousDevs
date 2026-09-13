@@ -4,8 +4,6 @@ import { format } from "date-fns";
 import { Link2, Check } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
-import { BookingDialog } from "@/components/landing/BookingDialog";
-import { products } from "@/components/landing/product-data";
 import { getPostBySlug } from "@/lib/blog";
 import {
   buildSeoHead,
@@ -100,7 +98,7 @@ function RagFlowDiagram() {
             y="-22"
             width="140"
             height="44"
-            fill="var(--deep)"
+            fill="var(--navy-raised)"
             stroke="rgb(255 255 255 / 0.18)"
           />
           <text
@@ -187,7 +185,6 @@ function ShareButtons({ url, title }: { url: string; title: string }) {
 
 function BlogPostRoute() {
   const post = Route.useLoaderData();
-  const service = products.find((p) => p.slug === post.service);
   const shareUrl = post.canonical || buildCanonicalUrl(`/blog/${post.slug}`);
 
   return (
@@ -290,44 +287,36 @@ function BlogPostRoute() {
               <div className="border-t border-hairline pt-6">
                 <p className="eyebrow">Related</p>
                 <ul className="mt-4 flex flex-col gap-4">
-                  <li>
-                    <Link
-                      to="/problem"
-                      className="group flex items-start justify-between gap-2 text-sm font-semibold tracking-tight transition-colors hover:text-amber-accent"
-                    >
-                      Where AI projects break
-                      <span aria-hidden="true" className="text-muted-foreground">
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                  {service && (
-                    <li>
+                  {(
+                    [
+                      { label: "Systems thinking", to: "/systems" },
+                      { label: "Research areas", to: "/research" },
+                      { label: "Our technology", to: "/technology" },
+                    ] as const
+                  ).map((item) => (
+                    <li key={item.to}>
                       <Link
-                        to="/product"
-                        search={{ p: service.slug }}
-                        className="group flex items-start justify-between gap-2 text-sm font-semibold tracking-tight transition-colors hover:text-amber-accent"
+                        to={item.to}
+                        className="group flex items-start justify-between gap-2 text-sm font-medium tracking-tight transition-colors hover:text-amber-accent"
                       >
-                        {service.name}
+                        {item.label}
                         <span aria-hidden="true" className="text-muted-foreground">
                           →
                         </span>
                       </Link>
                     </li>
-                  )}
+                  ))}
                 </ul>
               </div>
 
-              <div className="border border-hairline bg-surface-2 p-6">
-                <p className="text-sm font-bold tracking-tight">Work with us</p>
+              <div className="on-dark rounded-[var(--radius-card)] border border-hairline bg-night p-6">
+                <p className="text-sm font-medium tracking-tight">Have a difficult problem?</p>
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                  Build, audit, or scale your AI system.
+                  Tell us what you're trying to build, fix or explore.
                 </p>
-                <BookingDialog>
-                  <button className="btn-shine mt-4 w-full rounded-none bg-foreground px-4 py-2.5 text-xs font-semibold text-background">
-                    Start a project →
-                  </button>
-                </BookingDialog>
+                <Link to="/contact" className="btn-primary mt-4 w-full">
+                  Start the Conversation
+                </Link>
               </div>
             </div>
           </aside>

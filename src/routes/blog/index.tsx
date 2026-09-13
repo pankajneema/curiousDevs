@@ -4,8 +4,7 @@ import { format } from "date-fns";
 import { ArrowRight } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
-import { Wireframe } from "@/components/landing/Wireframe";
-import { BookingDialog } from "@/components/landing/BookingDialog";
+import { EngineeringGrid } from "@/components/landing/EngineeringGrid";
 import { getAllPosts, getCategories, type BlogPost } from "@/lib/blog";
 import { buildSeoHead, buildCollectionPageSchema } from "@/lib/seo";
 
@@ -13,9 +12,9 @@ export const Route = createFileRoute("/blog/")({
   head: () =>
     buildSeoHead({
       path: "/blog",
-      title: "Blog — AI Engineering Notes | CuriousDevs",
+      title: "Engineering Notes — CuriousDevs",
       description:
-        "Technical notes on building, auditing, and scaling AI systems in production, from the CuriousDevs engineering team.",
+        "Technical notes from CuriousDevs on building intelligent systems that hold up in production.",
       keywords: ["AI engineering blog", "RAG engineering", "AI agents", "production AI"],
       ogType: "website",
     }),
@@ -46,7 +45,14 @@ function FeaturedCard({ post }: { post: BlogPost }) {
           backgroundSize: "18px 18px",
         }}
       >
-        <Wireframe className="top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2" />
+        <EngineeringGrid
+          seed={19}
+          density="medium"
+          width={500}
+          height={500}
+          animated={false}
+          className="absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 opacity-60"
+        />
       </div>
       <div className="flex flex-col justify-center gap-3 bg-surface p-8 sm:p-10">
         <p className="font-mono text-xs tracking-wide text-amber-accent uppercase">
@@ -111,21 +117,22 @@ function BlogIndexPage() {
           __html: JSON.stringify(
             buildCollectionPageSchema(
               "/blog",
-              "Blog — AI Engineering Notes",
-              "Technical notes on building, auditing, and scaling AI systems in production.",
+              "Engineering Notes — CuriousDevs",
+              "Technical notes on building intelligent systems that hold up in production.",
             ),
           ),
         }}
       />
       <Nav />
       <section className="mx-auto max-w-6xl px-6 pt-32 sm:px-8 sm:pt-36">
-        <p className="eyebrow text-amber-accent">/ Blog</p>
+        <p className="eyebrow text-amber-accent">Engineering notes</p>
         <div className="mt-4 flex flex-col gap-6 border-b border-hairline pb-10 sm:flex-row sm:items-end sm:justify-between">
-          <h1 className="max-w-xl text-[clamp(2.1rem,5vw,3.25rem)] leading-[1.03] font-extrabold tracking-[-0.03em]">
-            Engineering AI for production.
+          <h1 className="display max-w-xl text-[clamp(2.4rem,5.5vw,4rem)]">
+            Notes from the <span className="text-orange">engineering.</span>
           </h1>
           <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Technical notes on building, auditing, and scaling AI systems in production.
+            Technical notes on building intelligent systems that hold up in production — published
+            when there is something real to say.
           </p>
         </div>
 
@@ -168,18 +175,18 @@ function BlogIndexPage() {
           </div>
         )}
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border border-hairline bg-surface-2 px-8 py-10 sm:mt-20 sm:flex-row sm:items-center">
+        <div className="on-dark mt-16 flex flex-col items-start justify-between gap-6 rounded-[var(--radius-card)] border border-hairline bg-night px-8 py-10 sm:mt-20 sm:flex-row sm:items-center">
           <div>
-            <p className="text-lg font-bold tracking-tight sm:text-xl">
-              Have an AI system worth building?
+            <p className="display text-2xl sm:text-3xl">
+              Have a difficult <span className="text-orange">problem?</span>
             </p>
-            <p className="mt-1 text-sm text-muted-foreground">Let's make it production-ready.</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Tell us what you're trying to build, fix or explore.
+            </p>
           </div>
-          <BookingDialog>
-            <button className="btn-shine flex shrink-0 items-center gap-2 rounded-none bg-foreground px-6 py-3 text-sm font-semibold text-background">
-              Start an AI project <ArrowRight className="size-4" />
-            </button>
-          </BookingDialog>
+          <Link to="/contact" className="btn-primary shrink-0">
+            Start the Conversation <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
       <div className="mt-24 sm:mt-32">

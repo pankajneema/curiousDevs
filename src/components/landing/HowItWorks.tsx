@@ -1,4 +1,4 @@
-import { steps } from "@/content/site";
+import { steps } from "@/content/legacy";
 
 const planes = [
   {

@@ -1,81 +1,64 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, ChevronUp, RotateCcw, Send, X } from "lucide-react";
-import { Mascot } from "./Mascot";
+import { useMemo, useState, type FormEvent } from "react";
+import { ArrowRight, MessageSquare, RotateCcw, Send, X } from "lucide-react";
+import { sendContactMessage } from "@/lib/actions";
 
-type Step = "role" | "faq" | "service" | "done";
+type Step = "role" | "faq" | "area" | "done";
 type Message = { from: "assistant" | "user"; text: string };
 
 const roleChoices = [
   "Founder / CEO",
   "CTO / Engineering",
-  "Product / Operations",
+  "Product / Research",
   "Just exploring",
   "I have a question first",
 ];
-const serviceChoices = [
-  "Build AI",
-  "AI Audit / Assessment",
-  "Fix existing AI",
-  "Scale to production",
+const areaChoices = [
+  "AI Engineering",
+  "Intelligent Systems",
+  "Robotics / DeepTech",
+  "Janus",
+  "Not sure yet",
 ];
 const faqChoices = [
   "What does CuriousDevs do?",
-  "What is AI Audit / Assessment?",
-  "Can you build RAG or agents?",
-  "How do you improve an existing AI system?",
-  "What does Scale include?",
+  "What can you build today?",
+  "What is Janus?",
+  "Do you work on robotics?",
+  "How do you measure quality?",
   "How do you handle security?",
-  "How does pricing work?",
-  "Which industries do you serve?",
+  "Where are you based?",
+  "How can I contact you?",
 ];
 
 const faqAnswers: Record<string, string> = {
   "what does curiousdevs do?":
-    "CuriousDevs AI-native products build karta hai aur existing AI ko reliable, secure, measurable aur production-ready banata hai.",
-  "what is ai audit / assessment?":
-    "AI Audit / Assessment ek clear health-check hai: accuracy, RAG, agents, security, cost, latency aur observability review karke scorecard aur next-step report milti hai.",
-  "can you build rag or agents?":
-    "Yes. Hum RAG apps, knowledge copilots, AI agents, tool workflows, memory, state aur multi-agent systems build kar sakte hain.",
-  "how do you improve an existing ai system?":
-    "Pehle baseline aur failure map banate hain, phir highest-value issue fix karte hain, aur comparable tests se result verify karte hain.",
-  "what does scale include?":
-    "Scale me backend, Docker/Kubernetes, CI/CD, model routing, caching, observability, deployment, runbooks aur team handover aa sakte hain.",
-  "how do you handle security?":
-    "Prompt injection, tool permissions, data leakage, unsafe actions, access control aur fallback behavior ko review aur test karte hain.",
-  "how does pricing work?":
-    "Abhi fixed public pricing nahi hai. Founding cohort me scope, complexity, data access, risk aur success criteria samajhne ke baad proposal dete hain.",
-  "which industries do you serve?":
-    "Fintech, healthcare, SaaS, retail, logistics, education, manufacturing aur government teams ke AI workflows ke saath kaam kar sakte hain.",
-  "do you build ai products?":
-    "Yes, idea se production tak: product workflow, architecture, backend, AI behavior, evaluation, security aur deployment.",
-  "do you review existing ai?":
-    "Yes. AI Audit / Assessment se pehle samajhte hain ki system me actual problem kya hai aur fix ka priority order kya hona chahiye.",
-  "can you fix hallucinations?":
-    "Usually root cause retrieval, grounding, prompt flow ya evaluation me hota hai. Hum cause identify karke measurable fix implement karte hain.",
-  "can you improve rag?":
-    "Haan. Chunking, metadata, hybrid search, reranking, citations, retrieval quality aur test set par kaam karte hain.",
-  "can you improve agents?":
-    "Haan. Tool access, state, retries, handoffs, edge cases, trajectory tests aur human approval flow review karte hain.",
-  "can you reduce ai cost?":
-    "Model routing, semantic caching, payload optimization, token attribution aur usage visibility ke through cost control kar sakte hain.",
-  "can you reduce latency?":
-    "Critical path ko measure karke slow retrieval, model, integration ya payload step isolate karte hain, phir targeted optimization karte hain.",
+    "CuriousDevs intelligent systems research, engineer aur build karta hai. Aaj ka foundation production AI hai — LLMs, RAG, agents, automation, evaluation, security aur infrastructure.",
+  "what can you build today?":
+    "Production AI systems: LLM applications, RAG aur knowledge systems, AI agents, agentic workflows aur automation — evaluation, security, observability aur deployment ke saath.",
+  "what is janus?":
+    "Janus CuriousDevs ka proprietary technology direction hai — intelligent systems build, evaluate, deploy aur operate karne ke liye. Abhi in development hai, generally available nahi.",
+  "do you work on robotics?":
+    "Robotics ek research direction hai jiski taraf hum build kar rahe hain. Computer vision aur edge AI hum actively build kar rahe hain; AI hardware aur neurotechnology exploration hai.",
   "how do you measure quality?":
-    "Representative test set, baseline, edge cases aur regression checks define karke before/after evidence ke saath result measure karte hain.",
-  "how long does a project take?":
-    "Timeline scope par depend karta hai. Assessment short diagnostic ho sakta hai; Build, Fix aur Scale engagements discovery ke baad define hote hain.",
-  "do you work with existing teams?":
-    "Yes. Hum scoped workstream own kar sakte hain, aapki engineering team ke saath collaborate kar sakte hain, ya specialist support de sakte hain.",
-  "do you handle private data?":
-    "Data access, credentials, retention aur handling project scope aur written terms me clearly define karte hain. Least-privilege access preferred hai.",
+    "Evaluation sets, regression tests, security checks aur observability — pehle measure karte hain, phir trust.",
+  "how do you handle security?":
+    "Least privilege by default. Guardrails, tool permissions aur data boundaries system architecture ka part hote hain, baad ka add-on nahi.",
+  "where are you based?":
+    "Gurugram, India — aur remotely doosre regions ki teams ke saath bhi kaam karte hain.",
   "how can i contact you?":
-    "Chat me details share kar dijiye ya Contact page par form fill kijiye. Team aapko next step ke saath reply karegi.",
+    "Yahin chat me details share kijiye, Contact page ka form use kijiye, ya hello@curiousdevs.com par email kijiye.",
 };
+
+const FALLBACK =
+  "Good question. Iska answer context par depend karta hai — aap kya build, fix ya explore kar rahe hain, thoda describe kar dijiye.";
 
 const welcome: Message = {
   from: "assistant",
-  text: "Hi! Main CuriousDevs ka assistant hoon. Aap kaun hain, aur AI ke saath kis stage par ho?",
+  text: "Hi! Main CuriousDevs ka assistant hoon. Aap kaun hain, aur kya build ya explore kar rahe hain?",
 };
+
+const fieldCls =
+  "mt-1.5 w-full rounded-[var(--radius)] border border-hairline bg-surface-2 px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-orange-bright";
 
 export function ChatAssistant() {
   const [open, setOpen] = useState(false);
@@ -83,153 +66,104 @@ export function ChatAssistant() {
   const [step, setStep] = useState<Step>("role");
   const [messages, setMessages] = useState<Message[]>([welcome]);
   const [input, setInput] = useState("");
-  const [profile, setProfile] = useState({ role: "", service: "" });
+  const [role, setRole] = useState("");
   const [lead, setLead] = useState({ name: "", email: "", phone: "", reason: "" });
-  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
-  const [dragging, setDragging] = useState(false);
-  const [settled, setSettled] = useState(false);
-  const [autoJump, setAutoJump] = useState(false);
-  const dragStart = useRef({ x: 0, y: 0, left: 0, top: 0 });
-  const moved = useRef(false);
-  const pointerActivated = useRef(false);
-  const assistantSize = 96;
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const jump = () => {
-      setAutoJump(true);
-      window.setTimeout(() => setAutoJump(false), 650);
-    };
-    const interval = window.setInterval(jump, 4200);
-    return () => window.clearInterval(interval);
-  }, []);
+  const say = (...next: Message[]) => setMessages((current) => [...current, ...next]);
 
-  useEffect(() => {
-    const clampToViewport = () => {
-      setPosition(
-        (current) =>
-          current && {
-            x: Math.min(Math.max(16, current.x), window.innerWidth - assistantSize - 16),
-            y: Math.min(Math.max(16, current.y), window.innerHeight - assistantSize - 16),
-          },
-      );
-    };
-    window.addEventListener("resize", clampToViewport);
-    return () => window.removeEventListener("resize", clampToViewport);
-  }, []);
-
-  useEffect(() => {
-    if (!dragging) return;
-    const move = (event: PointerEvent) => {
-      const nextX = Math.min(
-        Math.max(16, dragStart.current.left + event.clientX - dragStart.current.x),
-        window.innerWidth - assistantSize - 16,
-      );
-      const nextY = Math.min(
-        Math.max(16, dragStart.current.top + event.clientY - dragStart.current.y),
-        window.innerHeight - assistantSize - 16,
-      );
-      if (
-        Math.abs(event.clientX - dragStart.current.x) > 4 ||
-        Math.abs(event.clientY - dragStart.current.y) > 4
-      )
-        moved.current = true;
-      setPosition({ x: nextX, y: nextY });
-    };
-    const stop = () => setDragging(false);
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", stop, { once: true });
-    return () => {
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", stop);
-    };
-  }, [dragging]);
-
-  const addMessages = (userText: string, assistantText: string) => {
-    setMessages((current) => [
-      ...current,
-      { from: "user", text: userText },
-      { from: "assistant", text: assistantText },
-    ]);
-  };
-
-  const selectRole = (role: string) => {
-    if (role === "I have a question first") {
-      addMessages(
-        role,
-        "Bilkul. Neeche common questions hain; aap ek choose kar sakte hain ya apna question type kar sakte hain.",
+  const selectRole = (choice: string) => {
+    if (choice === "I have a question first") {
+      say(
+        { from: "user", text: choice },
+        {
+          from: "assistant",
+          text: "Bilkul. Neeche common questions hain — ek choose kijiye ya apna question type kijiye.",
+        },
       );
       setStep("faq");
       return;
     }
-    setProfile((current) => ({ ...current, role }));
-    addMessages(
-      role,
-      "Nice to meet you. Aap CuriousDevs ke kis service ke baare mein jaana chahte hain?",
+    setRole(choice);
+    say(
+      { from: "user", text: choice },
+      {
+        from: "assistant",
+        text: "Nice to meet you. Aap kis area ke baare mein baat karna chahte hain?",
+      },
     );
-    setStep("service");
+    setStep("area");
   };
 
   const answerQuestion = (question: string) => {
-    const answer =
-      faqAnswers[question.toLowerCase()] ??
-      "Iska short answer dene ke liye thoda context chahiye. Aap apna AI workflow ya problem describe kar dijiye, team uske hisaab se guide karegi.";
-    addMessages(question, answer);
+    say(
+      { from: "user", text: question },
+      { from: "assistant", text: faqAnswers[question.toLowerCase()] ?? FALLBACK },
+    );
   };
 
   const continueFromFaq = () => {
-    addMessages(
-      "Continue",
-      "Great. Aap CuriousDevs ke kis service ke baare mein jaana chahte hain?",
+    say(
+      { from: "user", text: "Continue" },
+      { from: "assistant", text: "Great. Aap kis area ke baare mein baat karna chahte hain?" },
     );
-    setStep("service");
+    setStep("area");
   };
 
-  const selectService = (service: string) => {
-    setProfile((current) => ({ ...current, service }));
-    addMessages(
-      service,
-      `Perfect, ${lead.name || "thanks"}. Note kar liya — CuriousDevs team aapke ${service.toLowerCase()} interest ke hisaab se ${lead.email} par next step share karegi.`,
-    );
+  const selectArea = async (area: string) => {
+    say({ from: "user", text: area });
     setStep("done");
+    try {
+      await sendContactMessage({
+        data: {
+          name: lead.name,
+          email: lead.email,
+          phone: lead.phone || undefined,
+          role: role || undefined,
+          area,
+          message: lead.reason,
+          source: "Site assistant",
+        },
+      });
+      say({
+        from: "assistant",
+        text: `Perfect, ${lead.name}. Note kar liya — CuriousDevs team ${lead.email} par ${area} ke baare mein reply karegi.`,
+      });
+    } catch {
+      say({
+        from: "assistant",
+        text: "Abhi message send nahi ho paaya. Please hello@curiousdevs.com par email kar dijiye, ya Contact page ka form use kijiye.",
+      });
+    }
   };
 
   const submitText = () => {
     const value = input.trim();
     if (!value) return;
     setInput("");
-    if (step === "faq") {
-      const answer =
-        faqAnswers[value.toLowerCase()] ??
-        "Good question. Iska answer context par depend karega. Aap apna AI workflow, current problem, ya expected outcome share kar dijiye.";
-      addMessages(value, answer);
-    }
+    if (step === "faq") answerQuestion(value);
   };
 
   const reset = () => {
     setStep("role");
     setMessages([welcome]);
     setInput("");
-    setProfile({ role: "", service: "" });
+    setRole("");
   };
 
   const submitLead = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!lead.name.trim() || !lead.email.trim() || !lead.reason.trim()) return;
-    setLead((current) => ({
-      ...current,
-      name: current.name.trim(),
-      email: current.email.trim(),
-      phone: current.phone.trim(),
-      reason: current.reason.trim(),
-    }));
+    const name = lead.name.trim();
+    const email = lead.email.trim();
+    const reason = lead.reason.trim();
+    if (!name || !email || !reason) return;
+    setLead((current) => ({ ...current, name, email, phone: current.phone.trim(), reason }));
     setOnboarded(true);
     setMessages([
       welcome,
-      { from: "user", text: `I'm ${lead.name.trim()}` },
+      { from: "user", text: `I'm ${name}` },
       {
         from: "assistant",
-        text: `Thanks, ${lead.name.trim()}. What would you like to explore with CuriousDevs?`,
+        text: `Thanks, ${name}. Aap kaun hain, aur CuriousDevs ke saath kya explore karna chahte hain?`,
       },
     ]);
     setStep("role");
@@ -238,40 +172,32 @@ export function ChatAssistant() {
   const choices = useMemo(() => {
     if (step === "role") return roleChoices;
     if (step === "faq") return faqChoices;
-    if (step === "service") return serviceChoices;
+    if (step === "area") return areaChoices;
     return [];
   }, [step]);
 
-  const opensRight = position ? position.x > window.innerWidth / 2 : true;
-
   return (
-    <div
-      className={`fixed z-[60] ${position ? "top-0 left-0" : "right-4 bottom-4"} ${dragging ? "" : "transition-transform duration-200 ease-out"}`}
-      style={
-        position
-          ? {
-              transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-              willChange: "transform",
-            }
-          : undefined
-      }
-    >
+    <div className="fixed right-4 bottom-4 z-[60]">
       {open && (
         <section
           aria-label="CuriousDevs assistant"
-          className={`absolute bottom-[calc(100%+12px)] w-[min(360px,calc(100vw-32px))] overflow-hidden rounded-none border border-hairline bg-surface shadow-[0_18px_50px_rgba(10,20,36,0.18)] ${opensRight ? "right-0" : "left-0"}`}
+          className="on-dark absolute right-0 bottom-[calc(100%+12px)] w-[min(370px,calc(100vw-32px))] overflow-hidden rounded-[var(--radius-card)] border border-hairline bg-night shadow-[var(--shadow-3)]"
         >
-          <header className="flex items-center justify-between border-b border-hairline bg-surface-2 px-4 py-3">
-            <div>
-              <p className="text-sm font-semibold tracking-tight">
-                {onboarded ? "Let's understand your AI work" : "Tell us a little about yourself"}
+          <header className="flex items-center justify-between border-b border-hairline px-4 py-3">
+            <div className="flex items-center gap-2.5">
+              <span
+                className="live-dot size-1.5 rounded-full bg-orange-bright"
+                aria-hidden="true"
+              />
+              <p className="text-sm font-medium tracking-tight">
+                {onboarded ? "What are you working on?" : "Tell us a little about yourself"}
               </p>
             </div>
             <button
               type="button"
               aria-label="Close assistant"
               onClick={() => setOpen(false)}
-              className="flex size-8 items-center justify-center rounded-none border border-hairline text-muted-foreground hover:text-foreground"
+              className="flex size-8 items-center justify-center rounded-full border border-hairline text-muted-foreground hover:text-foreground"
             >
               <X className="size-4" />
             </button>
@@ -280,18 +206,17 @@ export function ChatAssistant() {
           {!onboarded ? (
             <form className="space-y-3 px-4 py-4" onSubmit={submitLead}>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Share a few details so we can make this conversation useful for you.
+                Share a few details so this conversation is useful — we'll reply by email.
               </p>
               <label className="block text-xs font-medium text-foreground">
                 Name
                 <input
                   required
                   value={lead.name}
-                  onChange={(event) =>
-                    setLead((current) => ({ ...current, name: event.target.value }))
-                  }
+                  onChange={(event) => setLead((c) => ({ ...c, name: event.target.value }))}
                   placeholder="Your name"
-                  className="mt-1.5 w-full rounded-none border border-hairline bg-surface px-3 py-2 text-sm text-foreground outline-none focus-visible:border-amber-accent/60"
+                  autoComplete="name"
+                  className={fieldCls}
                 />
               </label>
               <label className="block text-xs font-medium text-foreground">
@@ -300,11 +225,10 @@ export function ChatAssistant() {
                   required
                   type="email"
                   value={lead.email}
-                  onChange={(event) =>
-                    setLead((current) => ({ ...current, email: event.target.value }))
-                  }
+                  onChange={(event) => setLead((c) => ({ ...c, email: event.target.value }))}
                   placeholder="you@company.com"
-                  className="mt-1.5 w-full rounded-none border border-hairline bg-surface px-3 py-2 text-sm text-foreground outline-none focus-visible:border-amber-accent/60"
+                  autoComplete="email"
+                  className={fieldCls}
                 />
               </label>
               <label className="block text-xs font-medium text-foreground">
@@ -312,11 +236,10 @@ export function ChatAssistant() {
                 <input
                   type="tel"
                   value={lead.phone}
-                  onChange={(event) =>
-                    setLead((current) => ({ ...current, phone: event.target.value }))
-                  }
+                  onChange={(event) => setLead((c) => ({ ...c, phone: event.target.value }))}
                   placeholder="+91 ..."
-                  className="mt-1.5 w-full rounded-none border border-hairline bg-surface px-3 py-2 text-sm text-foreground outline-none focus-visible:border-amber-accent/60"
+                  autoComplete="tel"
+                  className={fieldCls}
                 />
               </label>
               <label className="block text-xs font-medium text-foreground">
@@ -324,30 +247,28 @@ export function ChatAssistant() {
                 <textarea
                   required
                   value={lead.reason}
-                  onChange={(event) =>
-                    setLead((current) => ({ ...current, reason: event.target.value }))
-                  }
-                  placeholder="Tell us what you want to build, fix, or understand"
+                  onChange={(event) => setLead((c) => ({ ...c, reason: event.target.value }))}
+                  placeholder="What you want to build, fix or explore"
                   rows={3}
-                  className="mt-1.5 w-full resize-none rounded-none border border-hairline bg-surface px-3 py-2 text-sm text-foreground outline-none focus-visible:border-amber-accent/60"
+                  className={`${fieldCls} resize-none`}
                 />
               </label>
-              <button
-                type="submit"
-                className="flex w-full items-center justify-center gap-2 rounded-none bg-amber-accent px-4 py-2.5 text-sm font-semibold text-background hover:opacity-90"
-              >
+              <button type="submit" className="btn-primary w-full">
                 Start conversation <ArrowRight className="size-4" />
               </button>
             </form>
           ) : (
-            <div className="max-h-[min(430px,calc(100vh-180px))] space-y-3 overflow-y-auto px-4 py-4">
+            <div
+              className="max-h-[min(430px,calc(100vh-180px))] space-y-3 overflow-y-auto px-4 py-4"
+              aria-live="polite"
+            >
               {messages.map((message, index) => (
                 <div
                   key={`${message.from}-${index}`}
                   className={`flex ${message.from === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <p
-                    className={`max-w-[88%] rounded-none border px-3 py-2 text-[13px] leading-relaxed ${message.from === "user" ? "border-amber-accent/40 bg-amber-accent/10 text-foreground" : "border-hairline bg-surface-2 text-muted-foreground"}`}
+                    className={`max-w-[88%] rounded-[var(--radius-card)] border px-3 py-2 text-[13px] leading-relaxed ${message.from === "user" ? "border-orange-bright/40 bg-orange-bright/10 text-foreground" : "border-hairline bg-surface-2 text-foreground/80"}`}
                   >
                     {message.text}
                   </p>
@@ -365,9 +286,9 @@ export function ChatAssistant() {
                           ? selectRole(choice)
                           : step === "faq"
                             ? answerQuestion(choice)
-                            : selectService(choice)
+                            : void selectArea(choice)
                       }
-                      className="rounded-none border border-hairline bg-surface px-3 py-2 text-left text-xs font-medium text-foreground hover:border-amber-accent/50 hover:bg-surface-2"
+                      className="rounded-full border border-hairline px-3 py-1.5 text-left text-xs text-foreground transition-colors hover:border-orange-bright"
                     >
                       {choice}
                     </button>
@@ -399,7 +320,7 @@ export function ChatAssistant() {
 
           {onboarded && step === "faq" && (
             <form
-              className="border-t border-hairline bg-surface-2/60 p-3"
+              className="border-t border-hairline p-3"
               onSubmit={(event) => {
                 event.preventDefault();
                 submitText();
@@ -411,13 +332,14 @@ export function ChatAssistant() {
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
                   type="text"
-                  placeholder="Type your answer..."
-                  className="min-w-0 flex-1 rounded-none border border-hairline bg-surface px-3 py-2 text-sm text-foreground outline-none focus-visible:border-amber-accent/60"
+                  placeholder="Type your question..."
+                  aria-label="Your question"
+                  className="min-w-0 flex-1 rounded-full border border-hairline bg-surface-2 px-4 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-orange-bright"
                 />
                 <button
                   type="submit"
-                  aria-label="Send answer"
-                  className="flex size-9 shrink-0 items-center justify-center rounded-none bg-amber-accent text-background hover:opacity-90"
+                  aria-label="Send question"
+                  className="flex size-9 shrink-0 items-center justify-center rounded-full bg-orange-bright text-night hover:brightness-105"
                 >
                   <Send className="size-4" />
                 </button>
@@ -430,54 +352,11 @@ export function ChatAssistant() {
       <button
         type="button"
         aria-label={open ? "Close CuriousDevs assistant" : "Open CuriousDevs assistant"}
-        onPointerDown={(event) => {
-          event.preventDefault();
-          event.currentTarget.setPointerCapture(event.pointerId);
-          const rect = event.currentTarget.getBoundingClientRect();
-          dragStart.current = {
-            x: event.clientX,
-            y: event.clientY,
-            left: rect.left,
-            top: rect.top,
-          };
-          moved.current = false;
-          setDragging(true);
-        }}
-        onClick={() => {
-          if (pointerActivated.current) {
-            pointerActivated.current = false;
-            return;
-          }
-          setOpen((current) => {
-            const next = !current;
-            setSettled(next);
-            return next;
-          });
-        }}
-        onPointerUp={(event) => {
-          if (event.currentTarget.hasPointerCapture(event.pointerId))
-            event.currentTarget.releasePointerCapture(event.pointerId);
-          setDragging(false);
-          if (!moved.current) {
-            pointerActivated.current = true;
-            setOpen((current) => {
-              const next = !current;
-              setSettled(next);
-              return next;
-            });
-          }
-        }}
-        onPointerCancel={() => setDragging(false)}
-        className={`group relative flex size-24 touch-none select-none cursor-grab items-center justify-center rounded-full border border-transparent bg-transparent shadow-none active:cursor-grabbing ${dragging ? "ring-2 ring-amber-accent/30" : ""}`}
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+        className="flex size-12 items-center justify-center rounded-full bg-orange-bright text-night shadow-[var(--shadow-2)] transition-transform hover:-translate-y-0.5"
       >
-        <span
-          className={`assistant-mascot relative block size-24 ${settled ? "assistant-mascot-seated" : ""} ${autoJump && !settled ? "assistant-mascot-auto-jump" : ""}`}
-        >
-          <Mascot seated={open} />
-        </span>
-        {open && (
-          <ChevronUp className="absolute -right-1 -top-1 size-7 rounded-full border border-hairline bg-surface p-1.5 text-foreground shadow-[0_8px_18px_rgba(10,20,36,0.12)]" />
-        )}
+        {open ? <X className="size-5" /> : <MessageSquare className="size-5" />}
       </button>
     </div>
   );

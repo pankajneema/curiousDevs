@@ -1,7 +1,7 @@
-# CuriosDevs
+# CuriousDevs
 
-The accountability layer for autonomous systems — AgentGuard (AI agent security),
-CurioComply (DPDP compliance automation) and AeroOS (autonomous fleet OS).
+Website V2 — from research to real-world technology. AI Engineering, Intelligent Systems,
+Robotics and DeepTech, and Janus, the intelligent systems platform in development.
 
 ## Stack
 
@@ -31,4 +31,5 @@ bun run format
 - `src/routes/` — file-based routes (see `src/routes/README.md` for conventions)
 - `src/components/landing/` — page sections and shared landing-page components
 - `src/components/ui/` — shadcn/ui primitives
-- `src/content/site.ts` — copy, pricing, roadmap, doctrine, FAQ data
+- `src/content/site.ts` — V2 content model (technology areas, research, systems, Janus, company)
+- `src/components/landing/visuals/` — SVG technical illustrations (isometric stacks, chips, system graphs)

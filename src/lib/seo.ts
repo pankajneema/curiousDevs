@@ -1,21 +1,21 @@
 export const SITE_NAME = "CuriousDevs";
 export const SITE_DOMAIN = "https://www.curiousdevs.com";
 export const SITE_DESCRIPTION =
-  "CuriousDevs is an AI Engineering Studio that builds, audits, fixes, and scales reliable AI systems for teams moving from prototype to production.";
+  "CuriousDevs researches, engineers and builds intelligent systems — from production AI and automation to the technologies that connect intelligence with the physical world.";
 export const DEFAULT_IMAGE = `${SITE_DOMAIN}/og-image.jpg`;
 export const DEFAULT_KEYWORDS = [
-  "AI engineering services",
-  "AI-native development",
-  "AI audit and assessment",
-  "AI reliability",
-  "AI security",
-  "RAG engineering",
-  "AI agents",
-  "MLOps",
-  "AI optimization",
+  "intelligent systems",
+  "AI engineering",
   "production AI",
-  "AI engineering studio",
-  "AI productionization",
+  "RAG",
+  "AI agents",
+  "agentic automation",
+  "AI evaluation",
+  "AI security",
+  "computer vision",
+  "edge AI",
+  "robotics research",
+  "Janus intelligent systems platform",
 ];
 
 export type BreadcrumbItem = {
@@ -75,7 +75,7 @@ export function buildSeoHead(options: SeoPageOptions) {
       { name: "author", content: author },
       { name: "publisher", content: publisher },
       { name: "language", content: locale },
-      { name: "theme-color", content: "#ffffff" },
+      { name: "theme-color", content: "#050a12" },
       { name: "color-scheme", content: "light" },
       { name: "application-name", content: siteName },
       { name: "apple-mobile-web-app-title", content: siteName },
@@ -154,25 +154,28 @@ export function buildSeoHead(options: SeoPageOptions) {
 export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
+    "@id": `${SITE_DOMAIN}/#organization`,
     name: SITE_NAME,
     url: SITE_DOMAIN,
     logo: `${SITE_DOMAIN}/favicon.svg`,
     email: "hello@curiousdevs.com",
     description: SITE_DESCRIPTION,
-    areaServed: ["IN", "US", "CA", "GB", "AE"],
     knowsAbout: [
+      "Intelligent systems",
       "AI engineering",
-      "RAG systems",
+      "Production AI systems",
+      "Retrieval-augmented generation",
       "AI agents",
       "AI evaluation",
       "AI security",
-      "MLOps",
-      "AI productionization",
+      "Computer vision",
+      "Edge AI",
+      "Robotics",
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "sales",
+      contactType: "general inquiries",
       email: "hello@curiousdevs.com",
       availableLanguage: ["English", "Hindi"],
     },
@@ -191,6 +194,7 @@ export function buildWebSiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_DOMAIN}/#website`,
     name: SITE_NAME,
     url: SITE_DOMAIN,
     inLanguage: "en",

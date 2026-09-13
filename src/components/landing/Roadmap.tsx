@@ -1,4 +1,4 @@
-import { doctrine, timeline } from "@/content/site";
+import { doctrine, timeline } from "@/content/legacy";
 
 export function Roadmap() {
   return (

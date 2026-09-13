@@ -11,22 +11,42 @@ function table(rows: [string, string][]) {
   return `<table cellpadding="0" cellspacing="0">${rows.map(([l, v]) => row(l, v)).join("")}</table>`;
 }
 
+type ContactPayload = {
+  name: string;
+  email: string;
+  company?: string;
+  building?: string;
+  stage?: string;
+  area?: string;
+  timeline?: string;
+  message?: string;
+  role?: string;
+  phone?: string;
+  source?: string;
+};
+
 export const sendContactMessage = createServerFn({ method: "POST" })
-  .validator(
-    (data: { name: string; email: string; company: string; surface: string; notes: string }) =>
-      data,
-  )
+  .validator((data: ContactPayload) => data)
   .handler(async ({ data }) => {
     if (!data.name || !data.email) throw new Error("Name and email are required.");
+    const optional: [string, string | undefined][] = [
+      ["Company", data.company],
+      ["Role", data.role],
+      ["Phone", data.phone],
+      ["What they're building", data.building],
+      ["Current stage", data.stage],
+      ["Area of interest", data.area],
+      ["Timeline", data.timeline],
+      ["Message", data.message],
+      ["Source", data.source],
+    ];
     await sendMail({
-      subject: `New contact — ${data.name} (${data.company || "no company given"})`,
+      subject: `New conversation — ${data.name}${data.company ? ` (${data.company})` : ""}`,
       replyTo: data.email,
       html: table([
         ["Name", data.name],
         ["Email", data.email],
-        ["Company", data.company],
-        ["Securing", data.surface],
-        ["Workflow", data.notes],
+        ...optional.filter((entry): entry is [string, string] => Boolean(entry[1])),
       ]),
     });
     return { ok: true as const };
@@ -52,9 +72,9 @@ export const sendBookingRequest = createServerFn({ method: "POST" })
         ["Name", data.name],
         ["Email", data.email],
         ["Company", data.company],
-        ["Securing", data.surface],
+        ["Area of interest", data.surface],
         ["Preferred window", data.slot],
-        ["Workflow", data.notes],
+        ["Notes", data.notes],
       ]),
     });
     return { ok: true as const };

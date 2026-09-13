@@ -1,299 +1,252 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { BookingDialog } from "./BookingDialog";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { domains, type DomainId } from "@/content/site";
+import {
+  AiEngineeringIcon,
+  DeepTechIcon,
+  IntelligentSystemsIcon,
+  RoboticsIcon,
+} from "./DomainIcon";
 import { Logo, Wordmark } from "./Logo";
-import { products } from "@/content/site";
-import { solutions } from "./solutions-data";
 
-const productItems = products.map((p) => ({
-  label: p.name,
-  desc: p.category,
-  to: "/product" as const,
-  search: { p: p.slug },
-}));
+const ICON: Record<DomainId, typeof AiEngineeringIcon> = {
+  "ai-engineering": AiEngineeringIcon,
+  "intelligent-systems": IntelligentSystemsIcon,
+  robotics: RoboticsIcon,
+  deeptech: DeepTechIcon,
+};
 
-const solutionItems = solutions.map((s) => ({
-  label: s.name,
-  to: "/solutions" as const,
-  search: { industry: s.slug },
-}));
+const DOMAIN_ORDER: Record<DomainId, number> = {
+  "ai-engineering": 1,
+  "intelligent-systems": 2,
+  deeptech: 3,
+  robotics: 4,
+};
+const orderedDomains = [...domains].sort((a, b) => DOMAIN_ORDER[a.id] - DOMAIN_ORDER[b.id]);
 
-const resourceItems = [
-  {
-    label: "How It Works",
-    desc: "Build, fix, and scale AI systems",
-    to: "/how-it-works" as const,
-  },
-  { label: "The Problem", desc: "Where AI projects break", to: "/problem" as const },
-  { label: "Blog", desc: "AI engineering notes", to: "/blog" as const },
-];
+const links = [
+  { label: "Work", to: "/work" },
+  { label: "Research", to: "/research" },
+  { label: "Company", to: "/company" },
+] as const;
 
-const flatLinks = [
-  { label: "Product", to: "/janus" as const },
-  // { label: "Pricing", to: "/pricing" as const },
-  { label: "FAQ", to: "/faq" as const },
-  { label: "Careers", to: "/careers" as const },
-  { label: "Contact", to: "/contact" as const },
-];
+// Routes whose first section is light: the bar stays solid over them.
+const LIGHT_TOP = ["/privacy", "/terms", "/security"];
 
-function DropdownTrigger({
-  label,
-  open,
-  onClick,
-}: {
-  label: string;
-  open: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
-      aria-expanded={open}
-      aria-haspopup="menu"
-    >
-      {label}
-      <ChevronDown className={`size-3.5 transition-transform ${open ? "rotate-180" : ""}`} />
-    </button>
-  );
-}
+const itemCls = (active: boolean) =>
+  `flex h-9 items-center gap-1 rounded-full px-3.5 text-[13px] outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-orange-bright/60 ${
+    active ? "bg-foreground/[0.08] text-foreground" : "text-muted-foreground"
+  }`;
 
 export function Nav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
-  const [menu, setMenu] = useState<"product" | "solutions" | "resources" | null>(null);
-  const ddRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (ddRef.current && !ddRef.current.contains(e.target as Node)) setMenu(null);
-    };
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenu(null);
-    };
-    document.addEventListener("mousedown", onClick);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onClick);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, []);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setOpen(false);
-    setMenu(null);
   }, [pathname]);
 
-  const toggle = (m: "product" | "solutions" | "resources") => setMenu((v) => (v === m ? null : m));
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const isActive = (to: string) => (to === "/" ? pathname === "/" : pathname.startsWith(to));
+  const solid = scrolled || open || pathname.startsWith("/blog") || LIGHT_TOP.includes(pathname);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <div className="w-full max-w-5xl">
-        <nav className="flex items-center gap-2 rounded-none border border-hairline bg-surface/85 px-3 py-2 shadow-[0_10px_30px_rgba(10,20,36,0.08)] backdrop-blur-xl sm:gap-5 sm:px-5">
-          <Link to="/" className="flex items-center gap-2 pr-1">
-            <Logo size={26} />
-            <Wordmark />
-          </Link>
+    <header
+      className={`on-dark fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300 ${
+        solid ? "border-hairline bg-night/80 backdrop-blur-xl" : "border-transparent bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-5 sm:px-8">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="CuriousDevs — home">
+          <Logo size={26} variant="light" />
+          <Wordmark variant="light" />
+        </Link>
 
-          <div ref={ddRef} className="hidden flex-1 items-center gap-5 lg:flex">
-            <div className="relative">
-              <DropdownTrigger
-                label="Services"
-                open={menu === "product"}
-                onClick={() => toggle("product")}
-              />
-              {menu === "product" && (
-                <div
-                  role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-none border border-hairline bg-surface p-2 shadow-lg"
-                >
-                  {productItems.map((p, i) => (
+        <NavigationMenu.Root
+          aria-label="Primary"
+          delayDuration={60}
+          className="relative mx-auto hidden lg:block"
+        >
+          <NavigationMenu.List className="flex items-center gap-1">
+            <NavigationMenu.Item>
+              <NavigationMenu.Link asChild active={isActive("/")}>
+                <Link to="/" className={itemCls(isActive("/"))}>
+                  Home
+                </Link>
+              </NavigationMenu.Link>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item>
+              <NavigationMenu.Trigger className={`group ${itemCls(isActive("/technology"))}`}>
+                Technology
+                <ChevronDown
+                  aria-hidden="true"
+                  className="size-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+                />
+              </NavigationMenu.Trigger>
+              <NavigationMenu.Content className="absolute top-full left-1/2 w-[760px] -translate-x-1/2 pt-3 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-1">
+                <div className="grid grid-cols-[1.4fr_1fr] gap-2 rounded-2xl border border-hairline bg-night/95 p-2 shadow-[var(--shadow-3)] backdrop-blur-xl">
+                  <ul className="grid gap-1 p-1">
+                    {orderedDomains.map((d) => {
+                      const Icon = ICON[d.id];
+                      return (
+                        <li key={d.id}>
+                          <NavigationMenu.Link asChild>
+                            <Link
+                              to="/technology"
+                              hash={d.id}
+                              className="flex items-start gap-4 rounded-xl p-3 transition-colors hover:bg-foreground/[0.05]"
+                            >
+                              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-hairline bg-surface-2">
+                                <Icon className="size-5 text-orange" />
+                              </span>
+                              <span className="min-w-0">
+                                <span className="block text-sm font-medium text-foreground">
+                                  {d.name}
+                                </span>
+                                <span className="mt-0.5 block text-[13px] leading-snug text-muted-foreground">
+                                  {d.statement}
+                                </span>
+                              </span>
+                            </Link>
+                          </NavigationMenu.Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  <NavigationMenu.Link asChild>
                     <Link
-                      key={p.label}
-                      to={p.to}
-                      search={p.search}
-                      role="menuitem"
-                      className="flex items-center gap-3 rounded-none px-3 py-2.5 transition-colors hover:bg-surface-2"
+                      to="/technology/noema"
+                      className="spotlight flex flex-col justify-between overflow-hidden rounded-xl border border-hairline bg-surface-2 p-6"
                     >
-                      <span className="font-mono text-[10px] text-amber-soft">0{i + 1}</span>
+                      <div
+                        aria-hidden="true"
+                        className="glow-orange absolute -right-24 -bottom-24 -z-10 size-72 rounded-full"
+                      />
+                      <div aria-hidden="true" className="tech-grid absolute inset-0 -z-10" />
                       <div>
-                        <div className="text-sm font-semibold tracking-tight">{p.label}</div>
-                        <div className="text-xs text-muted-foreground">{p.desc}</div>
+                        <p className="eyebrow">Proprietary technology</p>
+                        <p className="mt-5 text-3xl font-normal tracking-tight text-foreground">
+                          Noema & Soma
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          Intelligence and embodiment, connected.
+                        </p>
                       </div>
+                      <span className="link-arrow mt-10">
+                        Explore the direction <ArrowRight className="size-4" />
+                      </span>
                     </Link>
-                  ))}
-                  <div className="mt-1 border-t border-hairline pt-1">
-                    <Link
-                      to="/product"
-                      search={{ p: undefined }}
-                      className="block rounded-none px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
-                    >
-                      View all services →
-                    </Link>
+                  </NavigationMenu.Link>
+
+                  <div className="col-span-2 flex items-center justify-between gap-6 rounded-xl border border-hairline px-4 py-3 text-[13px] text-muted-foreground">
+                    <span>One intelligent-systems thesis. Four connected areas.</span>
+                    <NavigationMenu.Link asChild>
+                      <Link to="/technology" className="link-arrow shrink-0 text-[13px]">
+                        All technology <ArrowRight className="size-3.5" />
+                      </Link>
+                    </NavigationMenu.Link>
                   </div>
                 </div>
-              )}
-            </div>
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
 
-            <div className="relative">
-              <DropdownTrigger
-                label="Solutions"
-                open={menu === "solutions"}
-                onClick={() => toggle("solutions")}
-              />
-              {menu === "solutions" && (
-                <div
-                  role="menu"
-                  className="absolute top-full left-0 mt-3 w-64 rounded-none border border-hairline bg-surface/95 p-2 shadow-[0_18px_40px_rgba(10,20,36,0.12)] backdrop-blur-xl"
-                >
-                  {solutionItems.map((s) => (
-                    <Link
-                      key={s.label}
-                      to={s.to}
-                      search={s.search}
-                      role="menuitem"
-                      className="block rounded-none px-3 py-2.5 text-sm font-medium transition-colors hover:bg-surface-2"
-                    >
-                      {s.label}
-                    </Link>
-                  ))}
-                  <div className="mt-1 border-t border-hairline pt-1">
-                    <Link
-                      to="/solutions"
-                      search={{ industry: undefined }}
-                      className="block rounded-none px-3 py-2.5 text-sm font-medium text-amber-accent transition-colors hover:bg-surface-2 hover:text-foreground"
-                    >
-                      View all industries →
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="relative">
-              <DropdownTrigger
-                label="Resources"
-                open={menu === "resources"}
-                onClick={() => toggle("resources")}
-              />
-              {menu === "resources" && (
-                <div
-                  role="menu"
-                  className="absolute top-full left-0 mt-3 w-72 rounded-none border border-hairline bg-surface p-2 shadow-lg"
-                >
-                  {resourceItems.map((r) => (
-                    <Link
-                      key={r.label}
-                      to={r.to}
-                      role="menuitem"
-                      className="block rounded-none px-3 py-2.5 transition-colors hover:bg-surface-2"
-                    >
-                      <div className="text-sm font-semibold tracking-tight">{r.label}</div>
-                      <div className="text-xs text-muted-foreground">{r.desc}</div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {flatLinks.map((l) => (
-              <Link
-                key={l.label}
-                to={l.to}
-                className={`text-sm transition-colors hover:text-foreground ${
-                  pathname === l.to ? "text-foreground" : "text-muted-foreground"
-                }`}
-              >
-                {l.label}
-              </Link>
+            {links.map((l) => (
+              <NavigationMenu.Item key={l.to}>
+                <NavigationMenu.Link asChild active={isActive(l.to)}>
+                  <Link to={l.to} className={itemCls(isActive(l.to))}>
+                    {l.label}
+                  </Link>
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
             ))}
-          </div>
+          </NavigationMenu.List>
+        </NavigationMenu.Root>
 
-          <div className="ml-auto flex items-center gap-2">
-            <BookingDialog>
-              <button className="btn-shine rounded-none bg-foreground px-4 py-2 text-xs font-semibold text-background sm:text-sm">
-                Talk to us
-              </button>
-            </BookingDialog>
-            <button
-              onClick={() => setOpen((v) => !v)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              className="flex size-9 min-h-9 items-center justify-center rounded-none border border-hairline text-muted-foreground transition-colors hover:text-foreground lg:hidden"
+        <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          <Link
+            to="/contact"
+            className="group hidden h-9 items-center gap-2 rounded-full bg-foreground px-4 text-[13px] font-medium text-night transition-colors hover:bg-orange-bright sm:inline-flex"
+          >
+            Let's Build
+            <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="flex size-10 items-center justify-center rounded-full border border-hairline text-foreground lg:hidden"
+          >
+            {open ? <X className="size-4" /> : <Menu className="size-4" />}
+          </button>
+        </div>
+      </div>
+
+      {open && (
+        <nav
+          id="mobile-menu"
+          aria-label="Mobile"
+          className="max-h-[calc(100svh-4rem)] overflow-y-auto border-t border-hairline bg-night lg:hidden"
+        >
+          <div className="mx-auto max-w-7xl px-5 py-5 sm:px-8">
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="flex min-h-12 items-center text-lg text-foreground"
             >
-              {open ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
-          </div>
-        </nav>
-
-        {open && (
-          <div className="animate-fade-in mt-2 max-h-[75vh] overflow-y-auto rounded-none border border-hairline bg-surface p-2.5 shadow-lg lg:hidden">
-            <p className="eyebrow px-3 pt-2 pb-1">Services</p>
-            <ul className="divide-y divide-[var(--hairline)]">
-              {productItems.map((p) => (
-                <li key={p.label}>
-                  <Link
-                    to={p.to}
-                    search={p.search}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {p.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <p className="eyebrow px-3 pt-4 pb-1">Solutions</p>
-            <ul className="divide-y divide-[var(--hairline)]">
-              {solutionItems.map((s) => (
-                <li key={s.label}>
-                  <Link
-                    to={s.to}
-                    search={s.search}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {s.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <p className="eyebrow px-3 pt-4 pb-1">Resources</p>
-            <ul className="divide-y divide-[var(--hairline)]">
-              {resourceItems.map((r) => (
-                <li key={r.label}>
-                  <Link
-                    to={r.to}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {r.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-4 border-t border-hairline pt-2">
-              <ul className="divide-y divide-[var(--hairline)]">
-                {flatLinks.map((l) => (
-                  <li key={l.label}>
+              Home
+            </Link>
+            <p className="eyebrow mt-3 mb-3">Technology</p>
+            <ul className="grid grid-cols-2 gap-2">
+              {orderedDomains.map((d) => {
+                const Icon = ICON[d.id];
+                return (
+                  <li key={d.id}>
                     <Link
-                      to={l.to}
+                      to="/technology"
+                      hash={d.id}
                       onClick={() => setOpen(false)}
-                      className="flex min-h-11 items-center px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="flex h-full flex-col gap-3 rounded-xl border border-hairline bg-surface-2 p-3.5"
                     >
-                      {l.label}
+                      <Icon className="size-5 text-orange" />
+                      <span className="text-sm text-foreground">{d.name}</span>
                     </Link>
                   </li>
-                ))}
-              </ul>
-            </div>
+                );
+              })}
+            </ul>
+            <ul className="mt-4 divide-y divide-[var(--hairline)] border-y border-hairline">
+              {links.map((l) => (
+                <li key={l.to}>
+                  <Link
+                    to={l.to}
+                    onClick={() => setOpen(false)}
+                    className={`flex min-h-12 items-center justify-between text-lg ${isActive(l.to) ? "text-foreground" : "text-foreground/75"}`}
+                  >
+                    {l.label}
+                    <ArrowRight className="size-4 text-muted-foreground" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link to="/contact" onClick={() => setOpen(false)} className="btn-primary mt-6 w-full">
+              Let's Build <ArrowRight className="size-4" />
+            </Link>
           </div>
-        )}
-      </div>
+        </nav>
+      )}
     </header>
   );
 }

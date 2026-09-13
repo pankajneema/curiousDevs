@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Minus, Plus } from "lucide-react";
-import { faqs } from "@/content/site";
+import { faqs } from "@/content/legacy";
 import { BookingDialog } from "./BookingDialog";
 
 export function FaqAndCta({ schema = false }: { schema?: boolean } = {}) {
@@ -25,27 +26,26 @@ export function FaqAndCta({ schema = false }: { schema?: boolean } = {}) {
           }}
         />
       )}
-      <section id="contact" className="relative border-b border-hairline py-24 sm:py-32">
+      <section id="contact" className="on-dark relative border-b border-hairline py-24 sm:py-32">
         <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-8">
           <h2 className="text-[clamp(2rem,5.5vw,3.75rem)] leading-[1] font-extrabold tracking-[-0.03em]">
-            Have an AI idea? Build it.{" "}
-            <span className="text-aurora">Have an AI system? Improve it.</span>
+            Have a <span className="text-amber-accent">difficult problem?</span>
           </h2>
           <p className="mt-5 text-muted-foreground sm:mt-6">
-            Tell us what you are trying to build or what is going wrong with the AI you already
-            have. We will help define the right service and next step.
+            Tell us what you're trying to build, fix, or explore.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3 sm:mt-9">
             <BookingDialog>
-              <button className="inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
-                Start an AI Project <ArrowRight className="size-4" />
+              <button className="btn-shine inline-flex items-center gap-2 rounded-full bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
+                Start a Project <ArrowRight className="size-4" />
               </button>
             </BookingDialog>
-            <BookingDialog defaultSurface="AI Audit / Assessment">
-              <button className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2">
-                Audit My Existing AI <ArrowRight className="size-4" />
-              </button>
-            </BookingDialog>
+            <Link
+              to="/work"
+              className="btn-quiet inline-flex items-center gap-2 rounded-full border border-hairline px-6 py-3 text-sm font-semibold hover:bg-surface-2"
+            >
+              Explore Our Work <ArrowRight className="size-4" />
+            </Link>
           </div>
         </div>
       </section>

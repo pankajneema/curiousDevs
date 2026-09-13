@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CareersRouteImport } from './routes/careers'
+import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -19,14 +20,22 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProblemRouteImport } from './routes/problem'
 import { Route as ProductRouteImport } from './routes/product'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as SystemsRouteImport } from './routes/systems'
+import { Route as TechnologyRouteImport } from './routes/technology'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as TechnologyAnimaRouteImport } from './routes/technology.anima'
+import { Route as TechnologyCorpusRouteImport } from './routes/technology.corpus'
+import { Route as TechnologyNoemaRouteImport } from './routes/technology.noema'
+import { Route as TechnologySomaRouteImport } from './routes/technology.soma'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +45,11 @@ const IndexRoute = IndexRouteImport.update({
 const CareersRoute = CareersRouteImport.update({
   id: '/careers',
   path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyRoute = CompanyRouteImport.update({
+  id: '/company',
+  path: '/company',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -78,6 +92,11 @@ const ProductRoute = ProductRouteImport.update({
   path: '/product',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
   path: '/roadmap',
@@ -103,9 +122,24 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SystemsRoute = SystemsRouteImport.update({
+  id: '/systems',
+  path: '/systems',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TechnologyRoute = TechnologyRouteImport.update({
+  id: '/technology',
+  path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -118,10 +152,31 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TechnologyAnimaRoute = TechnologyAnimaRouteImport.update({
+  id: '/anima',
+  path: '/anima',
+  getParentRoute: () => TechnologyRoute,
+} as any)
+const TechnologyCorpusRoute = TechnologyCorpusRouteImport.update({
+  id: '/corpus',
+  path: '/corpus',
+  getParentRoute: () => TechnologyRoute,
+} as any)
+const TechnologyNoemaRoute = TechnologyNoemaRouteImport.update({
+  id: '/noema',
+  path: '/noema',
+  getParentRoute: () => TechnologyRoute,
+} as any)
+const TechnologySomaRoute = TechnologySomaRouteImport.update({
+  id: '/soma',
+  path: '/soma',
+  getParentRoute: () => TechnologyRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -130,18 +185,27 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
+  '/research': typeof ResearchRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/systems': typeof SystemsRoute
+  '/technology': typeof TechnologyRouteWithChildren
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/technology/anima': typeof TechnologyAnimaRoute
+  '/technology/corpus': typeof TechnologyCorpusRoute
+  '/technology/noema': typeof TechnologyNoemaRoute
+  '/technology/soma': typeof TechnologySomaRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -150,19 +214,28 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
+  '/research': typeof ResearchRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/systems': typeof SystemsRoute
+  '/technology': typeof TechnologyRouteWithChildren
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/technology/anima': typeof TechnologyAnimaRoute
+  '/technology/corpus': typeof TechnologyCorpusRoute
+  '/technology/noema': typeof TechnologyNoemaRoute
+  '/technology/soma': typeof TechnologySomaRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/careers': typeof CareersRoute
+  '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -171,13 +244,21 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/problem': typeof ProblemRoute
   '/product': typeof ProductRoute
+  '/research': typeof ResearchRoute
   '/roadmap': typeof RoadmapRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/security': typeof SecurityRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/systems': typeof SystemsRoute
+  '/technology': typeof TechnologyRouteWithChildren
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/technology/anima': typeof TechnologyAnimaRoute
+  '/technology/corpus': typeof TechnologyCorpusRoute
+  '/technology/noema': typeof TechnologyNoemaRoute
+  '/technology/soma': typeof TechnologySomaRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -185,6 +266,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/careers'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/how-it-works'
@@ -193,18 +275,27 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/problem'
     | '/product'
+    | '/research'
     | '/roadmap'
     | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/systems'
+    | '/technology'
     | '/terms'
+    | '/work'
     | '/blog/$slug'
+    | '/technology/anima'
+    | '/technology/corpus'
+    | '/technology/noema'
+    | '/technology/soma'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/careers'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/how-it-works'
@@ -213,18 +304,27 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/problem'
     | '/product'
+    | '/research'
     | '/roadmap'
     | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/systems'
+    | '/technology'
     | '/terms'
+    | '/work'
     | '/blog/$slug'
+    | '/technology/anima'
+    | '/technology/corpus'
+    | '/technology/noema'
+    | '/technology/soma'
     | '/blog'
   id:
     | '__root__'
     | '/'
     | '/careers'
+    | '/company'
     | '/contact'
     | '/faq'
     | '/how-it-works'
@@ -233,19 +333,28 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/problem'
     | '/product'
+    | '/research'
     | '/roadmap'
     | '/robots.txt'
     | '/security'
     | '/sitemap.xml'
     | '/solutions'
+    | '/systems'
+    | '/technology'
     | '/terms'
+    | '/work'
     | '/blog/$slug'
+    | '/technology/anima'
+    | '/technology/corpus'
+    | '/technology/noema'
+    | '/technology/soma'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CareersRoute: typeof CareersRoute
+  CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -254,12 +363,16 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProblemRoute: typeof ProblemRoute
   ProductRoute: typeof ProductRoute
+  ResearchRoute: typeof ResearchRoute
   RoadmapRoute: typeof RoadmapRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SecurityRoute: typeof SecurityRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsRoute: typeof SolutionsRoute
+  SystemsRoute: typeof SystemsRoute
+  TechnologyRoute: typeof TechnologyRouteWithChildren
   TermsRoute: typeof TermsRoute
+  WorkRoute: typeof WorkRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
@@ -278,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/careers'
       fullPath: '/careers'
       preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company': {
+      id: '/company'
+      path: '/company'
+      fullPath: '/company'
+      preLoaderRoute: typeof CompanyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -336,6 +456,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roadmap': {
       id: '/roadmap'
       path: '/roadmap'
@@ -371,11 +498,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/systems': {
+      id: '/systems'
+      path: '/systems'
+      fullPath: '/systems'
+      preLoaderRoute: typeof SystemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/technology': {
+      id: '/technology'
+      path: '/technology'
+      fullPath: '/technology'
+      preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -392,12 +540,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/technology/anima': {
+      id: '/technology/anima'
+      path: '/anima'
+      fullPath: '/technology/anima'
+      preLoaderRoute: typeof TechnologyAnimaRouteImport
+      parentRoute: typeof TechnologyRoute
+    }
+    '/technology/corpus': {
+      id: '/technology/corpus'
+      path: '/corpus'
+      fullPath: '/technology/corpus'
+      preLoaderRoute: typeof TechnologyCorpusRouteImport
+      parentRoute: typeof TechnologyRoute
+    }
+    '/technology/noema': {
+      id: '/technology/noema'
+      path: '/noema'
+      fullPath: '/technology/noema'
+      preLoaderRoute: typeof TechnologyNoemaRouteImport
+      parentRoute: typeof TechnologyRoute
+    }
+    '/technology/soma': {
+      id: '/technology/soma'
+      path: '/soma'
+      fullPath: '/technology/soma'
+      preLoaderRoute: typeof TechnologySomaRouteImport
+      parentRoute: typeof TechnologyRoute
+    }
   }
 }
+
+interface TechnologyRouteChildren {
+  TechnologyAnimaRoute: typeof TechnologyAnimaRoute
+  TechnologyCorpusRoute: typeof TechnologyCorpusRoute
+  TechnologyNoemaRoute: typeof TechnologyNoemaRoute
+  TechnologySomaRoute: typeof TechnologySomaRoute
+}
+
+const TechnologyRouteChildren: TechnologyRouteChildren = {
+  TechnologyAnimaRoute: TechnologyAnimaRoute,
+  TechnologyCorpusRoute: TechnologyCorpusRoute,
+  TechnologyNoemaRoute: TechnologyNoemaRoute,
+  TechnologySomaRoute: TechnologySomaRoute,
+}
+
+const TechnologyRouteWithChildren = TechnologyRoute._addFileChildren(
+  TechnologyRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CareersRoute: CareersRoute,
+  CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   HowItWorksRoute: HowItWorksRoute,
@@ -406,12 +601,16 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProblemRoute: ProblemRoute,
   ProductRoute: ProductRoute,
+  ResearchRoute: ResearchRoute,
   RoadmapRoute: RoadmapRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SecurityRoute: SecurityRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsRoute: SolutionsRoute,
+  SystemsRoute: SystemsRoute,
+  TechnologyRoute: TechnologyRouteWithChildren,
   TermsRoute: TermsRoute,
+  WorkRoute: WorkRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
 }

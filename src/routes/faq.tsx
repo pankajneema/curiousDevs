@@ -2,22 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { FaqPage } from "@/components/landing/FaqPage";
+import { FinalCta } from "@/components/landing/FinalCta";
+import { PageIntro } from "@/components/landing/PageIntro";
 import { detailedFaqs } from "@/content/faq";
-import { buildSeoHead } from "@/lib/seo";
+import { buildFaqSchema, buildSeoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/faq")({
   head: () =>
     buildSeoHead({
       path: "/faq",
-      title: "FAQ — CuriousDevs AI Engineering Studio",
+      title: "FAQ — CuriousDevs",
       description:
-        "Answers about CuriousDevs AI engineering services, audits, security, delivery, pricing, ownership, and production deployment.",
-      keywords: [
-        "AI engineering FAQ",
-        "AI audit questions",
-        "AI development services",
-        "AI productionization",
-      ],
+        "What CuriousDevs builds today, what it is researching, what Noema and Soma are, and how to get in touch.",
+      keywords: ["CuriousDevs FAQ", "intelligent systems", "Noema", "Soma", "AI engineering"],
       ogType: "article",
     }),
   component: FaqRoute,
@@ -29,19 +26,21 @@ function FaqRoute() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: detailedFaqs.map((item) => ({
-              "@type": "Question",
-              name: item.q,
-              acceptedAnswer: { "@type": "Answer", text: item.a },
-            })),
-          }),
+          __html: JSON.stringify(
+            buildFaqSchema(detailedFaqs.map((item) => ({ question: item.q, answer: item.a }))),
+          ),
         }}
       />
       <Nav />
+      <PageIntro
+        compact
+        eyebrow="FAQ"
+        title="Clear answers,"
+        accent="before we start."
+        body="What we build today, what we are researching, what Noema and Soma are — and how to reach us."
+      />
       <FaqPage />
+      <FinalCta />
       <Footer />
     </main>
   );

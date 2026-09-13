@@ -1,159 +1,112 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { Checkpoint } from "./Checkpoint";
-import { Wireframe } from "./Wireframe";
-import { BookingDialog } from "./BookingDialog";
+import { coreStory, hero } from "@/content/site";
+import { riseDelay } from "./motion";
+import { IsoStack, type StackLayer } from "./visuals/IsoStack";
 
-const badgeTicker = [
-  "AI-NATIVE DEVELOPMENT",
-  "RELIABILITY ENGINEERING",
-  "SECURITY + GUARDRAILS",
-  "AI ENGINEERING STUDIO · EST. 2026",
-];
-
-const stats = [
-  {
-    value: "BUILD",
-    label: "AI-native products and features",
-    sub: "from idea to working capability",
-  },
-  {
-    value: "FIX",
-    label: "Accuracy, security, cost, latency",
-    sub: "diagnose the highest-value failure",
-  },
-  {
-    value: "SCALE",
-    label: "Production AI infrastructure",
-    sub: "deployment, MLOps, observability",
-  },
-  { value: "20", label: "Founding engagements per service line", sub: "limited learning cohort" },
-  { value: "8", label: "Production dimensions assessed", sub: "from accuracy to observability" },
-  { value: "01", label: "Integrated delivery system", sub: "baseline to handover" },
+const layers: StackLayer[] = [
+  { label: "AI Systems", sub: "Models / Agents / Automation", pattern: "core" },
+  { label: "Intelligent Systems", sub: "Vision / Edge / Embedded", pattern: "rings" },
+  { label: "Robotics", sub: "Perception / Control / Autonomy", pattern: "circuit" },
+  { label: "DeepTech", sub: "Hardware / Compute / Neurotech", pattern: "grid" },
 ];
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden py-24 sm:py-28 lg:pt-32 lg:pb-0">
-      <Wireframe className="top-0 left-0 h-[560px] w-[560px] -translate-x-1/4 -translate-y-1/6 opacity-80" />
-      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.05fr_1fr]">
+    <section
+      id="top"
+      className="on-dark grain relative isolate flex min-h-[100svh] flex-col overflow-hidden"
+    >
+      <div
+        aria-hidden="true"
+        className="tech-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(90%_75%_at_65%_40%,black,transparent)]"
+      />
+      <div
+        aria-hidden="true"
+        className="glow-orange pointer-events-none absolute top-[6%] right-[-18%] -z-10 size-[min(1000px,120vw)] rounded-full"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-48 bg-[linear-gradient(to_bottom,transparent,var(--near-black))]"
+      />
+
+      <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-5 pt-32 pb-16 sm:px-8 lg:pt-36">
+        <div className="grid w-full items-center gap-16 lg:grid-cols-[1.02fr_1fr] lg:gap-6">
           <div>
-            <div className="flex w-fit max-w-full items-center gap-0 overflow-hidden rounded-none border border-hairline bg-surface/80 shadow-[0_8px_24px_rgba(10,20,36,0.06)]">
-              <span className="shrink-0 rounded-none border border-amber-accent/40 bg-amber-accent/10 px-3 py-1.5 font-mono text-[11px] tracking-[0.18em] text-amber-accent uppercase">
-                <span className="live-dot mr-2 inline-block size-1.5 rounded-none bg-amber-soft align-middle" />
-                AI engineering studio · Est. 2026
+            <p
+              className="rise-in inline-flex items-center gap-2.5 rounded-full border border-hairline bg-foreground/[0.04] py-1.5 pr-4 pl-2 font-mono text-[10.5px] tracking-[0.16em] text-foreground/80 uppercase backdrop-blur"
+              style={riseDelay(0)}
+            >
+              <span className="relative flex size-2">
+                <span className="live-dot absolute inset-0 rounded-full bg-orange-bright" />
+                <span className="relative size-2 rounded-full bg-orange-bright" />
               </span>
-              <div
-                className="relative hidden w-64 overflow-hidden sm:block"
-                style={{
-                  maskImage:
-                    "linear-gradient(to right, transparent, #000 12%, #000 78%, transparent)",
-                  WebkitMaskImage:
-                    "linear-gradient(to right, transparent, #000 12%, #000 78%, transparent)",
-                }}
-              >
-                <div className="animate-marquee flex w-max gap-8 px-4">
-                  {[...badgeTicker, ...badgeTicker].map((b, i) => (
-                    <span key={i} className="eyebrow whitespace-nowrap">
-                      {b}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <h1 className="mt-6 text-[clamp(2.6rem,6.5vw,4.4rem)] leading-[0.95] font-extrabold tracking-[-0.03em] sm:mt-8">
-              Build AI
-              <br />
-              <span className="text-aurora">for production.</span>
-            </h1>
-
-            <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:mt-7 sm:text-[17px]">
-              CuriousDevs builds AI-native products and makes existing AI systems reliable, secure,
-              measurable, and production-ready. Bring us an AI idea, a failing system, or a product
-              that needs to scale.
+              {hero.eyebrow}
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-3 sm:mt-9">
-              <BookingDialog>
-                <button className="inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background">
-                  Start an AI Project <ArrowRight className="size-4" />
-                </button>
-              </BookingDialog>
-              <BookingDialog defaultSurface="AI Audit / Assessment">
-                <button className="inline-flex items-center gap-2 btn-quiet rounded-none border border-hairline bg-surface/60 px-6 py-3 text-sm font-semibold hover:bg-surface-2">
-                  Audit My Existing AI
-                </button>
-              </BookingDialog>
-            </div>
+            <h1
+              className="rise-in display mt-8 text-[clamp(2.35rem,5.2vw,4.9rem)]"
+              style={riseDelay(90)}
+            >
+              <span className="text-sheen">{hero.title}</span>
+              <br />
+              <span className="text-orange">{hero.accent}</span>
+            </h1>
 
-            <p className="eyebrow mt-10 sm:mt-12">One studio, four ways to engage</p>
-            <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3 sm:gap-x-8">
-              {["Build", "Audit", "Fix", "Scale"].map((p, i) => (
-                <div key={p} className="flex items-baseline gap-2">
-                  <span className="font-mono text-[11px] text-amber-soft">0{i + 1}</span>
-                  <span className="text-lg font-semibold tracking-tight">{p}</span>
-                </div>
-              ))}
+            <p
+              className="rise-in mt-7 max-w-xl text-[17px] leading-relaxed text-muted-foreground sm:text-lg"
+              style={riseDelay(180)}
+            >
+              {hero.body}
+            </p>
+
+            <div className="rise-in mt-10 flex flex-wrap gap-3" style={riseDelay(260)}>
+              <Link to="/contact" className="btn-primary group">
+                Start a Project
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link to="/janus" className="btn-outline group">
+                Explore Janus
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
             </div>
           </div>
 
-          <div className="flex w-full items-center justify-center lg:self-center">
-            <div className="w-full max-w-md rounded-none border border-hairline bg-surface/70 p-3 shadow-[0_18px_48px_rgba(10,20,36,0.08)]">
-              <Checkpoint />
+          <div className="rise-in relative" style={riseDelay(220)}>
+            <div className="float-slow">
+              <IsoStack
+                layers={layers}
+                annotate
+                gap={52}
+                className="mx-auto w-full max-w-[620px]"
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="marquee-pause relative mt-12 overflow-hidden border-y border-hairline bg-surface/50 sm:mt-16">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 sm:px-8">
-          <span className="eyebrow">Why now</span>
-          <span className="eyebrow">2026 — 2030</span>
-        </div>
-        <div
-          className="stats-marquee-wrap overflow-hidden border-t border-hairline"
-          style={{
-            maskImage: "linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent, #000 4%, #000 96%, transparent)",
-          }}
-        >
-          <div className="animate-marquee-slow flex w-max">
-            {[...stats, ...stats, ...stats].map((s, i) => (
-              <div
-                key={i}
-                className="stat-tick flex min-w-[17rem] items-center gap-4 border-r border-hairline bg-surface/60 px-6 py-5 hover:text-foreground sm:min-w-[19rem] sm:px-8 sm:py-6"
-              >
-                <span className="text-2xl font-bold tracking-tight whitespace-nowrap text-amber-accent">
-                  {s.value}
-                </span>
-                <span className="leading-tight">
-                  <span className="block text-sm">{s.label}</span>
-                  <span className="eyebrow">{s.sub}</span>
-                </span>
-              </div>
+      <div className="rise-in border-t border-hairline" style={riseDelay(420)}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-6 sm:px-8">
+          <ol
+            aria-label="How CuriousDevs works"
+            className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-foreground/75 sm:text-sm"
+          >
+            {coreStory.map((step, i) => (
+              <li key={step} className="flex items-center gap-4">
+                {i > 0 && <span aria-hidden="true" className="h-px w-5 bg-orange/60 sm:w-10" />}
+                <span>{step}</span>
+              </li>
             ))}
-          </div>
-        </div>
-
-        {/* Static fallback: shown only under prefers-reduced-motion, so no stat is
-            permanently unreachable when the marquee animation is disabled. */}
-        <div className="stats-static grid border-t border-hairline sm:grid-cols-2 lg:grid-cols-3">
-          {stats.map((s) => (
-            <div
-              key={s.value}
-              className="flex items-center gap-4 border-r border-b border-hairline bg-surface/60 px-6 py-5 last:border-r-0 sm:px-8 sm:py-6"
-            >
-              <span className="text-2xl font-bold tracking-tight whitespace-nowrap text-amber-accent">
-                {s.value}
-              </span>
-              <span className="leading-tight">
-                <span className="block text-sm">{s.label}</span>
-                <span className="eyebrow">{s.sub}</span>
-              </span>
-            </div>
-          ))}
+          </ol>
+          <a
+            href="#technology"
+            className="hidden shrink-0 items-center gap-3 text-xs text-muted-foreground transition-colors hover:text-foreground lg:flex"
+          >
+            <span className="flex h-8 w-5 justify-center rounded-full border border-hairline pt-1.5">
+              <span className="scroll-cue h-1.5 w-px bg-foreground/70" />
+            </span>
+            Scroll to explore
+          </a>
         </div>
       </div>
     </section>

@@ -196,7 +196,7 @@ export function ProductShowcase({ initialSlug }: { initialSlug?: string } = {}) 
 
               <a
                 href="/contact"
-                className="mt-6 inline-flex items-center gap-2 btn-shine rounded-none bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
+                className="mt-6 inline-flex items-center gap-2 btn-shine rounded-full bg-amber-accent px-5 py-2.5 text-sm font-semibold text-background"
               >
                 Discuss {p.name} <ArrowRight className="size-4" />
               </a>

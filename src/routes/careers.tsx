@@ -1,16 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { Nav } from "@/components/landing/Nav";
 import { Footer } from "@/components/landing/Footer";
 import { PageIntro } from "@/components/landing/PageIntro";
+import { Eyebrow } from "@/components/landing/SectionHeading";
+import { careers, company, domains } from "@/content/site";
 import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
+
+const TITLE = "Careers — Build Difficult Technology";
+const DESCRIPTION =
+  "CuriousDevs lists real openings only. There are no open roles right now; this page will say exactly what a role is when one opens.";
 
 export const Route = createFileRoute("/careers")({
   head: () =>
     buildSeoHead({
       path: "/careers",
-      title: "Careers — CuriousDevs",
-      description:
-        "CuriousDevs is not hiring right now. Follow the company for future AI engineering opportunities.",
+      title: TITLE,
+      description: DESCRIPTION,
       keywords: ["CuriousDevs careers", "AI engineering jobs", "Gurugram technology company"],
       ogType: "website",
     }),
@@ -23,33 +29,72 @@ function CareersPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildWebPageSchema(
-              "/careers",
-              "Careers — CuriousDevs",
-              "CuriousDevs is not hiring right now.",
-            ),
-          ),
+          __html: JSON.stringify(buildWebPageSchema("/careers", TITLE, DESCRIPTION)),
         }}
       />
       <Nav />
       <PageIntro
+        compact
         eyebrow="Careers"
-        title="We are not hiring right now,"
-        accent="and we want to be clear."
-        body="CuriousDevs is focused on building its founding AI engineering service practice. When the next role opens, this page will say exactly what it is and how to apply."
-        action={false}
+        title={careers.title}
+        accent={careers.accent}
+        body={careers.body}
       />
 
-      <section className="border-b border-hairline pb-24 sm:pb-28">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="border border-hairline bg-surface/70 p-7 text-center shadow-[0_8px_24px_rgba(10,20,36,0.04)] sm:p-10">
-            <p className="eyebrow">Current status</p>
-            <h2 className="mt-3 text-2xl font-extrabold tracking-tight">No open roles</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              We are keeping the team intentionally small while we build the service engine. This
-              page will be updated when hiring resumes.
+      <section className="py-24 sm:py-32">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
+          <div data-reveal className="panel overflow-hidden p-8 sm:p-12">
+            <div aria-hidden="true" className="tech-grid absolute inset-0 -z-10" />
+            <div
+              aria-hidden="true"
+              className="glow-orange absolute -right-32 -bottom-32 -z-10 size-96 rounded-full"
+            />
+            <Eyebrow>Open roles</Eyebrow>
+            <h2 className="display mt-7 text-[clamp(2.3rem,4.5vw,3.6rem)]">
+              No open roles
+              <br />
+              <span className="text-orange">right now.</span>
+            </h2>
+            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              We only list real openings. When a role opens, it will appear here with exactly what
+              it is and how to apply.
             </p>
+            <a href={`mailto:${company.email}?subject=Careers`} className="btn-outline mt-10">
+              <Mail className="size-4" /> Say hello anyway
+            </a>
+          </div>
+
+          <div data-reveal>
+            <p className="eyebrow">The kind of work</p>
+            <h3 className="mt-5 max-w-md text-[1.75rem] leading-tight font-normal tracking-tight">
+              When we hire, it will be to build difficult technology.
+            </h3>
+            <ul className="mt-10 divide-y divide-[var(--hairline)] border-y border-hairline">
+              {domains.map((d) => (
+                <li key={d.id}>
+                  <Link
+                    to="/technology"
+                    hash={d.id}
+                    className="group flex items-center justify-between gap-6 py-6"
+                  >
+                    <div className="flex items-baseline gap-5">
+                      <span className="font-mono text-xs text-muted-foreground">{d.n}</span>
+                      <div>
+                        <span className="block text-xl font-medium tracking-tight transition-colors group-hover:text-amber-accent">
+                          {d.name}
+                        </span>
+                        <span className="mt-1 hidden text-sm text-muted-foreground sm:block">
+                          {d.statement}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-hairline transition-colors group-hover:border-orange group-hover:bg-orange group-hover:text-ivory">
+                      <ArrowUpRight className="size-4" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

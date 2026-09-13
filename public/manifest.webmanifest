@@ -1,11 +1,11 @@
 {
   "name": "CuriousDevs",
   "short_name": "CuriousDevs",
-  "description": "AI engineering services for building, auditing, fixing, and scaling production AI systems.",
+  "description": "CuriousDevs researches, engineers and builds intelligent systems — from production AI to the technologies that connect intelligence with the physical world.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#050a12",
+  "theme_color": "#050a12",
   "icons": [
     {
       "src": "/favicon.svg",

@@ -102,7 +102,7 @@ export function BookingDialog({
             </p>
             <button
               onClick={() => setOpen(false)}
-              className="btn-quiet mt-7 rounded-none border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold"
+              className="btn-quiet mt-7 rounded-full border border-hairline bg-surface-2 px-5 py-2.5 text-sm font-semibold"
             >
               Close
             </button>
@@ -179,7 +179,7 @@ export function BookingDialog({
             <button
               type="submit"
               disabled={loading}
-              className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-none bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
+              className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-amber-accent px-6 py-3 text-sm font-semibold text-background disabled:opacity-60"
             >
               {loading ? "Sending…" : "Request the session"} <ArrowRight className="size-4" />
             </button>

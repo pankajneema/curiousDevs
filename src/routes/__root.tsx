@@ -11,7 +11,7 @@ import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { PageBackground } from "../components/landing/PageBackground";
-import { ChatAssistant } from "../components/landing/ChatAssistant";
+import { SiteEffects } from "../components/landing/SiteEffects";
 import {
   buildSeoHead,
   buildOrganizationSchema,
@@ -23,23 +23,29 @@ import {
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <main className="on-dark relative isolate flex min-h-screen items-center overflow-hidden px-5">
+      <div
+        aria-hidden="true"
+        className="tech-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(70%_70%_at_50%_50%,black,transparent)]"
+      />
+      <div className="mx-auto max-w-xl text-center">
+        <p className="eyebrow text-amber-accent">Error 404</p>
+        <h1 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)]">
+          This page <span className="text-orange">doesn't exist.</span>
+        </h1>
+        <p className="mt-5 text-muted-foreground">
+          It may have moved when the site changed. Start from the homepage instead.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <Link to="/" className="btn-primary">
             Go home
+          </Link>
+          <Link to="/contact" className="btn-outline">
+            Contact
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -48,33 +54,30 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main className="on-dark flex min-h-screen items-center justify-center px-5">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+        <p className="eyebrow text-amber-accent">Something went wrong</p>
+        <h1 className="display mt-5 text-4xl">This page didn't load.</h1>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Something went wrong on our end. You can try again or head back home.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
+            type="button"
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn-primary"
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="btn-outline">
             Go home
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -82,14 +85,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => {
     const seo = buildSeoHead({
       path: "/",
-      title: `${SITE_NAME} — AI Engineering for Production Systems`,
+      title: `${SITE_NAME} — From Research to Real-World Technology`,
       description: SITE_DESCRIPTION,
       keywords: [
-        "AI engineering services",
-        "AI-native development",
-        "AI reliability",
-        "AI audit",
-        "MLOps",
+        "intelligent systems",
+        "AI engineering",
+        "production AI",
+        "Noema",
+        "Soma",
+        "robotics research",
       ],
       image: `${SITE_DOMAIN}/og-image.jpg`,
       ogType: "website",
@@ -163,7 +167,7 @@ function RootComponent() {
         Skip to content
       </a>
       <PageBackground />
-      <ChatAssistant />
+      <SiteEffects />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

@@ -33,6 +33,11 @@ export default defineConfig(({ mode, command }) => {
         "react-dom/client",
         "react/jsx-runtime",
         "react/jsx-dev-runtime",
+        // Pre-bundled so the dev server never re-optimizes them mid-session,
+        // which would load a second React copy and break hooks.
+        "@radix-ui/react-accordion",
+        "@radix-ui/react-navigation-menu",
+        "@radix-ui/react-tabs",
       ],
       ignoreOutdatedRequests: true,
     },

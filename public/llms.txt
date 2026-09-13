@@ -1,28 +1,36 @@
 # CuriousDevs
 
-> CuriousDevs is an AI Engineering Studio for teams that need to build AI capabilities, understand why an existing system fails, and move reliable AI into production.
+> CuriousDevs researches, engineers and builds intelligent systems — from production AI and automation to the technologies that connect intelligence with the physical world.
 
-CuriousDevs is a founding-stage service company based in Noida, India. It works with teams in India and internationally across four service directions:
+Research → Engineering → Systems → Products → Real-World Impact. CuriousDevs is based in Gurugram, India.
 
-- **Build**: AI-native products and features, RAG applications, knowledge copilots, AI agents, multi-agent workflows, backend systems, integrations, evaluation baselines, and deployment paths.
-- **AI Audit / Assessment**: a measurable review of accuracy, retrieval, grounding, hallucinations, agent behavior, security, cost, latency, and observability, with a failure map and prioritized plan.
-- **Fix**: targeted reliability, security, evaluation, cost, latency, retrieval, prompt, integration, and architecture improvements for existing AI systems.
-- **Scale**: production infrastructure, Docker, Kubernetes, CI/CD, model routing, caching, observability, cloud or private deployment, runbooks, and engineering handover.
+## Technology
+
+- **AI Engineering — current**: LLMs, RAG, AI agents, AI applications, multimodal AI, automation, agentic workflows, evaluation, security, reliability, observability, infrastructure and deployment.
+- **Intelligent Systems — building / expanding**: computer vision, edge AI, embedded intelligence, sensors, real-time intelligence, decision systems, on-device AI.
+- **Robotics — research / building toward**: robotic systems, perception, planning, control, navigation, manipulation, autonomy, physical AI, machine intelligence.
+- **DeepTech — research / exploration**: AI hardware, AI accelerators, specialized compute, AI-native devices, advanced sensors, intelligent machines, neurotechnology / BCI, advanced computing.
+
+These are connected areas within one intelligent-systems thesis, not four unrelated businesses.
+
+## Janus
+
+Janus is CuriousDevs' proprietary technology direction for building, evaluating, deploying and operating intelligent systems. It is in development and not generally available. Its first practical form focuses on production AI systems: model integration, knowledge / RAG, agents, tools and memory, workflow orchestration, evaluation and regression testing, security and permissions, observability, and production deployment.
 
 ## Key pages
 
-- [Home](https://curiousdevs.com/): positioning, problems, delivery approach, service directions, and founding cohort CTA.
-- [Services](https://curiousdevs.com/product): the service catalog and technical capabilities across Build, Audit, Fix, and Scale.
-- [Solutions](https://curiousdevs.com/solutions): practical AI use cases across fintech, healthcare, SaaS, retail, logistics, education, manufacturing, and government.
-- [FAQ](https://curiousdevs.com/faq): detailed answers about delivery, security, data access, models, timelines, ownership, and engagement terms.
-- [How It Works](https://curiousdevs.com/how-it-works): the discover, baseline, engineer, evaluate, secure, deploy, and handover process.
-- [Contact](https://curiousdevs.com/contact): direct inquiry form for Build, AI Audit / Assessment, Fix, and Scale.
-- [Security](https://curiousdevs.com/security): current security posture and responsible disclosure process.
-- [Privacy](https://curiousdevs.com/privacy) and [Terms](https://curiousdevs.com/terms): website policies.
+- [Home](https://www.curiousdevs.com/): from research to real-world technology.
+- [Technology](https://www.curiousdevs.com/technology): the four technology areas and their status.
+- [Research](https://www.curiousdevs.com/research): research areas, the research-to-product process, and engineering notes.
+- [Systems](https://www.curiousdevs.com/systems): systems thinking — AI systems, agentic automation, edge intelligence, robotics, hardware.
+- [Janus](https://www.curiousdevs.com/janus): the intelligent systems platform in development.
+- [Company](https://www.curiousdevs.com/company): principles, core story and vision.
+- [Contact](https://www.curiousdevs.com/contact): tell us what you're trying to build, fix or explore.
+- [FAQ](https://www.curiousdevs.com/faq), [Blog](https://www.curiousdevs.com/blog), [Careers](https://www.curiousdevs.com/careers), [Security](https://www.curiousdevs.com/security), [Privacy](https://www.curiousdevs.com/privacy), [Terms](https://www.curiousdevs.com/terms).
 
 ## Important context
 
-- CuriousDevs is currently service-led, not a product company. Product concepts and illustrative diagrams should not be described as generally available software products.
-- Public fixed pricing is not being published during the founding customer cohort. Scope and pricing are confirmed after discovery.
-- CuriousDevs does not claim SOC 2 or ISO 27001 certification. Any framework references describe customer requirements or scenarios, not certifications held by CuriousDevs.
+- Current capabilities are stated as current. Building, research and exploration directions are labelled as such and should not be described as shipped capabilities.
+- Janus should not be described as a generally available product.
+- CuriousDevs does not claim SOC 2 or ISO 27001 certification.
 - Contact: hello@curiousdevs.com.

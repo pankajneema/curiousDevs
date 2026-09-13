@@ -1,27 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/landing/Nav";
-import { Hero } from "@/components/landing/Hero";
-import { Problem } from "@/components/landing/Problem";
-import { HowItWorks } from "@/components/landing/HowItWorks";
-import { Roadmap } from "@/components/landing/Roadmap";
-import { FaqAndCta } from "@/components/landing/FaqAndCta";
-import { Reveal } from "@/components/landing/Reveal";
-import { Footer } from "@/components/landing/Footer";
-import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
+import { V3Home } from "@/components/landing/V3Home";
+import { buildSeoHead, buildWebPageSchema, SITE_DESCRIPTION } from "@/lib/seo";
+
+const TITLE = "CuriousDevs — From Research to Real-World Technology";
 
 export const Route = createFileRoute("/")({
   head: () =>
     buildSeoHead({
       path: "/",
-      title: "CuriousDevs — AI Engineering Studio for Production Systems",
-      description:
-        "CuriousDevs builds AI-native products and makes existing AI systems reliable, secure, measurable, and production-ready.",
+      title: TITLE,
+      description: SITE_DESCRIPTION,
       keywords: [
-        "AI engineering services",
-        "AI-native development",
-        "AI audit",
-        "AI reliability",
-        "MLOps",
+        "intelligent systems",
+        "AI engineering",
+        "production AI",
+        "AI agents",
+        "RAG",
+        "computer vision",
+        "edge AI",
+        "robotics research",
+        "DeepTech robotics intelligent systems",
       ],
       ogType: "website",
     }),
@@ -30,34 +29,15 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main id="main-content" className="relative">
+    <div className="relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildWebPageSchema(
-              "/",
-              "CuriousDevs — AI Engineering Studio for Production Systems",
-              "AI-native development, reliability engineering, security, optimization, and production infrastructure.",
-            ),
-          ),
+          __html: JSON.stringify(buildWebPageSchema("/", TITLE, SITE_DESCRIPTION)),
         }}
       />
       <Nav />
-      <Hero />
-      <Reveal>
-        <Problem />
-      </Reveal>
-      <Reveal>
-        <HowItWorks />
-      </Reveal>
-      <Reveal>
-        <Roadmap />
-      </Reveal>
-      <Reveal>
-        <FaqAndCta schema />
-      </Reveal>
-      <Footer />
-    </main>
+      <V3Home />
+    </div>
   );
 }
