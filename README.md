@@ -2,6 +2,8 @@
 
 CuriousDevs is an AI engineering and intelligent-systems studio website built around one idea: **build AI for production**.
 
+For the full company, product, technology, brand, and operating model, see [CURIOUSDEVS_MASTER_DOCUMENT.md](docs/CURIOUSDEVS_MASTER_DOCUMENT.md).
+
 The site connects production AI engineering with intelligent systems, robotics, and DeepTech. It also introduces two product directions:
 
 - **Noema** — a multimodal intelligence layer for perception, grounded reasoning, planning, evaluation, and action.
@@ -85,6 +87,7 @@ public/
   brand/curiousdevs-mark-128.png Browser favicon mark
   manifest.webmanifest          Web app metadata and icons
 output/pdf/                     Generated product PDF artifacts
+docs/CURIOUSDEVS_MASTER_DOCUMENT.md  Single source of truth for the full CuriousDevs system
 ```
 
 ## Visual system

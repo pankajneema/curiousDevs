@@ -1,5 +1,5 @@
 import { Link, type LinkProps } from "@tanstack/react-router";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, MapPin } from "lucide-react";
 import { company } from "@/content/site";
 import { Logo, Wordmark } from "./Logo";
 
@@ -96,6 +96,15 @@ export function Footer() {
               className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
             >
               <Mail className="size-3.5" /> {company.email}
+            </a>
+            <a
+              href="https://www.linkedin.com/company/curiousdevs"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 transition-colors hover:text-foreground"
+              aria-label="CuriousDevs on LinkedIn"
+            >
+              <Linkedin className="size-3.5" /> LinkedIn
             </a>
             <span className="inline-flex items-center gap-2">
               <MapPin className="size-3.5" /> {company.base}
