@@ -9,18 +9,18 @@ The site connects production AI engineering with intelligent systems, robotics, 
 
 ## Experience map
 
-| Area | Route | Purpose |
-| --- | --- | --- |
-| Home | `/` | Company story, hero, technology thesis, products, and CTA |
-| Technology | `/technology` | AI Engineering, Intelligent Systems, Robotics, and DeepTech |
-| Noema | `/technology/noema` | Intelligence-layer product direction |
-| Soma | `/technology/soma` | Humanoid robotics and embodied-intelligence direction |
-| Systems | `/systems` | Production AI and intelligent-system flows |
-| Work | `/work` | Research, engineering, and product work |
-| Research | `/research` | Research directions and technical areas |
-| Contact | `/contact` | Contact form and direct email fallback |
-| Product | `/product` | Build, Audit, Fix, and Scale service model |
-| Blog | `/blog/` | Technical writing and articles |
+| Area       | Route               | Purpose                                                     |
+| ---------- | ------------------- | ----------------------------------------------------------- |
+| Home       | `/`                 | Company story, hero, technology thesis, products, and CTA   |
+| Technology | `/technology`       | AI Engineering, Intelligent Systems, Robotics, and DeepTech |
+| Noema      | `/technology/noema` | Intelligence-layer product direction                        |
+| Soma       | `/technology/soma`  | Humanoid robotics and embodied-intelligence direction       |
+| Systems    | `/systems`          | Production AI and intelligent-system flows                  |
+| Work       | `/work`             | Research, engineering, and product work                     |
+| Research   | `/research`         | Research directions and technical areas                     |
+| Contact    | `/contact`          | Contact form and direct email fallback                      |
+| Product    | `/product`          | Build, Audit, Fix, and Scale service model                  |
+| Blog       | `/blog/`            | Technical writing and articles                              |
 
 ## Stack
 
