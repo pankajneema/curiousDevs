@@ -1,21 +1,16 @@
 export const SITE_NAME = "CuriousDevs";
 export const SITE_DOMAIN = "https://www.curiousdevs.com";
 export const SITE_DESCRIPTION =
-  "CuriousDevs researches, engineers and builds intelligent systems — from production AI and automation to the technologies that connect intelligence with the physical world.";
+  "CuriousDevs builds OJAS, an intelligence system that turns model output into controlled action on edge hardware, and PARTH, the humanoid robot it is embodied in.";
 export const DEFAULT_IMAGE = `${SITE_DOMAIN}/og-image.jpg`;
 export const DEFAULT_KEYWORDS = [
-  "intelligent systems",
-  "AI engineering",
-  "production AI",
-  "RAG",
-  "AI agents",
-  "agentic automation",
-  "AI evaluation",
-  "AI security",
-  "computer vision",
+  "physical AI",
   "edge AI",
-  "robotics research",
-  "Janus intelligent systems platform",
+  "humanoid robot",
+  "robotics intelligence",
+  "OJAS",
+  "PARTH",
+  "embodied AI",
 ];
 
 export type BreadcrumbItem = {
@@ -75,7 +70,7 @@ export function buildSeoHead(options: SeoPageOptions) {
       { name: "author", content: author },
       { name: "publisher", content: publisher },
       { name: "language", content: locale },
-      { name: "theme-color", content: "#050a12" },
+      { name: "theme-color", content: "#edeff1" },
       { name: "color-scheme", content: "light" },
       { name: "application-name", content: siteName },
       { name: "apple-mobile-web-app-title", content: siteName },
@@ -102,47 +97,11 @@ export function buildSeoHead(options: SeoPageOptions) {
       { rel: "alternate", href: canonical, hrefLang: "x-default" },
       { rel: "alternate", href: `${SITE_DOMAIN}/rss.xml`, type: "application/rss+xml" },
       { rel: "manifest", href: "/manifest.webmanifest" },
-      { rel: "icon", href: "/brand/curiousdevs-mark-128.png", type: "image/png", sizes: "128x126" },
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       {
         rel: "preload",
-        href: "/fonts/inter-400.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
-      {
-        rel: "preload",
-        href: "/fonts/inter-500.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
-      {
-        rel: "preload",
-        href: "/fonts/inter-600.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
-      {
-        rel: "preload",
-        href: "/fonts/inter-700.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
-      {
-        rel: "preload",
-        href: "/fonts/jetbrains-mono-400.woff2",
-        as: "font",
-        type: "font/woff2",
-        crossOrigin: "anonymous" as const,
-      },
-      {
-        rel: "preload",
-        href: "/fonts/jetbrains-mono-700.woff2",
+        href: "/fonts/Archivo-500.woff2",
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous" as const,
@@ -181,8 +140,8 @@ export function buildOrganizationSchema() {
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Gurugram",
-      addressRegion: "Haryana",
+      addressLocality: "Noida",
+      addressRegion: "Uttar Pradesh",
       addressCountry: "IN",
     },
     foundingDate: "2026",

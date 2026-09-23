@@ -1,81 +1,157 @@
 /*
- * CuriousDevs design tokens — Website V2.
- * Source of truth for every colour, type step, space, radius, shadow and
- * motion value. Nothing outside this file may hardcode a brand hex value —
- * everything else reads these custom properties, directly or via the
- * semantic layer in styles.css.
+ * CuriousDevs design tokens — dark instrument system (September 2026).
+ * Source of truth for every colour, type, space, radius and motion value.
+ * Nothing outside this file may hardcode a brand hex value.
  *
- * Palette locked by "CuriousDevs Website V2 — 02 Visual System": warm light
- * surfaces, deep navy, burnt orange, technical grid. Contrast notes are
- * WCAG 2.2 ratios measured against the surface they are used on.
+ * The vernacular is still instrumentation — the datasheet, the calibration
+ * chart, the registration mark — but the ground is now the inside of the
+ * machine rather than the printed page: graphite black, warm ivory ink,
+ * hairlines, and a single brand-orange signal taken straight from the
+ * CuriousDevs mark (hot rose, oklch 0.66 0.242 3).
+ *
+ * Depth comes from four flat values (ground → ground-2 → surface →
+ * surface-2) and from hairlines. Glow exists only where it represents
+ * something live: a signal edge, a focus ring, an active path.
+ *
+ * Contrast (WCAG 2.2, measured on --ground):
+ *   --ink 16.6:1   --ink-muted 6.9:1   --signal 7.6:1   --data 7.1:1
+ *   --ground on --signal 6.9:1
  */
 
 :root {
-  /* V2 core palette */
-  --deep-navy: #08111f; /* dark sections / primary technical surface */
-  --near-black: #050a12; /* hero depth / high contrast */
-  --paper: #f5f2eb; /* warm ivory — main light background */
-  --paper-2: #ece8df; /* light surface — cards / subtle separation */
-  --signal: #c65a08; /* burnt orange — signature accent / active states */
-  --signal-bright: #f26a0a; /* bright orange — primary CTA */
-  --technical-gray: #8b8f94; /* metadata / secondary text on dark (6.10:1) */
+  color-scheme: dark;
 
-  /* Derived for accessibility — same hues, adjusted lightness only.
-     #C65A08 measures 3.86:1 on ivory: fine for large display type, icons and
-     borders, too low for small text. --signal-ink is the small-text orange
-     (5.04:1 on ivory, 4.61:1 on --paper-2). --slate replaces technical gray
-     for body copy on light surfaces, where #8B8F94 is only 2.91:1. */
-  --signal-ink: #a94c06;
-  --slate: #5e636b; /* 5.41:1 on ivory */
-  --ink: var(--deep-navy); /* text on light — 16.92:1 on ivory */
-  --rule: #d8d2c6; /* borders, dividers on light */
-  --border-dark: #1b2533; /* borders, dividers on dark */
-  --navy-raised: #0d1828; /* elevated panels inside navy sections */
-  --paper-raised: #fbf9f4; /* elevated cards on ivory — lifted, never pure white */
+  /* ── Ground plane: four flat values, no gradients between them ───── */
+  --ground: oklch(0.145 0.018 280); /* page — graphite black */
+  --ground-2: oklch(0.165 0.02 280); /* alternating band, nav backdrop */
+  --surface: oklch(0.185 0.021 280); /* panels, form fields */
+  --surface-2: oklch(0.225 0.024 280); /* raised panel, hover state */
 
-  /* Reserved — logo only, never UI or text */
-  --accent-coral: #e56a4b;
-  --wordmark-silver: #9aa7b5;
+  /* ── Ink: warm ivory against the cool ground ─────────────────────── */
+  --ink: oklch(0.972 0.004 280); /* display and body */
+  --ink-muted: oklch(0.7 0.018 280); /* secondary text, captions */
+  --ink-faint: oklch(0.7 0.018 280); /* mono micro-labels, indices, decoration */
 
-  /* Product verdicts — kept for existing product diagrams only */
-  --verdict-allow: #1e9e6a;
-  --verdict-escalate: #d98b14;
-  --verdict-block: #d2483f;
-  --verdict-redact: #7c5cd6;
+  /* ── Structure ───────────────────────────────────────────────────── */
+  --rule: oklch(0.29 0.025 285); /* hairlines, table borders, panel edges */
+  --rule-2: oklch(0.4 0.035 290); /* hover edge, emphasised divider */
 
-  /* Type */
-  --font-sans: "Inter", -apple-system, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  /* ── Signal: the brand orange. Interactive elements, live state, the
+        one path a diagram is explaining. Never decorative. ──────────── */
+  --signal: oklch(0.66 0.242 3);
+  --signal-lift: color-mix(in oklab, var(--signal) 86%, white); /* hover */
+  --signal-dim: color-mix(in oklab, var(--signal) 55%, var(--ground)); /* pressed, de-emphasised rule */
 
-  /* Space — 4px base */
+  /* Second measurement hue — diagrams only, so two series separate. */
+  --data: oklch(0.73 0.1 232);
+
+  /* ── Aurora ──────────────────────────────────────────────────────────
+     Three hues for the ambient light layer only. They are never used as
+     ink, fill or border: the layer sits behind content at single-digit
+     opacity and reads as light in a room, not as coloured circles. The
+     violet is the midpoint between the signal and the data hue, so the
+     spread stays inside the palette rather than introducing a fourth. */
+  --aurora-magenta: var(--signal);
+  --aurora-violet: oklch(0.62 0.2 318);
+  --aurora-blue: var(--data);
+
+  /* Data states only — never decorative */
+  --pass: oklch(0.755 0.14 158);
+  --warn: #ffb020;
+  --fail: oklch(0.645 0.2 26);
+
+  /* ── Type ────────────────────────────────────────────────────────────
+     One family with a real width axis. Archivo carries the display voice
+     (600 weight, 105% width, tight tracking) and the data voice (Expanded,
+     tabular figures) from one file. JetBrains Mono appears only on actual
+     data, code paths, commands, and the micro-labels that behave like
+     instrument silkscreen. */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Space — 8px baseline grid */
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-  --space-9: 96px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --space-9: 160px;
 
-  /* Shape — restrained: near-square cards, pill buttons */
-  --radius: 6px;
-  --radius-card: 12px;
+  /* Shape — one radius, small. Panels get it; rules and tables do not. */
+  --radius: 14px;
   --radius-pill: 999px;
-  --border: 1px solid var(--rule);
 
-  --shadow-1: 0 1px 2px rgba(5, 10, 18, 0.06);
-  --shadow-2: 0 10px 28px rgba(5, 10, 18, 0.1);
-  --shadow-3: 0 24px 64px rgba(5, 10, 18, 0.28);
-
-  /* Motion */
-  --dur-instant: 100ms;
-  --dur-fast: 160ms;
-  --dur-base: 240ms;
-  --dur-slow: 320ms;
+  /* ── Motion ──────────────────────────────────────────────────────────
+     Three durations. Interface response is --dur; entrances are --dur-2;
+     the hero field and other ambient motion is --dur-3 and must never
+     compete with reading. Every one of them is suppressed wholesale by
+     prefers-reduced-motion in styles.css. */
+  --dur: 160ms;
+  --dur-2: 620ms;
+  --dur-3: 1200ms;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
-  --ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-entrance: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --content-max: 720px;
+  /* Layout */
+  --container: 1240px;
+  --gutter: 24px;
+  --measure: 66ch;
+  --nav-h: 68px;
+
+  /* Composite effects, declared once so they stay consistent */
+  --glow-signal:
+    0 0 0 1px color-mix(in oklab, var(--signal) 40%, transparent),
+    0 8px 32px -12px color-mix(in oklab, var(--signal) 55%, transparent);
+  --lift: 0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent) inset;
+}
+
+
+/* ── Light theme ──────────────────────────────────────────────────────
+   The same system inverted, not a different one: identical token names,
+   identical roles, and the signal darkened so it still carries text
+   contrast on a near-white ground (the dark-mode rose measures 3.9:1 on
+   white, which is under the floor for body text).
+
+   Contrast on --ground: ink 14.9:1 · ink-muted 5.6:1 · signal 5.1:1
+   ──────────────────────────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --ground: oklch(0.985 0.002 280);
+  --ground-2: oklch(0.963 0.004 280);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.955 0.005 280);
+
+  --ink: oklch(0.24 0.016 280);
+  --ink-muted: oklch(0.47 0.016 280);
+  --ink-faint: oklch(0.62 0.012 280);
+
+  --rule: oklch(0.905 0.006 285);
+  --rule-2: oklch(0.82 0.012 290);
+
+  --signal: oklch(0.56 0.23 3);
+  --signal-lift: color-mix(in oklab, var(--signal) 86%, black);
+  --signal-dim: color-mix(in oklab, var(--signal) 45%, var(--ground));
+
+  --data: oklch(0.52 0.13 232);
+  --pass: oklch(0.52 0.13 158);
+  --warn: oklch(0.58 0.14 70);
+  --fail: oklch(0.53 0.2 26);
+
+  --grid-line: color-mix(in oklab, var(--rule) 80%, transparent);
+
+  /* On a light ground the aurora has to darken rather than lighten, so the
+     blend flips and the tint drops — see the rule in styles.css. */
+  --aurora-violet: oklch(0.55 0.19 318);
+}
+
+@media (width >= 64rem) {
+  :root {
+    --gutter: 48px;
+    --nav-h: 76px;
+  }
 }

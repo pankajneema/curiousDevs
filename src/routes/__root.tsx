@@ -10,8 +10,11 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { PageBackground } from "../components/landing/PageBackground";
-import { SiteEffects } from "../components/landing/SiteEffects";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { IntercomMessenger } from "@/components/forms/IntercomMessenger";
+import { AuroraBackground } from "@/components/visuals/AuroraBackground";
+import { THEME_INIT_SCRIPT } from "@/components/site/ThemeToggle";
 import {
   buildSeoHead,
   buildOrganizationSchema,
@@ -23,20 +26,14 @@ import {
 
 function NotFoundComponent() {
   return (
-    <main className="on-dark relative isolate flex min-h-screen items-center overflow-hidden px-5">
-      <div
-        aria-hidden="true"
-        className="tech-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(70%_70%_at_50%_50%,black,transparent)]"
-      />
-      <div className="mx-auto max-w-xl text-center">
-        <p className="eyebrow text-amber-accent">Error 404</p>
-        <h1 className="display mt-5 text-[clamp(2.5rem,7vw,4.5rem)]">
-          This page <span className="text-orange">doesn't exist.</span>
-        </h1>
-        <p className="mt-5 text-muted-foreground">
+    <main className="flex min-h-screen items-center px-6">
+      <div className="mx-auto max-w-xl">
+        <p className="t-data text-sm font-medium">404</p>
+        <h1 className="t-display mt-4 text-[clamp(2.5rem,7vw,4.5rem)]">This page doesn't exist.</h1>
+        <p className="t-body mt-5 text-ink-muted">
           It may have moved when the site changed. Start from the homepage instead.
         </p>
-        <div className="mt-9 flex flex-wrap justify-center gap-3">
+        <div className="mt-9 flex flex-wrap gap-3">
           <Link to="/" className="btn-primary">
             Go home
           </Link>
@@ -54,14 +51,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <main className="on-dark flex min-h-screen items-center justify-center px-5">
-      <div className="max-w-md text-center">
-        <p className="eyebrow text-amber-accent">Something went wrong</p>
-        <h1 className="display mt-5 text-4xl">This page didn't load.</h1>
-        <p className="mt-4 text-sm text-muted-foreground">
+    <main className="flex min-h-screen items-center justify-center px-6">
+      <div className="max-w-md">
+        <p className="t-data text-sm font-medium">Error</p>
+        <h1 className="t-h2 mt-4">This page didn't load.</h1>
+        <p className="t-small mt-4">
           Something went wrong on our end. You can try again or head back home.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap gap-3">
           <button
             type="button"
             onClick={() => {
@@ -85,16 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => {
     const seo = buildSeoHead({
       path: "/",
-      title: `${SITE_NAME} — From Research to Real-World Technology`,
+      title: `${SITE_NAME} — AI that can run real machines`,
       description: SITE_DESCRIPTION,
-      keywords: [
-        "intelligent systems",
-        "AI engineering",
-        "production AI",
-        "Noema",
-        "Soma",
-        "robotics research",
-      ],
       image: `${SITE_DOMAIN}/og-image.jpg`,
       ogType: "website",
     });
@@ -119,9 +108,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         ...seo.links.filter((link) => link.rel !== "canonical" && !("hrefLang" in link)),
         {
           rel: "icon",
-          href: "/brand/curiousdevs-mark-128.png",
-          type: "image/png",
-          sizes: "128x126",
+          href: "/favicon-light.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          rel: "icon",
+          href: "/favicon-dark.svg",
+          type: "image/svg+xml",
+          media: "(prefers-color-scheme: dark)",
         },
         { rel: "icon", href: "/favicon.ico", sizes: "any" },
         { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
@@ -140,9 +135,17 @@ const websiteSchema = buildWebSiteSchema();
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
+        {/* Scroll entrances start hidden and are settled by an observer.
+            Without JavaScript that observer never runs, so this restores
+            the document to its complete, static state instead of leaving
+            it at opacity 0. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}.line-mask>span{transform:none!important}`}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -167,14 +170,20 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-amber-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-background"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-[var(--radius)] focus:bg-signal focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-ground"
       >
         Skip to content
       </a>
-      <PageBackground />
-      <SiteEffects />
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AuroraBackground />
+      <SiteHeader />
+      <main id="main-content" className="relative z-10 pt-16 md:pt-[4.5rem]">
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </main>
+      <div className="relative z-10">
+        <SiteFooter />
+      </div>
+      <IntercomMessenger />
     </QueryClientProvider>
   );
 }
