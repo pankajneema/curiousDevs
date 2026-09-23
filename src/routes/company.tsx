@@ -1,271 +1,193 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  Briefcase,
-  Gauge,
-  Mail,
-  MapPin,
-  Microscope,
-  Mountain,
-  Wrench,
-} from "lucide-react";
-import { Nav } from "@/components/landing/Nav";
-import { Footer } from "@/components/landing/Footer";
-import { CompanyBannerVisual } from "@/components/landing/CompanyBannerVisual";
-import { FinalCta } from "@/components/landing/FinalCta";
-import { Eyebrow, SectionHeading } from "@/components/landing/SectionHeading";
-import { VisionTeaser } from "@/components/landing/VisionTeaser";
-import { revealDelay } from "@/components/landing/motion";
-import { company, coreStory, coreStoryLong } from "@/content/site";
-import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
 
-const TITLE = "Company — Curiosity Drives What We Build";
-const DESCRIPTION =
-  "CuriousDevs exists to research and engineer technology that solves difficult real-world problems. Research deeply. Engineer carefully. Measure honestly. Build for reality.";
+import { COMPANY_COPY as C } from "@/lib/copy";
+import { cn } from "@/lib/utils";
+import { PageHero } from "@/components/site/PageHero";
+import { Label, Reveal, Section, SectionHeader } from "@/components/system/primitives";
 
 export const Route = createFileRoute("/company")({
-  head: () =>
-    buildSeoHead({
-      path: "/company",
-      title: TITLE,
-      description: DESCRIPTION,
-      keywords: ["CuriousDevs", "technology company Gurugram", "intelligent systems company"],
-      ogType: "website",
-    }),
+  head: () => ({
+    meta: [
+      { title: "Company — a Physical AI company | CuriousDevs" },
+      {
+        name: "description",
+        content:
+          "CuriousDevs builds the intelligence and the robotic systems that let machines understand and act in the physical world: two engineering divisions and the research that feeds them, in Noida, India.",
+      },
+      { property: "og:title", content: "CuriousDevs — a Physical AI company" },
+      {
+        property: "og:description",
+        content:
+          "Intelligence builds the mind, Robotics builds the body, and Research asks what is next.",
+      },
+      { property: "og:url", content: "/company" },
+      { property: "og:type", content: "article" },
+    ],
+    links: [{ rel: "canonical", href: "/company" }],
+  }),
   component: CompanyPage,
 });
 
-const PRINCIPLE_ICONS = [Microscope, Wrench, Gauge, Mountain];
-
 function CompanyPage() {
   return (
-    <main id="main-content" className="relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(buildWebPageSchema("/company", TITLE, DESCRIPTION)),
-        }}
+    <>
+      {/* 1 — Hero */}
+      <PageHero
+        label={C.hero.label}
+        title={C.hero.title}
+        lede={
+          <>
+            <p>{C.hero.lede}</p>
+            <p className="mt-4 text-muted-foreground">{C.hero.support}</p>
+          </>
+        }
       />
-      <Nav />
-      <section className="on-dark grain relative isolate overflow-hidden border-b border-hairline">
-        <div
-          aria-hidden="true"
-          className="tech-grid pointer-events-none absolute inset-0 -z-10 opacity-70 [mask-image:radial-gradient(90%_90%_at_20%_20%,black,transparent)]"
-        />
-        <div
-          aria-hidden="true"
-          className="glow-orange pointer-events-none absolute -bottom-64 left-[-18%] -z-10 size-[min(720px,100vw)] rounded-full opacity-60"
-        />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-16 pt-36 sm:px-8 sm:pb-24 sm:pt-44 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16">
-          <div className="order-2 lg:order-1" data-reveal>
-            <CompanyBannerVisual />
+
+      {/* 2 — Why we exist */}
+      <Section id="why">
+        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+          <SectionHeader label={C.why.label} title={C.why.title} />
+          <div className="space-y-6 lg:pt-2">
+            {C.why.paragraphs.map((p, i) => (
+              <p
+                key={p}
+                className={cn(
+                  "leading-relaxed",
+                  i === 0
+                    ? "text-lg text-foreground/90 md:text-xl"
+                    : "text-base text-muted-foreground md:text-lg",
+                )}
+              >
+                {p}
+              </p>
+            ))}
           </div>
-          <div className="order-1 lg:order-2" data-reveal>
-            <p className="eyebrow flex items-center gap-2.5 text-amber-accent">
-              <span className="h-px w-6 bg-orange" aria-hidden="true" />
-              {company.eyebrow}
-            </p>
-            <h1 className="display mt-7 max-w-3xl text-[clamp(2.7rem,5.2vw,4.8rem)]">
-              <span className="text-sheen">{company.title}</span>
-              <br />
-              <span className="text-orange">{company.accent}</span>
-            </h1>
-            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-muted-foreground sm:text-lg">
-              {company.body} We connect research, disciplined engineering, and product thinking to
-              make intelligent systems useful, measurable, secure, and ready for the world outside
-              the demo.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to="/contact" className="btn-primary group">
-                Start a Conversation
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-              <Link to="/technology" className="btn-outline">
-                Explore our technology
-              </Link>
-            </div>
-            <div className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-hairline pt-5">
-              {[
-                ["01", "Research"],
-                ["02", "Engineer"],
-                ["03", "Build"],
-              ].map(([n, label]) => (
-                <div key={label}>
-                  <span className="font-mono text-xs text-orange">{n}</span>
-                  <p className="mt-2 text-sm text-foreground/80">{label}</p>
+        </div>
+      </Section>
+
+      {/* 3 — The company, drawn once. This page is the only place the whole
+             structure is visible at a glance, so it is this page's signature. */}
+      <Section id="structure" className="bg-ground-2">
+        <SectionHeader
+          label={C.structure.label}
+          title={C.structure.title}
+          lede={C.structure.lede}
+        />
+
+        <ol
+          aria-label="Company structure"
+          className="mono-xs mt-12 flex flex-wrap items-center gap-3 text-muted-foreground"
+        >
+          {C.structure.chain.map((step) => (
+            <li key={step} className="flex items-center gap-3">
+              <span className="rounded-full border border-line px-4 py-2">
+                {step.toUpperCase()}
+              </span>
+              <span aria-hidden className="text-signal">
+                →
+              </span>
+            </li>
+          ))}
+          <li className="text-foreground">INTELLIGENCE · ROBOTICS · RESEARCH</li>
+        </ol>
+
+        <div className="mt-8 grid gap-6 lg:grid-cols-3">
+          {C.structure.divisions.map((d, i) => (
+            <Reveal key={d.name} delay={i * 0.06}>
+              <Link
+                to={d.to}
+                className="group flex h-full flex-col rounded-3xl border border-line bg-background/40 p-7 transition-colors duration-300 hover:border-line-strong hover:bg-surface/50 md:p-9"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-display text-2xl tracking-[-0.035em] md:text-3xl">
+                    {d.name}
+                  </h3>
+                  <span className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
+                    {d.role.toUpperCase()}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {d.body}
+                </p>
+                <div className="mt-8 flex items-baseline justify-between gap-4 border-t border-line pt-6">
+                  <span className="font-display text-lg tracking-[-0.035em]">{d.project}</span>
+                  <span className="mono-xs text-muted-foreground">
+                    {d.projectNote.toUpperCase()}
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
-        <div className="border-t border-hairline bg-night/70">
-          <ul className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-5 gap-y-2 px-5 py-4 sm:px-8">
-            {coreStory.map((m, i) => (
-              <li key={m} className="flex items-center gap-5 text-[13px] text-foreground/70">
-                {i > 0 && <span aria-hidden="true" className="h-px w-6 bg-orange/60" />}
-                {m}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      </Section>
 
-      <section className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="About CuriousDevs"
-            title="A small studio for"
-            accent="difficult technology."
-            body="We work where software, intelligent systems, and the physical world meet. Our job is to turn unclear questions into systems that can be understood, tested, shipped, and improved."
-          />
-          <div className="mt-16 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="panel p-7 sm:p-10" data-reveal>
-              <p className="max-w-2xl text-[19px] leading-relaxed text-foreground/90 sm:text-2xl">
-                AI demos are easy to make. Dependable systems require a different kind of work:
-                clear scope, grounded data, evaluation, security, observability, deployment, and a
-                team that can operate what it built.
-              </p>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                CuriousDevs brings those disciplines together. We help teams build AI-native
-                products, understand why an existing system fails, and create an operating path from
-                first experiment to production. As our work deepens, the same discipline extends
-                toward edge intelligence, robotics, advanced hardware, and embodied systems.
-              </p>
-            </div>
-            <div className="on-navy rounded-[20px] border border-hairline p-7 sm:p-10" data-reveal>
-              <p className="eyebrow text-amber-accent">The standard</p>
-              <h3 className="mt-6 text-2xl font-medium tracking-tight text-foreground sm:text-3xl">
-                Useful is not enough.
-                <br />
-                <span className="text-orange">It has to hold up.</span>
-              </h3>
-              <ul className="mt-8 space-y-4 text-sm leading-relaxed text-muted-foreground">
-                <li className="border-t border-hairline pt-4">
-                  A measurable baseline before intervention.
-                </li>
-                <li className="border-t border-hairline pt-4">A clear owner and operating path.</li>
-                <li className="border-t border-hairline pt-4">
-                  Evidence before claims and handover before exit.
-                </li>
-              </ul>
-            </div>
-          </div>
+      {/* 4 — How we think */}
+      <Section id="how">
+        <SectionHeader label={C.how.label} title={C.how.title} lede={C.how.lede} />
+        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2">
+          {C.how.items.map((item, i) => (
+            <Reveal key={item.title} delay={(i % 2) * 0.05} className="bg-background">
+              <article className="group h-full p-7 transition-colors duration-300 hover:bg-surface/50 md:p-9">
+                <p className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-5 font-display text-xl tracking-[-0.035em] md:text-2xl">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="py-28 sm:py-36">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="How we work"
-            title="Four principles."
-            accent="One discipline."
-            body="Research deeply. Engineer carefully. Measure honestly. Build for reality."
-          />
-          <ul className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {company.principles.map((p, i) => {
-              const Icon = PRINCIPLE_ICONS[i] ?? Microscope;
-              return (
-                <li
-                  key={p.title}
-                  data-reveal
-                  style={revealDelay(i * 80)}
-                  className="panel spotlight flex flex-col p-7"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="flex size-11 items-center justify-center rounded-xl border border-hairline bg-background">
-                      <Icon className="size-5 text-orange" strokeWidth={1.6} />
-                    </span>
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h3 className="mt-10 text-xl font-medium tracking-tight">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                </li>
-              );
-            })}
-          </ul>
+      {/* 5 — Where we are going */}
+      <Section id="going" className="bg-ground-2">
+        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+          <SectionHeader label={C.going.label} title={C.going.title} />
+          <p className="text-base leading-relaxed text-muted-foreground lg:pt-2 md:text-lg">
+            {C.going.body}
+          </p>
         </div>
-      </section>
-
-      <section className="on-navy border-t border-hairline py-28 sm:py-36">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeading
-            eyebrow="Core story"
-            title="One company."
-            accent="One continuous story."
-            body="Research → Engineering → Systems → Products → Real-world impact."
-          />
-          <ol className="relative mt-20 grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
-            <span
-              aria-hidden="true"
-              className="absolute top-[7px] right-0 left-0 hidden h-px bg-[linear-gradient(to_right,var(--signal-bright),var(--border-dark)_60%)] lg:block"
-            />
-            {coreStoryLong.map((s, i) => (
-              <li key={s.n} data-reveal style={revealDelay(i * 80)} className="relative">
-                <span
-                  className={`relative block size-3.5 rounded-full border-2 ${i === 0 ? "border-orange-bright bg-orange-bright" : "border-hairline bg-background"}`}
-                />
-                <p className="mt-7 font-mono text-xs text-amber-accent">{s.n}</p>
-                <h3 className="mt-2 text-xl font-medium tracking-tight">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="py-28 sm:py-36">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div
-            data-reveal
-            className="on-dark grain relative isolate overflow-hidden rounded-[24px] border border-hairline bg-night px-7 py-14 sm:px-14 sm:py-20"
-          >
-            <div aria-hidden="true" className="tech-grid absolute inset-0 -z-10" />
-            <div
-              aria-hidden="true"
-              className="glow-orange absolute -right-40 -bottom-56 -z-10 size-[640px] rounded-full"
-            />
-            <div className="grid gap-12 lg:grid-cols-[1.25fr_1fr] lg:items-end">
-              <div>
-                <Eyebrow>Where we work</Eyebrow>
-                <h2 className="display mt-6 text-[clamp(2.3rem,4.5vw,3.9rem)]">
-                  <span className="text-sheen">Based in Gurugram.</span>
-                  <br />
-                  <span className="text-orange">Built for the real world.</span>
-                </h2>
+        <ol className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
+          {C.going.steps.map((s, i) => (
+            <li key={s.step} className="bg-ground-2 p-6 md:p-7">
+              <div className="flex items-center justify-between gap-4">
+                <span className="mono-xs text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {i < C.going.steps.length - 1 ? (
+                  <span aria-hidden className="mono-xs text-line-strong">
+                    →
+                  </span>
+                ) : null}
               </div>
-              <ul className="divide-y divide-[var(--hairline)] border-y border-hairline">
-                <li className="flex items-center gap-4 py-4 text-foreground/85">
-                  <MapPin className="size-4 text-orange" /> {company.base}
-                </li>
-                <li>
-                  <a
-                    href={`mailto:${company.email}`}
-                    className="group flex items-center gap-4 py-4 text-foreground/85 transition-colors hover:text-foreground"
-                  >
-                    <Mail className="size-4 text-orange" /> {company.email}
-                    <ArrowRight className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-                  </a>
-                </li>
-                <li>
-                  <Link
-                    to="/careers"
-                    className="group flex items-center gap-4 py-4 text-foreground/85 transition-colors hover:text-foreground"
-                  >
-                    <Briefcase className="size-4 text-orange" /> Careers
-                    <ArrowRight className="ml-auto size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </li>
-              </ul>
+              <h3 className="mt-5 font-display text-lg tracking-[-0.035em] md:text-xl">{s.step}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.note}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* 6 — The team, and the close */}
+      <Section id="team">
+        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-20">
+          <div>
+            <Label className="text-signal">{C.team.label}</Label>
+            <h2 className="mt-6 text-3xl leading-[1.05] sm:text-4xl md:text-5xl">{C.team.title}</h2>
+          </div>
+          <div>
+            <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+              {C.team.body}
+            </p>
+            <div className="mt-8">
+              <Link to={C.team.cta.to} className="btn-primary">
+                {C.team.cta.label}
+              </Link>
             </div>
           </div>
         </div>
-      </section>
-
-      <VisionTeaser />
-      <FinalCta />
-      <Footer />
-    </main>
+      </Section>
+    </>
   );
 }

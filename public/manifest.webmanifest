@@ -1,15 +1,15 @@
 {
   "name": "CuriousDevs",
   "short_name": "CuriousDevs",
-  "description": "CuriousDevs researches, engineers and builds intelligent systems — from production AI to the technologies that connect intelligence with the physical world.",
+  "description": "CuriousDevs builds OJAS, an intelligence system that turns model output into controlled action, and PARTH, the humanoid robot it is embodied in.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050a12",
-  "theme_color": "#050a12",
+  "background_color": "#090912",
+  "theme_color": "#090912",
   "icons": [
     {
-      "src": "/brand/curiousdevs-mark-128.png",
-      "sizes": "128x126",
+      "src": "/brand/curiousdevs-mark.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any"
     },

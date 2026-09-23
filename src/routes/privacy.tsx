@@ -1,147 +1,81 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/landing/Nav";
-import { Footer } from "@/components/landing/Footer";
-import { LegalDoc, LegalSection } from "@/components/landing/LegalDoc";
-import { buildSeoHead, buildWebPageSchema } from "@/lib/seo";
+
+import { PageHero } from "@/components/site/PageHero";
+import { Body, Label, Section } from "@/components/system/primitives";
 
 export const Route = createFileRoute("/privacy")({
-  head: () =>
-    buildSeoHead({
-      path: "/privacy",
-      title: "Privacy Policy | CuriousDevs",
-      description:
-        "What CuriousDevs collects through this website, why, and how to exercise your rights under India's DPDP Act, 2023.",
-      keywords: ["privacy policy", "DPDP", "India privacy", "data rights"],
-      ogType: "website",
-      robots: "index, follow",
-    }),
+  head: () => ({
+    meta: [
+      { title: "Privacy — what we collect and why | CuriousDevs" },
+      {
+        name: "description",
+        content:
+          "What CuriousDevs collects through this website and through deployed cells, how operational data is used, and how to have an enquiry deleted.",
+      },
+      { property: "og:title", content: "Privacy | CuriousDevs" },
+      {
+        property: "og:description",
+        content: "Enquiry data, operational data from deployed cells, and retention.",
+      },
+      { property: "og:url", content: "/privacy" },
+      { property: "og:type", content: "article" },
+      { name: "robots", content: "noindex" },
+    ],
+    links: [{ rel: "canonical", href: "/privacy" }],
+  }),
   component: PrivacyPage,
 });
 
+const CLAUSES = [
+  {
+    term: "Enquiries",
+    body: "When you submit the contact form we store the name, work email, company, and the task details you provide, so that a founder can reply. Submissions are not readable from the public website; only CuriousDevs can access them.",
+  },
+  {
+    term: "Analytics",
+    body: "This site is built to work without behavioural advertising trackers. If a support messenger is enabled, it loads only after the page has rendered and can be blocked without breaking the site.",
+  },
+  {
+    term: "Operational data from deployed cells",
+    body: "OJAS records per-cycle operational data — timestamps, observation hashes, commanded actions, validation results, latencies and outcomes. In commercial discussions we state plainly that CuriousDevs retains rights to use collected operational data for model improvement, with customer-identifying information excluded. This is negotiated in writing, not assumed.",
+  },
+  {
+    term: "Retention and deletion",
+    body: "Enquiry records are kept while the conversation is live and for our records afterwards. To have an enquiry deleted, reply to the thread with the request and we will remove it.",
+  },
+  {
+    term: "Third parties",
+    body: "We use infrastructure providers to host this site, store enquiries, and — where enabled — provide a support messenger. We do not sell personal data.",
+  },
+  {
+    term: "Contact",
+    body: "Questions about this notice can be sent through the contact form. A founder answers; there is no privacy department.",
+  },
+];
+
 function PrivacyPage() {
   return (
-    <main id="main-content" className="relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            buildWebPageSchema(
-              "/privacy",
-              "Privacy Policy",
-              "The privacy terms for curiousdevs.com and the data handling practices on this website.",
-            ),
-          ),
-        }}
+    <>
+      <PageHero
+        index="—"
+        label="Legal"
+        title="Privacy"
+        lede="Short, because there is not much to say. This is a two-person engineering company with a contact form."
       />
-      <Nav />
-      <LegalDoc
-        eyebrow="Legal"
-        title="Privacy Policy"
-        updated="28 July 2026"
-        intro="This page explains, in plain language, what CuriousDevs collects through this website, why, and how you can ask us to change or delete it. We are a small, pre-launch team — this policy describes exactly what our own site does today, not a template written for a product we don't yet operate."
-      >
-        <LegalSection n="01" title="Who this covers">
-          <p>
-            This policy covers <strong className="text-foreground">curiousdevs.com</strong> — the
-            marketing website and service inquiry flows you're using now. It does not yet cover
-            customer production systems or any deployed client environment. Service-specific data
-            handling terms are agreed in the applicable statement of work.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="02" title="What we collect">
-          <p>
-            We collect information only when you choose to give it to us, through one of three
-            forms:
-          </p>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>
-              <strong className="text-foreground">Contact form</strong> — name, work email, company,
-              the service direction you select ("Build AI," "Fix existing AI," or "Scale to
-              production"), and anything you write in the message field.
-            </li>
-            <li>
-              <strong className="text-foreground">Booking request</strong> — the same fields, plus
-              your preferred time window.
-            </li>
-            <li>
-              <strong className="text-foreground">Careers application</strong> — name, email, the
-              role, an optional link to your portfolio or profile, anything you write, and — if you
-              choose to attach one — your resume file (capped at 8MB).
-            </li>
-          </ul>
-          <p>
-            We do not use cookies, analytics scripts, or tracking pixels anywhere on this site.
-            There is no advertising network, no session-replay tool, and no third-party script
-            watching what you do here. We checked our own source code to confirm this before
-            publishing this policy, rather than asserting it from memory.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="03" title="How submissions are handled">
-          <p>
-            Form submissions are sent directly by email to our team; we do not currently store them
-            in a database. A resume attachment travels with the email it was submitted alongside and
-            is not separately archived. If that changes — for example, once we adopt an applicant-
-            tracking system — we will update this section first.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="04" title="Why we collect it">
-          <p>
-            Solely to respond to you: to reply to a message, confirm a booking, or evaluate a job
-            application. We do not sell, rent, or share this information with third parties, and we
-            do not use it for marketing you didn't ask for.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="05" title="Your rights under the DPDP Act, 2023">
-          <p>
-            As an Indian entity processing personal data, we recognise your rights as a Data
-            Principal under the Digital Personal Data Protection Act, 2023 — including the right to
-            access what we hold about you, correct it, and request its erasure. To exercise any of
-            these, email{" "}
-            <a
-              href="mailto:hello@curiousdevs.com"
-              className="text-foreground underline underline-offset-4"
-            >
-              hello@curiousdevs.com
-            </a>{" "}
-            with the subject line "Data request." We aim to respond within one business day and
-            resolve verified requests within a reasonable time frame, consistent with the Act.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="06" title="Where your data is processed">
-          <p>
-            Email is handled through a standard SMTP provider. We do not currently operate
-            infrastructure outside this. If our processing footprint changes as we grow, this
-            section will be updated to name the providers involved.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="07" title="Changes to this policy">
-          <p>
-            If this policy changes materially, we'll update the date at the top of this page. Given
-            our stage, expect this document to evolve — check back before relying on it for a formal
-            procurement or legal review.
-          </p>
-        </LegalSection>
-
-        <LegalSection n="08" title="Contact">
-          <p>
-            Questions about this policy, or about data we might hold on you:{" "}
-            <a
-              href="mailto:hello@curiousdevs.com"
-              className="text-foreground underline underline-offset-4"
-            >
-              hello@curiousdevs.com
-            </a>{" "}
-            · CuriousDevs, Gurugram, India.
-          </p>
-        </LegalSection>
-      </LegalDoc>
-      <Footer />
-    </main>
+      <Section id="clauses">
+        <dl className="divide-y divide-line border-y border-line">
+          {CLAUSES.map((c) => (
+            <div key={c.term} className="grid gap-4 py-8 md:grid-cols-[16rem_1fr] md:gap-10">
+              <dt>
+                <Label>{c.term}</Label>
+              </dt>
+              <dd>
+                <Body>{c.body}</Body>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+    </>
   );
 }

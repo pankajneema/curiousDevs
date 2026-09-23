@@ -1,243 +1,151 @@
 /**
- * CuriousDevs Website V2 — content model.
+ * CuriousDevs — content model (website rebuild, September 2026).
  *
- * Every page reads its copy from here, so new technology areas, research
- * directions, systems or products can be added as data without another
- * redesign. No invented numbers, customers, logos, deployments or
- * performance claims.
+ * Every page reads its copy from here. All claims carry one of three tiers:
+ * capability (sellable Monday), direction ("we are building", no deployments),
+ * research (open questions only). No invented numbers, customers, logos,
+ * deployments or performance claims. Sentence case throughout — no all-caps
+ * labels, no arrows in link text, no middle-dot meta strings.
  */
 
-export const coreStory = ["Research", "Engineering", "Systems", "Products", "Real-World Impact"];
+export type Tier = "capability" | "direction" | "research";
 
-export const coreStoryLong = [
-  { n: "01", title: "Research deeply", body: "Start from the question, not the tool." },
-  { n: "02", title: "Engineer carefully", body: "Architecture, evaluation and security first." },
-  { n: "03", title: "Build real systems", body: "Systems that hold up outside the demo." },
-  {
-    n: "04",
-    title: "Reuse what repeats",
-    body: "Turn repeated problems into reusable technology.",
-  },
-  { n: "05", title: "Develop products", body: "Package that technology into products." },
-];
+export const tagline = "From research to real-world technology.";
 
 export const hero = {
-  eyebrow: "Research × Engineering × Systems",
-  title: "From Research to",
-  accent: "Real-World Technology.",
-  body: "We research, engineer, and build intelligent systems — from production AI and automation to the technologies that connect intelligence with the physical world.",
+  title: tagline,
+  body: "We engineer AI systems that hold up in production, and we are building the technology that connects that intelligence to the physical world.",
+  primaryCta: { label: "Start a project", to: "/contact" },
+  secondaryCta: { label: "See how we work", to: "/product" },
 };
 
-export type DomainId = "ai-engineering" | "intelligent-systems" | "robotics" | "deeptech";
+/* ── Section 2: What we do today (capability) ─────────────────────── */
 
-export type Domain = {
-  id: DomainId;
-  n: string;
+export const capabilityIntro = {
+  heading: "What we do today",
+  sub: "Four ways to start.",
+  note: "Current capability. The work that funds the research below.",
+  cta: { label: "See how we work together", to: "/product" },
+};
+
+/* ── Section 3: How we work ───────────────────────────────────────── */
+
+export const process = [
+  { label: "Research", body: "Understand the problem and what has already been tried." },
+  { label: "Prototype", body: "Build the smallest thing that tests the risky assumption." },
+  { label: "Engineer", body: "Turn the prototype into a system that handles real inputs." },
+  { label: "Evaluate", body: "Measure against a fixed test set. Numbers before opinions." },
+  { label: "Operate", body: "Deploy, observe, and improve on evidence from production." },
+];
+
+export const processQuote =
+  "Evaluation is not a phase. It is the thing that tells you whether any of the rest worked.";
+
+/* ── Section 4: Four connected areas ──────────────────────────────── */
+
+export type AreaId = "ai-engineering" | "intelligent-systems" | "robotics" | "deeptech";
+
+export type Area = {
+  id: AreaId;
   name: string;
+  /** One sentence, then the scope — never joined with middle dots. */
   statement: string;
-  summary: string;
-  caption: string;
-  capabilities: string[];
-  flows: SystemFlowId[];
+  scope: string;
 };
 
-export const domains: Domain[] = [
+/**
+ * Order runs outward from software to machines. These are four parallel
+ * areas, not a sequence — never number them.
+ */
+export const areas: Area[] = [
   {
     id: "ai-engineering",
-    n: "01",
     name: "AI Engineering",
-    statement: "Building intelligent software that works in production.",
-    summary: "LLMs / RAG / Agents / Automation / Evaluation / Security / Infrastructure",
-    caption: "From data to intelligence",
-    capabilities: [
-      "LLMs",
-      "RAG",
-      "AI Agents",
-      "AI Applications",
-      "Multimodal AI",
-      "Automation",
-      "Agentic Workflows",
-      "Evaluation",
-      "Security",
-      "Reliability",
-      "Observability",
-      "Infrastructure",
-      "Deployment",
-    ],
-    flows: ["ai-system", "agentic-automation"],
+    statement: "Intelligent software that survives production.",
+    scope: "Retrieval, agents, evaluation, security, observability, infrastructure.",
   },
   {
     id: "intelligent-systems",
-    n: "02",
     name: "Intelligent Systems",
-    statement: "Moving intelligence closer to where perception and decisions happen.",
-    summary: "Computer Vision / Edge AI / Embedded / Sensors / Real-Time / Decisions",
-    caption: "Intelligence everywhere",
-    capabilities: [
-      "Computer Vision",
-      "Edge AI",
-      "Embedded Intelligence",
-      "Sensors",
-      "Real-Time Intelligence",
-      "Decision Systems",
-      "On-Device AI",
-    ],
-    flows: ["edge-intelligence"],
+    statement: "Moving intelligence to where the decision happens.",
+    scope: "Computer vision, edge AI, embedded intelligence, real-time inference.",
+    // Edge AI ships here as a capability line only once the measured
+    // artifact exists (research note 001). Until then, no claim.
   },
   {
     id: "robotics",
-    n: "03",
     name: "Robotics",
-    statement: "Extending intelligence into the physical world.",
-    summary: "Perception / Planning / Control / Navigation / Manipulation / Autonomy",
-    caption: "Intelligence in motion",
-    capabilities: [
-      "Robotic Systems",
-      "Perception",
-      "Planning",
-      "Control",
-      "Navigation",
-      "Manipulation",
-      "Autonomy",
-      "Physical AI",
-      "Machine Intelligence",
-    ],
-    flows: ["robotics"],
+    statement: "Extending intelligence into machines that perceive and act.",
+    scope: "Perception, planning, control, manipulation, autonomy.",
   },
   {
     id: "deeptech",
-    n: "04",
     name: "DeepTech",
-    statement: "Exploring deeper technologies that can expand what intelligent systems can do.",
-    summary: "AI Hardware / Accelerators / Advanced Sensors / Neurotechnology / Compute",
-    caption: "Technologies for what's next",
-    capabilities: [
-      "AI Hardware",
-      "AI Accelerators",
-      "Specialized Compute",
-      "AI-Native Devices",
-      "Advanced Sensors",
-      "Intelligent Machines",
-      "Neurotechnology / BCI",
-      "Advanced Computing",
-    ],
-    flows: ["hardware"],
+    statement: "The deeper technologies that expand what intelligent systems can do.",
+    scope: "AI hardware, accelerators, advanced sensors, new compute.",
   },
 ];
 
-export const technologyThesis =
-  "These are connected areas within one intelligent-systems thesis, not four unrelated businesses.";
+export const areasHeading = "Four connected areas. One continuum.";
 
-export type SystemFlowId =
-  "ai-system" | "agentic-automation" | "edge-intelligence" | "robotics" | "hardware";
+/* ── Section 5: Where we are going (direction) ────────────────────── */
 
-export type SystemFlow = {
-  id: SystemFlowId;
-  label: string;
-  title: string;
-  domain: DomainId;
-  problem: string;
-  steps: string[];
-  layout: "snake" | "loop" | "radial" | "line" | "stack";
+export const direction = {
+  heading: "Where we are going",
+  sub: "Intelligence, and the machine it operates through.",
+  note: "Early-stage research. Funded by the production work above, published as it becomes real.",
+  entries: [
+    {
+      name: "CuriousDevs Intelligence",
+      to: "/technology/intelligence" as const,
+      body: "Multimodal perception, grounded reasoning, uncertainty-aware planning, evaluated against fixed test sets. Built on open models.",
+    },
+    {
+      name: "CuriousDevs Robotics",
+      to: "/technology/robotics" as const,
+      body: "Perception and planning are being built now. Actuation and the physical platform are research, with no timeline.",
+    },
+  ],
 };
 
-export const systemFlows: SystemFlow[] = [
-  {
-    id: "ai-system",
-    label: "AI System",
-    title: "Production AI Systems",
-    domain: "ai-engineering",
-    problem:
-      "Turning a model into a system that retrieves, reasons, acts and holds up under real use.",
-    steps: [
-      "Data",
-      "Model",
-      "Retrieval / Tools",
-      "Agent",
-      "Evaluation",
-      "Security",
-      "Observability",
-      "Production",
-    ],
-    layout: "snake",
-  },
-  {
-    id: "agentic-automation",
-    label: "Agentic Automation",
-    title: "Agentic Workflow Systems",
-    domain: "ai-engineering",
-    problem:
-      "Letting agents take real actions — with tools, permissions and evaluation inside the loop.",
-    steps: ["Trigger", "Agent", "Tools", "Data", "Decision", "Action", "Evaluation"],
-    layout: "loop",
-  },
-  {
-    id: "edge-intelligence",
-    label: "Edge Intelligence",
-    title: "Computer Vision at the Edge",
-    domain: "intelligent-systems",
-    problem:
-      "Running perception and decisions close to the sensor, where latency and connectivity matter.",
-    steps: ["Sensors", "Perception", "Inference", "Decision", "Action"],
-    layout: "radial",
-  },
-  {
-    id: "robotics",
-    label: "Robotics",
-    title: "Robotic Perception & Control",
-    domain: "robotics",
-    problem: "Closing the loop between seeing, planning and moving in the physical world.",
-    steps: ["Perception", "Planning", "Control", "Movement"],
-    layout: "line",
-  },
-  {
-    id: "hardware",
-    label: "Hardware",
-    title: "AI Hardware",
-    domain: "deeptech",
-    problem: "Understanding the compute that intelligent systems ultimately run on.",
-    steps: ["Input", "Compute", "Acceleration", "Output"],
-    layout: "stack",
-  },
-];
+/* ── Section 6: Working in the open ───────────────────────────────── */
 
-export const engineeringMethod = [
-  "Problem",
-  "Context",
-  "System",
-  "Architecture",
-  "Engineering",
-  "Evaluation",
-  "Outcome",
-  "Technology",
-];
-
-export const researchProcess = [
-  { n: "01", label: "Research", body: "Explore possibilities and ask the right questions." },
-  { n: "02", label: "Prototype", body: "Build quickly to find out what is real." },
-  { n: "03", label: "Engineer", body: "Turn validated ideas into reliable systems." },
-  { n: "04", label: "Validate", body: "Measure honestly against real conditions." },
-  { n: "05", label: "Product", body: "Turn repeated problems into reusable technology." },
-];
-
-export type ResearchArea = {
-  name: string;
-  question: string;
+export const openNotes = {
+  heading: "Working in the open",
+  body: "Notes, experiments and results from what we are building. Published whether or not the result was the one we wanted.",
+  /* No promise language. While no note is published, the section lists
+     research areas instead. */
 };
+
+/* ── Section 7: The direction (principles) ────────────────────────── */
+
+export const principles = [
+  { title: "Measure honestly", body: "A number on a fixed test set, or it did not happen." },
+  {
+    title: "Build for reality",
+    body: "The demo is not the product; the thing that runs on a bad day is.",
+  },
+  {
+    title: "Publish the failures",
+    body: "The negative result is the part nobody else shares.",
+  },
+];
+
+/* ── Research ─────────────────────────────────────────────────────── */
+
+export type ResearchArea = { name: string; question: string };
 
 export const research = {
-  eyebrow: "Research",
-  title: "Researching What",
-  accent: "Comes Next.",
-  body: "We explore AI systems, agentic intelligence, multimodal AI, computer vision, edge AI, robotics, physical AI, AI hardware, advanced compute and neurotechnology. We publish papers, experiments, prototypes or notes only when they exist.",
+  title: "Research",
+  body: "Research areas we are working in. Notes published as results arrive.",
   areas: [
     {
-      name: "AI Systems",
+      name: "AI systems",
       question:
         "How do models, retrieval, tools and evaluation combine into systems that hold up in production?",
     },
     {
-      name: "Agentic Intelligence",
+      name: "Agentic intelligence",
       question: "How should agents plan, use tools and act — safely and measurably?",
     },
     {
@@ -245,7 +153,7 @@ export const research = {
       question: "How do systems reason across text, images, audio and structured data together?",
     },
     {
-      name: "Computer Vision",
+      name: "Computer vision",
       question: "How do camera and sensor streams become perception a system can rely on?",
     },
     {
@@ -262,12 +170,13 @@ export const research = {
       question: "What changes when an intelligent system's actions have physical consequences?",
     },
     {
-      name: "AI Hardware",
+      name: "AI hardware",
       question: "Where do accelerators and specialized compute change what is possible?",
     },
     {
-      name: "Advanced Compute",
-      question: "Which computing approaches expand what intelligent systems can do?",
+      name: "Foundation models",
+      question:
+        "What would it take to train a foundation model for physical AI in India, and what is the smallest useful version of that?",
     },
     {
       name: "Neurotechnology",
@@ -276,99 +185,19 @@ export const research = {
   ] satisfies ResearchArea[],
 };
 
-export const janus = {
-  name: "Janus",
-  tagline: "Intelligent Systems Platform",
-  positioning:
-    "Janus is CuriousDevs' proprietary technology direction for building, evaluating, deploying and operating intelligent systems. Its first practical form focuses on production AI systems; the architecture can expand toward edge and physical systems as the technology matures.",
-  principle:
-    "An engineer should understand what an intelligent system uses, how it reasons, what it can do, how it performs, where it fails and what is happening in production — in one place.",
-  verbs: ["Build", "Evaluate", "Deploy", "Operate"],
-  modules: [
-    {
-      key: "models",
-      name: "Model integration",
-      body: "Connect and route across the models a system depends on.",
-    },
-    {
-      key: "knowledge",
-      name: "Knowledge / RAG",
-      body: "Documents, retrieval and grounding as first-class parts of the system.",
-    },
-    {
-      key: "agents",
-      name: "Agents / tools / memory",
-      body: "What an agent can call, what it remembers and what it is allowed to do.",
-    },
-    {
-      key: "workflows",
-      name: "Workflow orchestration",
-      body: "Multi-step automation with explicit triggers, decisions and actions.",
-    },
-    {
-      key: "evaluation",
-      name: "Evaluation & regression",
-      body: "Test sets and regression checks before a change reaches production.",
-    },
-    {
-      key: "security",
-      name: "Security / permissions",
-      body: "Guardrails, permissions and policy boundaries in the request path.",
-    },
-    {
-      key: "observability",
-      name: "Observability",
-      body: "Traces, latency and cost for every step of every run.",
-    },
-    {
-      key: "deploy",
-      name: "Production deployment",
-      body: "Promote a system from build to production with confidence.",
-    },
-  ],
-  architectureInputs: [
-    "Models",
-    "Knowledge",
-    "Agents",
-    "Tools",
-    "Workflows",
-    "Evaluation",
-    "Security",
-    "Observability",
-  ],
-  workspace: [
-    "Systems",
-    "Models",
-    "Knowledge",
-    "Agents",
-    "Workflows",
-    "Evaluation",
-    "Security",
-    "Deploy",
-  ],
-  graph: ["Documents", "RAG", "Agent", "Tools", "Action"],
-  inspector: [
-    ["Model", "—"],
-    ["Tools", "—"],
-    ["Evaluation", "—"],
-    ["Latency", "—"],
-    ["Cost", "—"],
-    ["Security", "Active"],
-  ] as [string, string][],
-  extension: [
-    "Janus",
-    "Edge runtime",
-    "Vision / Sensors",
-    "Physical systems",
-    "Robotics",
-    "Machines",
-  ],
+/* ── Work ─────────────────────────────────────────────────────────── */
+
+export const work = {
+  title: "Work",
+  intro:
+    "Systems built before CuriousDevs, published with client details removed. New case studies as current work clears confidentiality.",
+  rule: "No invented metrics. No placeholder logos.",
 };
 
+/* ── Company ──────────────────────────────────────────────────────── */
+
 export const company = {
-  eyebrow: "Company",
-  title: "Curiosity Drives",
-  accent: "What We Build.",
+  title: "Company",
   body: "CuriousDevs exists to research and engineer technology that solves difficult real-world problems.",
   principles: [
     {
@@ -392,33 +221,25 @@ export const company = {
   email: "hello@curiousdevs.com",
 };
 
-export const vision = {
-  eyebrow: "Vision",
-  title: "Intelligence",
-  accent: "Beyond the Screen.",
-  body: "We are building toward a future where intelligent systems do more than generate information — they perceive, decide, interact and operate in the real world.",
-  evolution: ["AI", "Systems", "Machines", "Deeper technology"],
-};
-
-export const finalCta = {
-  eyebrow: "Let's build together",
-  title: "Have a difficult",
-  accent: "problem?",
-  body: "Whether you are building an AI system, exploring a new product, or researching what comes next — let's build something real.",
-};
+/* ── Contact ──────────────────────────────────────────────────────── */
 
 export const contact = {
-  title: "Have a difficult",
-  accent: "problem?",
+  title: "Start a project",
   body: "Tell us what you're trying to build, fix or explore.",
   email: "hello@curiousdevs.com",
-  stages: ["Idea / exploring", "Prototype", "In development", "In production", "Research question"],
-  areas: ["AI Engineering", "Intelligent Systems", "DeepTech", "Robotics", "Not sure yet"],
-  timelines: ["As soon as possible", "Within 1–3 months", "3–6 months", "Just exploring"],
+  stages: [
+    "Idea or exploring",
+    "Prototype",
+    "In development",
+    "In production",
+    "Have a system that needs review",
+    "Research question",
+  ],
 };
 
+/* ── Careers ──────────────────────────────────────────────────────── */
+
 export const careers = {
-  title: "Build difficult",
-  accent: "technology.",
+  title: "Careers",
   body: "We show real openings only. When a role opens, it will be listed here with exactly what it is and how to apply.",
 };

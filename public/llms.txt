@@ -1,36 +1,18 @@
 # CuriousDevs
 
-> CuriousDevs researches, engineers and builds intelligent systems — from production AI and automation to the technologies that connect intelligence with the physical world.
+> CuriousDevs builds OJAS, an intelligence system for Edge AI and Physical AI, and PARTH, the human-scale humanoid robot it is embodied in. Based in Noida, Uttar Pradesh, India.
 
-Research → Engineering → Systems → Products → Real-World Impact. CuriousDevs is based in Gurugram, India.
+Physical AI is not a trained model. It is a closed loop between sensing, judgement and motion, with a model as one component inside it. OJAS is the intelligence: it perceives, holds a picture of the world, plans, decides what is allowed, and acts on edge hardware next to the machine. PARTH is the body.
 
-## Technology
+## Pages
 
-- **AI Engineering — current**: LLMs, RAG, AI agents, AI applications, multimodal AI, automation, agentic workflows, evaluation, security, reliability, observability, infrastructure and deployment.
-- **Intelligent Systems — building / expanding**: computer vision, edge AI, embedded intelligence, sensors, real-time intelligence, decision systems, on-device AI.
-- **Robotics — research / building toward**: robotic systems, perception, planning, control, navigation, manipulation, autonomy, physical AI, machine intelligence.
-- **DeepTech — research / exploration**: AI hardware, AI accelerators, specialized compute, AI-native devices, advanced sensors, intelligent machines, neurotechnology / BCI, advanced computing.
+- [Home](https://www.curiousdevs.com/): Physical AI, OJAS and PARTH overview.
+- [Intelligence](https://www.curiousdevs.com/intelligence): how OJAS turns model output into controlled action.
+- [Robotics](https://www.curiousdevs.com/robotics): the embodiment side of the stack.
+- [OJAS](https://www.curiousdevs.com/products/ojas): the intelligence system.
+- [PARTH](https://www.curiousdevs.com/products/parth): the humanoid robot.
+- [Research](https://www.curiousdevs.com/research): open problems and evidence policy.
+- [Company](https://www.curiousdevs.com/company): who we are.
+- [Contact](https://www.curiousdevs.com/contact): a founder reads every message.
 
-These are connected areas within one intelligent-systems thesis, not four unrelated businesses.
-
-## Janus
-
-Janus is CuriousDevs' proprietary technology direction for building, evaluating, deploying and operating intelligent systems. It is in development and not generally available. Its first practical form focuses on production AI systems: model integration, knowledge / RAG, agents, tools and memory, workflow orchestration, evaluation and regression testing, security and permissions, observability, and production deployment.
-
-## Key pages
-
-- [Home](https://www.curiousdevs.com/): from research to real-world technology.
-- [Technology](https://www.curiousdevs.com/technology): the four technology areas and their status.
-- [Research](https://www.curiousdevs.com/research): research areas, the research-to-product process, and engineering notes.
-- [Systems](https://www.curiousdevs.com/systems): systems thinking — AI systems, agentic automation, edge intelligence, robotics, hardware.
-- [Janus](https://www.curiousdevs.com/janus): the intelligent systems platform in development.
-- [Company](https://www.curiousdevs.com/company): principles, core story and vision.
-- [Contact](https://www.curiousdevs.com/contact): tell us what you're trying to build, fix or explore.
-- [FAQ](https://www.curiousdevs.com/faq), [Blog](https://www.curiousdevs.com/blog), [Careers](https://www.curiousdevs.com/careers), [Security](https://www.curiousdevs.com/security), [Privacy](https://www.curiousdevs.com/privacy), [Terms](https://www.curiousdevs.com/terms).
-
-## Important context
-
-- Current capabilities are stated as current. Building, research and exploration directions are labelled as such and should not be described as shipped capabilities.
-- Janus should not be described as a generally available product.
-- CuriousDevs does not claim SOC 2 or ISO 27001 certification.
-- Contact: hello@curiousdevs.com.
+Nothing is described as available before it has recorded, repeatable evidence.
