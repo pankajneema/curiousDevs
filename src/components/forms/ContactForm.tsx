@@ -86,6 +86,9 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const formRef = useRef<HTMLFormElement>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  // When the form first rendered; the server rejects sends that come too fast.
+  const [shownAt] = useState(() => Date.now());
   const successRef = useRef<HTMLHeadingElement>(null);
 
   const set = (key: keyof Values, value: string) => {
@@ -133,6 +136,8 @@ export function ContactForm() {
           building: parsed.data.project,
           timeline: parsed.data.timeline || undefined,
           source: "Contact page",
+          website: honeypotRef.current?.value ?? "",
+          elapsedMs: Date.now() - shownAt,
         },
       });
     } catch (error) {
@@ -167,6 +172,19 @@ export function ContactForm() {
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate>
+      {/* Honeypot: off-screen and skipped by keyboard and screen readers. */}
+      <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor="field-website">Website</label>
+        <input
+          ref={honeypotRef}
+          id="field-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          defaultValue=""
+        />
+      </div>
       <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
         {FIELDS.map((field) => {
           const id = `field-${field.name}`;

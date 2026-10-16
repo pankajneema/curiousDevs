@@ -1,192 +1,159 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { COMPANY_COPY as C } from "@/lib/copy";
-import { cn } from "@/lib/utils";
+import { pageHead } from "@/lib/seo";
+import { HOME, STUDIO } from "@/content/studio";
+import { CONTACT_COPY } from "@/lib/copy";
 import { PageHero } from "@/components/site/PageHero";
-import { Label, Reveal, Section, SectionHeader } from "@/components/system/primitives";
+import { CtaPanel } from "@/components/site/Studio";
+import {
+  Callout,
+  DefinitionList,
+  Label,
+  Section,
+  SectionHeader,
+  TickList,
+} from "@/components/system/primitives";
+
+const TITLE = "Company — a founder-led AI engineering studio | CuriousDevs";
+const DESCRIPTION =
+  "CuriousDevs is a founder-led engineering company in Delhi NCR, India: a client engineering studio, with a research lab and a Physical AI lab alongside it.";
 
 export const Route = createFileRoute("/company")({
-  head: () => ({
-    meta: [
-      { title: "Company — a Physical AI company | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "CuriousDevs builds the intelligence and the robotic systems that let machines understand and act in the physical world: two engineering divisions and the research that feeds them, in Noida, India.",
-      },
-      { property: "og:title", content: "CuriousDevs — a Physical AI company" },
-      {
-        property: "og:description",
-        content:
-          "Intelligence builds the mind, Robotics builds the body, and Research asks what is next.",
-      },
-      { property: "og:url", content: "/company" },
-      { property: "og:type", content: "article" },
-    ],
-    links: [{ rel: "canonical", href: "/company" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/company",
+      crumb: "Company",
+      title: TITLE,
+      description: DESCRIPTION,
+    }),
   component: CompanyPage,
 });
+
+const UNITS = [
+  {
+    n: "01",
+    label: "Studio",
+    title: "Client engineering",
+    body: "We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably.",
+    link: { label: "Services", to: "/services" },
+  },
+  {
+    n: "02",
+    label: "Research",
+    title: "CuriousDevs Research",
+    body: "Applied research on the problems our client work keeps raising: agent reliability, evaluation, efficient models and the real cost of running AI.",
+    link: { label: "Research", to: "/research" },
+  },
+  {
+    n: "03",
+    label: "Long-term bet",
+    title: "Physical AI Lab",
+    body: "OJAS, the intelligence that decides and acts, and PARTH, the body it moves in. AI that runs real machines, built in India.",
+    link: { label: "The lab", to: "/lab" },
+  },
+] as const;
 
 function CompanyPage() {
   return (
     <>
-      {/* 1 — Hero */}
       <PageHero
-        label={C.hero.label}
-        title={C.hero.title}
-        lede={
-          <>
-            <p>{C.hero.lede}</p>
-            <p className="mt-4 text-muted-foreground">{C.hero.support}</p>
-          </>
-        }
+        label="Company"
+        title="Small by design. Accountable by default."
+        lede="CuriousDevs is a founder-led engineering company. We stay deliberately small so that every system we ship has an owner who built it and answers for it."
+        meta={[
+          { term: "Founded by", value: "Pankaj Kumar" },
+          { term: "Based in", value: "Delhi NCR, India" },
+          { term: "Works with", value: "Teams across India and internationally" },
+          { term: "Standard", value: "Evidence before claims" },
+        ]}
       />
 
-      {/* 2 — Why we exist */}
-      <Section id="why">
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-          <SectionHeader label={C.why.label} title={C.why.title} />
-          <div className="space-y-6 lg:pt-2">
-            {C.why.paragraphs.map((p, i) => (
-              <p
-                key={p}
-                className={cn(
-                  "leading-relaxed",
-                  i === 0
-                    ? "text-lg text-foreground/90 md:text-xl"
-                    : "text-base text-muted-foreground md:text-lg",
-                )}
-              >
-                {p}
-              </p>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* 3 — The company, drawn once. This page is the only place the whole
-             structure is visible at a glance, so it is this page's signature. */}
-      <Section id="structure" className="bg-ground-2">
+      {/* 01 Structure */}
+      <Section id="structure">
         <SectionHeader
-          label={C.structure.label}
-          title={C.structure.title}
-          lede={C.structure.lede}
+          label="01 · Structure"
+          title="One studio, with two labs alongside it."
+          lede="Client work keeps the studio running and keeps our research honest. What we learn in the labs comes back into how we build for clients."
         />
-
-        <ol
-          aria-label="Company structure"
-          className="mono-xs mt-12 flex flex-wrap items-center gap-3 text-muted-foreground"
-        >
-          {C.structure.chain.map((step) => (
-            <li key={step} className="flex items-center gap-3">
-              <span className="rounded-full border border-line px-4 py-2">
-                {step.toUpperCase()}
-              </span>
-              <span aria-hidden className="text-signal">
-                →
-              </span>
-            </li>
-          ))}
-          <li className="text-foreground">INTELLIGENCE · ROBOTICS · RESEARCH</li>
-        </ol>
-
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          {C.structure.divisions.map((d, i) => (
-            <Reveal key={d.name} delay={i * 0.06}>
-              <Link
-                to={d.to}
-                className="group flex h-full flex-col rounded-3xl border border-line bg-background/40 p-7 transition-colors duration-300 hover:border-line-strong hover:bg-surface/50 md:p-9"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-display text-2xl tracking-[-0.035em] md:text-3xl">
-                    {d.name}
-                  </h3>
-                  <span className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
-                    {d.role.toUpperCase()}
-                  </span>
-                </div>
-                <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {d.body}
-                </p>
-                <div className="mt-8 flex items-baseline justify-between gap-4 border-t border-line pt-6">
-                  <span className="font-display text-lg tracking-[-0.035em]">{d.project}</span>
-                  <span className="mono-xs text-muted-foreground">
-                    {d.projectNote.toUpperCase()}
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* 4 — How we think */}
-      <Section id="how">
-        <SectionHeader label={C.how.label} title={C.how.title} lede={C.how.lede} />
-        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2">
-          {C.how.items.map((item, i) => (
-            <Reveal key={item.title} delay={(i % 2) * 0.05} className="bg-background">
-              <article className="group h-full p-7 transition-colors duration-300 hover:bg-surface/50 md:p-9">
-                <p className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-5 font-display text-xl tracking-[-0.035em] md:text-2xl">
-                  {item.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* 5 — Where we are going */}
-      <Section id="going" className="bg-ground-2">
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-          <SectionHeader label={C.going.label} title={C.going.title} />
-          <p className="text-base leading-relaxed text-muted-foreground lg:pt-2 md:text-lg">
-            {C.going.body}
-          </p>
-        </div>
-        <ol className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {C.going.steps.map((s, i) => (
-            <li key={s.step} className="bg-ground-2 p-6 md:p-7">
-              <div className="flex items-center justify-between gap-4">
-                <span className="mono-xs text-muted-foreground">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {i < C.going.steps.length - 1 ? (
-                  <span aria-hidden className="mono-xs text-line-strong">
-                    →
-                  </span>
-                ) : null}
+        <div className="mt-14 grid gap-px border border-line bg-line md:grid-cols-3">
+          {UNITS.map((u) => (
+            <Link
+              key={u.n}
+              to={u.link.to}
+              className="cell-link flex min-h-60 flex-col gap-4 bg-background p-6 text-foreground md:p-8"
+            >
+              <div className="flex items-baseline justify-between">
+                <span className="mono-xs text-muted-foreground">{u.n}</span>
+                <Label className="text-signal">{u.label}</Label>
               </div>
-              <h3 className="mt-5 font-display text-lg tracking-[-0.035em] md:text-xl">{s.step}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.note}</p>
-            </li>
+              <h3 className="text-2xl">{u.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{u.body}</p>
+              <span className="mt-auto font-mono text-[0.6875rem] uppercase tracking-[0.14em]">
+                {u.link.label} <span className="cell-arrow">→</span>
+              </span>
+            </Link>
           ))}
-        </ol>
+        </div>
       </Section>
 
-      {/* 6 — The team, and the close */}
-      <Section id="team">
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-20">
-          <div>
-            <Label className="text-signal">{C.team.label}</Label>
-            <h2 className="mt-6 text-3xl leading-[1.05] sm:text-4xl md:text-5xl">{C.team.title}</h2>
-          </div>
-          <div>
-            <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
-              {C.team.body}
+      {/* 04 Facts and engagement models */}
+      <Section id="founder">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <SectionHeader
+            label="02 · Founder"
+            title="Pankaj Kumar"
+            lede="Founder and engineer. Works across backend, voice, real-time and AI infrastructure systems, and leads every engagement from first conversation to support."
+          />
+          <div className="flex flex-col gap-6">
+            <p className="leading-relaxed text-muted-foreground">
+              CuriousDevs is founder-led by design: the person you speak to first is the person
+              accountable for what is built. Write to him directly.
             </p>
-            <div className="mt-8">
-              <Link to={C.team.cta.to} className="btn-primary">
-                {C.team.cta.label}
-              </Link>
+            <div className="flex flex-wrap gap-3">
+              <a href={`mailto:${CONTACT_COPY.email}`} className="btn-outline">
+                {CONTACT_COPY.email}
+              </a>
+              <a href={STUDIO.github} target="_blank" rel="noreferrer" className="btn-outline">
+                GitHub
+              </a>
             </div>
           </div>
         </div>
+      </Section>
+
+      <Section id="facts">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col gap-8">
+            <SectionHeader
+              label="03 · At a glance"
+              title="Who you will work with."
+              lede="The engineers in your first conversation are the engineers who build the system."
+            />
+            <div className="flex flex-col gap-4">
+              <Label>Ways to work together</Label>
+              <TickList items={HOME.models.map((m) => `${m.name} — ${m.body}`)} />
+            </div>
+          </div>
+          <DefinitionList items={HOME.company} />
+        </div>
+        <Callout tone="signal" title="Our standing rule" className="mt-12 max-w-[55rem]">
+          Nothing is described as available until there is evidence behind it. A target is never
+          shown as a result.
+        </Callout>
+      </Section>
+
+      <Section id="cta">
+        <CtaPanel
+          label="Talk to us"
+          title="Describe the problem, not the technology. A founder reads every message."
+        >
+          <Link to="/contact" className="btn-primary">
+            Book a consultation
+          </Link>
+          <Link to="/services" className="btn-outline">
+            View services
+          </Link>
+        </CtaPanel>
       </Section>
     </>
   );

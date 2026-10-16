@@ -40,20 +40,18 @@
         one path a diagram is explaining. Never decorative. ──────────── */
   --signal: oklch(0.66 0.242 3);
   --signal-lift: color-mix(in oklab, var(--signal) 86%, white); /* hover */
-  --signal-dim: color-mix(in oklab, var(--signal) 55%, var(--ground)); /* pressed, de-emphasised rule */
+  --signal-dim: color-mix(
+    in oklab,
+    var(--signal) 55%,
+    var(--ground)
+  ); /* pressed, de-emphasised rule */
 
   /* Second measurement hue — diagrams only, so two series separate. */
   --data: oklch(0.73 0.1 232);
 
-  /* ── Aurora ──────────────────────────────────────────────────────────
-     Three hues for the ambient light layer only. They are never used as
-     ink, fill or border: the layer sits behind content at single-digit
-     opacity and reads as light in a room, not as coloured circles. The
-     violet is the midpoint between the signal and the data hue, so the
-     spread stays inside the palette rather than introducing a fourth. */
-  --aurora-magenta: var(--signal);
-  --aurora-violet: oklch(0.62 0.2 318);
-  --aurora-blue: var(--data);
+  /* Label on a signal fill. White on the dark-mode rose measures 3.4:1, under
+     the 4.5:1 floor for 11px text, so the dark ground is used instead (5.6:1). */
+  --primary-foreground-on-signal: var(--ground);
 
   /* Data states only — never decorative */
   --pass: oklch(0.755 0.14 158);
@@ -109,7 +107,6 @@
   --lift: 0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent) inset;
 }
 
-
 /* ── Light theme ──────────────────────────────────────────────────────
    The same system inverted, not a different one: identical token names,
    identical roles, and the signal darkened so it still carries text
@@ -134,6 +131,7 @@
   --rule-2: oklch(0.82 0.012 290);
 
   --signal: oklch(0.56 0.23 3);
+  --primary-foreground-on-signal: oklch(0.99 0.004 3); /* 5.1:1 on the light-mode signal */
   --signal-lift: color-mix(in oklab, var(--signal) 86%, black);
   --signal-dim: color-mix(in oklab, var(--signal) 45%, var(--ground));
 
@@ -143,10 +141,6 @@
   --fail: oklch(0.53 0.2 26);
 
   --grid-line: color-mix(in oklab, var(--rule) 80%, transparent);
-
-  /* On a light ground the aurora has to darken rather than lighten, so the
-     blend flips and the tint drops — see the rule in styles.css. */
-  --aurora-violet: oklch(0.55 0.19 318);
 }
 
 @media (width >= 64rem) {

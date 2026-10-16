@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
-import { PHYSICAL_AI_STACK } from "@/lib/content";
+import { PHYSICAL_AI_STACK, type StackLayer } from "@/lib/content";
 import { Label } from "@/components/system/primitives";
 
 /**
@@ -10,13 +9,15 @@ import { Label } from "@/components/system/primitives";
  * sensors and actuators. Selecting a layer expands its responsibility and
  * ownership. OJAS Runtime is emphasised because it is the layer we own.
  */
-export function PhysicalAIStack() {
-  const [open, setOpen] = useState("runtime");
-  const reduce = useReducedMotion();
+export function PhysicalAIStack({
+  layers = PHYSICAL_AI_STACK,
+  defaultOpen = "runtime",
+}: { layers?: StackLayer[]; defaultOpen?: string } = {}) {
+  const [open, setOpen] = useState(defaultOpen);
 
   return (
     <div className="overflow-hidden rounded-3xl border border-line">
-      {PHYSICAL_AI_STACK.map((layer, i) => {
+      {layers.map((layer, i) => {
         const isOpen = layer.id === open;
         return (
           <div key={layer.id} className={cn(i > 0 && "border-t border-line")}>
@@ -61,12 +62,7 @@ export function PhysicalAIStack() {
               </button>
             </h3>
             {isOpen ? (
-              <motion.div
-                initial={reduce ? false : { opacity: 0, y: 8 }}
-                animate={reduce ? false : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid gap-6 px-5 pb-7 md:grid-cols-[1fr_14rem] md:px-7"
-              >
+              <div className="stack-detail grid gap-6 px-5 pb-7 md:grid-cols-[1fr_14rem] md:px-7">
                 <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
                   {layer.detail}
                 </p>
@@ -76,7 +72,7 @@ export function PhysicalAIStack() {
                     {layer.owner}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ) : null}
           </div>
         );

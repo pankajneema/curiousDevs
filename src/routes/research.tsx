@@ -1,173 +1,141 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { RESEARCH_COPY as C } from "@/lib/copy";
-import { RESEARCH_HYPOTHESES, STANDING_COMMITMENT } from "@/lib/content";
-import { cn } from "@/lib/utils";
+import { pageHead } from "@/lib/seo";
+import { RESEARCH } from "@/content/studio";
 import { PageHero } from "@/components/site/PageHero";
-import { ResearchTrack } from "@/components/system/ResearchTrack";
-import {
-  Callout,
-  DefinitionList,
-  Label,
-  Reveal,
-  Section,
-  SectionHeader,
-} from "@/components/system/primitives";
+import { Illustration, Step } from "@/components/site/Studio";
+import { Callout, Label, Section, SectionHeader } from "@/components/system/primitives";
+
+const TITLE = "Research — we publish questions before answers | CuriousDevs";
+const DESCRIPTION =
+  "Applied research on the problems our client work keeps raising: agent reliability, evaluation, efficient models and the real cost of running AI.";
 
 export const Route = createFileRoute("/research")({
-  head: () => ({
-    meta: [
-      { title: "Research — the questions behind future Physical AI | CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "Research at CuriousDevs investigates the technologies that may become future intelligence systems, robotic platforms, models and infrastructure. Every question carries its method, and results are published exactly as measured.",
-      },
-      { property: "og:title", content: "Research — we publish questions before answers" },
-      {
-        property: "og:description",
-        content:
-          "Model behaviour, world representation, decision under constraint, embodiment, evaluation and learning in service. Directions of inquiry, not programmes with results.",
-      },
-      { property: "og:url", content: "/research" },
-      { property: "og:type", content: "article" },
-    ],
-    links: [{ rel: "canonical", href: "/research" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/research",
+      crumb: "Research",
+      ogType: "article",
+      title: TITLE,
+      description: DESCRIPTION,
+    }),
   component: ResearchPage,
 });
+
+const COLLABORATE = [
+  {
+    label: "Engineers and researchers",
+    title: "Build the tools with us.",
+    body: "Agents, evaluation, fine-tuning and infrastructure. Send the hardest thing you have shipped.",
+    cta: "Write to us",
+    to: "/contact",
+  },
+  {
+    label: "Universities and programmes",
+    title: "Partner on applied research.",
+    body: "Joint projects, student work and grant programmes where an engineering partner helps research reach production.",
+    cta: "Start a conversation",
+    to: "/contact",
+  },
+  {
+    label: "Sister lab",
+    title: "The Physical AI Lab.",
+    body: "OJAS and PARTH: the intelligence and the body for AI that runs real machines.",
+    cta: "Visit the lab",
+    to: "/lab",
+  },
+] as const;
 
 function ResearchPage() {
   return (
     <>
-      {/* 1 — Hero */}
       <PageHero
-        label={C.hero.label}
-        title={C.hero.title}
-        lede={
-          <>
-            <p>{C.hero.lede}</p>
-            <p className="mt-4 text-muted-foreground">{C.hero.support}</p>
-          </>
-        }
+        label="CuriousDevs Research"
+        title="We publish questions before answers."
+        lede="Applied research on the problems our client work keeps raising: agent reliability, evaluation, efficient models and the real cost of running AI. What holds up becomes how we build. What does not is written down, so we do not repeat it."
+        meta={RESEARCH.heroMeta}
       />
 
-      {/* 2 — Why we research */}
-      <Section id="why">
-        <div className="grid gap-10 [&>*]:min-w-0 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-          <SectionHeader label={C.why.label} title={C.why.title} />
-          <div className="space-y-6 lg:pt-2">
-            {C.why.paragraphs.map((p, i) => (
-              <p
-                key={p}
-                className={cn(
-                  "leading-relaxed",
-                  i === 0
-                    ? "text-lg text-foreground/90 md:text-xl"
-                    : "text-base text-muted-foreground md:text-lg",
-                )}
-              >
-                {p}
+      {/* 01 Areas */}
+      <Section id="areas">
+        <div className="grid items-end gap-10 lg:grid-cols-2 lg:gap-14">
+          <SectionHeader
+            label="01 · Research areas"
+            title="Four questions we keep returning to."
+            lede="Each area begins as a question raised by a real system, and ends as a method, a tool or a documented dead end."
+          />
+          <Illustration
+            name="research-frontier"
+            aspect="16 / 9"
+            alt="Line illustration of a quality-against-cost frontier with one highlighted point"
+            className="border border-line"
+          />
+        </div>
+        <div className="mt-14 grid gap-px overflow-hidden border border-line bg-line lg:grid-cols-2">
+          {RESEARCH.areas.map((a) => (
+            <div key={a.n} className="flex min-h-[340px] flex-col gap-4 bg-background p-7 md:p-10">
+              <div className="flex items-baseline justify-between">
+                <span className="font-display text-4xl tracking-[-0.03em] text-muted-foreground md:text-5xl">
+                  {a.n}
+                </span>
+                <Label className="text-signal">{a.tag}</Label>
+              </div>
+              <h3 className="text-[clamp(1.625rem,3vw,2.125rem)]">{a.title}</h3>
+              <p className="font-display text-lg leading-snug tracking-[-0.035em] text-foreground/90 md:text-xl">
+                {a.q}
               </p>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* 3 — What we explore */}
-      <Section id="explore">
-        <SectionHeader label={C.explore.label} title={C.explore.title} lede={C.explore.lede} />
-        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {C.explore.areas.map((a, i) => (
-            <Reveal key={a.index} delay={(i % 3) * 0.05} className="bg-background">
-              <article className="group h-full p-6 transition-colors duration-300 hover:bg-surface/50 md:p-7">
-                <p className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
-                  {a.index}
-                </p>
-                <span aria-hidden className="mt-4 block h-px w-6 bg-signal" />
-                <h3 className="mt-5 font-display text-lg tracking-[-0.035em] md:text-xl">
-                  {a.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{a.body}</p>
-              </article>
-            </Reveal>
+              <p className="text-sm leading-relaxed text-muted-foreground">{a.why}</p>
+              <div className="mt-auto flex flex-col gap-1.5 border-t border-line pt-4">
+                <Label>So far</Label>
+                <p className="text-sm leading-relaxed text-foreground">{a.output}</p>
+              </div>
+            </div>
           ))}
         </div>
-        <p className="mono-xs mt-8 text-muted-foreground">{C.explore.note.toUpperCase()}</p>
       </Section>
 
-      {/* 4 — How we research */}
-      <Section id="method" className="bg-ground-2">
-        <div className="grid gap-12 [&>*]:min-w-0 lg:grid-cols-[1fr_1.3fr] lg:gap-20">
-          <SectionHeader label={C.method.label} title={C.method.title} lede={C.method.lede} />
-          <DefinitionList items={C.method.items} />
-        </div>
-      </Section>
-
-      {/* 5 — The questions themselves */}
-      <Section id="questions">
+      {/* 02 From lab to production */}
+      <Section id="loop">
         <SectionHeader
-          label={C.questions.label}
-          title={C.questions.title}
-          lede={C.questions.lede}
+          label="02 · From lab to production"
+          title="Research that has to survive a client system."
+          lede="We do not research for its own sake. Every question has to end somewhere useful."
         />
-        <div className="mt-14 grid gap-px bg-line lg:grid-cols-2">
-          {RESEARCH_HYPOTHESES.map((h, i) => (
-            <Reveal key={h.id} delay={(i % 2) * 0.06} className="bg-background">
-              <article className="group h-full p-7 transition-colors duration-300 hover:bg-surface/50 md:p-9">
-                <p className="mono-xs text-muted-foreground transition-colors group-hover:text-signal">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-5 max-w-xl font-display text-xl leading-snug tracking-[-0.035em] md:text-2xl">
-                  {h.question}
-                </h3>
-                <dl className="mt-7 space-y-6 border-t border-line pt-6">
-                  <div>
-                    <dt className="label-tech text-foreground/70">{C.questions.methodLabel}</dt>
-                    <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {h.method}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="label-tech text-foreground/70">{C.questions.commitmentLabel}</dt>
-                    <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      {h.commitment}
-                    </dd>
-                  </div>
-                </dl>
-              </article>
-            </Reveal>
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
+          {RESEARCH.loop.map((l) => (
+            <Step key={l.n} n={l.n} title={l.title}>
+              <p className="text-sm leading-relaxed text-muted-foreground">{l.body}</p>
+            </Step>
           ))}
         </div>
-        <p className="mono-xs mt-8 text-muted-foreground">{C.questions.note.toUpperCase()}</p>
+        <Callout tone="signal" title="Our standing rule" className="mt-10 max-w-[55rem]">
+          A number without a method is a slogan. Every result we share says how it was measured, and
+          a target is never shown as a result.
+        </Callout>
       </Section>
 
-      {/* 6 — Honesty */}
-      <Section id="honesty" className="bg-ground-2">
-        <div className="grid gap-12 [&>*]:min-w-0 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
-          <SectionHeader label={C.honesty.label} title={C.honesty.title} />
-          <div>
-            <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
-              {C.honesty.body}
-            </p>
-            <Callout tone="signal" className="mt-10" title={C.honesty.commitmentTitle}>
-              {STANDING_COMMITMENT}
-            </Callout>
-          </div>
-        </div>
-      </Section>
-
-      {/* 7 — Where it leads, and the close */}
-      <Section id="leads">
-        <SectionHeader label={C.leads.label} title={C.leads.title} lede={C.leads.lede} />
-        <ResearchTrack className="mt-14" steps={C.leads.track} outcomes={C.leads.outcomes} />
-        <div className="mt-14 flex flex-wrap gap-3">
-          <Link to={C.leads.primary.to} className="btn-primary">
-            {C.leads.primary.label}
-          </Link>
-          <Link to={C.leads.secondary.to} className="btn-outline">
-            {C.leads.secondary.label}
-          </Link>
+      {/* 03 Collaborate */}
+      <Section id="collaborate">
+        <SectionHeader
+          label="03 · Collaborate"
+          title="Work on these questions with us."
+          lede="We are small, so every collaborator changes what we can take on."
+        />
+        <div className="mt-14 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
+          {COLLABORATE.map((c) => (
+            <Link
+              key={c.title}
+              to={c.to}
+              className="cell-link flex min-h-60 flex-col gap-4 bg-background p-6 text-foreground md:p-9"
+            >
+              <Label className="text-signal">{c.label}</Label>
+              <h3 className="text-2xl md:text-[1.625rem]">{c.title}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <span className="mt-auto font-mono text-[0.6875rem] uppercase tracking-[0.14em]">
+                {c.cta} <span className="cell-arrow">→</span>
+              </span>
+            </Link>
+          ))}
         </div>
       </Section>
     </>

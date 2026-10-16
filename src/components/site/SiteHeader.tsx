@@ -14,6 +14,7 @@ export function SiteHeader() {
   const [menu, setMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
@@ -28,6 +29,17 @@ export function SiteHeader() {
     setOpen(false);
     setMenu(null);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -65,7 +77,7 @@ export function SiteHeader() {
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
         <Link
           to="/"
-          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          className="flex min-h-11 items-center gap-2.5 transition-opacity hover:opacity-80"
           aria-label="CuriousDevs — home"
         >
           <Logo size={26} />
@@ -146,8 +158,10 @@ export function SiteHeader() {
                 </div>
               ) : (
                 <Link
-                  key={item.to}
+                  key={item.label}
                   to={item.to}
+                  hash={item.hash}
+                  activeOptions={{ includeHash: true }}
                   className="rounded-full px-4 py-2 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:bg-surface-2/60 hover:text-foreground"
                   activeProps={{ className: "bg-surface-2/80 text-foreground" }}
                 >
@@ -160,7 +174,7 @@ export function SiteHeader() {
           <ThemeToggle />
 
           <Link to="/contact" className="btn-primary min-h-10 px-5">
-            Contact
+            Talk to us
           </Link>
         </div>
 
@@ -168,10 +182,11 @@ export function SiteHeader() {
           <ThemeToggle />
           <button
             type="button"
+            ref={menuButtonRef}
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            className="flex size-10 items-center justify-center rounded-full border border-line bg-surface/60 backdrop-blur-xl"
+            className="flex size-11 items-center justify-center rounded-full border border-line bg-surface/60 backdrop-blur-xl"
             aria-label={open ? "Close menu" : "Open menu"}
           >
             <span aria-hidden className="relative block h-3 w-4">
@@ -217,8 +232,10 @@ export function SiteHeader() {
                 </div>
               ) : (
                 <Link
-                  key={item.to}
+                  key={item.label}
                   to={item.to}
+                  hash={item.hash}
+                  activeOptions={{ includeHash: true }}
                   className="hairline-b py-4 font-display text-xl tracking-[-0.03em] text-foreground/90"
                   activeProps={{ className: "text-signal" }}
                 >
@@ -233,7 +250,7 @@ export function SiteHeader() {
             >
               Contact
             </Link>
-            <p className="mono-xs py-6 text-muted-foreground">NOIDA, UTTAR PRADESH · INDIA</p>
+            <p className="mono-xs py-6 text-muted-foreground">DELHI NCR · INDIA</p>
           </nav>
         </div>
       ) : null}

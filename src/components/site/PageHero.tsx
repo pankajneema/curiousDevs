@@ -22,10 +22,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 grid-field opacity-40 field-mask"
-      />
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid-field opacity-25" />
       <div className="shell relative py-20 md:py-28">
         <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
           <Label>{label}</Label>

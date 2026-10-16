@@ -12,13 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompanyRouteImport } from './routes/company'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as IntelligenceRouteImport } from './routes/intelligence'
+import { Route as LabRouteImport } from './routes/lab'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as RoboticsRouteImport } from './routes/robotics'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as ProductsOjasRouteImport } from './routes/products.ojas'
 import { Route as ProductsParthRouteImport } from './routes/products.parth'
 
@@ -37,9 +42,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IntelligenceRoute = IntelligenceRouteImport.update({
   id: '/intelligence',
   path: '/intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LabRoute = LabRouteImport.update({
+  id: '/lab',
+  path: '/lab',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -62,6 +77,16 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -70,6 +95,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsOjasRoute = ProductsOjasRouteImport.update({
@@ -87,13 +117,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/intelligence': typeof IntelligenceRoute
+  '/lab': typeof LabRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/robotics': typeof RoboticsRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/products/ojas': typeof ProductsOjasRoute
   '/products/parth': typeof ProductsParthRoute
 }
@@ -101,13 +136,18 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/intelligence': typeof IntelligenceRoute
+  '/lab': typeof LabRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/robotics': typeof RoboticsRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/products/ojas': typeof ProductsOjasRoute
   '/products/parth': typeof ProductsParthRoute
 }
@@ -116,13 +156,18 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/company': typeof CompanyRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/intelligence': typeof IntelligenceRoute
+  '/lab': typeof LabRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/robotics': typeof RoboticsRoute
   '/robots.txt': typeof RobotsDottxtRoute
+  '/security': typeof SecurityRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/work': typeof WorkRoute
   '/products/ojas': typeof ProductsOjasRoute
   '/products/parth': typeof ProductsParthRoute
 }
@@ -132,13 +177,18 @@ export interface FileRouteTypes {
     | '/'
     | '/company'
     | '/contact'
+    | '/industries'
     | '/intelligence'
+    | '/lab'
     | '/privacy'
     | '/research'
     | '/robotics'
     | '/robots.txt'
+    | '/security'
+    | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/work'
     | '/products/ojas'
     | '/products/parth'
   fileRoutesByTo: FileRoutesByTo
@@ -146,13 +196,18 @@ export interface FileRouteTypes {
     | '/'
     | '/company'
     | '/contact'
+    | '/industries'
     | '/intelligence'
+    | '/lab'
     | '/privacy'
     | '/research'
     | '/robotics'
     | '/robots.txt'
+    | '/security'
+    | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/work'
     | '/products/ojas'
     | '/products/parth'
   id:
@@ -160,13 +215,18 @@ export interface FileRouteTypes {
     | '/'
     | '/company'
     | '/contact'
+    | '/industries'
     | '/intelligence'
+    | '/lab'
     | '/privacy'
     | '/research'
     | '/robotics'
     | '/robots.txt'
+    | '/security'
+    | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/work'
     | '/products/ojas'
     | '/products/parth'
   fileRoutesById: FileRoutesById
@@ -175,13 +235,18 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompanyRoute: typeof CompanyRoute
   ContactRoute: typeof ContactRoute
+  IndustriesRoute: typeof IndustriesRoute
   IntelligenceRoute: typeof IntelligenceRoute
+  LabRoute: typeof LabRoute
   PrivacyRoute: typeof PrivacyRoute
   ResearchRoute: typeof ResearchRoute
   RoboticsRoute: typeof RoboticsRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SecurityRoute: typeof SecurityRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  WorkRoute: typeof WorkRoute
   ProductsOjasRoute: typeof ProductsOjasRoute
   ProductsParthRoute: typeof ProductsParthRoute
 }
@@ -209,11 +274,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/intelligence': {
       id: '/intelligence'
       path: '/intelligence'
       fullPath: '/intelligence'
       preLoaderRoute: typeof IntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lab': {
+      id: '/lab'
+      path: '/lab'
+      fullPath: '/lab'
+      preLoaderRoute: typeof LabRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -244,6 +323,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -256,6 +349,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/ojas': {
@@ -279,13 +379,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompanyRoute: CompanyRoute,
   ContactRoute: ContactRoute,
+  IndustriesRoute: IndustriesRoute,
   IntelligenceRoute: IntelligenceRoute,
+  LabRoute: LabRoute,
   PrivacyRoute: PrivacyRoute,
   ResearchRoute: ResearchRoute,
   RoboticsRoute: RoboticsRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
+  SecurityRoute: SecurityRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  WorkRoute: WorkRoute,
   ProductsOjasRoute: ProductsOjasRoute,
   ProductsParthRoute: ProductsParthRoute,
 }

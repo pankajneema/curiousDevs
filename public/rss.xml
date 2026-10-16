@@ -3,32 +3,50 @@
   <channel>
     <title>CuriousDevs</title>
     <link>https://www.curiousdevs.com</link>
-    <description>AI engineering services for building, auditing, fixing, and scaling production AI systems.</description>
-    <language>en-us</language>
+    <description>AI engineering studio and research lab. We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably.</description>
+    <language>en-in</language>
     <atom:link href="https://www.curiousdevs.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CuriousDevs — AI Engineering Studio for Production Systems</title>
-      <link>https://www.curiousdevs.com/</link>
-      <guid>https://www.curiousdevs.com/</guid>
-      <description>Build AI-native products, audit existing systems, fix reliability problems, and scale AI into production.</description>
+      <title>CuriousDevs — AI engineering studio and research lab</title>
+      <link>https://www.curiousdevs.com</link>
+      <guid>https://www.curiousdevs.com</guid>
+      <description>Applied AI, engineered for production: strategy, engineering and operations by one accountable team.</description>
     </item>
     <item>
-      <title>AI Engineering Services — Build, Audit, Fix &amp; Scale</title>
-      <link>https://www.curiousdevs.com/product</link>
-      <guid>https://www.curiousdevs.com/product</guid>
-      <description>Specialized AI engineering across development, assessment, reliability, security, optimization, and production infrastructure.</description>
+      <title>Services — AI engineering from decision to deployment</title>
+      <link>https://www.curiousdevs.com/services</link>
+      <guid>https://www.curiousdevs.com/services</guid>
+      <description>Ten services in four practices: advisory, applied AI engineering, software and data platforms, and AI operations.</description>
     </item>
     <item>
-      <title>How It Works — Evidence-Based AI Engineering</title>
-      <link>https://www.curiousdevs.com/how-it-works</link>
-      <guid>https://www.curiousdevs.com/how-it-works</guid>
-      <description>How CuriousDevs discovers, baselines, engineers, evaluates, secures, and hands over AI systems.</description>
+      <title>Industries — AI engineered for the sector</title>
+      <link>https://www.curiousdevs.com/industries</link>
+      <guid>https://www.curiousdevs.com/industries</guid>
+      <description>The problems we find in eight sectors and the constraints we design around.</description>
     </item>
     <item>
-      <title>FAQ — CuriousDevs AI Engineering Studio</title>
-      <link>https://www.curiousdevs.com/faq</link>
-      <guid>https://www.curiousdevs.com/faq</guid>
-      <description>Answers about AI engineering delivery, audits, security, data access, timelines, ownership, and engagement terms.</description>
+      <title>Work — research and production</title>
+      <link>https://www.curiousdevs.com/work</link>
+      <guid>https://www.curiousdevs.com/work</guid>
+      <description>TokenFin, cost attribution for LLMs in production, and OJAS, an execution runtime for Physical AI.</description>
+    </item>
+    <item>
+      <title>Research — we publish questions before answers</title>
+      <link>https://www.curiousdevs.com/research</link>
+      <guid>https://www.curiousdevs.com/research</guid>
+      <description>Agent reliability, evaluation, efficient models and the real cost of running AI.</description>
+    </item>
+    <item>
+      <title>Physical AI Lab — OJAS and PARTH</title>
+      <link>https://www.curiousdevs.com/lab</link>
+      <guid>https://www.curiousdevs.com/lab</guid>
+      <description>An intelligence layer that turns model output into controlled action on real machines, and the body it runs in.</description>
+    </item>
+    <item>
+      <title>Company — a founder-led AI engineering studio</title>
+      <link>https://www.curiousdevs.com/company</link>
+      <guid>https://www.curiousdevs.com/company</guid>
+      <description>Small by design. Accountable by default.</description>
     </item>
   </channel>
 </rss>
