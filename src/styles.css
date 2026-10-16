@@ -966,20 +966,18 @@
 
 @utility grid-field {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--rule) 55%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--rule) 55%, transparent) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--rule) 55%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--rule) 55%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 64px 64px;
   background-position: center center;
-}
-
-@utility field-mask {
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
-}
-
-@utility glow-field {
-  background:
-    radial-gradient(ellipse 70% 60% at 12% 18%, color-mix(in oklab, var(--signal) 24%, transparent), transparent 70%),
-    radial-gradient(ellipse 60% 60% at 88% 8%, color-mix(in oklab, var(--signal) 12%, transparent), transparent 70%);
 }
 
 @keyframes cd-flow {
@@ -1002,88 +1000,13 @@
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════════════
-   Ambient layers — aurora and the footer wordmark
-   Shared geometry and motion live here; per-blob colour, size, position
-   and timing are passed in from AuroraBackground so nothing is duplicated.
+   The footer wordmark. Flat ink at low opacity: the brand uses no
+   gradients or glows.
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* Each blob drifts on its own path. Transform and opacity only — nothing
    here can trigger layout or paint on the main thread. */
-@keyframes cd-aurora-a {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.85;
-  }
-  to {
-    transform: translate3d(17vw, 13vh, 0) scale(1.28);
-    opacity: 1;
-  }
-}
-@keyframes cd-aurora-b {
-  from {
-    transform: translate3d(0, 0, 0) scale(1.12);
-    opacity: 1;
-  }
-  to {
-    transform: translate3d(-19vw, -11vh, 0) scale(0.86);
-    opacity: 0.8;
-  }
-}
-@keyframes cd-aurora-c {
-  from {
-    transform: translate3d(0, 0, 0) scale(0.96);
-    opacity: 0.9;
-  }
-  to {
-    transform: translate3d(15vw, -15vh, 0) scale(1.32);
-    opacity: 1;
-  }
-}
-@keyframes cd-aurora-d {
-  from {
-    transform: translate3d(0, 0, 0) scale(1.06);
-    opacity: 1;
-  }
-  to {
-    transform: translate3d(-16vw, 14vh, 0) scale(0.84);
-    opacity: 0.78;
-  }
-}
-
-/* The layer itself: fixed behind every page, never interactive. `contain`
-   keeps the blurs from invalidating anything outside it. */
-@utility aurora-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  contain: strict;
-  /* Held well back in both themes. The blobs animate their own opacity, so
-     an animation would beat a rule set on them — this has to live here. */
-  opacity: 0.45;
-}
-
-@utility aurora-blob {
-  position: absolute;
-  border-radius: 9999px;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-/* Fine film grain. Breaks the banding that large soft gradients show on
-   8-bit displays, and stops the aurora looking like flat vector shapes. */
-@utility aurora-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.06;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
 
 /* The giant wordmark sitting in the floor of the footer. It hangs below the
    footer's bottom edge and is cropped by its overflow, so only the upper
@@ -1101,30 +1024,70 @@
   letter-spacing: -0.045em;
   white-space: nowrap;
   text-align: center;
-  background-image: linear-gradient(
-    0deg,
-    color-mix(in oklab, var(--signal) 70%, var(--ink)) 32%,
-    transparent 86%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  opacity: 0.11;
+  color: var(--ink);
+  opacity: 0.06;
   pointer-events: none;
   user-select: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .aurora-blob {
-    animation: none !important;
+/* ── Studio pages (services, industries, lab) ────────────────────────────
+   Illustrations ship in two palettes, the dark original and a light copy
+   with the same geometry. Only the one matching data-theme is shown. */
+@layer components {
+  .illo-dark {
+    display: block;
+  }
+  .illo-light {
+    display: none;
+  }
+  :root[data-theme="light"] .illo-dark {
+    display: none;
+  }
+  :root[data-theme="light"] .illo-light {
+    display: block;
+  }
+
+  /* A cell in a hairline grid that fills on hover and nudges its arrow. */
+  .cell-link {
+    transition: background-color 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .cell-link:hover {
+    background-color: var(--surface);
+  }
+  .cell-arrow {
+    display: inline-block;
+    transition:
+      transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      color 220ms;
+  }
+  .cell-link:hover .cell-arrow {
+    transform: translateX(6px);
+    color: var(--signal);
+  }
+
+  .faq-item > summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-item[open] .faq-sign {
+    transform: rotate(45deg);
   }
 }
 
-/* Screen lightens, which does nothing against a near-white ground, so the
-   aurora multiplies in light mode instead — the same light, casting the
-   other way. The strength is dialled back on the layer rather than the blob:
-   the blobs animate their own opacity, and an animation beats a plain
-   declaration, so a rule on .aurora-blob would simply be ignored. */
-:root[data-theme="light"] .aurora-blob {
-  mix-blend-mode: multiply;
+/* The studio design is strictly rectangular: no rounded corners anywhere,
+   including buttons, the nav bar, cards, inputs and the theme toggle. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* An opened layer in the Physical AI stack settles into place. */
+@keyframes cd-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+.stack-detail {
+  animation: cd-rise 300ms var(--ease-out);
 }

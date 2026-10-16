@@ -1,18 +1,17 @@
 # CuriousDevs
 
-> CuriousDevs builds OJAS, an intelligence system for Edge AI and Physical AI, and PARTH, the human-scale humanoid robot it is embodied in. Based in Noida, Uttar Pradesh, India.
+> CuriousDevs is an AI engineering studio and research lab in Delhi NCR, India. We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably — hosted in India or inside their own environment. A Physical AI lab (OJAS and PARTH) runs alongside the studio.
 
-Physical AI is not a trained model. It is a closed loop between sensing, judgement and motion, with a model as one component inside it. OJAS is the intelligence: it perceives, holds a picture of the world, plans, decides what is allowed, and acts on edge hardware next to the machine. PARTH is the body.
+Strategy, engineering and operations are delivered by one founder-led team. Clients own the source code, model weights, prompts and documentation. Nothing is described as available until there is evidence behind it.
 
 ## Pages
 
-- [Home](https://www.curiousdevs.com/): Physical AI, OJAS and PARTH overview.
-- [Intelligence](https://www.curiousdevs.com/intelligence): how OJAS turns model output into controlled action.
-- [Robotics](https://www.curiousdevs.com/robotics): the embodiment side of the stack.
-- [OJAS](https://www.curiousdevs.com/products/ojas): the intelligence system.
-- [PARTH](https://www.curiousdevs.com/products/parth): the humanoid robot.
-- [Research](https://www.curiousdevs.com/research): open problems and evidence policy.
-- [Company](https://www.curiousdevs.com/company): who we are.
-- [Contact](https://www.curiousdevs.com/contact): a founder reads every message.
-
-Nothing is described as available before it has recorded, repeatable evidence.
+- [Home](https://www.curiousdevs.com/): overview, method, engagement models and FAQ.
+- [Services](https://www.curiousdevs.com/services): ten services in four practices — advisory, applied AI engineering, software and data platforms, AI operations.
+- [Industries](https://www.curiousdevs.com/industries): financial services, healthcare, manufacturing, retail, logistics, enterprise software, real estate and education.
+- [Work](https://www.curiousdevs.com/work): TokenFin (LLM cost attribution, in development) and OJAS (Physical AI runtime, early engineering).
+- [Research](https://www.curiousdevs.com/research): agent reliability, evaluation, efficient models and cost, shared context for agents.
+- [Physical AI Lab](https://www.curiousdevs.com/lab): OJAS, the intelligence that decides and acts, and PARTH, the body it moves in.
+- [Company](https://www.curiousdevs.com/company): who we are and how we work.
+- [Security](https://www.curiousdevs.com/security): how client data is handled, where systems run, and how to raise a concern.
+- [Contact](https://www.curiousdevs.com/contact): a founder replies within one working day.

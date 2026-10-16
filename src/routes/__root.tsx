@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { IntercomMessenger } from "@/components/forms/IntercomMessenger";
-import { AuroraBackground } from "@/components/visuals/AuroraBackground";
 import { THEME_INIT_SCRIPT } from "@/components/site/ThemeToggle";
 import {
   buildSeoHead,
@@ -82,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => {
     const seo = buildSeoHead({
       path: "/",
-      title: `${SITE_NAME} — AI that can run real machines`,
+      title: `${SITE_NAME} — AI engineering studio and research lab`,
       description: SITE_DESCRIPTION,
       image: `${SITE_DOMAIN}/og-image.jpg`,
       ogType: "website",
@@ -174,7 +173,6 @@ function RootComponent() {
       >
         Skip to content
       </a>
-      <AuroraBackground />
       <SiteHeader />
       <main id="main-content" className="relative z-10 pt-16 md:pt-[4.5rem]">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}

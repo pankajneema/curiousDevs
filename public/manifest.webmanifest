@@ -1,7 +1,7 @@
 {
   "name": "CuriousDevs",
   "short_name": "CuriousDevs",
-  "description": "CuriousDevs builds OJAS, an intelligence system that turns model output into controlled action, and PARTH, the humanoid robot it is embodied in.",
+  "description": "AI engineering studio and research lab. We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#090912",

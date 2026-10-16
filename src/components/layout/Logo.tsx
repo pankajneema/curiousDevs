@@ -37,7 +37,7 @@ export function Wordmark({ size = "sm" }: { size?: "sm" | "lg" }) {
         size === "lg" ? "text-lg" : "text-base"
       }`}
     >
-      Curious<span className="opacity-60">Devs</span>
+      Curious<span className="text-muted-foreground">Devs</span>
     </span>
   );
 }

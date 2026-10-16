@@ -1,16 +1,17 @@
 export const SITE_NAME = "CuriousDevs";
 export const SITE_DOMAIN = "https://www.curiousdevs.com";
 export const SITE_DESCRIPTION =
-  "CuriousDevs builds OJAS, an intelligence system that turns model output into controlled action on edge hardware, and PARTH, the humanoid robot it is embodied in.";
+  "CuriousDevs is an AI engineering studio and research lab. We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably.";
 export const DEFAULT_IMAGE = `${SITE_DOMAIN}/og-image.jpg`;
 export const DEFAULT_KEYWORDS = [
+  "AI engineering",
+  "applied AI",
+  "AI agents",
+  "generative AI applications",
+  "LLM applications",
+  "MLOps",
+  "AI consulting India",
   "physical AI",
-  "edge AI",
-  "humanoid robot",
-  "robotics intelligence",
-  "OJAS",
-  "PARTH",
-  "embodied AI",
 ];
 
 export type BreadcrumbItem = {
@@ -70,8 +71,8 @@ export function buildSeoHead(options: SeoPageOptions) {
       { name: "author", content: author },
       { name: "publisher", content: publisher },
       { name: "language", content: locale },
-      { name: "theme-color", content: "#edeff1" },
-      { name: "color-scheme", content: "light" },
+      { name: "theme-color", content: "#f8f8fb" },
+      { name: "color-scheme", content: "light dark" },
       { name: "application-name", content: siteName },
       { name: "apple-mobile-web-app-title", content: siteName },
       { property: "og:title", content: fullTitle },
@@ -144,6 +145,9 @@ export function buildOrganizationSchema() {
       addressRegion: "Uttar Pradesh",
       addressCountry: "IN",
     },
+    areaServed: ["IN", "Worldwide"],
+    founder: { "@type": "Person", name: "Pankaj Kumar" },
+    sameAs: ["https://github.com/CuriousDevs-AI"],
     foundingDate: "2026",
     keywords: DEFAULT_KEYWORDS.join(", "),
   };
@@ -312,5 +316,75 @@ export function buildTechArticleSchema(
     publisher: {
       "@id": `${SITE_DOMAIN}/#organization`,
     },
+  };
+}
+
+/**
+ * Head for one page: absolute canonical and og:url, Open Graph and Twitter
+ * cards, and JSON-LD (WebPage, BreadcrumbList, plus any page schema).
+ * Route-level meta overrides the root's by name/property, so every page
+ * gets its own title, description, URL and preview card.
+ */
+export function pageHead({
+  path,
+  title,
+  description,
+  ogType = "website",
+  crumb,
+  schema = [],
+}: {
+  path: string;
+  title: string;
+  description: string;
+  ogType?: string;
+  /** Breadcrumb label for this page; omit on the home page. */
+  crumb?: string;
+  schema?: object[];
+}) {
+  const url = buildCanonicalUrl(path);
+  const ld = [
+    buildWebPageSchema(path, title, description),
+    ...(crumb
+      ? [
+          buildBreadcrumbSchema([
+            { label: "Home", href: "/" },
+            { label: crumb, href: path },
+          ]),
+        ]
+      : []),
+    ...schema,
+  ];
+  return {
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:url", content: url },
+      { property: "og:type", content: ogType },
+      { property: "og:image", content: DEFAULT_IMAGE },
+      { property: "og:image:alt", content: title },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: DEFAULT_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: url }],
+    scripts: ld.map((item) => ({
+      type: "application/ld+json",
+      children: JSON.stringify(item),
+    })),
+  };
+}
+
+/** A professional service offered under the organisation. */
+export function buildServiceSchema(name: string, description: string, path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    url: buildCanonicalUrl(path),
+    provider: { "@id": `${SITE_DOMAIN}/#organization` },
+    areaServed: ["IN", "Worldwide"],
   };
 }

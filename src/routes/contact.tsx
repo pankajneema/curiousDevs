@@ -1,29 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { pageHead } from "@/lib/seo";
 import { CONTACT_COPY as C } from "@/lib/copy";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/site/PageHero";
 import { Label, Section } from "@/components/system/primitives";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact CuriousDevs" },
-      {
-        name: "description",
-        content:
-          "Tell us what you're building, exploring, or trying to solve. A founder reads every message.",
-      },
-      { property: "og:title", content: "Contact CuriousDevs" },
-      {
-        property: "og:description",
-        content: "Let's build what comes next. A founder reads every message.",
-      },
-      { property: "og:url", content: "/contact" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/contact",
+      crumb: "Contact",
+      title: "Contact CuriousDevs — talk to a founder",
+      description:
+        "Describe the problem, not the technology. Tell us what happens today and what it costs. A founder replies within one working day.",
+    }),
   component: ContactPage,
 });
 

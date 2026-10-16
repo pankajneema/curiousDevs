@@ -1,4 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
+import { z } from "zod";
+
 import { escapeHtml, sendMail } from "./email";
 
 function row(label: string, value: string) {
@@ -11,33 +13,46 @@ function table(rows: [string, string][]) {
   return `<table cellpadding="0" cellspacing="0">${rows.map(([l, v]) => row(l, v)).join("")}</table>`;
 }
 
-type ContactPayload = {
-  name: string;
-  email: string;
-  company?: string;
-  building?: string;
-  stage?: string;
-  area?: string;
-  timeline?: string;
-  message?: string;
-  role?: string;
-  phone?: string;
-  source?: string;
-};
+/** A single line: trimmed, length-capped, with no line breaks (used in the subject). */
+const line = (max: number) =>
+  z
+    .string()
+    .trim()
+    .max(max)
+    .transform((v) => v.replace(/[\r\n]+/g, " "));
+
+/**
+ * Validated again on the server: the browser-side schema in ContactForm is a
+ * convenience, not a guarantee, because this endpoint can be called directly.
+ */
+const contactSchema = z.object({
+  name: line(200).pipe(z.string().min(1)),
+  email: z.string().trim().email().max(320),
+  company: line(200).optional(),
+  area: line(200).optional(),
+  timeline: line(200).optional(),
+  building: z.string().trim().min(1).max(4000),
+  source: line(100).optional(),
+  /** Honeypot. Hidden from people; bots that fill every field fill this too. */
+  website: z.string().max(500).optional(),
+  /** Milliseconds between the form rendering and being sent. */
+  elapsedMs: z.number().int().nonnegative().optional(),
+});
+
+/** Anything sent faster than this after the form appeared was not typed by a person. */
+const MIN_FILL_MS = 3000;
 
 export const sendContactMessage = createServerFn({ method: "POST" })
-  .validator((data: ContactPayload) => data)
+  .validator((data: z.input<typeof contactSchema>) => contactSchema.parse(data))
   .handler(async ({ data }) => {
-    if (!data.name || !data.email) throw new Error("Name and email are required.");
+    // Spam is accepted silently so the sender learns nothing from the response.
+    if (data.website || (data.elapsedMs ?? 0) < MIN_FILL_MS) return { ok: true as const };
+
     const optional: [string, string | undefined][] = [
       ["Company", data.company],
-      ["Role", data.role],
-      ["Phone", data.phone],
-      ["What they're building", data.building],
-      ["Current stage", data.stage],
       ["Area of interest", data.area],
+      ["What happens today", data.building],
       ["Timeline", data.timeline],
-      ["Message", data.message],
       ["Source", data.source],
     ];
     await sendMail({
@@ -48,71 +63,6 @@ export const sendContactMessage = createServerFn({ method: "POST" })
         ["Email", data.email],
         ...optional.filter((entry): entry is [string, string] => Boolean(entry[1])),
       ]),
-    });
-    return { ok: true as const };
-  });
-
-export const sendBookingRequest = createServerFn({ method: "POST" })
-  .validator(
-    (data: {
-      name: string;
-      email: string;
-      company: string;
-      surface: string;
-      slot: string;
-      notes: string;
-    }) => data,
-  )
-  .handler(async ({ data }) => {
-    if (!data.name || !data.email) throw new Error("Name and email are required.");
-    await sendMail({
-      subject: `New booking request — ${data.name} (${data.company || "no company given"})`,
-      replyTo: data.email,
-      html: table([
-        ["Name", data.name],
-        ["Email", data.email],
-        ["Company", data.company],
-        ["Area of interest", data.surface],
-        ["Preferred window", data.slot],
-        ["Notes", data.notes],
-      ]),
-    });
-    return { ok: true as const };
-  });
-
-export const sendApplication = createServerFn({ method: "POST" })
-  .validator((data: FormData) => data)
-  .handler(async ({ data }) => {
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const role = String(data.get("role") ?? "");
-    const link = String(data.get("link") ?? "");
-    const notes = String(data.get("notes") ?? "");
-    const resume = data.get("resume");
-
-    if (!name || !email) throw new Error("Name and email are required.");
-
-    const attachments: { filename: string; content: Buffer }[] = [];
-    if (resume instanceof File && resume.size > 0) {
-      if (resume.size > 8 * 1024 * 1024) throw new Error("Resume must be under 8MB.");
-      attachments.push({
-        filename: resume.name || "resume",
-        content: Buffer.from(await resume.arrayBuffer()),
-      });
-    }
-
-    await sendMail({
-      subject: `New application — ${role} — ${name}`,
-      replyTo: email,
-      html: table([
-        ["Name", name],
-        ["Email", email],
-        ["Role", role],
-        ["Link", link],
-        ["Why this role", notes],
-        ["Resume", attachments.length ? attachments[0].filename : "not attached"],
-      ]),
-      attachments,
     });
     return { ok: true as const };
   });

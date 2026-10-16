@@ -1,51 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { pageHead, buildFaqSchema } from "@/lib/seo";
+import { HOME, INDUSTRIES, PRACTICES } from "@/content/studio";
+import { CONTACT_COPY } from "@/lib/copy";
+import { CtaPanel, HeaderRow, IndexRow, Step, WorkCard } from "@/components/site/Studio";
 import {
-  HOME_ABOUT,
-  HOME_CONTACT,
-  HOME_FACTS,
-  HOME_HERO,
-  HOME_OJAS,
-  HOME_PARTH,
-  HOME_RESEARCH,
-  HOME_WORK,
-  PHYSICAL_AI,
-  PROBLEM,
-  RELATIONSHIP_COPY,
-} from "@/lib/copy";
-import { RELATIONSHIP } from "@/lib/content";
-import { ControlField } from "@/components/system/ControlField";
-import {
-  Body,
+  DefinitionList,
   Label,
-  NumberedCard,
   Reveal,
   Section,
   SectionHeader,
-  TechCard,
   TickList,
 } from "@/components/system/primitives";
 
+const TITLE = "CuriousDevs — AI engineering studio and research lab";
+const DESCRIPTION =
+  "AI engineering studio in Delhi NCR, India. We find where AI creates value, build it into your products and operations, and run it reliably.";
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "CuriousDevs — OJAS intelligence, PARTH embodiment" },
-      {
-        name: "description",
-        content:
-          "CuriousDevs builds OJAS, an intelligence system that turns model output into controlled action on edge hardware, and PARTH, the human-scale humanoid robot it is embodied in.",
-      },
-      { property: "og:title", content: "CuriousDevs — OJAS intelligence, PARTH embodiment" },
-      {
-        property: "og:description",
-        content:
-          "Physical AI is a closed loop between sensing, judgement and motion. OJAS runs it; PARTH moves in it. Built in Noida, India.",
-      },
-      { property: "og:url", content: "/" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+  head: () =>
+    pageHead({
+      path: "/",
+      title: TITLE,
+      description: DESCRIPTION,
+      schema: [buildFaqSchema(HOME.faqs.map((f) => ({ question: f.q, answer: f.a })))],
+    }),
   component: Home,
 });
 
@@ -54,221 +33,292 @@ function Home() {
     <>
       <Hero />
 
-      <Section id="physical-ai">
+      {/* Principles */}
+      <Section id="system">
+        <div className="grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
+          {HOME.principles.map((p) => (
+            <div key={p.t} className="flex flex-col gap-3 bg-background px-6 py-7">
+              <Label className="text-signal">{p.t}</Label>
+              <p className="text-sm leading-relaxed text-muted-foreground">{p.d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 01 Services */}
+      <Section id="services">
+        <HeaderRow
+          action={
+            <Link to="/services" className="btn-outline">
+              All services
+            </Link>
+          }
+        >
+          <SectionHeader
+            label="01 · Services"
+            title="From the first decision to the system in production."
+            lede="Four practices cover the full life of an AI system. Most engagements begin in one and extend into the others as the work moves towards production."
+          />
+        </HeaderRow>
+        <div className="mt-14 grid gap-px border border-line bg-line md:grid-cols-2 xl:grid-cols-4">
+          {PRACTICES.map((p) => (
+            <div key={p.id} className="flex flex-col bg-background">
+              <div className="flex grow flex-col gap-3.5 p-6 md:p-7">
+                <Label className="text-signal">{p.n}</Label>
+                <h3 className="text-2xl">{p.name}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                <ul className="mt-2 border-t border-line">
+                  {p.services.map((s) => (
+                    <li key={s.id} className="border-b border-line">
+                      <Link
+                        to="/services"
+                        hash={s.id}
+                        className="flex justify-between gap-3 py-3 text-sm text-foreground transition-colors hover:text-signal"
+                      >
+                        <span>{s.name}</span>
+                        <span aria-hidden className="text-muted-foreground">
+                          →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 02 Industries */}
+      <Section id="industries">
+        <HeaderRow
+          action={
+            <Link to="/industries" className="btn-outline">
+              All industries
+            </Link>
+          }
+        >
+          <SectionHeader
+            label="02 · Industries"
+            title="Engineered for the sector, not the demo."
+            lede="Regulation, data, volumes and the cost of an error differ by industry. Our designs start there."
+          />
+        </HeaderRow>
+        <div className="mt-14 grid gap-x-14 border-t border-line-strong lg:grid-cols-2">
+          {INDUSTRIES.map((i) => (
+            <IndexRow
+              key={i.id}
+              n={i.n}
+              title={i.name}
+              line={i.headline}
+              to="/industries"
+              hash={i.id}
+            />
+          ))}
+        </div>
+      </Section>
+
+      {/* 03 Work */}
+      <Section id="work">
+        <HeaderRow
+          action={
+            <Link to="/work" className="btn-outline">
+              All work
+            </Link>
+          }
+        >
+          <SectionHeader
+            label="03 · Work"
+            title="Research and production."
+            lede="Two tracks of our own work. Research explores what AI systems can do next. Production is what we engineer, ship and support. Client engagements are presented privately, with the client's permission."
+          />
+        </HeaderRow>
+        <div className="mt-14 grid gap-px border border-line bg-line lg:grid-cols-2">
+          {HOME.work.map((w) => (
+            <WorkCard key={w.name} work={w} />
+          ))}
+        </div>
+      </Section>
+
+      {/* 04 Method */}
+      <Section id="process">
         <SectionHeader
-          index="01"
-          label={PHYSICAL_AI.label}
-          title={PHYSICAL_AI.title}
-          lede={PHYSICAL_AI.lede}
+          label="04 · Method"
+          title="Evidence at every step."
+          lede="Small, visible increments, each measured against a baseline agreed at the start. You can stop at the end of any step and keep everything built so far."
         />
-        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {PHYSICAL_AI.pillars.map((p) => (
-            <Reveal key={p.n} className="bg-background">
-              <NumberedCard n={p.n} title={p.title} className="border-0">
-                {p.body}
-              </NumberedCard>
+        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {HOME.steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 0.06}>
+              <Step n={s.n} title={s.title}>
+                <p className="text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+                <p className="mono-xs uppercase text-foreground">Output · {s.out}</p>
+              </Step>
             </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* OJAS ↔ PARTH — the relationship, made visible */}
-      <Section id="relationship">
+      {/* 05 Working with us */}
+      <Section id="engage">
         <SectionHeader
-          index="02"
-          label={RELATIONSHIP_COPY.label}
-          title={RELATIONSHIP_COPY.title}
-          lede={RELATIONSHIP_COPY.lede}
+          label="05 · Working with us"
+          title="Three ways to work together."
+          lede="Every engagement is scoped in writing and priced after discovery, so the first commitment is a small one."
         />
-        <div className="mt-14 grid items-stretch gap-6 lg:grid-cols-[1fr_auto_1fr]">
-          {RELATIONSHIP_COPY.columns.map((col, i) => (
-            <div key={col.name} className="contents">
-              <Reveal delay={i * 0.08}>
-                <TechCard
-                  className={`h-full rounded-3xl p-8 md:p-10 ${i === 0 ? "border-signal/40" : ""}`}
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-display text-3xl tracking-[-0.03em] md:text-4xl">
-                      {col.name}
-                    </h3>
-                    <span className="mono-xs text-signal">{col.role.toUpperCase()}</span>
-                  </div>
-                  <TickList items={col.items} className="mt-8" />
-                </TechCard>
-              </Reveal>
-              {i === 0 ? (
-                <div aria-hidden className="flex items-center justify-center lg:flex-col lg:px-2">
-                  <span className="mono-xs rotate-0 whitespace-nowrap text-muted-foreground lg:[writing-mode:vertical-rl]">
-                    TYPED INTENT ↓ · STATE ↑
-                  </span>
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-        <Body className="mt-10 max-w-3xl">{RELATIONSHIP}</Body>
-      </Section>
-
-      <Section id="problem">
-        <SectionHeader index="03" label={PROBLEM.label} title={PROBLEM.title} lede={PROBLEM.lede} />
-        <dl className="mt-14 grid gap-px bg-line sm:grid-cols-2">
-          {PROBLEM.points.map((p) => (
-            <div key={p.n} className="bg-background p-7 md:p-9">
-              <span aria-hidden className="block h-px w-6 bg-signal" />
-              <dt className="mt-5 font-display text-xl tracking-[-0.02em]">{p.title}</dt>
-              <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.body}</dd>
-            </div>
-          ))}
-        </dl>
-        <Body className="mt-10 max-w-3xl">{PROBLEM.consequence}</Body>
-      </Section>
-
-      <Section id="ojas">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
-          <SectionHeader
-            index="04"
-            label={HOME_OJAS.label}
-            title={HOME_OJAS.title}
-            lede={HOME_OJAS.lede}
-          />
-          <div>
-            <TickList items={HOME_OJAS.bullets} />
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to={HOME_OJAS.cta.to} className="btn-primary">
-                {HOME_OJAS.cta.label}
-              </Link>
-              <Link to={HOME_OJAS.deep.to} className="btn-outline">
-                {HOME_OJAS.deep.label}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="parth">
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
-          <SectionHeader
-            index="05"
-            label={HOME_PARTH.label}
-            title={HOME_PARTH.title}
-            lede={HOME_PARTH.lede}
-          />
-          <div>
-            <TickList items={HOME_PARTH.bullets} />
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Link to={HOME_PARTH.cta.to} className="btn-primary">
-                {HOME_PARTH.cta.label}
-              </Link>
-              <Link to={HOME_PARTH.deep.to} className="btn-outline">
-                {HOME_PARTH.deep.label}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="work">
-        <SectionHeader
-          index="06"
-          label={HOME_WORK.label}
-          title={HOME_WORK.title}
-          lede={HOME_WORK.lede}
-        />
-        <div className="mt-14 grid gap-px bg-line sm:grid-cols-2">
-          {HOME_WORK.items.map((item) => (
-            <div key={item.title} className="bg-background p-7 md:p-9">
-              <h3 className="font-display text-xl tracking-[-0.02em]">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+        <div className="mt-14 grid gap-px border border-line bg-line md:grid-cols-3">
+          {HOME.models.map((m) => (
+            <div key={m.name} className="flex flex-col gap-4 bg-background p-6 md:p-9">
+              <Label className="text-signal">{m.tag}</Label>
+              <h3 className="text-[clamp(1.625rem,3vw,2.125rem)]">{m.name}</h3>
+              <p className="text-sm leading-relaxed text-muted-foreground">{m.body}</p>
+              <TickList items={m.items} />
             </div>
           ))}
         </div>
       </Section>
 
+      {/* 06 Beyond client work */}
       <Section id="research">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
-          <SectionHeader
-            index="07"
-            label={HOME_RESEARCH.label}
-            title={HOME_RESEARCH.title}
-            lede={HOME_RESEARCH.lede}
+        <SectionHeader
+          label="06 · Beyond client work"
+          title="A research lab, and a long-term bet."
+          lede="Research is where we test methods before applying them to anyone else's system. Physical AI is where we are heading."
+        />
+        <div className="mt-14 grid gap-px border border-line bg-line lg:grid-cols-2">
+          <LabCard
+            to="/research"
+            label="CuriousDevs Research"
+            title="Agents, evaluation and efficient models."
+            body="How agents fail, how to measure them, and when a small fine-tuned model outperforms a large general one."
+            cta="Visit research"
           />
-          <div className="flex flex-col justify-end gap-8">
+          <LabCard
+            to="/lab"
+            label="Physical AI Lab"
+            title="The brain and body of Physical AI."
+            body="OJAS is the intelligence that decides and acts. PARTH is the body it moves in. AI that runs real machines, built in India."
+            cta="Visit the lab"
+          />
+        </div>
+      </Section>
+
+      {/* 07 Company */}
+      <Section id="company">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="flex flex-col gap-8">
             <SectionHeader
-              label={HOME_ABOUT.label}
-              title={HOME_ABOUT.title}
-              lede={HOME_ABOUT.lede}
-              className="max-w-xl"
+              label="07 · Company"
+              title="Founder-led, and deliberately small."
+              lede="Every system we ship has an owner who built it and answers for it."
             />
-            <div className="flex flex-wrap gap-3">
-              <Link to={HOME_RESEARCH.cta.to} className="btn-outline">
-                {HOME_RESEARCH.cta.label}
-              </Link>
-              <Link to={HOME_ABOUT.cta.to} className="btn-outline">
-                {HOME_ABOUT.cta.label}
+            <div>
+              <Link to="/company" className="btn-outline">
+                About the company
               </Link>
             </div>
+          </div>
+          <DefinitionList items={HOME.company} />
+        </div>
+      </Section>
+
+      {/* 08 Questions */}
+      <Section id="faq">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <SectionHeader
+            label="08 · Questions"
+            title="Asked in most first conversations."
+            lede="If yours is not here, ask it directly. We would rather decline a project than win it on a promise we cannot keep."
+          />
+          <div className="border-b border-line">
+            {HOME.faqs.map((f) => (
+              <details key={f.q} className="faq-item border-t border-line py-2">
+                <summary className="flex min-h-13 cursor-pointer list-none items-center justify-between gap-4 font-display text-lg tracking-[-0.035em] text-foreground md:text-xl">
+                  {f.q}
+                  <span
+                    aria-hidden
+                    className="faq-sign font-mono text-sm text-signal transition-transform"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mb-4 leading-relaxed text-muted-foreground">{f.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </Section>
 
-      <Section id="cta">
-        <TechCard className="flex flex-col gap-8 rounded-3xl p-8 md:flex-row md:items-end md:justify-between md:p-12">
-          <div>
-            <Label className="text-signal">{HOME_CONTACT.label}</Label>
-            <h2 className="mt-5 max-w-xl text-3xl md:text-4xl">{HOME_CONTACT.title}</h2>
-            <Body className="mt-5">{HOME_CONTACT.lede}</Body>
-          </div>
-          <Link to={HOME_CONTACT.cta.to} className="btn-primary shrink-0">
-            {HOME_CONTACT.cta.label}
+      {/* 09 Contact */}
+      <Section id="contact">
+        <CtaPanel
+          label="09 · Contact"
+          title="Describe the problem, not the technology. A founder replies within one working day."
+        >
+          <Link to="/contact" className="btn-primary">
+            Book a consultation
           </Link>
-        </TechCard>
+          <a href={`mailto:${CONTACT_COPY.email}`} className="btn-outline">
+            {CONTACT_COPY.email}
+          </a>
+        </CtaPanel>
       </Section>
     </>
+  );
+}
+
+function LabCard({
+  to,
+  label,
+  title,
+  body,
+  cta,
+}: {
+  to: "/research" | "/lab";
+  label: string;
+  title: string;
+  body: string;
+  cta: string;
+}) {
+  return (
+    <Link to={to} className="cell-link flex flex-col bg-background text-foreground">
+      <div className="flex grow flex-col gap-4 p-6 md:p-9">
+        <Label className="text-signal">{label}</Label>
+        <h3 className="text-[clamp(1.625rem,3vw,2.125rem)]">{title}</h3>
+        <p className="leading-relaxed text-muted-foreground">{body}</p>
+        <span className="mt-auto font-mono text-[0.6875rem] uppercase tracking-[0.14em]">
+          {cta} <span className="cell-arrow">→</span>
+        </span>
+      </div>
+    </Link>
   );
 }
 
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-0 glow-field" />
       <div aria-hidden className="pointer-events-none absolute inset-0 grid-field opacity-[0.14]" />
-      <ControlField className="pointer-events-none absolute inset-0 size-full opacity-90" />
 
-      <div className="shell relative flex min-h-[78svh] flex-col justify-between gap-14 pb-14 pt-32 md:pt-36">
-        <div className="max-w-4xl">
-          <h1 className="font-display text-[clamp(2.75rem,8.5vw,7rem)] font-normal leading-[0.94]">
-            {HOME_HERO.headline[0]}
+      <div className="shell relative flex min-h-[72svh] flex-col justify-center pb-16 pt-28 md:pt-32">
+        <div className="max-w-5xl">
+          <Label className="text-signal">{HOME.eyebrow}</Label>
+          <h1 className="mt-8 font-display text-[clamp(2.75rem,8.5vw,7rem)] font-normal leading-[0.94]">
+            Applied AI, engineered
             <br />
-            <span className="text-signal">moves</span> matter
+            for <span className="text-signal">production</span>.
           </h1>
           <p className="mt-10 max-w-2xl text-base leading-relaxed text-foreground/90 md:text-lg">
-            {HOME_HERO.lede}
+            {HOME.lede}
           </p>
-          <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-            {HOME_HERO.note}
-          </p>
-
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Link to={HOME_HERO.primary.to} className="btn-primary">
-              {HOME_HERO.primary.label}
+            <Link to="/contact" className="btn-primary">
+              Book a consultation
             </Link>
-            <Link to={HOME_HERO.secondary.to} className="btn-outline">
-              {HOME_HERO.secondary.label}
+            <Link to="/services" className="btn-outline">
+              Explore services
             </Link>
-            <span aria-hidden className="mono-xs hidden text-muted-foreground sm:block">
-              OJAS → PARTH → PHYSICAL AI
-            </span>
           </div>
         </div>
-
-        <dl className="grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {HOME_FACTS.map((f) => (
-            <div key={f.term} className="bg-background/85 p-5 backdrop-blur-sm">
-              <dt className="label-tech text-foreground/80">{f.term}</dt>
-              <dd className="mt-4 text-sm leading-relaxed text-muted-foreground">{f.value}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

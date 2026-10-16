@@ -10,18 +10,18 @@ export const Route = createFileRoute("/privacy")({
       {
         name: "description",
         content:
-          "What CuriousDevs collects through this website and through deployed cells, how operational data is used, and how to have an enquiry deleted.",
+          "What CuriousDevs collects through this website, how client project data is handled, and how to have your data corrected or deleted.",
       },
       { property: "og:title", content: "Privacy | CuriousDevs" },
       {
         property: "og:description",
-        content: "Enquiry data, operational data from deployed cells, and retention.",
+        content: "Enquiry data, client project data, your rights and retention.",
       },
-      { property: "og:url", content: "/privacy" },
+      { property: "og:url", content: "https://www.curiousdevs.com/privacy" },
       { property: "og:type", content: "article" },
       { name: "robots", content: "noindex" },
     ],
-    links: [{ rel: "canonical", href: "/privacy" }],
+    links: [{ rel: "canonical", href: "https://www.curiousdevs.com/privacy" }],
   }),
   component: PrivacyPage,
 });
@@ -29,15 +29,27 @@ export const Route = createFileRoute("/privacy")({
 const CLAUSES = [
   {
     term: "Enquiries",
-    body: "When you submit the contact form we store the name, work email, company, and the task details you provide, so that a founder can reply. Submissions are not readable from the public website; only CuriousDevs can access them.",
+    body: "When you send the contact form we receive your name, work email, company (if given), the area you selected, your description of the problem and, if given, a timeline. It is delivered to our inbox by email so that a founder can reply, and it is not published or readable from this website.",
   },
   {
-    term: "Analytics",
-    body: "This site is built to work without behavioural advertising trackers. If a support messenger is enabled, it loads only after the page has rendered and can be blocked without breaking the site.",
+    term: "Spam protection",
+    body: "The form uses a hidden field and a minimum completion time to filter automated submissions. No additional data is collected for this, and no CAPTCHA service is used.",
   },
   {
-    term: "Operational data from deployed cells",
-    body: "OJAS records per-cycle operational data — timestamps, observation hashes, commanded actions, validation results, latencies and outcomes. In commercial discussions we state plainly that CuriousDevs retains rights to use collected operational data for model improvement, with customer-identifying information excluded. This is negotiated in writing, not assumed.",
+    term: "Cookies and analytics",
+    body: "This site does not use advertising or behavioural tracking. Your light or dark theme choice is stored in your own browser. If a support messenger is enabled, it loads only after the page has rendered and can be blocked without breaking the site.",
+  },
+  {
+    term: "Client project data",
+    body: "Information shared with us during an engagement is used for that engagement only, and is handled under the written agreement and non-disclosure agreement for that engagement.",
+  },
+  {
+    term: "Your rights",
+    body: "You can ask to see, correct or delete the personal data we hold about you, in line with the Digital Personal Data Protection Act, 2023. Write to hello@curiousdevs.com and a founder will respond.",
+  },
+  {
+    term: "Grievance contact",
+    body: "The founder, Pankaj Kumar, is responsible for personal data collected through this website and answers grievances directly at hello@curiousdevs.com.",
   },
   {
     term: "Retention and deletion",
@@ -45,11 +57,7 @@ const CLAUSES = [
   },
   {
     term: "Third parties",
-    body: "We use infrastructure providers to host this site, store enquiries, and — where enabled — provide a support messenger. We do not sell personal data.",
-  },
-  {
-    term: "Contact",
-    body: "Questions about this notice can be sent through the contact form. A founder answers; there is no privacy department.",
+    body: "We use infrastructure providers to host this site, deliver email and — where enabled — provide a support messenger. We do not sell personal data.",
   },
 ];
 
@@ -60,7 +68,7 @@ function PrivacyPage() {
         index="—"
         label="Legal"
         title="Privacy"
-        lede="Short, because there is not much to say. This is a two-person engineering company with a contact form."
+        lede="What this website collects, why, and how to have it removed."
       />
       <Section id="clauses">
         <dl className="divide-y divide-line border-y border-line">

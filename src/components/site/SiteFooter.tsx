@@ -1,30 +1,37 @@
 import { Link } from "@tanstack/react-router";
 
-import { SITE } from "@/lib/copy";
+import { STUDIO } from "@/content/studio";
 import { Logo, Wordmark } from "@/components/layout/Logo";
 import { FooterWordmark } from "@/components/visuals/FooterWordmark";
 
-const COLUMNS: { heading: string; links: { label: string; to: string }[] }[] = [
+type FooterLink = { label: string; to?: string; hash?: string; href?: string };
+
+const COLUMNS: { heading: string; links: FooterLink[] }[] = [
   {
-    heading: "Products",
+    heading: "Services",
     links: [
-      { label: "OJAS", to: "/products/ojas" },
-      { label: "PARTH", to: "/products/parth" },
-    ],
-  },
-  {
-    heading: "Technology",
-    links: [
-      { label: "Intelligence", to: "/intelligence" },
-      { label: "Robotics", to: "/robotics" },
-      { label: "Research", to: "/research" },
+      { label: "Advisory", to: "/services", hash: "advisory" },
+      { label: "Applied AI Engineering", to: "/services", hash: "applied-ai" },
+      { label: "Software and Data Platforms", to: "/services", hash: "platforms" },
+      { label: "AI Operations", to: "/services", hash: "ai-operations" },
     ],
   },
   {
     heading: "Company",
     links: [
+      { label: "Industries", to: "/industries" },
+      { label: "Work", to: "/work" },
+      { label: "Research", to: "/research" },
+      { label: "Physical AI Lab", to: "/lab" },
       { label: "About", to: "/company" },
-      { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    heading: "Contact",
+    links: [
+      { label: "Talk to us", to: "/contact" },
+      { label: "GitHub", href: STUDIO.github },
+      { label: "Security", to: "/security" },
       { label: "Privacy", to: "/privacy" },
       { label: "Terms", to: "/terms" },
     ],
@@ -42,10 +49,9 @@ export function SiteFooter() {
             <Logo size={30} />
             <Wordmark size="lg" />
           </div>
-          <p className="mono-xs mt-3 text-muted-foreground">{SITE.location.toUpperCase()}</p>
+          <p className="mono-xs mt-3 text-muted-foreground">{STUDIO.location.toUpperCase()}</p>
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
-            OJAS is the intelligence that decides and acts. PARTH is the body it moves in. Together,
-            Physical AI.
+            {STUDIO.blurb}
           </p>
         </div>
 
@@ -55,13 +61,25 @@ export function SiteFooter() {
               <p className="label-tech">{col.heading}</p>
               <ul className="mt-5 space-y-3">
                 {col.links.map((l) => (
-                  <li key={l.to}>
-                    <Link
-                      to={l.to}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {l.label}
-                    </Link>
+                  <li key={l.label}>
+                    {l.href ? (
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={l.to}
+                        hash={l.hash}
+                        className="inline-block py-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      >
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

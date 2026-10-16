@@ -57,7 +57,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={`Switch to ${goingTo} theme`}
       title={`Switch to ${goingTo} theme`}
       className={cn(
-        "flex size-10 shrink-0 items-center justify-center rounded-full border border-line",
+        "flex size-11 shrink-0 items-center justify-center rounded-full border border-line",
         "text-muted-foreground transition-colors duration-200",
         "hover:border-line-strong hover:text-foreground",
         className,
