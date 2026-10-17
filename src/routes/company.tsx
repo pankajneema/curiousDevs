@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { pageHead } from "@/lib/seo";
-import { HOME } from "@/content/studio";
+import { HOME, STUDIO } from "@/content/studio";
 import { PageHero } from "@/components/site/PageHero";
 import { CtaPanel } from "@/components/site/Studio";
 import {
@@ -13,9 +13,9 @@ import {
   TickList,
 } from "@/components/system/primitives";
 
-const TITLE = "Company — AI engineering studio | CuriousDevs";
+const TITLE = "Company — AI systems built for production | CuriousDevs";
 const DESCRIPTION =
-  "CuriousDevs is an independent AI engineering studio in Delhi NCR, India, building reliable products, platforms and physical AI systems.";
+  "CuriousDevs is an independent AI engineering studio in Delhi NCR, India. We build, fix and scale AI systems for production, alongside applied research and Physical AI.";
 
 export const Route = createFileRoute("/company")({
   head: () =>
@@ -70,19 +70,62 @@ const PRINCIPLES = [
   },
 ] as const;
 
+const ENGAGEMENTS = [
+  {
+    n: "01",
+    label: "Build",
+    title: "From important idea to working system.",
+    body: "We shape the product, architecture and first production path together — with a clear baseline and working demonstrations along the way.",
+  },
+  {
+    n: "02",
+    label: "Fix",
+    title: "Find what is failing and why.",
+    body: "We diagnose accuracy, security, cost, latency and operational gaps, then focus the next engineering decision on the highest-value failure.",
+  },
+  {
+    n: "03",
+    label: "Scale",
+    title: "Make useful AI dependable.",
+    body: "We put the right evaluation, deployment, observability and ownership around a system so your team can run it with confidence.",
+  },
+] as const;
+
 function CompanyPage() {
   return (
     <>
       <PageHero
         label="Company"
-        title="Small by design. Serious about the work."
-        lede="CuriousDevs is an independent AI engineering studio. We help teams move from an important problem to a working system — and stay close enough to make it reliable in the real world."
+        title="AI systems built for production."
+        lede="CuriousDevs is an independent AI engineering studio for teams with important problems, imperfect systems and a need for evidence. We build, fix and scale the technology around the model — then make it reliable in the real world."
       />
 
-      {/* 01 Structure */}
+      <Section id="engagements">
+        <SectionHeader
+          label="01 · What we do"
+          title="Three ways to make progress."
+          lede="The right starting point depends on where you are: a new capability to build, a system that is not holding up, or a production path that needs to become dependable."
+        />
+        <div className="mt-14 grid gap-px border border-line bg-line md:grid-cols-3">
+          {ENGAGEMENTS.map((engagement) => (
+            <article key={engagement.n} className="bg-background p-6 md:p-8">
+              <div className="flex items-baseline justify-between">
+                <span className="mono-xs text-muted-foreground">{engagement.n}</span>
+                <Label className="text-signal">{engagement.label}</Label>
+              </div>
+              <h3 className="mt-12 text-2xl leading-tight">{engagement.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {engagement.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </Section>
+
+      {/* 02 Structure */}
       <Section id="structure">
         <SectionHeader
-          label="01 · Structure"
+          label="02 · Structure"
           title="One studio. Three ways to move forward."
           lede="Client engineering, applied research and physical AI are connected by the same standard: build carefully, measure honestly and make the result useful."
         />
@@ -111,7 +154,7 @@ function CompanyPage() {
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="flex flex-col gap-8">
             <SectionHeader
-              label="02 · At a glance"
+              label="03 · At a glance"
               title="A practical team for ambitious systems."
               lede="You work directly with the people shaping the problem, building the system and learning from what happens after launch."
             />
@@ -130,7 +173,7 @@ function CompanyPage() {
 
       <Section id="approach">
         <SectionHeader
-          label="03 · How we work"
+          label="04 · How we work"
           title="Good engineering is a habit, not a phase."
           lede="The strongest outcomes come from a clear problem, a small feedback loop and enough discipline to keep learning after launch."
         />
@@ -142,6 +185,27 @@ function CompanyPage() {
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{principle.body}</p>
             </article>
           ))}
+        </div>
+      </Section>
+
+      <Section id="open-work">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <SectionHeader
+            label="05 · Open work"
+            title="The public work is part of the proof."
+            lede="We share the tools, experiments and engineering direction we can. Explore the organisation on GitHub, or follow the research and Physical AI work that sits alongside client delivery."
+          />
+          <div className="flex flex-wrap gap-3 lg:pt-1">
+            <a href={STUDIO.github} target="_blank" rel="noreferrer" className="btn-primary">
+              Explore GitHub
+            </a>
+            <Link to="/research" className="btn-outline">
+              Read the research
+            </Link>
+            <Link to="/lab" className="btn-outline">
+              Visit the lab
+            </Link>
+          </div>
         </div>
       </Section>
 
