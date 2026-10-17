@@ -2,7 +2,7 @@
 
 > CuriousDevs is an AI engineering studio and research lab in Delhi NCR, India. We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably — hosted in India or inside their own environment. A Physical AI lab (OJAS and PARTH) runs alongside the studio.
 
-Strategy, engineering and operations are delivered by one founder-led team. Clients own the source code, model weights, prompts and documentation. Nothing is described as available until there is evidence behind it.
+Strategy, engineering and operations are delivered by one accountable team. Clients own the source code, model weights, prompts and documentation. Nothing is described as available until there is evidence behind it.
 
 ## Pages
 
@@ -14,4 +14,4 @@ Strategy, engineering and operations are delivered by one founder-led team. Clie
 - [Physical AI Lab](https://www.curiousdevs.com/lab): OJAS, the intelligence that decides and acts, and PARTH, the body it moves in.
 - [Company](https://www.curiousdevs.com/company): who we are and how we work.
 - [Security](https://www.curiousdevs.com/security): how client data is handled, where systems run, and how to raise a concern.
-- [Contact](https://www.curiousdevs.com/contact): a founder replies within one working day.
+- [Contact](https://www.curiousdevs.com/contact): our team replies within one working day.

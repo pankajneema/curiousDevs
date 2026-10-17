@@ -11,9 +11,9 @@ export const Route = createFileRoute("/contact")({
     pageHead({
       path: "/contact",
       crumb: "Contact",
-      title: "Contact CuriousDevs — talk to a founder",
+      title: "Contact CuriousDevs — talk to our team",
       description:
-        "Describe the problem, not the technology. Tell us what happens today and what it costs. A founder replies within one working day.",
+        "Describe the problem, not the technology. Tell us what happens today and what it costs. Our team replies within one working day.",
     }),
   component: ContactPage,
 });

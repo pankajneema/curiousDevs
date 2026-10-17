@@ -45,10 +45,16 @@ export function SiteFooter() {
 
       <div className="shell relative z-10 grid gap-12 py-16 md:grid-cols-[1.4fr_2fr] md:py-20">
         <div>
-          <div className="flex items-center gap-2.5">
-            <Logo size={30} />
-            <Wordmark size="lg" />
-          </div>
+          <Link
+            to="/"
+            className="group flex w-fit items-center gap-2.5 transition-opacity hover:opacity-80"
+            aria-label="CuriousDevs — home"
+          >
+            <span className="transition-transform duration-1000 ease-out group-hover:rotate-[360deg] motion-reduce:transition-none motion-reduce:group-hover:rotate-0">
+              <Logo size={30} className="transition-colors group-hover:text-signal" />
+            </span>
+            <Wordmark size="lg" className="transition-colors group-hover:text-signal" />
+          </Link>
           <p className="mono-xs mt-3 text-muted-foreground">{STUDIO.location.toUpperCase()}</p>
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted-foreground">
             {STUDIO.blurb}
@@ -88,7 +94,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="hairline-t relative z-10">
+      <div className="relative z-10">
         <div className="shell flex flex-wrap items-center justify-between gap-4 py-6">
           <p className="mono-xs text-muted-foreground">© {new Date().getFullYear()} CURIOUSDEVS</p>
           <p className="mono-xs text-muted-foreground">

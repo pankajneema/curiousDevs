@@ -23,7 +23,7 @@ export const HOME = {
   lede: "We help organisations decide where AI creates value, engineer it into their products and operations, and run it reliably — hosted in India or inside their own environment. Strategy, engineering and operations, delivered by one accountable team.",
   principles: [
     {
-      t: "Founder-led",
+      t: "Accountable team",
       d: "The engineers in your first conversation are the engineers who build the system.",
     },
     {
@@ -139,11 +139,6 @@ export const HOME = {
     },
   ],
   company: [
-    {
-      term: "Founded by",
-      description:
-        "Pankaj Kumar — engineer working across backend, voice, real-time and AI infrastructure systems.",
-    },
     {
       term: "Based in",
       description: "Delhi NCR, India, working with teams across India and internationally.",

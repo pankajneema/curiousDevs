@@ -5,9 +5,19 @@
  * Geometry matches the design system's Mark: one hook, rotated 0/90/180/270
  * inside a frame turned 45 degrees.
  */
+import { cn } from "@/lib/utils";
+
 const HOOK = "M-44.5-20.5V20.5H10.1V13.4H-37.4V-13.4H-24.15V-20.5Z";
 
-export function Logo({ size = 24, title }: { size?: number; title?: string }) {
+export function Logo({
+  size = 24,
+  title,
+  className,
+}: {
+  size?: number;
+  title?: string;
+  className?: string;
+}) {
   return (
     <svg
       viewBox="4 4 92 92"
@@ -17,7 +27,7 @@ export function Logo({ size = 24, title }: { size?: number; title?: string }) {
       role={title ? "img" : "presentation"}
       aria-hidden={title ? undefined : true}
       aria-label={title}
-      className="shrink-0 text-foreground"
+      className={cn("shrink-0 text-foreground", className)}
     >
       {title ? <title>{title}</title> : null}
       <g transform="translate(50 50) rotate(45)">
@@ -30,14 +40,16 @@ export function Logo({ size = 24, title }: { size?: number; title?: string }) {
 }
 
 /** "Curious" and "Devs" in Archivo 400, "Devs" at 60% opacity. */
-export function Wordmark({ size = "sm" }: { size?: "sm" | "lg" }) {
+export function Wordmark({ size = "sm", className }: { size?: "sm" | "lg"; className?: string }) {
   return (
     <span
-      className={`font-display font-normal leading-none tracking-[-0.015em] whitespace-nowrap text-foreground ${
-        size === "lg" ? "text-lg" : "text-base"
-      }`}
+      className={cn(
+        "font-display font-normal leading-none tracking-[-0.015em] whitespace-nowrap text-foreground",
+        size === "lg" ? "text-lg" : "text-base",
+        className,
+      )}
     >
-      Curious<span className="text-muted-foreground">Devs</span>
+      Curious<span className="text-muted-foreground group-hover:text-signal">Devs</span>
     </span>
   );
 }

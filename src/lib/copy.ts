@@ -5,19 +5,19 @@
 export const CONTACT_COPY = {
   label: "Contact",
   title: "Describe the problem, not the technology.",
-  lede: "Tell us what happens today, what it costs, and what a better outcome would be worth. A founder reads every message.",
+  lede: "Tell us what happens today, what it costs, and what a better outcome would be worth. Our team reads every message.",
   emailLabel: "Or email us directly",
   email: "hello@curiousdevs.com",
   meta: [
     { term: "Based in", value: "Delhi NCR, India" },
-    { term: "Reply from", value: "A founder, within one working day" },
+    { term: "Reply from", value: "Our team, within one working day" },
     { term: "Confidentiality", value: "We sign an NDA before any confidential detail is shared" },
   ],
   note: "We would rather decline a project than win it on a promise we cannot keep.",
   success: {
     label: "Message received",
-    title: "Thank you — a founder will reply.",
-    body: "A founder will reply within one working day, usually with a few questions about your process, data and the systems involved.",
+    title: "Thank you — our team will reply.",
+    body: "Our team will reply within one working day, usually with a few questions about your process, data and the systems involved.",
   },
 };
 

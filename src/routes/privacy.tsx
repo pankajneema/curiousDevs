@@ -29,7 +29,7 @@ export const Route = createFileRoute("/privacy")({
 const CLAUSES = [
   {
     term: "Enquiries",
-    body: "When you send the contact form we receive your name, work email, company (if given), the area you selected, your description of the problem and, if given, a timeline. It is delivered to our inbox by email so that a founder can reply, and it is not published or readable from this website.",
+    body: "When you send the contact form we receive your name, work email, company (if given), the area you selected, your description of the problem and, if given, a timeline. It is delivered to our inbox by email so that our team can reply, and it is not published or readable from this website.",
   },
   {
     term: "Spam protection",
@@ -45,11 +45,11 @@ const CLAUSES = [
   },
   {
     term: "Your rights",
-    body: "You can ask to see, correct or delete the personal data we hold about you, in line with the Digital Personal Data Protection Act, 2023. Write to hello@curiousdevs.com and a founder will respond.",
+    body: "You can ask to see, correct or delete the personal data we hold about you, in line with the Digital Personal Data Protection Act, 2023. Write to hello@curiousdevs.com and our team will respond.",
   },
   {
     term: "Grievance contact",
-    body: "The founder, Pankaj Kumar, is responsible for personal data collected through this website and answers grievances directly at hello@curiousdevs.com.",
+    body: "CuriousDevs is responsible for personal data collected through this website and answers grievances directly at hello@curiousdevs.com.",
   },
   {
     term: "Retention and deletion",

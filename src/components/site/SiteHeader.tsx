@@ -77,11 +77,13 @@ export function SiteHeader() {
       <div className="shell flex h-16 items-center justify-between gap-6 md:h-[4.5rem]">
         <Link
           to="/"
-          className="flex min-h-11 items-center gap-2.5 transition-opacity hover:opacity-80"
+          className="group flex min-h-11 items-center gap-2.5 transition-opacity hover:opacity-80"
           aria-label="CuriousDevs — home"
         >
-          <Logo size={26} />
-          <Wordmark />
+          <span className="transition-transform duration-1000 ease-out group-hover:rotate-[360deg] motion-reduce:transition-none motion-reduce:group-hover:rotate-0">
+            <Logo size={26} className="transition-colors group-hover:text-signal" />
+          </span>
+          <Wordmark className="transition-colors group-hover:text-signal" />
         </Link>
 
         <div className="hidden items-center gap-3 lg:flex">

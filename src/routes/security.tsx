@@ -108,7 +108,7 @@ function SecurityPage() {
           <a href={`mailto:${CONTACT_COPY.email}`} className="text-foreground underline">
             {CONTACT_COPY.email}
           </a>
-          . The founder, Pankaj Kumar, reads and answers these directly. See also the{" "}
+          . The CuriousDevs team reads and answers these directly. See also the{" "}
           <Link to="/privacy" className="text-foreground underline">
             privacy notice
           </Link>
