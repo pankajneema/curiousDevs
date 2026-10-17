@@ -209,7 +209,7 @@ function Home() {
           <div className="flex flex-col gap-8">
             <SectionHeader
               label="07 · Company"
-              title="Founder-led, and deliberately small."
+              title="Accountable, and deliberately small."
               lede="Every system we ship has an owner who built it and answers for it."
             />
             <div>
@@ -253,7 +253,7 @@ function Home() {
       <Section id="contact">
         <CtaPanel
           label="09 · Contact"
-          title="Describe the problem, not the technology. A founder replies within one working day."
+          title="Describe the problem, not the technology. Our team replies within one working day."
         >
           <Link to="/contact" className="btn-primary">
             Book a consultation
